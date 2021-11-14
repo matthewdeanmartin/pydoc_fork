@@ -9,24 +9,32 @@ from pydoc_fork.ui_code import describe
 from pydoc_fork.utils import ErrorDuringImport, importfile
 
 
-def writedoc(thing, forceload=0):
+# MR output_folder
+def writedoc(thing, output_folder:str,document_internals:bool,  forceload:int=0):
     """Write HTML documentation to a file in the current directory."""
     try:
         object, name = resolve(thing, forceload)
-        page = html.page(describe(object), html.document(object, name))
-        with open(name + '.html', 'w', encoding='utf-8') as file:
+
+        # MR
+        # should go in constructor, but what? no constructor
+        html.output_folder = output_folder
+        html.document_internals = document_internals
+        page = html.page(describe(object), html.document(object, name, output_folder))
+        # MR output_folder + os.sep
+        with open(output_folder + os.sep + name + '.html', 'w', encoding='utf-8') as file:
             file.write(page)
         print('wrote', name + '.html')
     except (ImportError, ErrorDuringImport) as value:
         print(value)
 
 
-def writedocs(dir, pkgpath='', done=None):
+def writedocs(dir:str,output_folder:str, document_internals:bool)->None: # , pkgpath='', done=None): #ununsed args
     """Write out HTML documentation for all modules in a directory tree."""
-    if done is None: done = {}
+    # if done is None: done = {}
+    pkgpath = ""
+    # walk packages is why pydoc drags along with it tests folders
     for importer, modname, ispkg in pkgutil.walk_packages([dir], pkgpath):
-        writedoc(modname)
-    return
+        writedoc(modname, output_folder, document_internals)
 
 
 def apropos(key):
@@ -89,7 +97,9 @@ def _adjust_cli_sys_path():
         sys.path[:] = revised_path
 
 
-def cli(files):
+def cli(files:list[str],
+        output_folder:str,
+        document_internals:bool)->None:
     """Command-line interface (looks at sys.argv to decide what to do)."""
     import getopt
     class BadUsage(Exception):
@@ -106,13 +116,21 @@ def cli(files):
                 print('file %r does not exist' % arg)
                 break
             try:
+                # single file module
                 if ispath(arg) and os.path.isfile(arg):
                     arg = importfile(arg)
-
-                if ispath(arg) and os.path.isdir(arg):
-                    writedocs(arg)
+                    writedoc(arg, output_folder, document_internals)
+                # directory
+                elif ispath(arg) and os.path.isdir(arg):
+                    # writedocs(arg, output_folder)
+                    writedocs(arg, output_folder, document_internals)
+                elif isinstance(arg, str) and \
+                    os.path.exists(arg)  and os.path.isdir(arg):
+                    writedocs(arg, output_folder, document_internals)
                 else:
-                    writedoc(arg)
+                    # built ins?
+                    writedoc(arg, output_folder, document_internals)
+                    # raise TypeError("Not a file, not a directory")
 
             except ErrorDuringImport as value:
                 print(value)
@@ -128,4 +146,8 @@ def cli(files):
 
 
 if __name__ == '__main__':
-    cli([".\\"])
+    # cli([".\\"], output_folder="docs")
+    # cli(["pydoc_fork"], output_folder="docs", document_internals=True)
+    # cli(["sys"], output_folder="docs") # built ins
+    # cli(["cats"], output_folder="docs") # writes cats.html, even tho this isn't a module!
+    cli(["inspect"], output_folder="docs", document_internals=False)

@@ -1,12 +1,10 @@
 # !/usr/bin/env python3
 import inspect
-
-
-
+from typing import Any, Tuple, Union
 
 from pydoc_fork.html_generator import HTMLDoc
-from pydoc_fork.ui_code import describe, locate, pager
-from pydoc_fork.utils import _getdoc, ErrorDuringImport
+from pydoc_fork.ui_code import describe, locate
+from pydoc_fork.utils import _getdoc
 
 """Generate Python documentation in HTML or text for interactive use.
 
@@ -46,7 +44,7 @@ This can be overridden by setting the PYTHONDOCS environment variable
 to a different URL or to a local directory containing the Library
 Reference Manual pages.
 """
-__all__ = ['help']
+# __all__ = ['help']
 __author__ = "Ka-Ping Yee <ping@lfw.org>"
 __date__ = "26 February 2001"
 
@@ -64,13 +62,12 @@ Richard Chamberlain, for the first implementation of textdoc.
 #     path will be displayed.
 
 
-
-
 # --------------------------------------- interactive interpreter interface
 
 html = HTMLDoc()
 
-def resolve(thing, forceload=0):
+
+def resolve(thing: Union[str, Any], forceload: int = 0) -> Tuple[Any, str]:
     """Given an object or a path to an object, get the object and its name."""
     if isinstance(thing, str):
         object = locate(thing, forceload)
@@ -84,8 +81,9 @@ Use help(str) for help on the str class.''' % thing)
         name = getattr(thing, '__name__', None)
         return thing, name if isinstance(name, str) else None
 
+
 def render_doc(thing, title='Python Library Documentation: %s', forceload=0,
-        renderer=None):
+               renderer=None):
     """Render text documentation, given an object or a path to an object."""
     object, name = resolve(thing, forceload)
     desc = describe(object)
@@ -96,10 +94,10 @@ def render_doc(thing, title='Python Library Documentation: %s', forceload=0,
         desc += ' in module ' + module.__name__
 
     if not (inspect.ismodule(object) or
-              inspect.isclass(object) or
-              inspect.isroutine(object) or
-              inspect.isdatadescriptor(object) or
-              _getdoc(object)):
+            inspect.isclass(object) or
+            inspect.isroutine(object) or
+            inspect.isdatadescriptor(object) or
+            _getdoc(object)):
         # If the passed object is a piece of data or an instance,
         # document its available methods instead of its value.
         if hasattr(object, '__origin__'):
@@ -119,7 +117,3 @@ def render_doc(thing, title='Python Library Documentation: %s', forceload=0,
 #             output.write(render_doc(thing, title, forceload, plaintext))
 #     except (ImportError, ErrorDuringImport) as value:
 #         print(value)
-
-
-
-

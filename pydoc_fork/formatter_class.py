@@ -11,9 +11,10 @@ class Doc:
                                 "https://docs.python.org/%d.%d/library"
                                 % sys.version_info[:2])
 
-    def document(self, object, name=None, *args):
+    def document(self, object,  name=None, *args):
         """Generate documentation for an object."""
         args = (object, name) + args
+
         # 'try' clause is to attempt to handle the possibility that inspect
         # identifies something in a way that pydoc itself has issues handling;
         # think 'super' and how it is a descriptor (which raises the exception

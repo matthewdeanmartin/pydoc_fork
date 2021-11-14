@@ -7,6 +7,8 @@ import sys
 
 
 # --------------------------------------------------------- user interfaces
+from typing import Any
+
 from pydoc_fork.utils import safeimport
 
 
@@ -151,7 +153,7 @@ def plainpager(text):
     sys.stdout.write(plain(_escape_stdout(text)))
 
 
-def describe(thing):
+def describe(thing:Any)->str:
     """Produce a short description of the given thing."""
     if inspect.ismodule(thing):
         if thing.__name__ in sys.builtin_module_names:
@@ -179,7 +181,7 @@ def describe(thing):
     return type(thing).__name__
 
 
-def locate(path, forceload=0):
+def locate(path:str, forceload:int=0)->Any:
     """Locate an object by name or dotted path, importing as necessary."""
     parts = [part for part in path.split('.') if part]
     module, n = None, 0

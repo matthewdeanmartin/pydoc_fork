@@ -1,6 +1,7 @@
 # -------------------------------------------- HTML documentation generator
 import builtins
 import inspect
+import os
 import pkgutil
 import re
 import sys
@@ -185,7 +186,8 @@ class HTMLDoc(Doc):
                              r'(self\.)?(\w+))')
         while True:
             match = pattern.search(text, here)
-            if not match: break
+            if not match:
+                break
             start, end = match.span()
             results.append(escape(text[here:start]))
 
@@ -238,8 +240,9 @@ class HTMLDoc(Doc):
     def docmodule(self, object, name=None, mod=None, *ignored):
         """Produce HTML documentation for a module object."""
         name = object.__name__  # ignore the passed-in name
+
         try:
-            all = object.__all__
+            all = None if self.document_internals else object.__all__
         except AttributeError:
             all = None
         parts = name.split('.')
@@ -252,8 +255,13 @@ class HTMLDoc(Doc):
         head = '<big><big><strong>%s</strong></big></big>' % linkedname
         try:
             path = inspect.getabsfile(object)
+            # MR : Make relative
+            output_folder_path = os.path.normcase(os.path.abspath(self.output_folder))
+            path = os.path.relpath(path, output_folder_path).replace("\\","/")
+            # end MR
             url = urllib.parse.quote(path)
-            filelink = self.filelink(url, path)
+            # MR
+            filelink = self.filelink(path, path)
         except TypeError:
             filelink = '(built-in)'
         info = []

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/../lambdas/pydoc_experiments/.idea/pydoc_experiments.iml" filepath="$PROJECT_DIR$/../lambdas/pydoc_experiments/.idea/pydoc_experiments.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/pydoc_fork.iml" filepath="$PROJECT_DIR$/.idea/pydoc_fork.iml" />
-    </modules>
-  </component>
-</project>

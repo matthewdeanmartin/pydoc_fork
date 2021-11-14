@@ -8,6 +8,7 @@ coverage = "*"
 
 [dev-packages]
 coverage = "*"
+pdoc3 = "*"
 
 [requires]
 python_version = "3.9"

@@ -26,8 +26,10 @@ appears to be written from scratch. This will keep the intention of the html gen
  - rip out the plain text (console) generator. DONE
  - rip out interactive text (console) code. DONE
  - rip out most arg parser logic. DONE
- - Make path relative for file links
- - Allow specifiying output folders
+ - Make path relative for source file links. DONE
+ - Allow specifiying output folders. DONE
+ - Allow just doing one folder module and subs. DONE
+ - Allow documenting more than `__all__`
  - Add more documentaion scenarios
  - Pull in some unit tests
 
