@@ -127,3 +127,21 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+.idea/
+
+.DS_Store
+**/.DS_Store
+sonar-unit-test-results.xml
+
+.DS_Store/
+.DS_Store
+data/
+!/test/data/sample_files/
+package/
+output
+
+problems.
+reports/
+.confg/.build_state
+.build_history

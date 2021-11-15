@@ -1,51 +1,83 @@
+import importlib._bootstrap
+import importlib._bootstrap_external
 import importlib.machinery
-import importlib.machinery
-import importlib.util
 import importlib.util
 import inspect
 import os
 import re
 import sys
 import tokenize
+from typing import Any, Callable, Dict, Optional, Sequence, TextIO, Tuple, Union
 
-import importlib._bootstrap
-import importlib._bootstrap
-import importlib._bootstrap_external
-import importlib._bootstrap_external
-
-
-# --------------------------------------------------------- common routines
-
-# def pathdirs():
-#     """Convert sys.path into a list of absolute, existing, unique paths."""
-#     dirs = []
-#     normdirs = []
-#     for dir in sys.path:
-#         dir = os.path.abspath(dir or '.')
-#         normdir = os.path.normcase(dir)
-#         if normdir not in normdirs and os.path.isdir(dir):
-#             dirs.append(dir)
-#             normdirs.append(normdir)
-#     return dirs
+from pydoc_fork.custom_types import ModuleLike, TypeLike
+from pydoc_fork.module_utils import locate
 
 
-def _findclass(func):
+def resolve(thing: Union[str, Any], forceload: int = 0) -> Tuple[Any, Any]:
+    """Given an object or a path to an object, get the object and its name."""
+    if isinstance(thing, str):
+        object = locate(thing, forceload)
+        if object is None:
+            raise ImportError(
+                """\
+No Python documentation found for %r.
+Use help() to get the interactive help utility.
+Use help(str) for help on the str class."""
+                % thing
+            )
+        return object, thing
+    else:
+        name = getattr(thing, "__name__", None)
+        return thing, name if isinstance(name, str) else None
+
+
+def describe(thing: TypeLike) -> str:
+    """Produce a short description of the given thing."""
+    if inspect.ismodule(thing):
+        if thing.__name__ in sys.builtin_module_names:
+            return "built-in module " + thing.__name__
+        if hasattr(thing, "__path__"):
+            return "package " + thing.__name__
+        else:
+            return "module " + thing.__name__
+    if inspect.isbuiltin(thing):
+        return "built-in function " + thing.__name__
+    if inspect.isgetsetdescriptor(thing):
+        return "getset descriptor {}.{}.{}".format(
+            thing.__objclass__.__module__, thing.__objclass__.__name__, thing.__name__
+        )
+    if inspect.ismemberdescriptor(thing):
+        return "member descriptor {}.{}.{}".format(
+            thing.__objclass__.__module__, thing.__objclass__.__name__, thing.__name__
+        )
+    if inspect.isclass(thing):
+        return "class " + thing.__name__
+    if inspect.isfunction(thing):
+        return "function " + thing.__name__
+    if inspect.ismethod(thing):
+        return "method " + thing.__name__
+    return type(thing).__name__
+
+
+def _findclass(func: ModuleLike) -> Optional[str]:
     cls = sys.modules.get(func.__module__)
     if cls is None:
         return None
-    for name in func.__qualname__.split('.')[:-1]:
+    for name in func.__qualname__.split(".")[:-1]:
         cls = getattr(cls, name)
     if not inspect.isclass(cls):
         return None
     return cls
 
 
-def _finddoc(obj):
+def _finddoc(obj: Any) -> Optional[str]:
     if inspect.ismethod(obj):
         name = obj.__func__.__name__
         self = obj.__self__
-        if (inspect.isclass(self) and
-                getattr(getattr(self, name, None), '__func__') is obj.__func__):
+        if (
+            inspect.isclass(self)
+            and getattr(getattr(self, name, None), "__func__") is obj.__func__
+        ):
             # classmethod
             cls = self
         else:
@@ -58,8 +90,7 @@ def _finddoc(obj):
     elif inspect.isbuiltin(obj):
         name = obj.__name__
         self = obj.__self__
-        if (inspect.isclass(self) and
-                self.__qualname__ + '.' + name == obj.__qualname__):
+        if inspect.isclass(self) and self.__qualname__ + "." + name == obj.__qualname__:
             # classmethod
             cls = self
         else:
@@ -77,7 +108,7 @@ def _finddoc(obj):
         if getattr(cls, name) is not obj:
             return None
         if inspect.ismemberdescriptor(obj):
-            slots = getattr(cls, '__slots__', None)
+            slots = getattr(cls, "__slots__", None)
             if isinstance(slots, dict) and name in slots:
                 return slots[name]
     else:
@@ -92,11 +123,11 @@ def _finddoc(obj):
     return None
 
 
-def _getowndoc(obj):
+def _getowndoc(obj: Any) -> Optional[str]:
     """Get the documentation string for an object if it is not
     inherited from its class."""
     try:
-        doc = object.__getattribute__(obj, '__doc__')
+        doc = object.__getattribute__(obj, "__doc__")
         if doc is None:
             return None
         if obj is not type:
@@ -108,7 +139,7 @@ def _getowndoc(obj):
         return None
 
 
-def _getdoc(object):
+def _getdoc(object: TypeLike) -> Optional[str]:
     """Get the documentation string for an object.
 
     All tabs are expanded to spaces.  To clean up docstrings that are
@@ -125,64 +156,43 @@ def _getdoc(object):
     return inspect.cleandoc(doc)
 
 
-def getdoc(object):
+def getdoc(object: TypeLike) -> Optional[str]:
     """Get the doc string or comments for an object."""
     result = _getdoc(object) or inspect.getcomments(object)
-    return result and re.sub('^ *\n', '', result.rstrip()) or ''
+    return result and re.sub("^ *\n", "", result.rstrip()) or ""
 
 
-def splitdoc(doc):
+def splitdoc(doc: str) -> Tuple[str, str]:
     """Split a doc string into a synopsis line (if any) and the rest."""
-    lines = doc.strip().split('\n')
+    lines = doc.strip().split("\n")
     if len(lines) == 1:
-        return lines[0], ''
+        return lines[0], ""
     elif len(lines) >= 2 and not lines[1].rstrip():
-        return lines[0], '\n'.join(lines[2:])
-    return '', '\n'.join(lines)
+        return lines[0], "\n".join(lines[2:])
+    return "", "\n".join(lines)
 
 
-def classname(object, modname):
+def classname(object: TypeLike, modname: str) -> str:
     """Get a class name and qualify it with a module name if necessary."""
     name = object.__name__
     if object.__module__ != modname:
-        name = object.__module__ + '.' + name
+        name = object.__module__ + "." + name
     return name
 
 
-def isdata(object):
+def isdata(object: Any) -> bool:
     """Check if an object is of a type that probably means it's data."""
-    return not (inspect.ismodule(object) or inspect.isclass(object) or
-                inspect.isroutine(object) or inspect.isframe(object) or
-                inspect.istraceback(object) or inspect.iscode(object))
+    return not (
+        inspect.ismodule(object)
+        or inspect.isclass(object)
+        or inspect.isroutine(object)
+        or inspect.isframe(object)
+        or inspect.istraceback(object)
+        or inspect.iscode(object)
+    )
 
 
-def replace(text, *pairs):
-    """Do a series of global replacements on a string."""
-    while pairs:
-        text = pairs[1].join(text.split(pairs[0]))
-        pairs = pairs[2:]
-    return text
-
-
-def cram(text, maxlen):
-    """Omit part of a string if needed to make it fit in a maximum length."""
-    if len(text) > maxlen:
-        pre = max(0, (maxlen - 3) // 2)
-        post = max(0, maxlen - 3 - pre)
-        return text[:pre] + '...' + text[len(text) - post:]
-    return text
-
-
-_re_stripid = re.compile(r' at 0x[0-9a-f]{6,16}(>+)$', re.IGNORECASE)
-
-
-def stripid(text):
-    """Remove the hexadecimal id from a Python object representation."""
-    # The behaviour of %p is implementation-dependent in terms of case.
-    return _re_stripid.sub(r'\1', text)
-
-
-def _is_bound_method(fn):
+def _is_bound_method(fn: Callable[[Any], Any]) -> bool:
     """
     Returns True if fn is a bound method, regardless of whether
     fn was implemented in Python or in C.
@@ -190,12 +200,12 @@ def _is_bound_method(fn):
     if inspect.ismethod(fn):
         return True
     if inspect.isbuiltin(fn):
-        self = getattr(fn, '__self__', None)
+        self = getattr(fn, "__self__", None)
         return not (inspect.ismodule(self) or (self is None))
     return False
 
 
-def allmethods(cl):
+def allmethods(cl: type) -> Dict[str, Any]:
     methods = {}
     for key, value in inspect.getmembers(cl, inspect.isroutine):
         methods[key] = 1
@@ -206,7 +216,9 @@ def allmethods(cl):
     return methods
 
 
-def _split_list(s, predicate):
+def _split_list(
+    s: Sequence[str], predicate: Callable[[Any], bool]
+) -> tuple[list[str], list[str]]:
     """Split sequence s via predicate, and return pair ([true], [false]).
 
     The return value is a 2-tuple of lists,
@@ -224,44 +236,61 @@ def _split_list(s, predicate):
     return yes, no
 
 
-def visiblename(name, all=None, obj=None):
+def visiblename(
+    name: str, all: Optional[list[str]] = None, obj: Optional[Any] = None
+) -> int:
     """Decide whether to show documentation on a variable."""
     # Certain special names are redundant or internal.
     # XXX Remove __initializing__?
-    if name in {'__author__', '__builtins__', '__cached__', '__credits__',
-                '__date__', '__doc__', '__file__', '__spec__',
-                '__loader__', '__module__', '__name__', '__package__',
-                '__path__', '__qualname__', '__slots__', '__version__'}:
+    if name in {
+        "__author__",
+        "__builtins__",
+        "__cached__",
+        "__credits__",
+        "__date__",
+        "__doc__",
+        "__file__",
+        "__spec__",
+        "__loader__",
+        "__module__",
+        "__name__",
+        "__package__",
+        "__path__",
+        "__qualname__",
+        "__slots__",
+        "__version__",
+    }:
         return 0
     # Private names are hidden, but special names are displayed.
-    if name.startswith('__') and name.endswith('__'): return 1
+    if name.startswith("__") and name.endswith("__"):
+        return 1
     # Namedtuples have public fields and methods with a single leading underscore
-    if name.startswith('_') and hasattr(obj, '_fields'):
+    if name.startswith("_") and hasattr(obj, "_fields"):
         return True
     if all is not None:
         # only document that which the programmer exported in __all__
         return name in all
     else:
-        return not name.startswith('_')
+        return not name.startswith("_")
 
 
-def classify_class_attrs(object):
+def classify_class_attrs(object: type) -> list[tuple[str, str, str, str]]:
     """Wrap inspect.classify_class_attrs, with fixup for data descriptors."""
     results = []
     for (name, kind, cls, value) in inspect.classify_class_attrs(object):
         if inspect.isdatadescriptor(value):
-            kind = 'data descriptor'
+            kind = "data descriptor"
             if isinstance(value, property) and value.fset is None:
-                kind = 'readonly property'
+                kind = "readonly property"
         results.append((name, kind, cls, value))
     return results
 
 
-def sort_attributes(attrs, object):
-    'Sort the attrs list in-place by _fields and then alphabetically by name'
+def sort_attributes(attrs: list, object: Union[TypeLike, type]):
+    "Sort the attrs list in-place by _fields and then alphabetically by name"
     # This allows data descriptors to be ordered according
     # to a _fields attribute if present.
-    fields = getattr(object, '_fields', [])
+    fields = getattr(object, "_fields", [])
     try:
         field_order = {name: i - len(fields) for (i, name) in enumerate(fields)}
     except TypeError:
@@ -272,35 +301,31 @@ def sort_attributes(attrs, object):
 
 # ----------------------------------------------------- module manipulation
 
-def ispackage(path):
-    """Guess whether a path refers to a package directory."""
-    if os.path.isdir(path):
-        for ext in ('.py', '.pyc'):
-            if os.path.isfile(os.path.join(path, '__init__' + ext)):
-                return True
-    return False
 
-
-def source_synopsis(file):
+def source_synopsis(file: TextIO) -> Optional[str]:
     line = file.readline()
-    while line[:1] == '#' or not line.strip():
+    while line[:1] == "#" or not line.strip():
         line = file.readline()
-        if not line: break
+        if not line:
+            break
     line = line.strip()
-    if line[:4] == 'r"""': line = line[1:]
+    if line[:4] == 'r"""':
+        line = line[1:]
     if line[:3] == '"""':
         line = line[3:]
-        if line[-1:] == '\\': line = line[:-1]
+        if line[-1:] == "\\":
+            line = line[:-1]
         while not line.strip():
             line = file.readline()
-            if not line: break
+            if not line:
+                break
         result = line.split('"""')[0].strip()
     else:
         result = None
     return result
 
 
-def synopsis(filename, cache={}):
+def synopsis(filename: str, cache: dict[str, Any] = {}) -> Optional[str]:
     """Get the one-line summary out of a module file."""
     mtime = os.stat(filename).st_mtime
     lastupdate, result = cache.get(filename, (None, None))
@@ -325,96 +350,17 @@ def synopsis(filename, cache={}):
                 result = source_synopsis(file)
         else:
             # Must be a binary module, which has to be imported.
-            loader = loader_cls('__temp__', filename)
+            loader = loader_cls("__temp__", filename)
             # XXX We probably don't need to pass in the loader here.
-            spec = importlib.util.spec_from_file_location('__temp__', filename,
-                                                          loader=loader)
+            spec = importlib.util.spec_from_file_location(
+                "__temp__", filename, loader=loader
+            )
             try:
                 module = importlib._bootstrap._load(spec)
             except:
                 return None
-            del sys.modules['__temp__']
+            del sys.modules["__temp__"]
             result = module.__doc__.splitlines()[0] if module.__doc__ else None
         # Cache the result.
         cache[filename] = (mtime, result)
     return result
-
-
-class ErrorDuringImport(Exception):
-    """Errors that occurred while trying to import something to document it."""
-
-    def __init__(self, filename, exc_info):
-        self.filename = filename
-        self.exc, self.value, self.tb = exc_info
-
-    def __str__(self):
-        exc = self.exc.__name__
-        return 'problem in %s - %s: %s' % (self.filename, exc, self.value)
-
-
-def importfile(path):
-    """Import a Python source file or compiled file given its path."""
-    magic = importlib.util.MAGIC_NUMBER
-    with open(path, 'rb') as file:
-        is_bytecode = magic == file.read(len(magic))
-    filename = os.path.basename(path)
-    name, ext = os.path.splitext(filename)
-    if is_bytecode:
-        loader = importlib._bootstrap_external.SourcelessFileLoader(name, path)
-    else:
-        loader = importlib._bootstrap_external.SourceFileLoader(name, path)
-    # XXX We probably don't need to pass in the loader here.
-    spec = importlib.util.spec_from_file_location(name, path, loader=loader)
-    try:
-        return importlib._bootstrap._load(spec)
-    except:
-        raise ErrorDuringImport(path, sys.exc_info())
-
-
-def safeimport(path, forceload=0, cache={}):
-    """Import a module; handle errors; return None if the module isn't found.
-
-    If the module *is* found but an exception occurs, it's wrapped in an
-    ErrorDuringImport exception and reraised.  Unlike __import__, if a
-    package path is specified, the module at the end of the path is returned,
-    not the package at the beginning.  If the optional 'forceload' argument
-    is 1, we reload the module from disk (unless it's a dynamic extension)."""
-    try:
-        # If forceload is 1 and the module has been previously loaded from
-        # disk, we always have to reload the module.  Checking the file's
-        # mtime isn't good enough (e.g. the module could contain a class
-        # that inherits from another module that has changed).
-        if forceload and path in sys.modules:
-            if path not in sys.builtin_module_names:
-                # Remove the module from sys.modules and re-import to try
-                # and avoid problems with partially loaded modules.
-                # Also remove any submodules because they won't appear
-                # in the newly loaded module's namespace if they're already
-                # in sys.modules.
-                subs = [m for m in sys.modules if m.startswith(path + '.')]
-                for key in [path] + subs:
-                    # Prevent garbage collection.
-                    cache[key] = sys.modules[key]
-                    del sys.modules[key]
-        module = __import__(path)
-    except:
-        # Did the error occur before or after the module was found?
-        (exc, value, tb) = info = sys.exc_info()
-        if path in sys.modules:
-            # An error occurred while executing the imported module.
-            raise ErrorDuringImport(sys.modules[path].__file__, info)
-        elif exc is SyntaxError:
-            # A SyntaxError occurred before we could execute the module.
-            raise ErrorDuringImport(value.filename, info)
-        elif issubclass(exc, ImportError) and value.name == path:
-            # No such module in the path.
-            return None
-        else:
-            # Some other error occurred during the importing process.
-            raise ErrorDuringImport(path, sys.exc_info())
-    for part in path.split('.')[1:]:
-        try:
-            module = getattr(module, part)
-        except AttributeError:
-            return None
-    return module
