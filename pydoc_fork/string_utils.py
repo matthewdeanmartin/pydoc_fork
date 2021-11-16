@@ -1,8 +1,10 @@
+"""
+String manipulation
+"""
 import re
-from typing import Optional
 
 
-def replace(text: str, *pairs: Optional[str]) -> str:
+def replace(text: str, *pairs: str) -> str:
     """Do a series of global replacements on a string."""
     while pairs:
         text = pairs[1].join(text.split(pairs[0]))

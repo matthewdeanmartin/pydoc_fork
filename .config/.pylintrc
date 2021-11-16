@@ -159,6 +159,8 @@ disable=print-statement,
         import-error, # needs this to run pylint is pipx. Trade offs, man.
         line-too-long, # the SO URLs exceed the line length
         missing-final-newline, # black will get it eventually
+        consider-using-f-string, # not safe when the string is regex
+        protected-access, # this is forked from cpython
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option

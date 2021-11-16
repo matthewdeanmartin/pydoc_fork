@@ -1,3 +1,6 @@
+"""
+Module Manipulation
+"""
 import builtins
 import importlib._bootstrap
 import importlib._bootstrap_external
@@ -5,7 +8,7 @@ import importlib.machinery
 import importlib.util
 import os
 import sys
-from typing import Any, Tuple
+from typing import Any, Dict, Tuple, cast
 
 from pydoc_fork.custom_types import TypeLike
 
@@ -28,7 +31,7 @@ def importfile(path: str) -> TypeLike:
     with open(path, "rb") as file:
         is_bytecode = magic == file.read(len(magic))
     filename = os.path.basename(path)
-    name, ext = os.path.splitext(filename)
+    name, _ = os.path.splitext(filename)
     if is_bytecode:
         loader = importlib._bootstrap_external.SourcelessFileLoader(name, path)
     else:
@@ -36,12 +39,12 @@ def importfile(path: str) -> TypeLike:
     # XXX We probably don't need to pass in the loader here.
     spec = importlib.util.spec_from_file_location(name, path, loader=loader)
     try:
-        return importlib._bootstrap._load(spec)
+        return cast(TypeLike, importlib._bootstrap._load(spec))
     except:
         raise ErrorDuringImport(path, sys.exc_info())
 
 
-def safeimport(path: str, forceload: int = 0, cache: dict[str, Any] = {}) -> Any:
+def safe_import(path: str, forceload: int = 0, cache: Dict[str, Any] = {}) -> Any:
     """Import a module; handle errors; return None if the module isn't found.
 
     If the module *is* found but an exception occurs, it's wrapped in an
@@ -69,19 +72,19 @@ def safeimport(path: str, forceload: int = 0, cache: dict[str, Any] = {}) -> Any
         module = __import__(path)
     except:
         # Did the error occur before or after the module was found?
-        (exc, value, tb) = info = sys.exc_info()
+        (exc, value, _) = info = sys.exc_info()
         if path in sys.modules:
             # An error occurred while executing the imported module.
             raise ErrorDuringImport(sys.modules[path].__file__, info)
-        elif exc is SyntaxError:
+        if exc is SyntaxError:
             # A SyntaxError occurred before we could execute the module.
+            # MR : this isn't null safe.
             raise ErrorDuringImport(value.filename, info)
-        elif issubclass(exc, ImportError) and value.name == path:
+        if issubclass(exc, ImportError) and value.name == path:
             # No such module in the path.
             return None
-        else:
-            # Some other error occurred during the importing process.
-            raise ErrorDuringImport(path, sys.exc_info())
+        # Some other error occurred during the importing process.
+        raise ErrorDuringImport(path, sys.exc_info())
     for part in path.split(".")[1:]:
         try:
             module = getattr(module, part)
@@ -102,20 +105,20 @@ def ispackage(path: str) -> bool:
 def locate(path: str, forceload: int = 0) -> Any:
     """Locate an object by name or dotted path, importing as necessary."""
     parts = [part for part in path.split(".") if part]
-    module, n = None, 0
-    while n < len(parts):
-        nextmodule = safeimport(".".join(parts[: n + 1]), forceload)
+    module, index = None, 0
+    while index < len(parts):
+        nextmodule = safe_import(".".join(parts[: index + 1]), forceload)
         if nextmodule:
-            module, n = nextmodule, n + 1
+            module, index = nextmodule, index + 1
         else:
             break
     if module:
-        object = module
+        the_object = module
     else:
-        object = builtins
-    for part in parts[n:]:
+        the_object = builtins
+    for part in parts[index:]:
         try:
-            object = getattr(object, part)
+            the_object = getattr(the_object, part)
         except AttributeError:
             return None
-    return object
+    return the_object

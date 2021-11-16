@@ -1,3 +1,6 @@
+"""
+Unclassified utils
+"""
 import importlib._bootstrap
 import importlib._bootstrap_external
 import importlib.machinery
@@ -7,17 +10,29 @@ import os
 import re
 import sys
 import tokenize
-from typing import Any, Callable, Dict, Optional, Sequence, TextIO, Tuple, Union
+from modulefinder import Module
+from typing import (
+    Any,
+    Callable,
+    Dict,
+    List,
+    Optional,
+    Sequence,
+    TextIO,
+    Tuple,
+    Union,
+    cast,
+)
 
-from pydoc_fork.custom_types import ModuleLike, TypeLike
+from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.module_utils import locate
 
 
 def resolve(thing: Union[str, Any], forceload: int = 0) -> Tuple[Any, Any]:
     """Given an object or a path to an object, get the object and its name."""
     if isinstance(thing, str):
-        object = locate(thing, forceload)
-        if object is None:
+        the_object = locate(thing, forceload)
+        if the_object is None:
             raise ImportError(
                 """\
 No Python documentation found for %r.
@@ -25,10 +40,10 @@ Use help() to get the interactive help utility.
 Use help(str) for help on the str class."""
                 % thing
             )
-        return object, thing
-    else:
-        name = getattr(thing, "__name__", None)
-        return thing, name if isinstance(name, str) else None
+        return the_object, thing
+
+    name = getattr(thing, "__name__", None)
+    return thing, name if isinstance(name, str) else None
 
 
 def describe(thing: TypeLike) -> str:
@@ -38,8 +53,7 @@ def describe(thing: TypeLike) -> str:
             return "built-in module " + thing.__name__
         if hasattr(thing, "__path__"):
             return "package " + thing.__name__
-        else:
-            return "module " + thing.__name__
+        return "module " + thing.__name__
     if inspect.isbuiltin(thing):
         return "built-in function " + thing.__name__
     if inspect.isgetsetdescriptor(thing):
@@ -59,7 +73,8 @@ def describe(thing: TypeLike) -> str:
     return type(thing).__name__
 
 
-def _findclass(func: ModuleLike) -> Optional[str]:
+def _findclass(func: TypeLike) -> Optional[Module]:
+    """Find a Class"""
     cls = sys.modules.get(func.__module__)
     if cls is None:
         return None
@@ -70,7 +85,8 @@ def _findclass(func: ModuleLike) -> Optional[str]:
     return cls
 
 
-def _finddoc(obj: Any) -> Optional[str]:
+def _finddoc(obj: TypeLike) -> Optional[str]:
+    """Find doc string"""
     if inspect.ismethod(obj):
         name = obj.__func__.__name__
         self = obj.__self__
@@ -99,7 +115,7 @@ def _finddoc(obj: Any) -> Optional[str]:
     elif isinstance(obj, property):
         func = obj.fget
         name = func.__name__
-        cls = _findclass(func)
+        cls = _findclass(cast(TypeLike, func))
         if cls is None or getattr(cls, name) is not obj:
             return None
     elif inspect.ismethoddescriptor(obj) or inspect.isdatadescriptor(obj):
@@ -123,42 +139,42 @@ def _finddoc(obj: Any) -> Optional[str]:
     return None
 
 
-def _getowndoc(obj: Any) -> Optional[str]:
+def _getowndoc(obj: TypeLike) -> str:
     """Get the documentation string for an object if it is not
     inherited from its class."""
     try:
         doc = object.__getattribute__(obj, "__doc__")
         if doc is None:
-            return None
+            return ""  # null safety
         if obj is not type:
             typedoc = type(obj).__doc__
             if isinstance(typedoc, str) and typedoc == doc:
-                return None
-        return doc
+                return ""  # null safety
+        return cast(str, doc)
     except AttributeError:
-        return None
+        return ""  # null safety
 
 
-def _getdoc(object: TypeLike) -> Optional[str]:
+def _getdoc(the_object: TypeLike) -> str:
     """Get the documentation string for an object.
 
     All tabs are expanded to spaces.  To clean up docstrings that are
     indented to line up with blocks of code, any whitespace than can be
     uniformly removed from the second line onwards is removed."""
-    doc = _getowndoc(object)
+    doc = _getowndoc(the_object)
     if doc is None:
         try:
-            doc = _finddoc(object)
+            doc = _finddoc(the_object)
         except (AttributeError, TypeError):
-            return None
+            return ""  # null safety
     if not isinstance(doc, str):
-        return None
+        return ""  # null safety
     return inspect.cleandoc(doc)
 
 
-def getdoc(object: TypeLike) -> Optional[str]:
+def getdoc(the_object: TypeLike) -> str:
     """Get the doc string or comments for an object."""
-    result = _getdoc(object) or inspect.getcomments(object)
+    result = _getdoc(the_object) or inspect.getcomments(the_object)
     return result and re.sub("^ *\n", "", result.rstrip()) or ""
 
 
@@ -167,58 +183,59 @@ def splitdoc(doc: str) -> Tuple[str, str]:
     lines = doc.strip().split("\n")
     if len(lines) == 1:
         return lines[0], ""
-    elif len(lines) >= 2 and not lines[1].rstrip():
+    if len(lines) >= 2 and not lines[1].rstrip():
         return lines[0], "\n".join(lines[2:])
     return "", "\n".join(lines)
 
 
-def classname(object: TypeLike, modname: str) -> str:
+def classname(the_object: TypeLike, modname: str) -> str:
     """Get a class name and qualify it with a module name if necessary."""
-    name = object.__name__
-    if object.__module__ != modname:
-        name = object.__module__ + "." + name
+    name = the_object.__name__
+    if the_object.__module__ != modname:
+        name = the_object.__module__ + "." + name
     return name
 
 
-def isdata(object: Any) -> bool:
+def isdata(the_object: Any) -> bool:
     """Check if an object is of a type that probably means it's data."""
     return not (
-        inspect.ismodule(object)
-        or inspect.isclass(object)
-        or inspect.isroutine(object)
-        or inspect.isframe(object)
-        or inspect.istraceback(object)
-        or inspect.iscode(object)
+        inspect.ismodule(the_object)
+        or inspect.isclass(the_object)
+        or inspect.isroutine(the_object)
+        or inspect.isframe(the_object)
+        or inspect.istraceback(the_object)
+        or inspect.iscode(the_object)
     )
 
 
-def _is_bound_method(fn: Callable[[Any], Any]) -> bool:
+def _is_bound_method(the_function: object) -> bool:
     """
     Returns True if fn is a bound method, regardless of whether
     fn was implemented in Python or in C.
     """
-    if inspect.ismethod(fn):
+    if inspect.ismethod(the_function):
         return True
-    if inspect.isbuiltin(fn):
-        self = getattr(fn, "__self__", None)
+    if inspect.isbuiltin(the_function):
+        self = getattr(the_function, "__self__", None)
         return not (inspect.ismodule(self) or (self is None))
     return False
 
 
-def allmethods(cl: type) -> Dict[str, Any]:
-    methods = {}
-    for key, value in inspect.getmembers(cl, inspect.isroutine):
-        methods[key] = 1
-    for base in cl.__bases__:
-        methods.update(allmethods(base))  # all your base are belong to us
-    for key in methods.keys():
-        methods[key] = getattr(cl, key)
-    return methods
+# def all_methods(cl: type) -> Dict[str, Any]:
+#     """all methods"""
+#     methods = {}
+#     for key, value in inspect.getmembers(cl, inspect.isroutine):
+#         methods[key] = 1
+#     for base in cl.__bases__:
+#         methods.update(all_methods(base))  # all your base are belong to us
+#     for key in methods.keys():
+#         methods[key] = getattr(cl, key)
+#     return methods
 
 
 def _split_list(
-    s: Sequence[str], predicate: Callable[[Any], bool]
-) -> tuple[list[str], list[str]]:
+    the_sequence: Sequence[Any], predicate: Callable[[Any], Any]
+) -> Tuple[List[Any], List[Any]]:
     """Split sequence s via predicate, and return pair ([true], [false]).
 
     The return value is a 2-tuple of lists,
@@ -227,8 +244,9 @@ def _split_list(
     """
 
     yes = []
+    # pylint: disable=invalid-name
     no = []
-    for x in s:
+    for x in the_sequence:
         if predicate(x):
             yes.append(x)
         else:
@@ -237,7 +255,7 @@ def _split_list(
 
 
 def visiblename(
-    name: str, all: Optional[list[str]] = None, obj: Optional[Any] = None
+    name: str, all_things: Optional[List[str]] = None, obj: Optional[Any] = None
 ) -> int:
     """Decide whether to show documentation on a variable."""
     # Certain special names are redundant or internal.
@@ -267,17 +285,18 @@ def visiblename(
     # Namedtuples have public fields and methods with a single leading underscore
     if name.startswith("_") and hasattr(obj, "_fields"):
         return True
-    if all is not None:
+    if all_things is not None:
         # only document that which the programmer exported in __all__
-        return name in all
-    else:
-        return not name.startswith("_")
+        return name in all_things
+    return not name.startswith("_")
 
 
-def classify_class_attrs(object: type) -> list[tuple[str, str, str, str]]:
+def classify_class_attrs(the_object: TypeLike) -> List[Tuple[str, str, type, object]]:
     """Wrap inspect.classify_class_attrs, with fixup for data descriptors."""
     results = []
-    for (name, kind, cls, value) in inspect.classify_class_attrs(object):
+    for (name, kind, cls, value) in inspect.classify_class_attrs(
+        cast(type, the_object)
+    ):
         if inspect.isdatadescriptor(value):
             kind = "data descriptor"
             if isinstance(value, property) and value.fset is None:
@@ -286,11 +305,11 @@ def classify_class_attrs(object: type) -> list[tuple[str, str, str, str]]:
     return results
 
 
-def sort_attributes(attrs: list, object: Union[TypeLike, type]):
+def sort_attributes(attrs: List[Any], the_object: Union[TypeLike, type]) -> None:
     "Sort the attrs list in-place by _fields and then alphabetically by name"
     # This allows data descriptors to be ordered according
     # to a _fields attribute if present.
-    fields = getattr(object, "_fields", [])
+    fields = getattr(the_object, "_fields", [])
     try:
         field_order = {name: i - len(fields) for (i, name) in enumerate(fields)}
     except TypeError:
@@ -302,7 +321,7 @@ def sort_attributes(attrs: list, object: Union[TypeLike, type]):
 # ----------------------------------------------------- module manipulation
 
 
-def source_synopsis(file: TextIO) -> Optional[str]:
+def source_synopsis(file: TextIO) -> str:
     line = file.readline()
     while line[:1] == "#" or not line.strip():
         line = file.readline()
@@ -321,11 +340,11 @@ def source_synopsis(file: TextIO) -> Optional[str]:
                 break
         result = line.split('"""')[0].strip()
     else:
-        result = None
+        result = ""  # null safety
     return result
 
 
-def synopsis(filename: str, cache: dict[str, Any] = {}) -> Optional[str]:
+def synopsis(filename: str, cache: Dict[str, Any] = {}) -> Optional[str]:
     """Get the one-line summary out of a module file."""
     mtime = os.stat(filename).st_mtime
     lastupdate, result = cache.get(filename, (None, None))
@@ -363,4 +382,4 @@ def synopsis(filename: str, cache: dict[str, Any] = {}) -> Optional[str]:
             result = module.__doc__.splitlines()[0] if module.__doc__ else None
         # Cache the result.
         cache[filename] = (mtime, result)
-    return result
+    return cast(str, result)  # hope this is a str?

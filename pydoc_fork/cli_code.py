@@ -1,8 +1,13 @@
+"""
+Just enough UI to let a build server generate documentation
+"""
+import getopt
 import os
 import pkgutil
 import sys
-from typing import Any
+from typing import List, Union
 
+from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.formatter_html import HTMLDoc
 from pydoc_fork.module_utils import ErrorDuringImport, importfile
 from pydoc_fork.path_utils import _adjust_cli_sys_path, ispath
@@ -13,17 +18,22 @@ html = HTMLDoc()
 
 # MR output_folder
 def writedoc(
-    thing: Any, output_folder: str, document_internals: bool, forceload: int = 0
+    thing: Union[TypeLike, str],
+    output_folder: str,
+    document_internals: bool,
+    forceload: int = 0,
 ) -> None:
     """Write HTML documentation to a file in the current directory."""
     try:
-        object, name = resolve(thing, forceload)
+        the_object, name = resolve(thing, forceload)
 
         # MR
         # should go in constructor, but what? no constructor
         html.output_folder = output_folder
         html.document_internals = document_internals
-        page = html.page(describe(object), html.document(object, name, output_folder))
+        page = html.page(
+            describe(the_object), html.document(the_object, name, output_folder)
+        )
         # MR output_folder + os.sep
         with open(
             output_folder + os.sep + name + ".html", "w", encoding="utf-8"
@@ -35,25 +45,24 @@ def writedoc(
 
 
 def writedocs(
-    dir: str, output_folder: str, document_internals: bool
+    directory: str, output_folder: str, document_internals: bool
 ) -> None:  # , pkgpath='', done=None): #ununsed args
     """Write out HTML documentation for all modules in a directory tree."""
     # if done is None: done = {}
     pkgpath = ""
     # walk packages is why pydoc drags along with it tests folders
-    for importer, modname, ispkg in pkgutil.walk_packages([dir], pkgpath):
+    for _, modname, _ in pkgutil.walk_packages([directory], pkgpath):
         writedoc(modname, output_folder, document_internals)
 
 
 # -------------------------------------------------- command-line interface
 
 
-def cli(files: list[str], output_folder: str, document_internals: bool) -> None:
+def cli(files: List[str], output_folder: str, document_internals: bool) -> None:
     """Command-line interface (looks at sys.argv to decide what to do)."""
-    import getopt
 
     class BadUsage(Exception):
-        pass
+        """Bad Usage"""
 
     _adjust_cli_sys_path()
 
@@ -69,8 +78,9 @@ def cli(files: list[str], output_folder: str, document_internals: bool) -> None:
             try:
                 # single file module
                 if ispath(arg) and os.path.isfile(arg):
-                    arg = importfile(arg)
-                    writedoc(arg, output_folder, document_internals)
+                    # new type assigned to same name
+                    arg_type = importfile(arg)
+                    writedoc(arg_type, output_folder, document_internals)
                 # directory
                 elif ispath(arg) and os.path.isdir(arg):
                     # writedocs(arg, output_folder)

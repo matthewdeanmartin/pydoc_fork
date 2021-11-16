@@ -1,13 +1,16 @@
+"""
+Path Manipulation
+"""
 import os
 import sys
-from typing import Any, Optional
+from typing import List, Optional
 
 
 def ispath(x: str) -> bool:
     return isinstance(x, str) and x.find(os.sep) >= 0
 
 
-def _get_revised_path(given_path: list[str], argv0: str) -> Optional[list[str]]:
+def _get_revised_path(given_path: List[str], argv0: str) -> Optional[List[str]]:
     """Ensures current directory is on returned path, and argv0 directory is not
 
     Exception: argv0 dir is left alone if it's also pydoc's directory.
