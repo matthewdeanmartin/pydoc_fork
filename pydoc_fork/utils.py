@@ -92,7 +92,7 @@ def _finddoc(obj: TypeLike) -> Optional[str]:
         self = obj.__self__
         if (
             inspect.isclass(self)
-            and getattr(getattr(self, name, None), "__func__") is obj.__func__
+            and getattr(getattr(self, name, None), "__func__") is obj.__func__  # noqa
         ):
             # classmethod
             cls = self
@@ -306,7 +306,7 @@ def classify_class_attrs(the_object: TypeLike) -> List[Tuple[str, str, type, obj
 
 
 def sort_attributes(attrs: List[Any], the_object: Union[TypeLike, type]) -> None:
-    "Sort the attrs list in-place by _fields and then alphabetically by name"
+    """Sort the attrs list in-place by _fields and then alphabetically by name"""
     # This allows data descriptors to be ordered according
     # to a _fields attribute if present.
     fields = getattr(the_object, "_fields", [])
@@ -314,7 +314,11 @@ def sort_attributes(attrs: List[Any], the_object: Union[TypeLike, type]) -> None
         field_order = {name: i - len(fields) for (i, name) in enumerate(fields)}
     except TypeError:
         field_order = {}
-    keyfunc = lambda attr: (field_order.get(attr[0], 0), attr[0])
+
+    def keyfunc(attr: List[Any]) -> Tuple[Any, Any]:
+        """Sorting function"""
+        return (field_order.get(attr[0], 0), attr[0])
+
     attrs.sort(key=keyfunc)
 
 
@@ -344,7 +348,9 @@ def source_synopsis(file: TextIO) -> str:
     return result
 
 
-def synopsis(filename: str, cache: Dict[str, Any] = {}) -> Optional[str]:
+def synopsis(
+    filename: str, cache: Dict[str, Any] = {}  # noqa - the mutability is on purpose!!!
+) -> Optional[str]:
     """Get the one-line summary out of a module file."""
     mtime = os.stat(filename).st_mtime
     lastupdate, result = cache.get(filename, (None, None))
@@ -376,7 +382,8 @@ def synopsis(filename: str, cache: Dict[str, Any] = {}) -> Optional[str]:
             )
             try:
                 module = importlib._bootstrap._load(spec)
-            except:
+            # pylint: disable=broad-except
+            except BaseException:
                 return None
             del sys.modules["__temp__"]
             result = module.__doc__.splitlines()[0] if module.__doc__ else None

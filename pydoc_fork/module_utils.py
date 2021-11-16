@@ -40,11 +40,16 @@ def importfile(path: str) -> TypeLike:
     spec = importlib.util.spec_from_file_location(name, path, loader=loader)
     try:
         return cast(TypeLike, importlib._bootstrap._load(spec))
-    except:
+    # pylint: disable=broad-except
+    except BaseException:
         raise ErrorDuringImport(path, sys.exc_info())
 
 
-def safe_import(path: str, forceload: int = 0, cache: Dict[str, Any] = {}) -> Any:
+def safe_import(
+    path: str,
+    forceload: int = 0,
+    cache: Dict[str, Any] = {},  # noqa - this is mutable on purpose!
+) -> Any:
     """Import a module; handle errors; return None if the module isn't found.
 
     If the module *is* found but an exception occurs, it's wrapped in an
@@ -70,7 +75,8 @@ def safe_import(path: str, forceload: int = 0, cache: Dict[str, Any] = {}) -> An
                     cache[key] = sys.modules[key]
                     del sys.modules[key]
         module = __import__(path)
-    except:
+    # pylint: disable=broad-except
+    except BaseException:
         # Did the error occur before or after the module was found?
         (exc, value, _) = info = sys.exc_info()
         if path in sys.modules:

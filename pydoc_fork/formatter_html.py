@@ -27,6 +27,8 @@ from pydoc_fork.utils import (
     visiblename,
 )
 
+STDLIB_BASEDIR = sysconfig.get_path("stdlib")
+
 
 class HTMLRepr(Repr):
     """Class for safely making an HTML representation of a Python object."""
@@ -40,7 +42,7 @@ class HTMLRepr(Repr):
     def escape(self, text: str) -> str:
         return replace(text, "&", "&amp;", "<", "&lt;", ">", "&gt;")
 
-    def repr(self, the_object: Any) -> str:
+    def repr(self, the_object: Any) -> str:  # noqa - unhiding could break code?
         return Repr.repr(self, the_object)
 
     def repr1(self, x: Any, level: int) -> str:
@@ -68,7 +70,8 @@ class HTMLRepr(Repr):
     def repr_instance(self, x: Any, level: int) -> str:
         try:
             return self.escape(cram(stripid(repr(x)), self.maxstring))
-        except:
+        # pylint: disable=broad-except
+        except BaseException:
             return self.escape("<%s instance>" % x.__class__.__name__)
 
     repr_unicode = repr_string
@@ -103,7 +106,7 @@ class HTMLDoc:
             if inspect.isroutine(the_object):
                 return self.docroutine(*args)
         except AttributeError:
-            pass
+            pass  # nosec
         if inspect.isdatadescriptor(the_object):
             return self.docdata(the_object, name)
         return self.docother(the_object, name)
@@ -112,8 +115,8 @@ class HTMLDoc:
 
     # ------------------------------------------- HTML formatting utilities
 
-    # monkey patching was messing with mypy
-    def repr(self, value: Any) -> str:
+    # monkey patching was messing with mypy-- is this now a redeclare?
+    def repr(self, value: Any) -> str:  # noqa - unhiding could break code?
         _repr_instance = HTMLRepr()
         return _repr_instance.repr(value)
 
@@ -203,18 +206,18 @@ class HTMLDoc:
 
     def multicolumn(
         self,
-        list: Union[Sequence[Tuple[Any, str, Any, int]], Sequence[Tuple[str, Any]]],
-        format: Callable[[Any], str],
+        the_list: Union[Sequence[Tuple[Any, str, Any, int]], Sequence[Tuple[str, Any]]],
+        the_format: Callable[[Any], str],
         cols: int = 4,
     ) -> str:
         """Format a list of items into a multi-column list."""
         result = ""
-        rows = (len(list) + cols - 1) // cols
+        rows = (len(the_list) + cols - 1) // cols
         for col in range(cols):
             result = result + '<td width="%d%%" valign=top>' % (100 // cols)
             for i in range(rows * col, rows * col + rows):
-                if i < len(list):
-                    result = result + format(list[i]) + "<br>\n"
+                if i < len(the_list):
+                    result = result + the_format(the_list[i]) + "<br>\n"
             result = result + "</td>"
         return '<table width="100%%" summary="list"><tr>%s</tr></table>' % result
 
@@ -223,9 +226,9 @@ class HTMLDoc:
 
     def namelink(self, name: str, *dicts: Dict[str, str]) -> str:
         """Make a link for an identifier, given name-to-URL mappings."""
-        for dict in dicts:
-            if name in dict:
-                return f'<a href="{dict[name]}">{name}</a>'
+        for the_dict in dicts:
+            if name in the_dict:
+                return f'<a href="{the_dict[name]}">{name}</a>'
         return name
 
     def classlink(self, the_object: Union[TypeLike, type], modname: str) -> str:
@@ -264,9 +267,9 @@ class HTMLDoc:
         self,
         text: str,
         custom_escape: Callable[[str], str] = None,
-        funcs: Dict[str, str] = {},
-        classes: Dict[str, str] = {},
-        methods: Dict[str, str] = {},
+        funcs: Dict[str, str] = {},  # noqa - clean up later
+        classes: Dict[str, str] = {},  # noqa - clean up later
+        methods: Dict[str, str] = {},  # noqa - clean up later
     ) -> str:
         """Mark up some plain text, given a context of symbols to look for.
         Each context dictionary maps object names to anchor names."""
@@ -286,16 +289,16 @@ class HTMLDoc:
             start, end = match.span()
             results.append(escape(text[here:start]))
 
-            all, scheme, rfc, pep, selfdot, name = match.groups()
+            the_all, scheme, rfc, pep, selfdot, name = match.groups()
             if scheme:
-                url = escape(all).replace('"', "&quot;")
+                url = escape(the_all).replace('"', "&quot;")
                 results.append(f'<a href="{url}">{url}</a>')
             elif rfc:
                 url = "http://www.rfc-editor.org/rfc/rfc%d.txt" % int(rfc)
-                results.append(f'<a href="{url}">{escape(all)}</a>')
+                results.append(f'<a href="{url}">{escape(the_all)}</a>')
             elif pep:
                 url = "https://www.python.org/dev/peps/pep-%04d/" % int(pep)
-                results.append(f'<a href="{url}">{escape(all)}</a>')
+                results.append(f'<a href="{url}">{escape(the_all)}</a>')
             elif selfdot:
                 # Create a link for methods like 'self.method(...)'
                 # and use <strong> for attributes like 'self.attr'
@@ -319,7 +322,7 @@ class HTMLDoc:
         """Produce HTML for a class tree as given by inspect.getclasstree()."""
         result = ""
         for entry in tree:
-            if type(entry) is type(()):
+            if type(entry) is type(()):  # noqa - not sure of switching to isinstance
                 class_object, bases = entry
                 result = result + '<dt><font face="helvetica, arial">'
                 result = result + self.classlink(class_object, modname)
@@ -329,7 +332,7 @@ class HTMLDoc:
                         parents.append(self.classlink(base, modname))
                     result = result + "(" + ", ".join(parents) + ")"
                 result = result + "\n</font></dt>"
-            elif type(entry) is type([]):
+            elif type(entry) is type([]):  # noqa - not sure of switching to isinstance
                 result = result + "<dd>\n%s</dd>\n" % self.formattree(
                     entry, modname, class_object
                 )
@@ -432,7 +435,7 @@ class HTMLDoc:
 
         if hasattr(the_object, "__path__"):
             modpkgs = []
-            for importer, modname, ispkg in pkgutil.iter_modules(the_object.__path__):
+            for _, modname, ispkg in pkgutil.iter_modules(the_object.__path__):
                 modpkgs.append((modname, name, ispkg, 0))
             modpkgs.sort()
             contents_string = self.multicolumn(modpkgs, self.modpkglink)
@@ -484,8 +487,8 @@ class HTMLDoc:
         the_object: TypeLike,
         name: str = "",
         mod: str = "",
-        funcs: Dict[str, str] = {},
-        classes: Dict[str, str] = {},
+        funcs: Dict[str, str] = {},  # noqa - clean up later
+        classes: Dict[str, str] = {},  # noqa - clean up later
         # *ignored: List[Any],
     ) -> str:
         """Produce HTML documentation for a class object."""
@@ -529,7 +532,7 @@ class HTMLDoc:
                 for name, _, _, value in ok:
                     try:
                         value = getattr(the_object, name)
-                    except Exception:
+                    except Exception:  # nosec
                         # Some descriptors may meet a failure in their __get__.
                         # (bug #1785)
                         push(
@@ -605,16 +608,16 @@ class HTMLDoc:
             mdict[key] = anchor = "#" + name + "-" + key
             try:
                 value = getattr(the_object, name)
-            except Exception:
+            except Exception:  # nosec
                 # Some descriptors may meet a failure in their __get__.
                 # (bug #1785)
-                pass
+                pass  # nosec
             try:
                 # The value may not be hashable (e.g., a data attr with
                 # a dict or list value).
                 mdict[value] = anchor
             except TypeError:
-                pass
+                pass  # nosec
 
         while attrs:
             if mro:
@@ -659,7 +662,7 @@ class HTMLDoc:
             )
             is_data: Callable[[Any], Any] = lambda t: t[1] == "data"
             attrs = spilldata("Data and other attributes %s" % tag, attrs, is_data)
-            assert attrs == []
+            assert attrs == []  # nosec
             attrs = inherited
 
         contents_as_string = "".join(contents)  # type got redefined
@@ -703,9 +706,9 @@ class HTMLDoc:
         the_object: TypeLike,
         name: str = "",
         mod: str = "",
-        funcs: Dict[str, Any] = {},
-        classes: Dict[str, Any] = {},
-        methods: Dict[str, Any] = {},
+        funcs: Dict[str, Any] = {},  # noqa - clean up later
+        classes: Dict[str, Any] = {},  # noqa - clean up later
+        methods: Dict[str, Any] = {},  # noqa - clean up later
         cl: Optional[TypeLike] = None,
     ) -> str:
         """Produce HTML documentation for a function or method object."""
@@ -816,7 +819,7 @@ class HTMLDoc:
         modpkgs = []
         if shadowed is None:
             shadowed = {}
-        for importer, name, ispkg in pkgutil.iter_modules([directory]):
+        for _, name, ispkg in pkgutil.iter_modules([directory]):
             if any((0xD800 <= ord(ch) <= 0xDFFF) for ch in name):
                 # ignore a module if its name contains a surrogate character
                 continue
@@ -828,7 +831,7 @@ class HTMLDoc:
         return self.bigsection(directory, "#ffffff", "#ee77aa", contents)
 
     def getdocloc(
-        self, the_object: TypeLike, basedir: str = sysconfig.get_path("stdlib")
+        self, the_object: TypeLike, basedir: str = STDLIB_BASEDIR
     ) -> Optional[str]:
         """Return the location of module docs or None"""
 

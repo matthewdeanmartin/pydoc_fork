@@ -145,3 +145,4 @@ problems.
 reports/
 .confg/.build_state
 .build_history
+.config/.build_state/

@@ -6,6 +6,7 @@ Maybe move to pyproject.toml?
 import configparser
 import os
 import platform
+import sys
 
 from navio_tasks.network import check_public_ip, is_known_network
 
