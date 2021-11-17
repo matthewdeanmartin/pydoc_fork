@@ -57,6 +57,7 @@ def safe_import(
     package path is specified, the module at the end of the path is returned,
     not the package at the beginning.  If the optional 'forceload' argument
     is 1, we reload the module from disk (unless it's a dynamic extension)."""
+    print(path)
     try:
         # If forceload is 1 and the module has been previously loaded from
         # disk, we always have to reload the module.  Checking the file's
@@ -110,7 +111,9 @@ def ispackage(path: str) -> bool:
 
 def locate(path: str, forceload: int = 0) -> Any:
     """Locate an object by name or dotted path, importing as necessary."""
+    print(f"locating {path}")
     parts = [part for part in path.split(".") if part]
+    print(parts)
     module, index = None, 0
     while index < len(parts):
         nextmodule = safe_import(".".join(parts[: index + 1]), forceload)
@@ -120,11 +123,15 @@ def locate(path: str, forceload: int = 0) -> Any:
             break
     if module:
         the_object = module
+        # this errors?!
+        # print(f"putative module {str(the_object)}")
     else:
         the_object = builtins
+
     for part in parts[index:]:
         try:
             the_object = getattr(the_object, part)
         except AttributeError:
+            print(f"Don't think this is a module {the_object}")
             return None
     return the_object

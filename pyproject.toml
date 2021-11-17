@@ -39,6 +39,7 @@ pydoc_fork = 'pydoc_fork.__main__:main'
 
 [tool.poetry.dependencies]
 python = ">=3.6, <4.0"
+docopt = "*"
 
 [tool.poetry.dev-dependencies]
 pytest = "==6.0.1"
