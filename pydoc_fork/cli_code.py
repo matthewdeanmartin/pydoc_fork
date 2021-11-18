@@ -139,8 +139,8 @@ def cli(
 
 
 if __name__ == "__main__":
-    #     # cli([".\\"], output_folder="docs", document_internals=True)
-    cli(["pydoc_fork"], output_folder="docs", document_internals=True)
-#     # cli(["sys"], output_folder="docs", document_internals=False)
-#     # cli(["cats"], output_folder="docs") # writes cats.html, even tho this isn't a module!
-#     # cli(["inspect"], output_folder="docs", document_internals=False)
+    #     # cli([".\\"], output_folder=, document_internals=True)
+    cli(["pydoc_fork"], output_folder="docs_api", document_internals=True)
+#     # cli(["sys"], output_folder="docs_api", document_internals=False)
+#     # cli(["cats"], output_folder="docs_api") # writes cats.html, even tho this isn't a module!
+#     # cli(["inspect"], output_folder="docs_api", document_internals=False)

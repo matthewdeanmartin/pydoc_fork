@@ -1,45 +1,35 @@
 # pydoc_fork
-A fork of pydoc to fix some problems with it.
+A fork of pydoc to optimize it for generating, on a build server, html documentation for a python library you wrote
 
-## Motivation
-Pydoc appears to have been pulled in five directions without the input of a product manager.
-It is a mishmash of intentions:
+Less ambitious than the very good [pdoc3](https://pdoc3.github.io/pdoc/) and easier to use
+than [Sphinx](https://www.sphinx-doc.org/en/master/)
 
-- a customized web server/web application
-- a plaintext in-console manpage-like documentation browser
-- a documentation search
-- html templating
-- inspection/reflection code
+## Installation
+Requires Python 3.6+, according to `vermin`
+```
+pip install pydoc_fork
+# or
+pipenv install pydoc_fork
+```
 
-I think it should be a html documentation generator alone. There is another tool, pdoc that
-appears to be written from scratch. This will keep the intention of the html generator.
+## Usage
+```
+# Generate HTML for all modules and submodules from source code
+> pydoc_fork my_module --output docs --document_internals
 
-## Pydoc Bugs
+# Generate HTML for a module that is importable, e.g. sys
+> pydoc_fork sys --output docs
+```
 
-- Can't specify module plus submodules (limitations to `.//` option)
-- Can't do relative paths (404s if you move folders)
-- Can't specify host url for builtins (404s)
-- Can't specify output folder (paths break if you copy files)
+## Docs
+* [Motivation](https://github.com/matthewdeanmartin/pydoc_fork/tree/docs/motivation.md)
+* [TODO](https://github.com/matthewdeanmartin/so_pip/blob/main/docs/TODO.md)
 
-## TODO:
- - rip out web server and browser. DONE
- - rip out the plain text (console) generator. DONE
- - rip out interactive text (console) code. DONE
- - rip out most arg parser logic. DONE
- - Make path relative for source file links. DONE
- - Allow specifiying output folders. DONE
- - Allow just doing one folder module and subs. DONE
- - Allow documenting more than `__all__`
- - Add more documentaion scenarios
- - Pull in some unit tests
-
-
-## Source
-Forked from python 3.10. 
+## Credits
+Forked from python 3.10.
 https://github.com/python/cpython/blob/3.10/Lib/pydoc.py
 
 That code is governed by this license
 https://github.com/python/cpython/blob/main/LICENSE
 
-Not sure I can pull in the tests
-https://github.com/python/cpython/blob/3.10/Lib/test/test_pydoc.py
+I picked a MIT license, but I'm no lawyer, the cpython license probably governs in any conflict.
