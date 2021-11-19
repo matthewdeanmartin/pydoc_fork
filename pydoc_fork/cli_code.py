@@ -2,6 +2,7 @@
 Just enough UI to let a build server generate documentation
 """
 import getopt
+import logging
 import os
 import pkgutil
 import sys
@@ -9,10 +10,11 @@ from typing import List, Union
 
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.formatter_html import HTMLDoc
-from pydoc_fork.module_utils import ErrorDuringImport, importfile
-from pydoc_fork.path_utils import _adjust_cli_sys_path, ispath
+from pydoc_fork.module_utils import ErrorDuringImport
+from pydoc_fork.path_utils import _adjust_cli_sys_path
 from pydoc_fork.utils import describe, resolve
 
+LOGGER = logging.getLogger(__name__)
 html = HTMLDoc()
 
 
@@ -64,12 +66,12 @@ def writedocs(
     # if done is None: done = {}
     pkgpath = ""
     # walk packages is why pydoc drags along with it tests folders
-    print(f"Walking packages for {source_directory}")
+    LOGGER.debug(f"Walking packages for {source_directory}")
 
     for _, modname, _ in pkgutil.walk_packages([source_directory], pkgpath):
         if not str(modname).startswith(for_only):
             continue
-        print(f"docing {modname})")
+        LOGGER.debug(f"docing {modname})")
         writedoc(modname, output_folder, document_internals)
 
 
@@ -83,7 +85,7 @@ def cli(
     document_internals: bool,
 ) -> None:
     """Command-line interface (looks at sys.argv to decide what to do)."""
-    print(files, output_folder, document_internals)
+    LOGGER.debug(files, output_folder, document_internals)
 
     class BadUsage(Exception):
         """Bad Usage"""

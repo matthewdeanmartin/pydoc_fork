@@ -8,8 +8,12 @@ than [Sphinx](https://www.sphinx-doc.org/en/master/)
 Requires Python 3.6+, according to `vermin`
 ```
 pip install pydoc_fork
-# or
+
+# or virtual environment access
 pipenv install pydoc_fork
+
+# or for global, isolated, access
+pipx install pydoc_fork
 ```
 
 ## Usage
@@ -22,8 +26,8 @@ pipenv install pydoc_fork
 ```
 
 ## Docs
-* [Motivation](https://github.com/matthewdeanmartin/pydoc_fork/tree/docs/motivation.md)
-* [TODO](https://github.com/matthewdeanmartin/so_pip/blob/main/docs/TODO.md)
+* [Motivation](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/docs/motivation.md)
+* [TODO](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/docs/TODO.md)
 
 ## Credits
 Forked from python 3.10.

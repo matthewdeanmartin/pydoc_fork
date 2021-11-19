@@ -1,7 +1,10 @@
 """
 String manipulation
 """
+import logging
 import re
+
+LOGGER = logging.getLogger(__name__)
 
 
 def replace(text: str, *pairs: str) -> str:

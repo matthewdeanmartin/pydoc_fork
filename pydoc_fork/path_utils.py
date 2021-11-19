@@ -1,9 +1,12 @@
 """
 Path Manipulation
 """
+import logging
 import os
 import sys
 from typing import List, Optional
+
+LOGGER = logging.getLogger(__name__)
 
 
 def ispath(x: str) -> bool:

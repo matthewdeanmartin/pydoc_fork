@@ -6,6 +6,7 @@ import importlib._bootstrap_external
 import importlib.machinery
 import importlib.util
 import inspect
+import logging
 import os
 import re
 import sys
@@ -26,6 +27,8 @@ from typing import (
 
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.module_utils import locate
+
+LOGGER = logging.getLogger(__name__)
 
 
 def resolve(thing: Union[str, Any], forceload: int = 0) -> Tuple[Any, Any]:

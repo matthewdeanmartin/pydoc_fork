@@ -6,11 +6,14 @@ import importlib._bootstrap
 import importlib._bootstrap_external
 import importlib.machinery
 import importlib.util
+import logging
 import os
 import sys
 from typing import Any, Dict, Tuple, cast
 
 from pydoc_fork.custom_types import TypeLike
+
+LOGGER = logging.getLogger(__name__)
 
 
 class ErrorDuringImport(Exception):
@@ -57,7 +60,7 @@ def safe_import(
     package path is specified, the module at the end of the path is returned,
     not the package at the beginning.  If the optional 'forceload' argument
     is 1, we reload the module from disk (unless it's a dynamic extension)."""
-    print(path)
+    LOGGER.debug(path)
     try:
         # If forceload is 1 and the module has been previously loaded from
         # disk, we always have to reload the module.  Checking the file's
@@ -111,9 +114,9 @@ def ispackage(path: str) -> bool:
 
 def locate(path: str, forceload: int = 0) -> Any:
     """Locate an object by name or dotted path, importing as necessary."""
-    print(f"locating {path}")
+    LOGGER.debug(f"locating {path}")
     parts = [part for part in path.split(".") if part]
-    print(parts)
+    LOGGER.debug(parts)
     module, index = None, 0
     while index < len(parts):
         nextmodule = safe_import(".".join(parts[: index + 1]), forceload)
@@ -124,7 +127,7 @@ def locate(path: str, forceload: int = 0) -> Any:
     if module:
         the_object = module
         # this errors?!
-        # print(f"putative module {str(the_object)}")
+        # LOGGER.debug(f"putative module {str(the_object)}")
     else:
         the_object = builtins
 
@@ -132,6 +135,6 @@ def locate(path: str, forceload: int = 0) -> Any:
         try:
             the_object = getattr(the_object, part)
         except AttributeError:
-            print(f"Don't think this is a module {the_object}")
+            LOGGER.debug(f"Don't think this is a module {the_object}")
             return None
     return the_object

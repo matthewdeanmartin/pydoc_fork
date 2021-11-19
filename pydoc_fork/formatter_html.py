@@ -4,6 +4,7 @@ Generate HTML documenation
 # -------------------------------------------- HTML documentation generator
 import builtins
 import inspect
+import logging
 import os
 import pkgutil
 import re
@@ -27,6 +28,7 @@ from pydoc_fork.utils import (
     visiblename,
 )
 
+LOGGER = logging.getLogger(__name__)
 STDLIB_BASEDIR = sysconfig.get_path("stdlib")
 
 

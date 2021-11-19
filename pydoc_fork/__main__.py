@@ -13,6 +13,7 @@ Options:
   --quiet                      No printing or logging.
   --verbose                    Crank up the logging.
 """
+
 import logging
 import sys
 
@@ -20,9 +21,9 @@ import docopt
 
 from pydoc_fork import cli
 
+LOGGER = logging.getLogger(__name__)
 LOGGERS = []
 
-LOGGER = logging.getLogger(__name__)
 
 __version__ = "3.0.0"
 
@@ -30,12 +31,12 @@ __version__ = "3.0.0"
 def main() -> int:
     """Get the args object from command parameters"""
     arguments = docopt.docopt(__doc__, version=f"so_pip {__version__}")
-    print(arguments)
+    LOGGER.debug(arguments)
     output_folder = arguments["--output"]
 
     # TODO: add lists of packages
     package = arguments["<package>"] or ""
-    quiet = bool(arguments.get("--quiet", False))
+    # quiet = bool(arguments.get("--quiet", False))
     document_internals = arguments["--document_internals"]
 
     if arguments.get("--verbose"):
