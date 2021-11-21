@@ -96,7 +96,7 @@ def section(
 <tr><td bgcolor="{bgcol}">{marginalia}</td><td>{gap}</td>"""
         )
 
-    return result + '\n<td width="100%%">%s</td></tr></table>' % contents
+    return result + f'\n<td width="100%%">{contents}</td></tr></table>'
 
 
 def bigsection(
@@ -110,7 +110,7 @@ def bigsection(
     gap: str = "&nbsp;",  # not used
 ) -> str:
     """Format a section with a big heading."""
-    title = "<big><strong>%s</strong></big>" % title
+    title = f"<big><strong>{title}</strong></big>"
     # prefer explicit interfaces over secret hidden ones
     return section(title, fgcol, bgcol, contents, width, prelude, marginalia, gap)
 
@@ -137,12 +137,12 @@ def multicolumn(
             if i < len(the_list):
                 result = result + the_format(the_list[i]) + "<br>\n"
         result = result + "</td>"
-    return '<table width="100%%" summary="list"><tr>%s</tr></table>' % result
+    return f'<table width="100%%" summary="list"><tr>{result}</tr></table>'
 
 
 def grey(text: str) -> str:
     """Wrap in grey"""
-    return '<font color="#909090">%s</font>' % text
+    return f'<font color="#909090">{text}</font>'
 
 
 def namelink(name: str, *dicts: Dict[str, str]) -> str:
@@ -150,7 +150,7 @@ def namelink(name: str, *dicts: Dict[str, str]) -> str:
     for the_dict in dicts:
         if name in the_dict:
             return f'<a href="{the_dict[name]}">{name}</a>'
-    LOGGER.warning(f"Failed to find link for {name}")
+    # LOGGER.warning(f"Failed to find link for {name}")
     return name
 
 
@@ -162,9 +162,9 @@ def modpkglink(modpkginfo: Tuple[str, str, str, str]) -> str:
     if path:
         url = f"{path}.{name}.html"
     else:
-        url = "%s.html" % name
+        url = f"{name}.html"
     if ispackage:
-        text = "<strong>%s</strong>&nbsp;(package)" % name
+        text = f"<strong>{name}</strong>&nbsp;(package)"
     else:
         text = name
     return f'<a href="{url}">{text}</a>'
@@ -215,7 +215,7 @@ def markup(
             if text[end : end + 1] == "(":
                 results.append("self." + namelink(name, methods))
             else:
-                results.append("self.<strong>%s</strong>" % name)
+                results.append(f"self.<strong>{name}</strong>")
         elif text[end : end + 1] == "(":
             results.append(namelink(name, methods, funcs, classes))
         else:

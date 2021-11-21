@@ -19,10 +19,10 @@ def docdata(
     push = results.append
 
     if name:
-        push("<dl><dt><strong>%s</strong></dt>\n" % name)
+        push(f"<dl><dt><strong>{name}</strong></dt>\n")
     doc = markup(getdoc(the_object))
     if doc:
-        push("<dd><tt>%s</tt></dd>\n" % doc)
+        push(f"<dd><tt>{doc}</tt></dd>\n")
     push("</dl>\n")
 
     return "".join(results)

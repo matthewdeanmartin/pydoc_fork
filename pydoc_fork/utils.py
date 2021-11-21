@@ -21,9 +21,7 @@ def resolve(thing: Union[str, Any], forceload: int = 0) -> Tuple[Any, Any]:
         if the_object is None:
             raise ImportError(
                 """\
-No Python documentation found for %r.
-Use help() to get the interactive help utility.
-Use help(str) for help on the str class."""
+No Python documentation found for %r."""
                 % thing
             )
         return the_object, thing

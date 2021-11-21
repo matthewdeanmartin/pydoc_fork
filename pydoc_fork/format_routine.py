@@ -32,11 +32,11 @@ def docroutine(
                 note = " from " + classlink(imclass, mod)
         else:
             if the_object.__self__ is not None:
-                note = " method of %s instance" % classlink(
-                    the_object.__self__.__class__, mod
-                )
+                link = classlink(the_object.__self__.__class__, mod)
+                note = f" method of {link} instance"
             else:
-                note = " unbound %s method" % classlink(imclass, mod)
+                link = classlink(imclass, mod)
+                note = f" unbound {link} method"
 
     if inspect.iscoroutinefunction(the_object) or inspect.isasyncgenfunction(
         the_object
@@ -63,7 +63,7 @@ def docroutine(
         if signature:
             argspec = str(signature)
             if realname == "<lambda>":
-                title = "<strong>%s</strong> <em>lambda</em> " % name
+                title = f"<strong>{name}</strong> <em>lambda</em> "
                 # XXX lambda's won't usually have func_annotations['return']
                 # since the syntax doesn't support but it is possible.
                 # So removing parentheses isn't truly safe.
@@ -75,12 +75,12 @@ def docroutine(
         asyncqualifier
         + title
         + escape(argspec)
-        + (note and grey('<font face="helvetica, arial">%s</font>' % note))
+        + (note and grey(f'<font face="helvetica, arial">{note}</font>'))
     )
 
     if skipdocs:
-        return "<dl><dt>%s</dt></dl>\n" % decl
+        return f"<dl><dt>{decl}</dt></dl>\n"
 
     doc = markup(getdoc(the_object), funcs, classes, methods)
-    doc = doc and "<dd><tt>%s</tt></dd>" % doc
+    doc = doc and f"<dd><tt>{doc}</tt></dd>"
     return f"<dl><dt>{decl}</dt>{doc}</dl>\n"

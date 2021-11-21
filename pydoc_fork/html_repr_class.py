@@ -55,6 +55,6 @@ class HTMLRepr(Repr):
             return self.escape(cram(stripid(repr(x)), self.maxstring))
         # pylint: disable=broad-except
         except BaseException:
-            return self.escape("<%s instance>" % x.__class__.__name__)
+            return self.escape(f"<{x.__class__.__name__} instance>")
 
     repr_unicode = repr_string

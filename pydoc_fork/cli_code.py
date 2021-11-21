@@ -100,6 +100,9 @@ def cli(
     """Command-line interface (looks at sys.argv to decide what to do)."""
     LOGGER.debug(f"{files}, {output_folder}, {document_internals}")
 
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
     _adjust_cli_sys_path()
 
     # opts, args = getopt.getopt(sys.argv[1:], 'bk:n:p:w')
@@ -134,8 +137,10 @@ def cli(
 
 
 if __name__ == "__main__":
-    #     # cli([".\\"], output_folder=, document_internals=True)
+    cli([".\\"], output_folder="docs_api", document_internals=True)
     cli(["pydoc_fork"], output_folder="docs_api", document_internals=True)
-#     # cli(["sys"], output_folder="docs_api", document_internals=False)
-#     # cli(["cats"], output_folder="docs_api") # writes cats.html, even tho this isn't a module!
-#     # cli(["inspect"], output_folder="docs_api", document_internals=False)
+    cli(["sys"], output_folder="docs_api", document_internals=False)
+    cli(
+        ["cats"], output_folder="docs_api", document_internals=False
+    )  # writes cats.html, even tho this isn't a module!
+    cli(["inspect"], output_folder="docs_api", document_internals=False)

@@ -66,7 +66,7 @@ def docclass(
         hr.maybe()
         push("<dl><dt>Method resolution order:</dt>\n")
         for base in mro:
-            push("<dd>%s</dd>\n" % classlink(base, the_object.__module__))
+            push(f"<dd>{classlink(base, the_object.__module__)}</dd>\n")
         push("</dl>\n")
 
     def spill(
@@ -135,10 +135,10 @@ def docclass(
                 )
                 found_doc = getdoc(value)
                 if not found_doc:
-                    push("<dl><dt>%s</dl>\n" % base)
+                    push(f"<dl><dt>{base}</dl>\n")
                 else:
                     found_doc = markup(getdoc(value), funcs, classes, mdict)
-                    found_doc = "<dd><tt>%s</tt>" % found_doc
+                    found_doc = f"<dd><tt>{found_doc}</tt>"
                     push(f"<dl><dt>{base}{found_doc}</dl>\n")
                 push("\n")
         return attrs
@@ -180,28 +180,28 @@ def docclass(
         if thisclass is the_object:
             tag = "defined here"
         else:
-            tag = "inherited from %s" % classlink(thisclass, the_object.__module__)
+            tag = f"inherited from {classlink(thisclass, the_object.__module__)}"
         tag += ":<br>\n"
 
         sort_attributes(attrs, the_object)
 
         # Pump out the attrs, segregated by kind.
         is_method: Callable[[Any], Any] = lambda t: t[1] == "method"
-        attrs = spill("Methods %s" % tag, attrs, is_method)
+        attrs = spill(f"Methods {tag}", attrs, is_method)
         is_class: Callable[[Any], Any] = lambda t: t[1] == "class method"
-        attrs = spill("Class methods %s" % tag, attrs, is_class)
+        attrs = spill(f"Class methods {tag}", attrs, is_class)
         is_static: Callable[[Any], Any] = lambda t: t[1] == "static method"
-        attrs = spill("Static methods %s" % tag, attrs, is_static)
+        attrs = spill(f"Static methods {tag}", attrs, is_static)
         is_read_only: Callable[[Any], Any] = lambda t: t[1] == "readonly property"
         attrs = spilldescriptors(
-            "Readonly properties %s" % tag,
+            f"Readonly properties {tag}",
             attrs,
             is_read_only,
         )
         is_data_descriptor: Callable[[Any], Any] = lambda t: t[1] == "data descriptor"
-        attrs = spilldescriptors("Data descriptors %s" % tag, attrs, is_data_descriptor)
+        attrs = spilldescriptors(f"Data descriptors {tag}", attrs, is_data_descriptor)
         is_data: Callable[[Any], Any] = lambda t: t[1] == "data"
-        attrs = spilldata("Data and other attributes %s" % tag, attrs, is_data)
+        attrs = spilldata(f"Data and other attributes {tag}", attrs, is_data)
         assert attrs == []  # nosec
         attrs = inherited
 
@@ -215,7 +215,7 @@ def docclass(
         parents = []
         for base in bases:
             parents.append(classlink(base, the_object.__module__))
-        title = title + "(%s)" % ", ".join(parents)
+        title = title + f"({', '.join(parents)})"
 
     decl = ""
     try:
@@ -231,7 +231,7 @@ def docclass(
     if decl:
         doc = decl + (doc or "")
     doc = markup(doc, funcs, classes, mdict)
-    doc = doc and "<tt>%s<br>&nbsp;</tt>" % doc
+    doc = doc and f"<tt>{doc}<br>&nbsp;</tt>"
 
     return section(title, "#000000", "#ffc8d8", contents_as_string, 3, doc)
 
@@ -251,7 +251,6 @@ def formattree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> s
                 result = result + "(" + ", ".join(parents) + ")"
             result = result + "\n</font></dt>"
         elif type(entry) is type([]):  # noqa - not sure of switching to isinstance
-            result = result + "<dd>\n%s</dd>\n" % formattree(
-                entry, modname, class_object
-            )
-    return "<dl>\n%s</dl>\n" % result
+            tree = formattree(entry, modname, class_object)
+            result = result + f"<dd>\n{tree}</dd>\n"
+    return f"<dl>\n{result}</dl>\n"

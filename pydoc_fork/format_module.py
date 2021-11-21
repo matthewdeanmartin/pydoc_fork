@@ -91,12 +91,13 @@ def docmodule(
     parts = name.split(".")
     links = []
     for i in range(len(parts) - 1):
+        link_url = ".".join(parts[: i + 1])
+        link_text = parts[i]
         links.append(
-            '<a href="%s.html"><font color="#ffffff">%s</font></a>'
-            % (".".join(parts[: i + 1]), parts[i])
+            f'<a href="{link_url}.html"><font color="#ffffff">{link_text}</font></a>'
         )
     linkedname = ".".join(links + parts[-1:])
-    head = "<big><big><strong>%s</strong></big></big>" % linkedname
+    head = f"<big><big><strong>{linkedname}</strong></big></big>"
     try:
         path = inspect.getabsfile(cast(type, the_object))
         # MR : Make relative
@@ -113,11 +114,11 @@ def docmodule(
         version = str(the_object.__version__)
         if version[:11] == "$" + "Revision: " and version[-1:] == "$":
             version = version[11:-1].strip()
-        info.append("version %s" % escape(version))
+        info.append(f"version {escape(version)}")
     if hasattr(the_object, "__date__"):
         info.append(escape(str(the_object.__date__)))
     if info:
-        head = head + " (%s)" % ", ".join(info)
+        head = head + f" ({', '.join(info)})"
     docloc = getdocloc(the_object)
     if docloc is not None:
         docloc = '<br><a href="%(docloc)s">Module Reference</a>' % locals()
@@ -169,8 +170,8 @@ def docmodule(
             data.append((key, value))
 
     doc = markup(getdoc(the_object), fdict, cdict)
-    doc = doc and "<tt>%s</tt>" % doc
-    result = result + "<p>%s</p>\n" % doc
+    doc = doc and f"<tt>{doc}</tt>"
+    result = result + f"<p>{doc}</p>\n"
 
     if hasattr(the_object, "__path__"):
         modpkgs = []
