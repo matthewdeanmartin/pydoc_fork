@@ -28,10 +28,11 @@ Richard Chamberlain, for the first implementation of textdoc.
 #     the current directory is changed with os.chdir(), an incorrect
 #     path will be displayed.
 from pydoc_fork.cli_code import *  # noqa
-from pydoc_fork.formatter_html import *  # noqa
-from pydoc_fork.module_utils import *  # noqa
-from pydoc_fork.path_utils import *  # noqa
-from pydoc_fork.string_utils import *  # noqa
-from pydoc_fork.utils import *  # noqa
+
+# from pydoc_fork.formatter_html import *  # noqa
+# from pydoc_fork.module_utils import *  # noqa
+# from pydoc_fork.path_utils import *  # noqa
+# from pydoc_fork.string_utils import *  # noqa
+# from pydoc_fork.utils import *  # noqa
 
 __spec__ = "123"  # noqa

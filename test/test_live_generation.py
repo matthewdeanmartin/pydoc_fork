@@ -18,9 +18,14 @@ def cwd(path):
 
 def test_cli():
     with cwd("../"):
-        cli(["pydoc_fork//pydoc_fork"], output_folder=".", document_internals=True)
-        cli(["pydocfodder"], output_folder=".", document_internals=True)
-        cli(["pydoc_mod"], output_folder=".", document_internals=True)
+        results = cli(
+            ["pydoc_fork//pydoc_fork"], output_folder=".", document_internals=True
+        )
+        assert results
+        results = cli(["test.pydocfodder"], output_folder=".", document_internals=True)
+        assert results
+        results = cli(["test.pydoc_mod"], output_folder=".", document_internals=True)
+        assert results
         #  can't do this yet, pydoc stills imports each module!
         # cli([".\\"], output_folder=".", document_internals=True)
         try:

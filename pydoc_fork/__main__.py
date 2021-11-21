@@ -4,6 +4,8 @@ A fork of pydoc that is optimized for generating html documentation in a CI cont
 
 Usage:
   pydoc_fork <package>... [--output=<folder>] [--document_internals]
+  pydoc_fork importable <importable>... [--output=<folder>] [--document_internals]
+  pydoc_fork source <path>... [--output=<folder>] [--document_internals]
   pydoc_fork (-h | --help)
   pydoc_fork --version
 

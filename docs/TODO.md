@@ -1,9 +1,12 @@
-
 ### TODO:
 - Separate "document source code at this path" from "document this imported type/module"
 - Link built ins to main doc site (or give option to generate)
 - Option to walk the module tree (to some specified depth)
   - https://stackoverflow.com/questions/48000761/list-submodules-of-a-python-module
+- Double encoding (in unit tests flag HTML escape codes for "greater than"?)
+- copy source to target folder
+- index page
+-
 
 ### DONE
 - rip out web server and browser. DONE
