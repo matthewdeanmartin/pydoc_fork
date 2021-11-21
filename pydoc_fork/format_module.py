@@ -11,17 +11,17 @@ from typing import Optional, cast
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_class import formattree
 from pydoc_fork.formatter_html import (
+    DOCUMENT_INTERNALS,
+    OUTPUT_FOLDER,
     PYTHONDOCS,
     STDLIB_BASEDIR,
     bigsection,
-    document_internals,
     escape,
     filelink,
     heading,
     markup,
     modpkglink,
     multicolumn,
-    output_folder,
 )
 from pydoc_fork.utils import getdoc, isdata, visiblename
 
@@ -62,9 +62,7 @@ def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[s
         and the_object.__name__ not in ("xml.etree", "test.pydoc_mod")
     ):
         if doc_loc.startswith(("http://", "https://")):
-            doc_loc = "{}/{}.html".format(
-                doc_loc.rstrip("/"), the_object.__name__.lower()
-            )
+            doc_loc = f"{doc_loc.rstrip('/')}/{the_object.__name__.lower()}.html"
         else:
             doc_loc = os.path.join(doc_loc, the_object.__name__.lower() + ".html")
     else:
@@ -87,7 +85,7 @@ def docmodule(
     name = the_object.__name__
 
     try:
-        all_things = None if document_internals else the_object.__all__
+        all_things = None if DOCUMENT_INTERNALS else the_object.__all__
     except AttributeError:
         all_things = None
     parts = name.split(".")
@@ -102,7 +100,7 @@ def docmodule(
     try:
         path = inspect.getabsfile(cast(type, the_object))
         # MR : Make relative
-        output_folder_path = os.path.normcase(os.path.abspath(output_folder))
+        output_folder_path = os.path.normcase(os.path.abspath(OUTPUT_FOLDER))
         path = os.path.relpath(path, output_folder_path).replace("\\", "/")
         # end MR
         url = urllib.parse.quote(path)

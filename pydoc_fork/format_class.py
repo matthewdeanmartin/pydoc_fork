@@ -25,9 +25,7 @@ def classlink(the_object: Union[TypeLike, type], modname: str) -> str:
     """Make a link for a class."""
     name, module = the_object.__name__, sys.modules.get(the_object.__module__)
     if hasattr(module, name) and getattr(module, name) is the_object:
-        return '<a href="{}.html#{}">{}</a>'.format(
-            module.__name__, name, classname(cast(TypeLike, the_object), modname)
-        )
+        return f'<a href="{module.__name__}.html#{name}">{classname(cast(TypeLike, the_object), modname)}</a>'
     return classname(the_object, modname)
 
 
@@ -54,10 +52,12 @@ def docclass(
             self.needone = 0
 
         def maybe(self) -> None:
+            """Skip"""
             if self.needone:
                 push("<hr>\n")
             self.needone = 1
 
+    # pylint:disable=invalid-name
     hr = HorizontalRule()
 
     # List the mro, if non-trivial.
@@ -92,6 +92,7 @@ def docclass(
                     )
                 else:
                     # circular ref
+                    # pylint: disable=import-outside-toplevel
                     from pydoc_fork.format_page import document
 
                     push(document(value, name, mod, funcs, classes, mdict, the_object))
@@ -176,7 +177,7 @@ def docclass(
         if the_object is not builtins.object and thisclass is builtins.object:
             attrs = inherited
             continue
-        elif thisclass is the_object:
+        if thisclass is the_object:
             tag = "defined here"
         else:
             tag = "inherited from %s" % classlink(thisclass, the_object.__module__)
@@ -209,9 +210,7 @@ def docclass(
     if name == realname:
         title = f'<a name="{name}">class <strong>{realname}</strong></a>'
     else:
-        title = '<strong>{}</strong> = <a name="{}">class {}</a>'.format(
-            name, name, realname
-        )
+        title = f'<strong>{name}</strong> = <a name="{name}">class {realname}</a>'
     if bases:
         parents = []
         for base in bases:

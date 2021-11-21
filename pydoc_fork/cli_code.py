@@ -1,11 +1,9 @@
 """
 Just enough UI to let a build server generate documentation
 """
-import getopt
 import logging
 import os
 import pkgutil
-import sys
 from typing import List, Optional, Union
 
 import pydoc_fork.formatter_html as html
@@ -31,8 +29,8 @@ def writedoc(
 
         # MR
         # should go in constructor, but what? no constructor
-        html.output_folder = output_folder
-        html.document_internals = document_internals
+        html.OUTPUT_FOLDER = output_folder
+        html.DOCUMENT_INTERNALS = document_internals
         page_out = render(describe(the_object), the_object, name)
         # MR output_folder + os.sep
         full_path = output_folder + os.sep + name + ".html"
@@ -42,6 +40,7 @@ def writedoc(
         return full_path
     except (ImportError, ErrorDuringImport) as value:
         print(value)
+    return ""
 
 
 def write_docs_per_module(
@@ -92,9 +91,6 @@ def writedocs(
     return full_paths
 
 
-# -------------------------------------------------- command-line interface
-
-
 def cli(
     files: List[str],
     # TODO source_folder,
@@ -102,59 +98,39 @@ def cli(
     document_internals: bool,
 ) -> List[str]:
     """Command-line interface (looks at sys.argv to decide what to do)."""
-    LOGGER.debug(files, output_folder, document_internals)
-
-    class BadUsage(Exception):
-        """Bad Usage"""
+    LOGGER.debug(f"{files}, {output_folder}, {document_internals}")
 
     _adjust_cli_sys_path()
 
-    try:
-        # opts, args = getopt.getopt(sys.argv[1:], 'bk:n:p:w')
-        args = files
-        if not args:
-            raise BadUsage
-        return write_docs_per_module(files, output_folder, document_internals)
-        # for file in files:
-        #     if ispath(file) and not os.path.exists(file):
-        #         print("file %r does not exist" % files)
-        #         break
-        #     try:
-        #         # single file module
-        #         if ispath(file) and os.path.isfile(file):
-        #             # new type assigned to same name
-        #             arg_type = importfile(file)
-        #             writedoc(arg_type, output_folder, document_internals)
-        #         # directory
-        #         elif ispath(file) and os.path.isdir(file):
-        #             print(f"We think this is a path & a directory 1")
-        #
-        #         elif (
-        #             isinstance(files, str) and os.path.exists(files) and os.path.isdir(files)
-        #         ):
-        #             print(f"We think this is a path & a directory 2")
-        #             write_docs_per_module(files, output_folder, document_internals)
-        #         else:
-        #             print(f"We think this is a built in or something on the PYTHONPATH")
-        #             # built ins?
-        #             write_docs_per_module(files, output_folder, document_internals)
-        #             # raise TypeError("Not a file, not a directory")
-        #
-        #     except ErrorDuringImport as value:
-        #         print(value)
-
-    except (getopt.error, BadUsage):
-        cmd = os.path.splitext(os.path.basename(sys.argv[0]))[0]
-        print(
-            """pydoc_forked - the Python documentation tool
-{cmd} -w <name> ...
-    Write out the HTML documentation for a module to a file in the current
-    directory.  If <name> contains a '{sep}', it is treated as a filename; if
-    it names a directory, documentation is written for all the contents.
-""".format(
-                cmd=cmd, sep=os.sep
-            )
-        )
+    # opts, args = getopt.getopt(sys.argv[1:], 'bk:n:p:w')
+    return write_docs_per_module(files, output_folder, document_internals)
+    # for file in files:
+    #     if ispath(file) and not os.path.exists(file):
+    #         print("file %r does not exist" % files)
+    #         break
+    #     try:
+    #         # single file module
+    #         if ispath(file) and os.path.isfile(file):
+    #             # new type assigned to same name
+    #             arg_type = importfile(file)
+    #             writedoc(arg_type, output_folder, document_internals)
+    #         # directory
+    #         elif ispath(file) and os.path.isdir(file):
+    #             print(f"We think this is a path & a directory 1")
+    #
+    #         elif (
+    #             isinstance(files, str) and os.path.exists(files) and os.path.isdir(files)
+    #         ):
+    #             print(f"We think this is a path & a directory 2")
+    #             write_docs_per_module(files, output_folder, document_internals)
+    #         else:
+    #             print(f"We think this is a built in or something on the PYTHONPATH")
+    #             # built ins?
+    #             write_docs_per_module(files, output_folder, document_internals)
+    #             # raise TypeError("Not a file, not a directory")
+    #
+    #     except ErrorDuringImport as value:
+    #         print(value)
 
 
 if __name__ == "__main__":

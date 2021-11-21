@@ -49,15 +49,11 @@ def docroutine(
         title = f'<a name="{anchor}"><strong>{realname}</strong></a>'
     else:
         if cl and inspect.getattr_static(cl, realname, []) is the_object:
-            reallink = '<a href="#{}">{}</a>'.format(
-                cl.__name__ + "-" + realname, realname
-            )
+            reallink = f'<a href="#{cl.__name__ + "-" + realname}">{realname}</a>'
             skipdocs = 1
         else:
             reallink = realname
-        title = '<a name="{}"><strong>{}</strong></a> = {}'.format(
-            anchor, name, reallink
-        )
+        title = f'<a name="{anchor}"><strong>{name}</strong></a> = {reallink}'
     argspec = None
     if inspect.isroutine(the_object):
         try:

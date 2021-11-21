@@ -44,8 +44,8 @@ def importfile(path: str) -> TypeLike:
     try:
         return cast(TypeLike, importlib._bootstrap._load(spec))
     # pylint: disable=broad-except
-    except BaseException:
-        raise ErrorDuringImport(path, sys.exc_info())
+    except BaseException as import_error:
+        raise ErrorDuringImport(path, sys.exc_info()) from import_error
 
 
 def safe_import(
@@ -60,7 +60,7 @@ def safe_import(
     package path is specified, the module at the end of the path is returned,
     not the package at the beginning.  If the optional 'forceload' argument
     is 1, we reload the module from disk (unless it's a dynamic extension)."""
-    LOGGER.debug(path)
+    LOGGER.debug(str(path))
     try:
         # If forceload is 1 and the module has been previously loaded from
         # disk, we always have to reload the module.  Checking the file's
@@ -80,21 +80,21 @@ def safe_import(
                     del sys.modules[key]
         module = __import__(path)
     # pylint: disable=broad-except
-    except BaseException:
+    except BaseException as import_error:
         # Did the error occur before or after the module was found?
         (exc, value, _) = info = sys.exc_info()
         if path in sys.modules:
             # An error occurred while executing the imported module.
-            raise ErrorDuringImport(sys.modules[path].__file__, info)
+            raise ErrorDuringImport(sys.modules[path].__file__, info) from import_error
         if exc is SyntaxError:
             # A SyntaxError occurred before we could execute the module.
             # MR : this isn't null safe.
-            raise ErrorDuringImport(value.filename, info)
+            raise ErrorDuringImport(value.filename, info) from import_error
         if issubclass(exc, ImportError) and value.name == path:
             # No such module in the path.
             return None
         # Some other error occurred during the importing process.
-        raise ErrorDuringImport(path, sys.exc_info())
+        raise ErrorDuringImport(path, sys.exc_info()) from import_error
     for part in path.split(".")[1:]:
         try:
             module = getattr(module, part)
@@ -116,7 +116,7 @@ def locate(path: str, forceload: int = 0) -> Any:
     """Locate an object by name or dotted path, importing as necessary."""
     LOGGER.debug(f"locating {path}")
     parts = [part for part in path.split(".") if part]
-    LOGGER.debug(parts)
+    LOGGER.debug(str(parts))
     module, index = None, 0
     while index < len(parts):
         nextmodule = safe_import(".".join(parts[: index + 1]), forceload)

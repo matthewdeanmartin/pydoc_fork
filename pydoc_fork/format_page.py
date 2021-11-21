@@ -31,15 +31,13 @@ def page(title: str, contents: str) -> str:
 
     This is part of the public API
     """
-    return """\
+    return f"""\
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html><head><title>Python: {}</title>
+<html><head><title>Python: {title}</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 </head><body bgcolor="#f0f0f8">
-{}
-</body></html>""".format(
-        title, contents
-    )
+{contents}
+</body></html>"""
 
 
 def document(the_object: TypeLike, name: str = "", *args: Any) -> str:  # Null safety

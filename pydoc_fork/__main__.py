@@ -33,7 +33,7 @@ __version__ = "3.0.0"
 def main() -> int:
     """Get the args object from command parameters"""
     arguments = docopt.docopt(__doc__, version=f"so_pip {__version__}")
-    LOGGER.debug(arguments)
+    LOGGER.debug(str(arguments))
     output_folder = arguments["--output"]
 
     # TODO: add lists of packages

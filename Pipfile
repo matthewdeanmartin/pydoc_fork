@@ -33,6 +33,7 @@ setuptools-scm = "*"
 jake = "*"
 libyear = "*"
 dodgy = "*"
+html5lib = "*"
 
 [requires]
 python_version = "3.9"

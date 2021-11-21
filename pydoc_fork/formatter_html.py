@@ -24,8 +24,8 @@ from pydoc_fork.string_utils import replace
 LOGGER = logging.getLogger(__name__)
 STDLIB_BASEDIR = sysconfig.get_path("stdlib")
 
-document_internals = False
-output_folder = ""
+DOCUMENT_INTERNALS = False
+OUTPUT_FOLDER = ""
 
 PYTHONDOCS = os.environ.get(
     "PYTHONDOCS", "https://docs.python.org/%d.%d/library" % sys.version_info[:2]
@@ -34,31 +34,29 @@ PYTHONDOCS = os.environ.get(
 """Formatter class for HTML documentation."""
 
 
-# ------------------------------------------- HTML formatting utilities
-
 # monkey patching was messing with mypy-- is this now a redeclare?
-def repr(value: Any) -> str:  # noqa - unhiding could break code?
+def html_repr(value: Any) -> str:  # noqa - unhiding could break code?
+    """Turn method into function"""
     _repr_instance = HTMLRepr()
     return _repr_instance.repr(value)
 
 
 def escape(value: Any) -> str:
+    """HTML safe repr and escape"""
     _repr_instance = HTMLRepr()
     return _repr_instance.escape(value)
 
 
 def heading(title: str, fgcol: str, bgcol: str, extras: str = "") -> str:
     """Format a page heading."""
-    return """
+    return f"""
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
-<tr bgcolor="{}">
+<tr bgcolor="{bgcol}">
 <td valign=bottom>&nbsp;<br>
-<font color="{}" face="helvetica, arial">&nbsp;<br>{}</font></td
+<font color="{fgcol}" face="helvetica, arial">&nbsp;<br>{title}</font></td
 ><td align=right valign=bottom
-><font color="{}" face="helvetica, arial">{}</font></td></tr></table>
-""".format(
-        bgcol, fgcol, title, fgcol, extras or "&nbsp;"
-    )
+><font color="{fgcol}" face="helvetica, arial">{extras or '&nbsp;'}</font></td></tr></table>
+"""
 
 
 def section(
@@ -66,10 +64,10 @@ def section(
     fgcol: str,
     bgcol: str,
     contents: str,
-    width: int = 6,
+    width: int = 6,  # used by marginalia?
     prelude: str = "",
-    marginalia: str = "",
-    gap: str = "&nbsp;",
+    marginalia: str = "",  # not used
+    gap: str = "&nbsp;",  # not used
 ) -> str:
     """Format a section with a heading."""
 
@@ -77,40 +75,44 @@ def section(
 
     if marginalia is None:
         marginalia = "<tt>" + "&nbsp;" * width + "</tt>"
-    result = """<p>
+    result = f"""<p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="{}">
+<tr bgcolor="{bgcol}">
 <td colspan=3 valign=bottom>&nbsp;<br>
-<font color="{}" face="helvetica, arial">{}</font></td></tr>
-""".format(
-        bgcol, fgcol, title
-    )
+<font color="{fgcol}" face="helvetica, arial">{title}</font></td></tr>
+"""
     if prelude:
         result = (
             result
-            + """
-<tr bgcolor="{}"><td rowspan=2>{}</td>
-<td colspan=2>{}</td></tr>
-<tr><td>{}</td>""".format(
-                bgcol, marginalia, prelude, gap
-            )
+            + f"""
+<tr bgcolor="{bgcol}"><td rowspan=2>{marginalia}</td>
+<td colspan=2>{prelude}</td></tr>
+<tr><td>{gap}</td>"""
         )
     else:
         result = (
             result
-            + """
-<tr><td bgcolor="{}">{}</td><td>{}</td>""".format(
-                bgcol, marginalia, gap
-            )
+            + f"""
+<tr><td bgcolor="{bgcol}">{marginalia}</td><td>{gap}</td>"""
         )
 
     return result + '\n<td width="100%%">%s</td></tr></table>' % contents
 
 
-def bigsection(title: str, *args: Any) -> str:
+def bigsection(
+    title: str,
+    fgcol: str,
+    bgcol: str,
+    contents: str,
+    width: int = 6,  # used by marginalia?
+    prelude: str = "",
+    marginalia: str = "",  # not used
+    gap: str = "&nbsp;",  # not used
+) -> str:
     """Format a section with a big heading."""
     title = "<big><strong>%s</strong></big>" % title
-    return section(title, *args)
+    # prefer explicit interfaces over secret hidden ones
+    return section(title, fgcol, bgcol, contents, width, prelude, marginalia, gap)
 
 
 def preformat(text: str) -> str:
@@ -139,6 +141,7 @@ def multicolumn(
 
 
 def grey(text: str) -> str:
+    """Wrap in grey"""
     return '<font color="#909090">%s</font>' % text
 
 
@@ -147,6 +150,7 @@ def namelink(name: str, *dicts: Dict[str, str]) -> str:
     for the_dict in dicts:
         if name in the_dict:
             return f'<a href="{the_dict[name]}">{name}</a>'
+    LOGGER.warning(f"Failed to find link for {name}")
     return name
 
 
@@ -215,12 +219,14 @@ def markup(
         elif text[end : end + 1] == "(":
             results.append(namelink(name, methods, funcs, classes))
         else:
+            # This assumes everything else is a class!!
             results.append(namelink(name, classes))
         here = end
     results.append(preformat(text[here:]))
     return "".join(results)
 
 
-def formatvalue(the_object: Any) -> str:
-    """Format an argument default value as text."""
-    return grey("=" + repr(the_object))
+# dead code
+# def formatvalue(the_object: Any) -> str:
+#     """Format an argument default value as text."""
+#     return grey("=" + html_repr(the_object))

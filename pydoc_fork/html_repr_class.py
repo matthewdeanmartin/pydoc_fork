@@ -10,18 +10,23 @@ class HTMLRepr(Repr):
     """Class for safely making an HTML representation of a Python object."""
 
     def __init__(self) -> None:
+        """Some maximums"""
         Repr.__init__(self)
         self.maxlist = self.maxtuple = 20
         self.maxdict = 10
         self.maxstring = self.maxother = 100
 
+    # pylint: disable=no-self-use
     def escape(self, text: str) -> str:
+        """Simple html escaping"""
         return replace(text, "&", "&amp;", "<", "&lt;", ">", "&gt;")
 
-    def repr(self, the_object: Any) -> str:  # noqa - unhiding could break code?
-        return Repr.repr(self, the_object)
+    def repr(self, x: Any) -> str:  # noqa - unhiding could break code?
+        """Delegates to Repr.repr"""
+        return Repr.repr(self, x)
 
     def repr1(self, x: Any, level: int) -> str:
+        """Not sure, this is dead code"""
         if hasattr(type(x), "__name__"):
             methodname = "repr_" + "_".join(type(x).__name__.split())
             if hasattr(self, methodname):
@@ -29,6 +34,7 @@ class HTMLRepr(Repr):
         return self.escape(cram(stripid(repr(x)), self.maxother))
 
     def repr_string(self, x: str, _: int) -> str:
+        """Repr, but squash it into a window"""
         test = cram(x, self.maxstring)
         test_repr = repr(test)
         if "\\" in test and "\\" not in replace(test_repr, r"\\", ""):
@@ -44,6 +50,7 @@ class HTMLRepr(Repr):
     repr_str = repr_string
 
     def repr_instance(self, x: Any, level: int) -> str:
+        """Repr, but squash it into a window"""
         try:
             return self.escape(cram(stripid(repr(x)), self.maxstring))
         # pylint: disable=broad-except

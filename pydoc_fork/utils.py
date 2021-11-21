@@ -1,29 +1,12 @@
 """
 Unclassified utils
 """
-import importlib._bootstrap
-import importlib._bootstrap_external
-import importlib.machinery
-import importlib.util
 import inspect
 import logging
-import os
 import re
 import sys
-import tokenize
 from modulefinder import Module
-from typing import (
-    Any,
-    Callable,
-    Dict,
-    List,
-    Optional,
-    Sequence,
-    TextIO,
-    Tuple,
-    Union,
-    cast,
-)
+from typing import Any, Callable, List, Optional, Sequence, Tuple, Union, cast
 
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.module_utils import locate
@@ -60,13 +43,9 @@ def describe(thing: TypeLike) -> str:
     if inspect.isbuiltin(thing):
         return "built-in function " + thing.__name__
     if inspect.isgetsetdescriptor(thing):
-        return "getset descriptor {}.{}.{}".format(
-            thing.__objclass__.__module__, thing.__objclass__.__name__, thing.__name__
-        )
+        return f"getset descriptor {thing.__objclass__.__module__}.{thing.__objclass__.__name__}.{thing.__name__}"
     if inspect.ismemberdescriptor(thing):
-        return "member descriptor {}.{}.{}".format(
-            thing.__objclass__.__module__, thing.__objclass__.__name__, thing.__name__
-        )
+        return f"member descriptor {thing.__objclass__.__module__}.{thing.__objclass__.__name__}.{thing.__name__}"
     if inspect.isclass(thing):
         return "class " + thing.__name__
     if inspect.isfunction(thing):
@@ -181,14 +160,14 @@ def getdoc(the_object: TypeLike) -> str:
     return result and re.sub("^ *\n", "", result.rstrip()) or ""
 
 
-def splitdoc(doc: str) -> Tuple[str, str]:
-    """Split a doc string into a synopsis line (if any) and the rest."""
-    lines = doc.strip().split("\n")
-    if len(lines) == 1:
-        return lines[0], ""
-    if len(lines) >= 2 and not lines[1].rstrip():
-        return lines[0], "\n".join(lines[2:])
-    return "", "\n".join(lines)
+# def splitdoc(doc: str) -> Tuple[str, str]:
+#     """Split a doc string into a synopsis line (if any) and the rest."""
+#     lines = doc.strip().split("\n")
+#     if len(lines) == 1:
+#         return lines[0], ""
+#     if len(lines) >= 2 and not lines[1].rstrip():
+#         return lines[0], "\n".join(lines[2:])
+#     return "", "\n".join(lines)
 
 
 def classname(the_object: TypeLike, modname: str) -> str:
@@ -325,71 +304,68 @@ def sort_attributes(attrs: List[Any], the_object: Union[TypeLike, type]) -> None
     attrs.sort(key=keyfunc)
 
 
-# ----------------------------------------------------- module manipulation
+# def source_synopsis(file: TextIO) -> str:
+#     line = file.readline()
+#     while line[:1] == "#" or not line.strip():
+#         line = file.readline()
+#         if not line:
+#             break
+#     line = line.strip()
+#     if line[:4] == 'r"""':
+#         line = line[1:]
+#     if line[:3] == '"""':
+#         line = line[3:]
+#         if line[-1:] == "\\":
+#             line = line[:-1]
+#         while not line.strip():
+#             line = file.readline()
+#             if not line:
+#                 break
+#         result = line.split('"""')[0].strip()
+#     else:
+#         result = ""  # null safety
+#     return result
 
 
-def source_synopsis(file: TextIO) -> str:
-    line = file.readline()
-    while line[:1] == "#" or not line.strip():
-        line = file.readline()
-        if not line:
-            break
-    line = line.strip()
-    if line[:4] == 'r"""':
-        line = line[1:]
-    if line[:3] == '"""':
-        line = line[3:]
-        if line[-1:] == "\\":
-            line = line[:-1]
-        while not line.strip():
-            line = file.readline()
-            if not line:
-                break
-        result = line.split('"""')[0].strip()
-    else:
-        result = ""  # null safety
-    return result
-
-
-def synopsis(
-    filename: str, cache: Dict[str, Any] = {}  # noqa - the mutability is on purpose!!!
-) -> Optional[str]:
-    """Get the one-line summary out of a module file."""
-    mtime = os.stat(filename).st_mtime
-    lastupdate, result = cache.get(filename, (None, None))
-    if lastupdate is None or lastupdate < mtime:
-        # Look for binary suffixes first, falling back to source.
-        if filename.endswith(tuple(importlib.machinery.BYTECODE_SUFFIXES)):
-            loader_cls = importlib.machinery.SourcelessFileLoader
-        elif filename.endswith(tuple(importlib.machinery.EXTENSION_SUFFIXES)):
-            loader_cls = importlib.machinery.ExtensionFileLoader
-        else:
-            loader_cls = None
-        # Now handle the choice.
-        if loader_cls is None:
-            # Must be a source file.
-            try:
-                file = tokenize.open(filename)
-            except OSError:
-                # module can't be opened, so skip it
-                return None
-            # text modules can be directly examined
-            with file:
-                result = source_synopsis(file)
-        else:
-            # Must be a binary module, which has to be imported.
-            loader = loader_cls("__temp__", filename)
-            # XXX We probably don't need to pass in the loader here.
-            spec = importlib.util.spec_from_file_location(
-                "__temp__", filename, loader=loader
-            )
-            try:
-                module = importlib._bootstrap._load(spec)
-            # pylint: disable=broad-except
-            except BaseException:
-                return None
-            del sys.modules["__temp__"]
-            result = module.__doc__.splitlines()[0] if module.__doc__ else None
-        # Cache the result.
-        cache[filename] = (mtime, result)
-    return cast(str, result)  # hope this is a str?
+# def synopsis(
+#     filename: str, cache: Dict[str, Any] = {}  # noqa - the mutability is on purpose!!!
+# ) -> Optional[str]:
+#     """Get the one-line summary out of a module file."""
+#     mtime = os.stat(filename).st_mtime
+#     lastupdate, result = cache.get(filename, (None, None))
+#     if lastupdate is None or lastupdate < mtime:
+#         # Look for binary suffixes first, falling back to source.
+#         if filename.endswith(tuple(importlib.machinery.BYTECODE_SUFFIXES)):
+#             loader_cls = importlib.machinery.SourcelessFileLoader
+#         elif filename.endswith(tuple(importlib.machinery.EXTENSION_SUFFIXES)):
+#             loader_cls = importlib.machinery.ExtensionFileLoader
+#         else:
+#             loader_cls = None
+#         # Now handle the choice.
+#         if loader_cls is None:
+#             # Must be a source file.
+#             try:
+#                 file = tokenize.open(filename)
+#             except OSError:
+#                 # module can't be opened, so skip it
+#                 return None
+#             # text modules can be directly examined
+#             with file:
+#                 result = source_synopsis(file)
+#         else:
+#             # Must be a binary module, which has to be imported.
+#             loader = loader_cls("__temp__", filename)
+#             # XXX We probably don't need to pass in the loader here.
+#             spec = importlib.util.spec_from_file_location(
+#                 "__temp__", filename, loader=loader
+#             )
+#             try:
+#                 module = importlib._bootstrap._load(spec)
+#             # pylint: disable=broad-except
+#             except BaseException:
+#                 return None
+#             del sys.modules["__temp__"]
+#             result = module.__doc__.splitlines()[0] if module.__doc__ else None
+#         # Cache the result.
+#         cache[filename] = (mtime, result)
+#     return cast(str, result)  # hope this is a str?

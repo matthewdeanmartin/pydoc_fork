@@ -15,6 +15,7 @@ coverage
 dodgy
 gitchangelog==3.0.4
 gitpython
+html5lib
 ifaddr
 jake
 libyear

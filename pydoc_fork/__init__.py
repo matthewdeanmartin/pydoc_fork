@@ -35,4 +35,5 @@ from pydoc_fork.cli_code import *  # noqa
 # from pydoc_fork.string_utils import *  # noqa
 # from pydoc_fork.utils import *  # noqa
 
-__spec__ = "123"  # noqa
+# forgot why I needed this
+# __spec__ = "123"  # noqa
