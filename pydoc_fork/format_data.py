@@ -11,8 +11,6 @@ from pydoc_fork.utils import getdoc
 def docdata(
     the_object: TypeLike,
     name: str = "",  # Null safety
-    # mod: Optional[str] = None,
-    # cl: Optional[str] = None,
 ) -> str:
     """Produce html documentation for a data descriptor."""
     results: List[str] = []

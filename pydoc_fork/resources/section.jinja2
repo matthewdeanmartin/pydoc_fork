@@ -1,0 +1,24 @@
+{#    if marginalia is None:#}
+{#        marginalia = "<tt>" + "&nbsp;" * width + "</tt>"#}
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="{bgcol}">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="{fgcol}" face="helvetica, arial">{title}</font></td>
+    </tr>
+
+    {% if prelude %}
+        <tr bgcolor="{bgcol}">
+            <td rowspan=2><tt>{marginalia}</tt></td>
+            <td colspan=2>{prelude}</td>
+        </tr>
+        <tr>
+            <td>{gap}</td>
+            {% else %}
+        <tr>
+        <td bgcolor="{bgcol}"><tt>{marginalia}</tt></td>
+        <td>{gap}</td>
+    {% endif %}
+    <td width="100%%">{contents}</td></tr>
+</table>
