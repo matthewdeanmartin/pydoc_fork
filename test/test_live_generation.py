@@ -17,7 +17,10 @@ def cwd(path):
 
 
 def test_cli():
-    with cwd("../"):
+    with cwd("."):
+        results = cli(["navio_tasks"], output_folder=".", document_internals=True)
+        results = cli(["pydoc_fork"], output_folder=".", document_internals=True)
+        assert results
         results = cli(
             ["pydoc_fork//pydoc_fork"], output_folder=".", document_internals=True
         )

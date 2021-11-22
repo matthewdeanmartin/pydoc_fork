@@ -19,14 +19,17 @@ class HTMLRepr(Repr):
     # pylint: disable=no-self-use
     def escape(self, text: str) -> str:
         """Simple html escaping"""
-        return replace(text, "&", "&amp;", "<", "&lt;", ">", "&gt;")
+        result = replace(text, "&", "&amp;", "<", "&lt;", ">", "&gt;")
+        # if "&amp;" in result:
+        #     print("possible double escape")
+        return result
 
     def repr(self, x: Any) -> str:  # noqa - unhiding could break code?
         """Delegates to Repr.repr"""
         return Repr.repr(self, x)
 
     def repr1(self, x: Any, level: int) -> str:
-        """Not sure, this is dead code"""
+        """Not sure, is dead code?"""
         if hasattr(type(x), "__name__"):
             methodname = "repr_" + "_".join(type(x).__name__.split())
             if hasattr(self, methodname):

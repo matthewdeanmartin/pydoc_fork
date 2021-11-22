@@ -225,7 +225,9 @@ def docclass(
     if signature:
         argspec = str(signature)
         if argspec and argspec != "()":
-            decl = name + escape(argspec) + "\n\n"
+            # this will cause double escape on ->
+            # escape(argspec)
+            decl = name + argspec + "\n\n"
 
     doc = getdoc(the_object)
     if decl:

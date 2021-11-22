@@ -18,6 +18,7 @@ def test_docother():
         result = docother(thing, "various")
         print(result)
         html = HTML5PARSER.parseFragment(result)
+        assert "&amp;gt;" not in result
 
 
 def test_docroutine():
@@ -26,6 +27,7 @@ def test_docroutine():
         result = docroutine(thing, "methods")
         print(result)
         html = HTML5PARSER.parseFragment(result)
+        assert "&amp;gt;" not in result
 
 
 def test_docclass():
@@ -34,6 +36,7 @@ def test_docclass():
         result = docclass(thing, "methods")
         print(result)
         html = HTML5PARSER.parseFragment(result)
+        assert "&amp;gt;" not in result
 
 
 def test_section():
@@ -45,6 +48,7 @@ def test_section():
         )
         print(result)
         html = HTML5PARSER.parseFragment(result)
+        assert "&amp;gt;" not in html
 
 
 def test_bigsection():
@@ -56,6 +60,7 @@ def test_bigsection():
         )
         print(result)
         html = HTML5PARSER.parseFragment(result)
+        assert "&amp;gt;" not in result
 
 
 def test_preformat():
@@ -65,6 +70,7 @@ def test_preformat():
         result = preformat(thing)
         print(result)
         html = HTML5PARSER.parseFragment(result)
+        assert "&amp;gt;" not in result
 
 
 def test_markup():
@@ -82,3 +88,4 @@ def test_markup():
         )
         print(result)
         html = HTML5PARSER.parseFragment(result)
+        assert "&amp;gt;" not in result

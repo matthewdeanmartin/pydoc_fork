@@ -44,7 +44,10 @@ def html_repr(value: Any) -> str:  # noqa - unhiding could break code?
 def escape(value: Any) -> str:
     """HTML safe repr and escape"""
     _repr_instance = HTMLRepr()
-    return _repr_instance.escape(value)
+    result = _repr_instance.escape(value)
+    if "&amp;gt;" in result:
+        print("possible double escape")
+    return result
 
 
 def heading(title: str, fgcol: str, bgcol: str, extras: str = "") -> str:
