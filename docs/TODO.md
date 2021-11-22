@@ -1,4 +1,8 @@
 ### TODO:
+- Just enough jinja to fix the HTML
+  - heading, page, section are templates
+  - everything else is string wrapped with 1 tag
+  - except one table
 - Separate "document source code at this path" from "document this imported type/module"
 - Link built ins to main doc site (or give option to generate)
 - Option to walk the module tree (to some specified depth)
@@ -6,7 +10,7 @@
 - Double encoding (in unit tests flag HTML escape codes for "greater than"?)
 - copy source to target folder
 - index page
--
+- 
 
 ### DONE
 - rip out web server and browser. DONE

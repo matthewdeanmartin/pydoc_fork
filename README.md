@@ -27,6 +27,7 @@ pipx install pydoc_fork
 
 ## Docs
 * [Motivation](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/docs/motivation.md)
+* [Prior Art](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/docs/prior_art.md)
 * [TODO](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/docs/TODO.md)
 
 ## Credits
