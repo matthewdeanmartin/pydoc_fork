@@ -6,7 +6,7 @@ import os
 import pkgutil
 import sys
 import urllib.parse
-from typing import Optional, cast
+from typing import List, Optional, Tuple, cast
 
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_class import formattree
@@ -28,7 +28,6 @@ from pydoc_fork.utils import getdoc, isdata, visiblename
 
 def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[str]:
     """Return the location of module docs or None"""
-
     try:
         file = inspect.getabsfile(cast(type, the_object))
     except TypeError:
@@ -38,29 +37,28 @@ def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[s
     doc_loc: Optional[str] = os.environ.get("PYTHONDOCS", PYTHONDOCS)
 
     basedir = os.path.normcase(basedir)
-    if (
-        isinstance(the_object, type(os))
-        and (
-            the_object.__name__
-            in (
-                "errno",
-                "exceptions",
-                "gc",
-                "imp",
-                "marshal",
-                "posix",
-                "signal",
-                "sys",
-                "_thread",
-                "zipimport",
-            )
-            or (
-                file.startswith(basedir)
-                and not file.startswith(os.path.join(basedir, "site-packages"))
-            )
-        )
-        and the_object.__name__ not in ("xml.etree", "test.pydoc_mod")
-    ):
+    is_known_stdlib = the_object.__name__ in (
+        "errno",
+        "exceptions",
+        "gc",
+        "imp",
+        "marshal",
+        "posix",
+        "signal",
+        "sys",
+        "_thread",
+        "zipimport",
+    )
+    is_module = isinstance(the_object, type(os))
+    is_in_pythons_folder = file.startswith(basedir) and not file.startswith(
+        os.path.join(basedir, "site-packages")
+    )
+    # # This is nasty special case coding, how many more special cases are there?
+    # is_exception =the_object.__name__ in ("xml.etree", "test.pydoc_mod")
+    # # special case for etree
+    # "https://docs.python.org/3/library/xml.etree.elementtree.html"
+
+    if is_module and (is_known_stdlib or is_in_pythons_folder):
         if doc_loc.startswith(("http://", "https://")):
             doc_loc = f"{doc_loc.rstrip('/')}/{the_object.__name__.lower()}.html"
         else:
@@ -70,9 +68,21 @@ def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[s
     return doc_loc
 
 
+MENTIONED_MODULES: List[Tuple[TypeLike, str]] = []
+
+
 def modulelink(the_object: TypeLike) -> str:
     """Make a link for a module."""
-    return f'<a href="{the_object.__name__}.html">{the_object.__name__}</a>'
+    url = f"{the_object.__name__}.html"
+    internet_link = getdocloc(the_object)
+    PREFER_INTERNET_DOCUMENTATION = True
+    if internet_link and PREFER_INTERNET_DOCUMENTATION:
+        url = internet_link
+    # BUG: doesn't take into consideration an alternate base
+    global MENTIONED_MODULES
+    if not internet_link:
+        MENTIONED_MODULES.append((the_object, the_object.__name__))
+    return f'<a href="{url}">{the_object.__name__}</a>'
 
 
 def docmodule(
@@ -110,6 +120,7 @@ def docmodule(
     except TypeError:
         filelink_text = "(built-in)"
     info = []
+    # TODO: Include the rest of the meta data
     if hasattr(the_object, "__version__"):
         version = str(the_object.__version__)
         if version[:11] == "$" + "Revision: " and version[-1:] == "$":
@@ -121,21 +132,31 @@ def docmodule(
         head = head + f" ({', '.join(info)})"
     docloc = getdocloc(the_object)
     if docloc is not None:
-        docloc = '<br><a href="%(docloc)s">Module Reference</a>' % locals()
+        # Was this just a bug? docloc/locals?
+        # docloc = '<br><a href="%(docloc)s">Module Reference</a>' % locals()
+        docloc = f'<br><a href="{docloc}">Module Reference</a>'
     else:
         docloc = ""
     result = heading(
         head, "#ffffff", "#7799ee", '<a href=".">index</a><br>' + filelink_text + docloc
     )
 
+    # this will get `import foo` but ignore `from foo import bar`
+    # And bar gets no doc string love either!
     modules = inspect.getmembers(the_object, inspect.ismodule)
-
+    modules_by_import_from = set()
     classes, cdict = [], {}
     for key, value in inspect.getmembers(the_object, inspect.isclass):
+        _class_module = inspect.getmodule(value)
+        if _class_module and not _class_module is the_object:
+            modules_by_import_from.add((None, _class_module))
+            MENTIONED_MODULES.append((_class_module, _class_module.__name__))
         # if __all__ exists, believe it.  Otherwise use old heuristic.
         if (
-            all_things is not None
-            or (inspect.getmodule(value) or the_object) is the_object
+            # TODO put doc internals switch here
+            # all_things is not None or
+            (inspect.getmodule(value) or the_object)
+            is the_object
         ):
             if visiblename(key, all_things, the_object):
                 classes.append((key, value))
@@ -155,10 +176,17 @@ def docmodule(
     funcs, fdict = [], {}
     for key, value in inspect.getmembers(the_object, inspect.isroutine):
         # if __all__ exists, believe it.  Otherwise use old heuristic.
+        _func_module = inspect.getmodule(value)
+        # why does this sometimes return no module?
+        if _func_module and not _func_module is the_object:
+            modules_by_import_from.add((None, _func_module))
+            MENTIONED_MODULES.append((_func_module, _func_module.__name__))
         if (
-            all_things is not None
-            or inspect.isbuiltin(value)
-            or inspect.getmodule(value) is the_object
+            True
+            # TODO put doc internals switch here
+            # all_things is not None or # __all__ as scope limiter
+            # inspect.isbuiltin(value)  # thing w/o module
+            # or inspect.getmodule(value) is the_object # from foo import bar
         ) and visiblename(key, all_things, the_object):
             funcs.append((key, value))
             fdict[key] = "#-" + key
@@ -186,12 +214,19 @@ def docmodule(
         contents_string = multicolumn(modules, lambda t: modulelink(t[1]))
         result = result + bigsection("Modules", "#ffffff", "#aa55cc", contents_string)
 
+    if modules_by_import_from:
+        contents_string = multicolumn(
+            list(modules_by_import_from), lambda t: modulelink(list(t)[1])
+        )
+        result = result + bigsection(
+            "`from` Modules", "#ffffff", "#aa55cc", contents_string
+        )
+
     if classes:
         class_list = [value for (key, value) in classes]
         # MR: boolean type safety
         contents_list = [formattree(inspect.getclasstree(class_list, True), name)]
         for key, value in classes:
-
             contents_list.append(document(value, key, name, fdict, cdict))
         result = result + bigsection(
             "Classes", "#ffffff", "#ee77aa", " ".join(contents_list)
@@ -199,7 +234,6 @@ def docmodule(
     if funcs:
         contents_list = []
         for key, value in funcs:
-
             contents_list.append(document(value, key, name, fdict, cdict))
         result = result + bigsection(
             "Functions", "#ffffff", "#eeaa77", " ".join(contents_list)
@@ -207,7 +241,6 @@ def docmodule(
     if data:
         contents_list = []
         for key, value in data:
-
             contents_list.append(document(value, key))
         result = result + bigsection(
             "Data", "#ffffff", "#55aa55", "<br>\n".join(contents_list)

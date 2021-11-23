@@ -4,12 +4,12 @@ Just enough UI to let a build server generate documentation
 import logging
 import os
 import pkgutil
-from typing import List, Optional, Union
+from typing import List, Optional, Tuple, Union
 
 import pydoc_fork.formatter_html as html
 from pydoc_fork.custom_types import TypeLike
+from pydoc_fork.format_module import MENTIONED_MODULES
 from pydoc_fork.format_page import render
-from pydoc_fork.module_utils import ErrorDuringImport
 from pydoc_fork.path_utils import _adjust_cli_sys_path
 from pydoc_fork.utils import describe, resolve
 
@@ -24,27 +24,36 @@ def writedoc(
     forceload: int = 0,
 ) -> Optional[str]:
     """Write HTML documentation to a file in the current directory."""
-    try:
-        the_object, name = resolve(thing, forceload)
+    # try:
+    the_object, name = resolve(thing, forceload)
 
-        # MR
-        # should go in constructor, but what? no constructor
-        html.OUTPUT_FOLDER = output_folder
-        html.DOCUMENT_INTERNALS = document_internals
-        page_out = render(describe(the_object), the_object, name)
-        # MR output_folder + os.sep
-        full_path = output_folder + os.sep + name + ".html"
-        with open(full_path, "w", encoding="utf-8") as file:
-            file.write(page_out)
-        print("wrote", name + ".html")
-        return full_path
-    except (ImportError, ErrorDuringImport) as value:
-        print(value)
-    return ""
+    # MR
+    # should go in constructor, but what? no constructor
+    html.OUTPUT_FOLDER = output_folder
+    html.DOCUMENT_INTERNALS = document_internals
+    page_out = render(describe(the_object), the_object, name)
+    # MR output_folder + os.sep
+    full_path = calculate_file_name(name, output_folder)
+    with open(full_path, "w", encoding="utf-8") as file:
+        file.write(page_out)
+    print("wrote", name + ".html")
+    return full_path
+    # except (ImportError, ErrorDuringImport) as value:
+    #     print(value)
+    # return ""
+
+
+def calculate_file_name(name: str, output_folder: str) -> str:
+    """If this was written, what would its name be"""
+    full_path = output_folder + os.sep + name + ".html"
+    return full_path
 
 
 def write_docs_per_module(
-    modules: List[str], output_folder: str, document_internals: bool
+    modules: List[str],
+    output_folder: str,
+    document_internals: bool,
+    skip_if_written: bool = False,
 ) -> List[str]:
     """Write out HTML documentation for all modules in a directory tree."""
 
@@ -54,18 +63,57 @@ def write_docs_per_module(
     written: List[str] = []
     for module in modules:
         # file
+
         if module.lower().endswith(".py"):
             full_path = writedoc(module[:-3], output_folder, document_internals)
-            written.append(full_path)
+            if full_path:
+                written.append(full_path)
         else:
-            # source folder
             full_path = writedoc(module, output_folder, document_internals)
-            written.append(full_path)
+            if full_path:
+                written.append(full_path)
             # "." needs to mean pwd... does it?
             full_paths = writedocs(
                 ".", output_folder, document_internals, for_only=module
             )
             written.extend(full_paths)
+    # One pass, not ready to walk entire tree.
+
+    third_party_written = write_docs_live_module(
+        MENTIONED_MODULES, output_folder, document_internals, 0, skip_if_written
+    )
+    written.extend(third_party_written)
+    return written
+
+
+def write_docs_live_module(
+    modules: List[Tuple[TypeLike, str]],
+    output_folder: str,
+    document_internals: bool,
+    total_third_party: int = 0,
+    skip_if_written: bool = False,
+) -> List[str]:
+    """Write out HTML documentation for all modules in a directory tree."""
+
+    # This is going to handle filesystem paths, e.g. ./module/submodule.py
+    # There will be ANOTHER method to handle MODULE paths, e.g. module.submodule"
+    # Attempting to mix these two types is a bad idea.
+    written: List[str] = []
+    while MENTIONED_MODULES and total_third_party <= 100:
+        for module in modules:
+            thing, name = module  # destructure it
+            # should only be live modules or dot notation modules, not paths.
+            full_path = calculate_file_name(name, output_folder)
+            if os.path.exists(full_path) and skip_if_written:
+                MENTIONED_MODULES.remove(module)
+            else:
+                full_path = writedoc(thing, output_folder, document_internals)
+                total_third_party += 1
+                if full_path:
+                    written.append(full_path)
+                MENTIONED_MODULES.remove(module)
+
+    # TODO: make this a param
     return written
 
 
@@ -87,13 +135,13 @@ def writedocs(
             continue
         LOGGER.debug(f"docing {modname})")
         full_path = writedoc(modname, output_folder, document_internals)
-        full_paths.append(full_path)
+        if full_path:
+            full_paths.append(full_path)
     return full_paths
 
 
 def cli(
     files: List[str],
-    # TODO source_folder,
     output_folder: str,
     document_internals: bool,
 ) -> List[str]:

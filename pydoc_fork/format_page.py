@@ -59,15 +59,15 @@ def document(the_object: TypeLike, name: str = "", *args: Any) -> str:  # Null s
     # identifies something in a way that pydoc itself has issues handling;
     # think 'super' and how it is a descriptor (which raises the exception
     # by lacking a __name__ attribute) and an instance.
-    try:
-        if inspect.ismodule(the_object):
-            return docmodule(the_object)
-        if inspect.isclass(the_object):
-            return docclass(*args)
-        if inspect.isroutine(the_object):
-            return docroutine(*args)
-    except AttributeError:
-        pass  # nosec
+    # try:
+    if inspect.ismodule(the_object):
+        return docmodule(the_object)
+    if inspect.isclass(the_object):
+        return docclass(*args)
+    if inspect.isroutine(the_object):
+        return docroutine(*args)
+    # except AttributeError:
+    #     pass  # nosec
     if inspect.isdatadescriptor(the_object):
         return docdata(the_object, name)
     return docother(the_object, name)

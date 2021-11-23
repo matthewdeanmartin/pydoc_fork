@@ -12,6 +12,20 @@ It is a mishmash of intentions:
 I think it should be a html documentation generator alone. There is another tool, pdoc that
 appears to be written from scratch. This will keep the intention of the html generator.
 
+## Path vs `type` confusion
+
+```
+  import  "foo.bar"
+  import foo <-- a Module on the Pythonpath
+
+  import "." <-- But gets confused uses "."
+  import "foo\\" <-- weird syntax meant Path
+  * import foo.py  <-- Path
+  import foo  <-- Folder on the Path
+  import /src/foo <-- Path
+  import ../foo <-- Path
+```
+
 ## Pydoc Bugs
 
 - Can't specify module plus submodules (limitations to `.//` option)

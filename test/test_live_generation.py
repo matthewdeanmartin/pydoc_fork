@@ -18,16 +18,27 @@ def cwd(path):
 
 def test_cli():
     with cwd("."):
-        results = cli(["navio_tasks"], output_folder=".", document_internals=True)
-        results = cli(["pydoc_fork"], output_folder=".", document_internals=True)
-        assert results
+        output_folder = "doc_self"
         results = cli(
-            ["pydoc_fork//pydoc_fork"], output_folder=".", document_internals=True
+            ["navio_tasks"], output_folder=output_folder, document_internals=True
+        )
+        results = cli(
+            ["pydoc_fork"], output_folder=output_folder, document_internals=True
         )
         assert results
-        results = cli(["test.pydocfodder"], output_folder=".", document_internals=True)
+        results = cli(
+            ["pydoc_fork//pydoc_fork"],
+            output_folder=output_folder,
+            document_internals=True,
+        )
         assert results
-        results = cli(["test.pydoc_mod"], output_folder=".", document_internals=True)
+        results = cli(
+            ["test.pydocfodder"], output_folder=output_folder, document_internals=True
+        )
+        assert results
+        results = cli(
+            ["test.pydoc_mod"], output_folder=output_folder, document_internals=True
+        )
         assert results
         #  can't do this yet, pydoc stills imports each module!
         # cli([".\\"], output_folder=".", document_internals=True)

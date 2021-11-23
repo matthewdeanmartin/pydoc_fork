@@ -4,13 +4,11 @@
   - everything else is string wrapped with 1 tag
   - except one table
 - Separate "document source code at this path" from "document this imported type/module"
-- Link built ins to main doc site (or give option to generate)
 - Option to walk the module tree (to some specified depth)
   - https://stackoverflow.com/questions/48000761/list-submodules-of-a-python-module
-- Double encoding (in unit tests flag HTML escape codes for "greater than"?)
 - copy source to target folder
 - index page
-- 
+-
 
 ### DONE
 - rip out web server and browser. DONE
@@ -23,6 +21,11 @@
 - Allow documenting more than `__all__`. DONE. "document internals" flag
 - Add more documentaion scenarios
 - Pull in some unit tests. DONE. Could hardly salvage any.
+- Link built ins to main doc site (or give option to generate). DONE
+- Double encoding (in unit tests flag HTML escape codes for "greater than"?). Fixed 1.
+- Links to stdlib documentation work again
+- Now attempts to doc `import foo` modules
+- Now shows `from foo import bar` functions
 
 ### MAYBE
 Not sure I can pull in the tests

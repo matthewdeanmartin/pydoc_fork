@@ -236,7 +236,7 @@ def _split_list(
 
 def visiblename(
     name: str, all_things: Optional[List[str]] = None, obj: Optional[Any] = None
-) -> int:
+) -> bool:
     """Decide whether to show documentation on a variable."""
     # Certain special names are redundant or internal.
     # XXX Remove __initializing__?
@@ -258,10 +258,10 @@ def visiblename(
         "__slots__",
         "__version__",
     }:
-        return 0
+        return False
     # Private names are hidden, but special names are displayed.
     if name.startswith("__") and name.endswith("__"):
-        return 1
+        return True
     # Namedtuples have public fields and methods with a single leading underscore
     if name.startswith("_") and hasattr(obj, "_fields"):
         return True
