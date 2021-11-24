@@ -18,6 +18,7 @@ import sys
 import sysconfig
 from typing import Any, Callable, Dict, Sequence, Tuple, Union
 
+from pydoc_fork.format_page import JINJA_ENV
 from pydoc_fork.html_repr_class import HTMLRepr
 from pydoc_fork.string_utils import replace
 
@@ -52,6 +53,8 @@ def escape(value: Any) -> str:
 
 def heading(title: str, fgcol: str, bgcol: str, extras: str = "") -> str:
     """Format a page heading."""
+    template = JINJA_ENV.get_template("section.jinja2")
+    return template.render(title=title, fgcol=fgcol, bgcol=bgcol, extras=extras)
     return f"""
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
 <tr bgcolor="{bgcol}">

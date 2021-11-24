@@ -19,6 +19,11 @@ from pydoc_fork.format_module import docmodule
 from pydoc_fork.format_other import docother
 from pydoc_fork.format_routine import docroutine
 from pydoc_fork.formatter_html import bigsection, modpkglink, multicolumn
+from jinja2 import Environment, PackageLoader, select_autoescape
+
+JINJA_ENV = Environment(
+    loader=PackageLoader("pydoc_fork"), autoescape=select_autoescape()
+)
 
 
 def render(title: str, the_object: TypeLike, name: str) -> str:
@@ -31,13 +36,18 @@ def page(title: str, contents: str) -> str:
 
     This is part of the public API
     """
-    return f"""\
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html><head><title>Python: {title}</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-</head><body bgcolor="#f0f0f8">
-{contents}
-</body></html>"""
+    template = JINJA_ENV.get_template("page.jinja2")
+    result = template.render(title=title, contents=contents)
+    return result
+
+
+#     return f"""\
+# <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+# <html><head><title>Python: {title}</title>
+# <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+# </head><body bgcolor="#f0f0f8">
+# {contents}
+# </body></html>"""
 
 
 def document(the_object: TypeLike, name: str = "", *args: Any) -> str:  # Null safety
