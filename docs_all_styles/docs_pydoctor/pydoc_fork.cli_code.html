@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+
+
+  <head>
+
+    <title>pydoc_fork.cli_code</title>
+    <meta name="generator" content="pydoctor 21.9.2">
+
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+
+
+    <nav class="navbar navbar-default">
+
+  <div class="container">
+
+    <div class="navbar-header">
+
+      <div class="navlinks">
+          <span class="navbar-brand">
+            pydoc_fork <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="pydoc_fork.html">pydoc_fork</a></code><wbr></wbr>.<code><a href="pydoc_fork.cli_code.html">cli_code</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Just enough UI to let a build server generate documentation</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id5">
+
+
+  <tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#calculate_file_name">calculate_file_name</a></code></td>
+    <td>If this was written, what would its name be</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#cli">cli</a></code></td>
+    <td>Command-line interface (looks at sys.argv to decide what to do).</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#write_docs_live_module">write_docs_live_module</a></code></td>
+    <td>Write out HTML documentation for all modules in a directory tree.</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#write_docs_per_module">write_docs_per_module</a></code></td>
+    <td>Write out HTML documentation for all modules in a directory tree.</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#writedoc">writedoc</a></code></td>
+    <td>Write HTML documentation to a file in the current directory.</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#writedocs">writedocs</a></code></td>
+    <td>Write out HTML documentation for all modules in a directory tree.</td>
+  </tr><tr class="variable">
+
+    <td>Variable</td>
+    <td><code><a href="#LOGGER">LOGGER</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+
+
+
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+
+
+  <a name="pydoc_fork.cli_code.calculate_file_name">
+
+  </a>
+  <a name="calculate_file_name">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">calculate_file_name</span>(name, output_folder):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>If this was written, what would its name be<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">output_folder:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.cli_code.cli">
+
+  </a>
+  <a name="cli">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">cli</span>(files, output_folder, document_internals, overwrite_existing=False):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Command-line interface (looks at sys.argv to decide what to do).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">files:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">output_folder:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">document_internals:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">overwrite_existing:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.cli_code.write_docs_live_module">
+
+  </a>
+  <a name="write_docs_live_module">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">write_docs_live_module</span>(output_folder, document_internals, total_third_party=0, skip_if_written=False):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Write out HTML documentation for all modules in a directory tree.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">output_folder:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">document_internals:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">total_third_party:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">skip_if_written:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.cli_code.write_docs_per_module">
+
+  </a>
+  <a name="write_docs_per_module">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">write_docs_per_module</span>(modules, output_folder, document_internals, skip_if_written=False):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Write out HTML documentation for all modules in a directory tree.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">modules:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">output_folder:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">document_internals:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">skip_if_written:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.cli_code.writedoc">
+
+  </a>
+  <a name="writedoc">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">writedoc</span>(thing, output_folder, document_internals, forceload=0):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Write HTML documentation to a file in the current directory.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">thing:</span><code>Union[<wbr></wbr><a href="pydoc_fork.custom_types.TypeLike.html">TypeLike</a>, str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">output_folder:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">document_internals:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">forceload:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.cli_code.writedocs">
+
+  </a>
+  <a name="writedocs">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">writedocs</span>(source_directory, output_folder, document_internals, for_only=''):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Write out HTML documentation for all modules in a directory tree.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">source_directory:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">output_folder:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">document_internals:</span><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">for_only:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+
+
+  <a name="pydoc_fork.cli_code.LOGGER">
+
+  </a>
+  <a name="LOGGER">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-defname">LOGGER</span> =
+
+  </div>
+  <div class="functionBody">
+
+
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  <div class="container">
+    <a href="index.html">API Documentation</a> for pydoc_fork,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    21.9.2 at 2021-11-25 14:27:43.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

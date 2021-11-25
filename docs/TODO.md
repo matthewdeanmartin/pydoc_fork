@@ -1,16 +1,26 @@
+## What pydoc does well
+Pydoc excels at:
+- giving you consistent documentation for everything
+  - your code
+  - standard lib code (except when it links to external)
+  - 3rd package code
+
+Real world documentation comes wildly different formats, missing, all over the place.
+
+
 ### TODO:
-- Just enough jinja to fix the HTML
-  - heading, page, section are templates
-  - everything else is string wrapped with 1 tag
-  - except one table
+- suppress typing/annotation cruft
 - Separate "document source code at this path" from "document this imported type/module"
 - Option to walk the module tree (to some specified depth)
   - https://stackoverflow.com/questions/48000761/list-submodules-of-a-python-module
 - copy source to target folder
 - index page
--
+- font tags in JINJA
 
 ### DONE
+- font tags in .py code - DONE
+- Just enough jinja to fix the HTML- DONE
+  - heading, page, section are templates
 - rip out web server and browser. DONE
 - rip out the plain text (console) generator. DONE
 - rip out interactive text (console) code. DONE

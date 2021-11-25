@@ -30,7 +30,7 @@ No Python documentation found for %r."""
     if isinstance(name, str):
         return thing, name
     else:
-        return thing, str(thing) # HACK
+        return thing, str(thing)  # HACK
 
 
 def describe(thing: TypeLike) -> str:
@@ -139,11 +139,13 @@ def _getowndoc(obj: TypeLike) -> str:
 
 
 def _getdoc(the_object: TypeLike) -> str:
-    """Get the documentation string for an object.
+    """
+    Get the documentation string for an object.
 
     All tabs are expanded to spaces.  To clean up docstrings that are
     indented to line up with blocks of code, any whitespace than can be
-    uniformly removed from the second line onwards is removed."""
+    uniformly removed from the second line onwards is removed.
+    """
     doc = _getowndoc(the_object)
     if doc is None:
         try:
