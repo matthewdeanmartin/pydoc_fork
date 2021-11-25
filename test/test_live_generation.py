@@ -6,6 +6,9 @@ from pydoc_fork import cli
 from contextlib import contextmanager
 
 # https://stackoverflow.com/a/37996581/33264
+from pydoc_fork.module_utils import ErrorDuringImport
+
+
 @contextmanager
 def cwd(path):
     oldpwd = os.getcwd()
@@ -14,6 +17,9 @@ def cwd(path):
         yield
     finally:
         os.chdir(oldpwd)
+
+
+
 
 
 def test_cli():

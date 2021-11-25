@@ -6,8 +6,9 @@ import os
 import pkgutil
 import sys
 import urllib.parse
-from typing import List, Optional, Tuple, cast
+from typing import List, Optional, Tuple, cast, Set
 
+from pydoc_fork.all_found import MENTIONED_MODULES
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_class import formattree
 from pydoc_fork.formatter_html import (
@@ -68,7 +69,6 @@ def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[s
     return doc_loc
 
 
-MENTIONED_MODULES: List[Tuple[TypeLike, str]] = []
 
 
 def modulelink(the_object: TypeLike) -> str:
@@ -79,9 +79,8 @@ def modulelink(the_object: TypeLike) -> str:
     if internet_link and PREFER_INTERNET_DOCUMENTATION:
         url = internet_link
     # BUG: doesn't take into consideration an alternate base
-    global MENTIONED_MODULES
     if not internet_link:
-        MENTIONED_MODULES.append((the_object, the_object.__name__))
+        MENTIONED_MODULES.add((the_object, the_object.__name__))
     return f'<a href="{url}">{the_object.__name__}</a>'
 
 
@@ -150,7 +149,7 @@ def docmodule(
         _class_module = inspect.getmodule(value)
         if _class_module and not _class_module is the_object:
             modules_by_import_from.add((None, _class_module))
-            MENTIONED_MODULES.append((_class_module, _class_module.__name__))
+            MENTIONED_MODULES.add((_class_module, _class_module.__name__))
         # if __all__ exists, believe it.  Otherwise use old heuristic.
         if (
             # TODO put doc internals switch here
@@ -180,7 +179,7 @@ def docmodule(
         # why does this sometimes return no module?
         if _func_module and not _func_module is the_object:
             modules_by_import_from.add((None, _func_module))
-            MENTIONED_MODULES.append((_func_module, _func_module.__name__))
+            MENTIONED_MODULES.add((_func_module, _func_module.__name__))
         if (
             True
             # TODO put doc internals switch here

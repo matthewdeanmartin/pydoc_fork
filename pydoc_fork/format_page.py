@@ -12,6 +12,8 @@ import inspect
 import pkgutil
 from typing import Any, Dict, Optional
 
+from jinja2 import Environment, PackageLoader, select_autoescape
+
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_class import docclass
 from pydoc_fork.format_data import docdata
@@ -19,11 +21,7 @@ from pydoc_fork.format_module import docmodule
 from pydoc_fork.format_other import docother
 from pydoc_fork.format_routine import docroutine
 from pydoc_fork.formatter_html import bigsection, modpkglink, multicolumn
-from jinja2 import Environment, PackageLoader, select_autoescape
-
-JINJA_ENV = Environment(
-    loader=PackageLoader("pydoc_fork"), autoescape=select_autoescape()
-)
+from pydoc_fork.jinja_code import JINJA_ENV
 
 
 def render(title: str, the_object: TypeLike, name: str) -> str:

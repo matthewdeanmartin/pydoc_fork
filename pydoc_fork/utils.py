@@ -27,7 +27,10 @@ No Python documentation found for %r."""
         return the_object, thing
 
     name = getattr(thing, "__name__", None)
-    return thing, name if isinstance(name, str) else None
+    if isinstance(name, str):
+        return thing, name
+    else:
+        return thing, str(thing) # HACK
 
 
 def describe(thing: TypeLike) -> str:

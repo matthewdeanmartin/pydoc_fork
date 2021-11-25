@@ -18,8 +18,10 @@ import sys
 import sysconfig
 from typing import Any, Callable, Dict, Sequence, Tuple, Union
 
-from pydoc_fork.format_page import JINJA_ENV
+from pydoc_fork.utils import resolve
+from pydoc_fork.all_found import MENTIONED_MODULES
 from pydoc_fork.html_repr_class import HTMLRepr
+from pydoc_fork.jinja_code import JINJA_ENV
 from pydoc_fork.string_utils import replace
 
 LOGGER = logging.getLogger(__name__)
@@ -163,6 +165,7 @@ def namelink(name: str, *dicts: Dict[str, str]) -> str:
 def modpkglink(modpkginfo: Tuple[str, str, str, str]) -> str:
     """Make a link for a module or package to display in an index."""
     name, path, ispackage, shadowed = modpkginfo
+    MENTIONED_MODULES.add((resolve(path + "."+ name)[0], name))
     if shadowed:
         return grey(name)
     if path:

@@ -20,7 +20,11 @@ def docroutine(
     cl: Optional[TypeLike] = None,
 ) -> str:
     """Produce HTML documentation for a function or method object."""
-    realname = the_object.__name__
+    # AttributeError: 'cached_property' object has no attribute '__name__'
+    try:
+        realname = the_object.__name__
+    except AttributeError:
+        realname = None
     name = name or realname
     anchor = (cl and cl.__name__ or "") + "-" + name
     note = ""

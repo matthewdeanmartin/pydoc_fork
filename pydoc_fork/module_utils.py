@@ -114,6 +114,10 @@ def ispackage(path: str) -> bool:
 
 def locate(path: str, forceload: int = 0) -> Any:
     """Locate an object by name or dotted path, importing as necessary."""
+    if "-" in path:
+        # Not sure about this
+        path = path.replace("-","_")
+
     LOGGER.debug(f"locating {path}")
     parts = [part for part in path.split(".") if part]
     LOGGER.debug(str(parts))

@@ -8,7 +8,7 @@ from typing import List, Optional, Tuple, Union
 
 import pydoc_fork.formatter_html as html
 from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.format_module import MENTIONED_MODULES
+from pydoc_fork.all_found import MENTIONED_MODULES
 from pydoc_fork.format_page import render
 from pydoc_fork.path_utils import _adjust_cli_sys_path
 from pydoc_fork.utils import describe, resolve
@@ -34,6 +34,7 @@ def writedoc(
     page_out = render(describe(the_object), the_object, name)
     # MR output_folder + os.sep
     full_path = calculate_file_name(name, output_folder)
+
     with open(full_path, "w", encoding="utf-8") as file:
         file.write(page_out)
     print("wrote", name + ".html")
@@ -45,7 +46,11 @@ def writedoc(
 
 def calculate_file_name(name: str, output_folder: str) -> str:
     """If this was written, what would its name be"""
+    if name is None:
+        print("What")
     full_path = output_folder + os.sep + name + ".html"
+    full_path =full_path.replace("<","").replace(">","").replace(":","").replace(",","_").replace(" ","_").replace("(","").replace(")","")
+
     return full_path
 
 
@@ -79,15 +84,14 @@ def write_docs_per_module(
             written.extend(full_paths)
     # One pass, not ready to walk entire tree.
 
-    third_party_written = write_docs_live_module(
-        MENTIONED_MODULES, output_folder, document_internals, 0, skip_if_written
+    third_party_written = write_docs_live_module(output_folder, document_internals, 0, skip_if_written
     )
     written.extend(third_party_written)
     return written
 
 
 def write_docs_live_module(
-    modules: List[Tuple[TypeLike, str]],
+    # modules: List[Tuple[TypeLike, str]],
     output_folder: str,
     document_internals: bool,
     total_third_party: int = 0,
@@ -100,18 +104,19 @@ def write_docs_live_module(
     # Attempting to mix these two types is a bad idea.
     written: List[str] = []
     while MENTIONED_MODULES and total_third_party <= 100:
-        for module in modules:
-            thing, name = module  # destructure it
-            # should only be live modules or dot notation modules, not paths.
-            full_path = calculate_file_name(name, output_folder)
-            if os.path.exists(full_path) and skip_if_written:
-                MENTIONED_MODULES.remove(module)
-            else:
-                full_path = writedoc(thing, output_folder, document_internals)
-                total_third_party += 1
-                if full_path:
-                    written.append(full_path)
-                MENTIONED_MODULES.remove(module)
+        print(len(MENTIONED_MODULES))
+        module = MENTIONED_MODULES.pop()
+        thing, name = module  # destructure it
+        # should only be live modules or dot notation modules, not paths.
+        full_path = calculate_file_name(name, output_folder)
+        if os.path.exists(full_path) and skip_if_written:
+            MENTIONED_MODULES.discard(module)
+        else:
+            full_path = writedoc(thing, output_folder, document_internals)
+            total_third_party += 1
+            if full_path:
+                written.append(full_path)
+            MENTIONED_MODULES.discard(module)
 
     # TODO: make this a param
     return written
@@ -144,6 +149,7 @@ def cli(
     files: List[str],
     output_folder: str,
     document_internals: bool,
+    overwrite_existing:bool=False
 ) -> List[str]:
     """Command-line interface (looks at sys.argv to decide what to do)."""
     LOGGER.debug(f"{files}, {output_folder}, {document_internals}")
@@ -154,7 +160,10 @@ def cli(
     _adjust_cli_sys_path()
 
     # opts, args = getopt.getopt(sys.argv[1:], 'bk:n:p:w')
-    return write_docs_per_module(files, output_folder, document_internals)
+    return write_docs_per_module(files,
+                                 output_folder,
+                                 document_internals,
+                                 skip_if_written=not overwrite_existing)
     # for file in files:
     #     if ispath(file) and not os.path.exists(file):
     #         print("file %r does not exist" % files)
