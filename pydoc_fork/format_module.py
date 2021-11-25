@@ -8,6 +8,7 @@ import sys
 import urllib.parse
 from typing import List, Optional, Tuple, cast, Set
 
+from pydoc_fork import inline_styles
 from pydoc_fork.all_found import MENTIONED_MODULES
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_class import formattree
@@ -69,8 +70,6 @@ def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[s
     return doc_loc
 
 
-
-
 def modulelink(the_object: TypeLike) -> str:
     """Make a link for a module."""
     url = f"{the_object.__name__}.html"
@@ -103,7 +102,7 @@ def docmodule(
         link_url = ".".join(parts[: i + 1])
         link_text = parts[i]
         links.append(
-            f'<a href="{link_url}.html"><font color="#ffffff">{link_text}</font></a>'
+            f'<a href="{link_url}.html"><span style="color:{inline_styles.MODULE_LINK}">{link_text}</span></a>'
         )
     linkedname = ".".join(links + parts[-1:])
     head = f"<big><big><strong>{linkedname}</strong></big></big>"

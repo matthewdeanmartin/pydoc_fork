@@ -3,6 +3,7 @@ import re
 from reprlib import Repr
 from typing import Any, cast
 
+from pydoc_fork import inline_styles
 from pydoc_fork.string_utils import cram, replace, stripid
 
 
@@ -44,9 +45,10 @@ class HTMLRepr(Repr):
             # Backslashes are only literal in the string and are never
             # needed to make any special characters, so show a raw string.
             return "r" + test_repr[0] + self.escape(test) + test_repr[0]
+
         return re.sub(
             r'((\\[\\abfnrtv\'"]|\\[0-9]..|\\x..|\\u....)+)',
-            r'<font color="#c040c0">\1</font>',
+            f'<span style="color:{inline_styles.REPR_COLOR}">' + r"\1" + "</span>",
             self.escape(test_repr),
         )
 

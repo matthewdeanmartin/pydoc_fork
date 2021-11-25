@@ -7,6 +7,7 @@ import sys
 from collections import deque
 from typing import Any, Callable, Dict, List, Optional, Union, cast
 
+from pydoc_fork import inline_styles
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_data import docdata
 from pydoc_fork.format_other import docother
@@ -244,14 +245,16 @@ def formattree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> s
     for entry in tree:
         if type(entry) is type(()):  # noqa - not sure of switching to isinstance
             class_object, bases = entry
-            result = result + '<dt><font face="helvetica, arial">'
+            result = (
+                result + f'<dt><span style="font-family:{inline_styles.SAN_SERIF}">'
+            )
             result = result + classlink(class_object, modname)
             if bases and bases != (parent,):
                 parents = []
                 for base in bases:
                     parents.append(classlink(base, modname))
                 result = result + "(" + ", ".join(parents) + ")"
-            result = result + "\n</font></dt>"
+            result = result + "\n</span></dt>"
         elif type(entry) is type([]):  # noqa - not sure of switching to isinstance
             tree = formattree(entry, modname, class_object)
             result = result + f"<dd>\n{tree}</dd>\n"

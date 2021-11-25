@@ -148,3 +148,5 @@ reports/
 .config/.build_state/
 
 *.html
+
+doc_out/

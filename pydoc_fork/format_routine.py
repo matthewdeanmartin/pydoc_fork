@@ -4,9 +4,10 @@ Roughly a UI component for routines
 import inspect
 from typing import Any, Dict, Optional
 
+from pydoc_fork import inline_styles
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_class import classlink
-from pydoc_fork.formatter_html import escape, grey, markup
+from pydoc_fork.formatter_html import escape, disabled_text, markup
 from pydoc_fork.utils import _is_bound_method, getdoc
 
 
@@ -79,7 +80,12 @@ def docroutine(
         asyncqualifier
         + title
         + escape(argspec)
-        + (note and grey(f'<font face="helvetica, arial">{note}</font>'))
+        + (
+            note
+            and disabled_text(
+                f'<span style="font-family:{inline_styles.SAN_SERIF}">{note}</span>'
+            )
+        )
     )
 
     if skipdocs:

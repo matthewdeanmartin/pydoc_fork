@@ -18,6 +18,7 @@ import sys
 import sysconfig
 from typing import Any, Callable, Dict, Sequence, Tuple, Union
 
+from pydoc_fork import inline_styles
 from pydoc_fork.utils import resolve
 from pydoc_fork.all_found import MENTIONED_MODULES
 from pydoc_fork.html_repr_class import HTMLRepr
@@ -55,16 +56,18 @@ def escape(value: Any) -> str:
 
 def heading(title: str, fgcol: str, bgcol: str, extras: str = "") -> str:
     """Format a page heading."""
-    template = JINJA_ENV.get_template("section.jinja2")
+    template = JINJA_ENV.get_template("heading.jinja2")
     return template.render(title=title, fgcol=fgcol, bgcol=bgcol, extras=extras)
-    return f"""
-<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
-<tr bgcolor="{bgcol}">
-<td valign=bottom>&nbsp;<br>
-<font color="{fgcol}" face="helvetica, arial">&nbsp;<br>{title}</font></td
-><td align=right valign=bottom
-><font color="{fgcol}" face="helvetica, arial">{extras or '&nbsp;'}</font></td></tr></table>
-"""
+
+
+#     return f"""
+# <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+# <tr bgcolor="{bgcol}">
+# <td valign=bottom>&nbsp;<br>
+# <font color="{fgcol}" face="helvetica, arial">&nbsp;<br>{title}</font></td
+# ><td align=right valign=bottom
+# ><font color="{fgcol}" face="helvetica, arial">{extras or '&nbsp;'}</font></td></tr></table>
+# """
 
 
 def section(
@@ -78,33 +81,45 @@ def section(
     gap: str = "&nbsp;",  # not used
 ) -> str:
     """Format a section with a heading."""
-
-    # This is only used by docclass
-
     if marginalia is None:
         marginalia = "<tt>" + "&nbsp;" * width + "</tt>"
-    result = f"""<p>
-<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="{bgcol}">
-<td colspan=3 valign=bottom>&nbsp;<br>
-<font color="{fgcol}" face="helvetica, arial">{title}</font></td></tr>
-"""
-    if prelude:
-        result = (
-            result
-            + f"""
-<tr bgcolor="{bgcol}"><td rowspan=2>{marginalia}</td>
-<td colspan=2>{prelude}</td></tr>
-<tr><td>{gap}</td>"""
-        )
-    else:
-        result = (
-            result
-            + f"""
-<tr><td bgcolor="{bgcol}">{marginalia}</td><td>{gap}</td>"""
-        )
+    template = JINJA_ENV.get_template("section.jinja2")
+    return template.render(
+        title=title,
+        fgcol=fgcol,
+        bgcol=bgcol,
+        marginalia=marginalia,
+        prelude=prelude,
+        contents=contents,
+        gap=gap,
+    )
+    # This is only used by docclass
 
-    return result + f'\n<td width="100%%">{contents}</td></tr></table>'
+
+#     if marginalia is None:
+#         marginalia = "<tt>" + "&nbsp;" * width + "</tt>"
+#     result = f"""<p>
+# <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+# <tr bgcolor="{bgcol}">
+# <td colspan=3 valign=bottom>&nbsp;<br>
+# <font color="{fgcol}" face="helvetica, arial">{title}</font></td></tr>
+# """
+#     if prelude:
+#         result = (
+#             result
+#             + f"""
+# <tr bgcolor="{bgcol}"><td rowspan=2>{marginalia}</td>
+# <td colspan=2>{prelude}</td></tr>
+# <tr><td>{gap}</td>"""
+#         )
+#     else:
+#         result = (
+#             result
+#             + f"""
+# <tr><td bgcolor="{bgcol}">{marginalia}</td><td>{gap}</td>"""
+#         )
+#
+#     return result + f'\n<td width="100%%">{contents}</td></tr></table>'
 
 
 def bigsection(
@@ -148,9 +163,9 @@ def multicolumn(
     return f'<table width="100%%" summary="list"><tr>{result}</tr></table>'
 
 
-def grey(text: str) -> str:
+def disabled_text(text: str) -> str:
     """Wrap in grey"""
-    return f'<font color="#909090">{text}</font>'
+    return f'<span style="color:{inline_styles.DISABLED_TEXT}">{text}</span>'
 
 
 def namelink(name: str, *dicts: Dict[str, str]) -> str:
@@ -165,9 +180,9 @@ def namelink(name: str, *dicts: Dict[str, str]) -> str:
 def modpkglink(modpkginfo: Tuple[str, str, str, str]) -> str:
     """Make a link for a module or package to display in an index."""
     name, path, ispackage, shadowed = modpkginfo
-    MENTIONED_MODULES.add((resolve(path + "."+ name)[0], name))
+    MENTIONED_MODULES.add((resolve(path + "." + name)[0], name))
     if shadowed:
-        return grey(name)
+        return disabled_text(name)
     if path:
         url = f"{path}.{name}.html"
     else:
