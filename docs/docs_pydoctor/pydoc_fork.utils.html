@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+
+
+  <head>
+
+    <title>pydoc_fork.utils</title>
+    <meta name="generator" content="pydoctor 21.9.2">
+
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+
+
+    <nav class="navbar navbar-default">
+
+  <div class="container">
+
+    <div class="navbar-header">
+
+      <div class="navlinks">
+          <span class="navbar-brand">
+            pydoc_fork <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="pydoc_fork.html">pydoc_fork</a></code><wbr></wbr>.<code><a href="pydoc_fork.utils.html">utils</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Unclassified utils</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id23">
+
+
+  <tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#classify_class_attrs">classify_class_attrs</a></code></td>
+    <td>Wrap inspect.classify_class_attrs, with fixup for data descriptors.</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#classname">classname</a></code></td>
+    <td>Get a class name and qualify it with a module name if necessary.</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#describe">describe</a></code></td>
+    <td>Produce a short description of the given thing.</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#getdoc">getdoc</a></code></td>
+    <td>Get the doc string or comments for an object.</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#isdata">isdata</a></code></td>
+    <td>Check if an object is of a type that probably means it's data.</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#resolve">resolve</a></code></td>
+    <td>Given an object or a path to an object, get the object and its name.</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#sort_attributes">sort_attributes</a></code></td>
+    <td>Sort the attrs list in-place by _fields and then alphabetically by name</td>
+  </tr><tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#visiblename">visiblename</a></code></td>
+    <td>Decide whether to show documentation on a variable.</td>
+  </tr><tr class="variable">
+
+    <td>Variable</td>
+    <td><code><a href="#LOGGER">LOGGER</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+
+    <td>Function</td>
+    <td><code><a href="#_findclass">_findclass</a></code></td>
+    <td>Find a Class</td>
+  </tr><tr class="function private">
+
+    <td>Function</td>
+    <td><code><a href="#_finddoc">_finddoc</a></code></td>
+    <td>Find doc string</td>
+  </tr><tr class="function private">
+
+    <td>Function</td>
+    <td><code><a href="#_getdoc">_getdoc</a></code></td>
+    <td>Get the documentation string for an object.</td>
+  </tr><tr class="function private">
+
+    <td>Function</td>
+    <td><code><a href="#_getowndoc">_getowndoc</a></code></td>
+    <td>Get the documentation string for an object if it is not inherited from its class.</td>
+  </tr><tr class="function private">
+
+    <td>Function</td>
+    <td><code><a href="#_is_bound_method">_is_bound_method</a></code></td>
+    <td>Returns True if fn is a bound method, regardless of whether fn was implemented in Python or in C.</td>
+  </tr><tr class="function private">
+
+    <td>Function</td>
+    <td><code><a href="#_split_list">_split_list</a></code></td>
+    <td>Split sequence s via predicate, and return pair ([true], [false]).</td>
+  </tr>
+</table>
+
+
+
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+
+
+  <a name="pydoc_fork.utils.classify_class_attrs">
+
+  </a>
+  <a name="classify_class_attrs">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">classify_class_attrs</span>(the_object):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Wrap inspect.classify_class_attrs, with fixup for data descriptors.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">the_object:</span><code><a href="pydoc_fork.custom_types.TypeLike.html">TypeLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>List[<wbr></wbr>Tuple[<wbr></wbr>str, <wbr></wbr>str, <wbr></wbr>type, object]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.utils.classname">
+
+  </a>
+  <a name="classname">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">classname</span>(the_object, modname):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Get a class name and qualify it with a module name if necessary.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">the_object:</span><code><a href="pydoc_fork.custom_types.TypeLike.html">TypeLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">modname:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.utils.describe">
+
+  </a>
+  <a name="describe">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">describe</span>(thing):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Produce a short description of the given thing.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">thing:</span><code><a href="pydoc_fork.custom_types.TypeLike.html">TypeLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.utils.getdoc">
+
+  </a>
+  <a name="getdoc">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">getdoc</span>(the_object):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Get the doc string or comments for an object.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">the_object:</span><code><a href="pydoc_fork.custom_types.TypeLike.html">TypeLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.utils.isdata">
+
+  </a>
+  <a name="isdata">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">isdata</span>(the_object):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Check if an object is of a type that probably means it's data.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">the_object:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.utils.resolve">
+
+  </a>
+  <a name="resolve">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">resolve</span>(thing, forceload=0):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Given an object or a path to an object, get the object and its name.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">thing:</span><code>Union[<wbr></wbr>str, Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">forceload:</span><code>int</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Tuple[<wbr></wbr>Any, Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.utils.sort_attributes">
+
+  </a>
+  <a name="sort_attributes">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">sort_attributes</span>(attrs, the_object):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Sort the attrs list in-place by _fields and then alphabetically by name<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">attrs:</span><code>List[<wbr></wbr>Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">the_object:</span><code>Union[<wbr></wbr><a href="pydoc_fork.custom_types.TypeLike.html">TypeLike</a>, type]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+
+
+  <a name="pydoc_fork.utils.visiblename">
+
+  </a>
+  <a name="visiblename">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">visiblename</span>(name, all_things=None, obj=None):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Decide whether to show documentation on a variable.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">all_things:</span><code>Optional[<wbr></wbr>List[<wbr></wbr>str]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code>Optional[<wbr></wbr>Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+
+
+  <a name="pydoc_fork.utils.LOGGER">
+
+  </a>
+  <a name="LOGGER">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-defname">LOGGER</span> =
+
+  </div>
+  <div class="functionBody">
+
+
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+
+
+  <a name="pydoc_fork.utils._findclass">
+
+  </a>
+  <a name="_findclass">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">_findclass</span>(func):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Find a Class<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">func:</span><code><a href="pydoc_fork.custom_types.TypeLike.html">TypeLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>Module]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+
+
+  <a name="pydoc_fork.utils._finddoc">
+
+  </a>
+  <a name="_finddoc">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">_finddoc</span>(obj):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Find doc string<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="pydoc_fork.custom_types.TypeLike.html">TypeLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+
+
+  <a name="pydoc_fork.utils._getdoc">
+
+  </a>
+  <a name="_getdoc">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">_getdoc</span>(the_object):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div><p>Get the documentation string for an object.</p>
+<p>All tabs are expanded to spaces.  To clean up docstrings that are indented to line up with blocks of code, any whitespace than can be uniformly removed from the second line onwards is removed.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">the_object:</span><code><a href="pydoc_fork.custom_types.TypeLike.html">TypeLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+
+
+  <a name="pydoc_fork.utils._getowndoc">
+
+  </a>
+  <a name="_getowndoc">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">_getowndoc</span>(obj):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Get the documentation string for an object if it is not inherited from its class.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">obj:</span><code><a href="pydoc_fork.custom_types.TypeLike.html">TypeLike</a></code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+
+
+  <a name="pydoc_fork.utils._is_bound_method">
+
+  </a>
+  <a name="_is_bound_method">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">_is_bound_method</span>(the_function):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div>Returns True if fn is a bound method, regardless of whether fn was implemented in Python or in C.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">the_function:</span><code>object</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>bool</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+
+
+  <a name="pydoc_fork.utils._split_list">
+
+  </a>
+  <a name="_split_list">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">_split_list</span>(the_sequence, predicate):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">the_sequence:</span><code>Sequence[<wbr></wbr>Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">predicate:</span><code>Callable[<wbr></wbr>[<wbr></wbr>Any], Any]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Tuple[<wbr></wbr>List[<wbr></wbr>Any], List[<wbr></wbr>Any]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  <div class="container">
+    <a href="index.html">API Documentation</a> for pydoc_fork,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    21.9.2 at 2021-11-25 14:27:43.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

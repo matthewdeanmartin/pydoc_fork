@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pydoc_fork.html_repr_class</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="pydoc_fork.html"><font color="#ffffff">pydoc_fork</font></a>.html_repr_class</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:pydoc_fork/html_repr_class.py">pydoc_fork/html_repr_class.py</a></font></td></tr></table>
+<p><tt>Class&nbsp;for&nbsp;safely&nbsp;making&nbsp;an&nbsp;HTML&nbsp;representation&nbsp;of&nbsp;a&nbsp;Python&nbsp;object.</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"></td><td>&nbsp;</td>
+<td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/re.html">re</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"></td><td>&nbsp;</td>
+<td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/reprlib.html">reprlib</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/typing.html">typing</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.string_utils.html">pydoc_fork.string_utils</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+
+<tr><td bgcolor="#ee77aa"></td><td>&nbsp;</td>
+<td width="100%%"><dl>
+<dt><font face="helvetica, arial"><a href="reprlib.html#Repr">reprlib.Repr</a>(<a href="builtins.html#object">builtins.object</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pydoc_fork.html_repr_class.html#HTMLRepr">HTMLRepr</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="HTMLRepr">class <strong>HTMLRepr</strong></a>(<a href="reprlib.html#Repr">reprlib.Repr</a>)</font></td></tr>
+
+<tr bgcolor="#ffc8d8"><td rowspan=2></td>
+<td colspan=2><tt><a href="#HTMLRepr">HTMLRepr</a>()&nbsp;-&gt;&nbsp;None<br>
+&nbsp;<br>
+Class&nbsp;for&nbsp;safely&nbsp;making&nbsp;an&nbsp;HTML&nbsp;representation&nbsp;of&nbsp;a&nbsp;Python&nbsp;object.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%%"><dl><dt>Method resolution order:</dt>
+<dd><a href="pydoc_fork.html_repr_class.html#HTMLRepr">HTMLRepr</a></dd>
+<dd><a href="reprlib.html#Repr">reprlib.Repr</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="HTMLRepr-__init__"><strong>__init__</strong></a>(self) -&gt; None</dt><dd><tt>Some&nbsp;maximums</tt></dd></dl>
+
+<dl><dt><a name="HTMLRepr-escape"><strong>escape</strong></a>(self, text: str) -&gt; str</dt><dd><tt>Simple&nbsp;html&nbsp;escaping</tt></dd></dl>
+
+<dl><dt><a name="HTMLRepr-repr"><strong>repr</strong></a>(self, x: Any) -&gt; str</dt><dd><tt>Delegates&nbsp;to&nbsp;<a href="reprlib.html#Repr">Repr</a>.repr</tt></dd></dl>
+
+<dl><dt><a name="HTMLRepr-repr1"><strong>repr1</strong></a>(self, x: Any, level: int) -&gt; str</dt><dd><tt>Not&nbsp;sure,&nbsp;is&nbsp;dead&nbsp;code?</tt></dd></dl>
+
+<dl><dt><a name="HTMLRepr-repr_instance"><strong>repr_instance</strong></a>(self, x: Any, level: int) -&gt; str</dt><dd><tt><a href="reprlib.html#Repr">Repr</a>,&nbsp;but&nbsp;squash&nbsp;it&nbsp;into&nbsp;a&nbsp;window</tt></dd></dl>
+
+<dl><dt><a name="HTMLRepr-repr_str"><strong>repr_str</strong></a> = <a href="#HTMLRepr-repr_string">repr_string</a>(self, x: str, _: int) -&gt; str</dt></dl>
+
+<dl><dt><a name="HTMLRepr-repr_string"><strong>repr_string</strong></a>(self, x: str, _: int) -&gt; str</dt><dd><tt><a href="reprlib.html#Repr">Repr</a>,&nbsp;but&nbsp;squash&nbsp;it&nbsp;into&nbsp;a&nbsp;window</tt></dd></dl>
+
+<dl><dt><a name="HTMLRepr-repr_unicode"><strong>repr_unicode</strong></a> = <a href="#HTMLRepr-repr_string">repr_string</a>(self, x: str, _: int) -&gt; str</dt></dl>
+
+<hr>
+Methods inherited from <a href="reprlib.html#Repr">reprlib.Repr</a>:<br>
+<dl><dt><a name="HTMLRepr-repr_array"><strong>repr_array</strong></a>(self, x, level)</dt></dl>
+
+<dl><dt><a name="HTMLRepr-repr_deque"><strong>repr_deque</strong></a>(self, x, level)</dt></dl>
+
+<dl><dt><a name="HTMLRepr-repr_dict"><strong>repr_dict</strong></a>(self, x, level)</dt></dl>
+
+<dl><dt><a name="HTMLRepr-repr_frozenset"><strong>repr_frozenset</strong></a>(self, x, level)</dt></dl>
+
+<dl><dt><a name="HTMLRepr-repr_int"><strong>repr_int</strong></a>(self, x, level)</dt></dl>
+
+<dl><dt><a name="HTMLRepr-repr_list"><strong>repr_list</strong></a>(self, x, level)</dt></dl>
+
+<dl><dt><a name="HTMLRepr-repr_set"><strong>repr_set</strong></a>(self, x, level)</dt></dl>
+
+<dl><dt><a name="HTMLRepr-repr_tuple"><strong>repr_tuple</strong></a>(self, x, level)</dt></dl>
+
+<hr>
+Data descriptors inherited from <a href="reprlib.html#Repr">reprlib.Repr</a>:<br>
+<dl><dt><strong>__dict__</strong></dt>
+<dd><tt>dictionary&nbsp;for&nbsp;instance&nbsp;variables&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+
+<tr><td bgcolor="#eeaa77"></td><td>&nbsp;</td>
+<td width="100%%"><dl><dt><a name="-cast"><strong>cast</strong></a>(typ, val)</dt><dd><tt>Cast&nbsp;a&nbsp;value&nbsp;to&nbsp;a&nbsp;type.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;the&nbsp;value&nbsp;unchanged.&nbsp;&nbsp;To&nbsp;the&nbsp;type&nbsp;checker&nbsp;this<br>
+signals&nbsp;that&nbsp;the&nbsp;return&nbsp;value&nbsp;has&nbsp;the&nbsp;designated&nbsp;type,&nbsp;but&nbsp;at<br>
+runtime&nbsp;we&nbsp;intentionally&nbsp;don't&nbsp;check&nbsp;anything&nbsp;(we&nbsp;want&nbsp;this<br>
+to&nbsp;be&nbsp;as&nbsp;fast&nbsp;as&nbsp;possible).</tt></dd></dl>
+ <dl><dt><a name="-cram"><strong>cram</strong></a>(text: str, maxlen: int) -&gt; str</dt><dd><tt>Omit&nbsp;part&nbsp;of&nbsp;a&nbsp;string&nbsp;if&nbsp;needed&nbsp;to&nbsp;make&nbsp;it&nbsp;fit&nbsp;in&nbsp;a&nbsp;maximum&nbsp;length.</tt></dd></dl>
+ <dl><dt><a name="-replace"><strong>replace</strong></a>(text: str, *pairs: str) -&gt; str</dt><dd><tt>Do&nbsp;a&nbsp;series&nbsp;of&nbsp;global&nbsp;replacements&nbsp;on&nbsp;a&nbsp;string.</tt></dd></dl>
+ <dl><dt><a name="-stripid"><strong>stripid</strong></a>(text: str) -&gt; str</dt><dd><tt>Remove&nbsp;the&nbsp;hexadecimal&nbsp;id&nbsp;from&nbsp;a&nbsp;Python&nbsp;object&nbsp;representation.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+
+<tr><td bgcolor="#55aa55"></td><td>&nbsp;</td>
+<td width="100%%"><strong>Any</strong> = typing.Any</td></tr></table>
+</body></html>

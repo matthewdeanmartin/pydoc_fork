@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pydoc_fork.cli_code API documentation</title>
+<meta name="description" content="Just enough UI to let a build server generate documentation" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pydoc_fork.cli_code</code></h1>
+</header>
+<section id="section-intro">
+<p>Just enough UI to let a build server generate documentation</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Just enough UI to let a build server generate documentation
+&#34;&#34;&#34;
+import logging
+import os
+import pkgutil
+from shutil import copy2
+from typing import List, Optional, Tuple, Union
+
+import pydoc_fork.formatter_html as html
+from pydoc_fork.custom_types import TypeLike
+from pydoc_fork.all_found import MENTIONED_MODULES
+from pydoc_fork.format_page import render
+from pydoc_fork.path_utils import _adjust_cli_sys_path, locate_file
+from pydoc_fork.utils import describe, resolve
+
+LOGGER = logging.getLogger(__name__)
+
+
+# MR output_folder
+def writedoc(
+    thing: Union[TypeLike, str],
+    output_folder: str,
+    document_internals: bool,
+    forceload: int = 0,
+) -&gt; Optional[str]:
+    &#34;&#34;&#34;Write HTML documentation to a file in the current directory.&#34;&#34;&#34;
+    # try:
+    the_object, name = resolve(thing, forceload)
+
+    # MR
+    # should go in constructor, but what? no constructor
+    html.OUTPUT_FOLDER = output_folder
+    html.DOCUMENT_INTERNALS = document_internals
+    page_out = render(describe(the_object), the_object, name)
+    # MR output_folder + os.sep
+    full_path = calculate_file_name(name, output_folder)
+
+    with open(full_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as file:
+        file.write(page_out)
+    print(&#34;wrote&#34;, name + &#34;.html&#34;)
+    return full_path
+    # except (ImportError, ErrorDuringImport) as value:
+    #     print(value)
+    # return &#34;&#34;
+
+
+def calculate_file_name(name: str, output_folder: str) -&gt; str:
+    &#34;&#34;&#34;If this was written, what would its name be&#34;&#34;&#34;
+    if name is None:
+        print(&#34;What&#34;)
+    full_path = output_folder + os.sep + name + &#34;.html&#34;
+    full_path = (
+        full_path.replace(&#34;&lt;&#34;, &#34;&#34;)
+        .replace(&#34;&gt;&#34;, &#34;&#34;)
+        .replace(&#34;:&#34;, &#34;&#34;)
+        .replace(&#34;,&#34;, &#34;_&#34;)
+        .replace(&#34; &#34;, &#34;_&#34;)
+        .replace(&#34;(&#34;, &#34;&#34;)
+        .replace(&#34;)&#34;, &#34;&#34;)
+    )
+
+    return full_path
+
+
+def write_docs_per_module(
+    modules: List[str],
+    output_folder: str,
+    document_internals: bool,
+    skip_if_written: bool = False,
+) -&gt; List[str]:
+    &#34;&#34;&#34;Write out HTML documentation for all modules in a directory tree.&#34;&#34;&#34;
+
+    # This is going to handle filesystem paths, e.g. ./module/submodule.py
+    # There will be ANOTHER method to handle MODULE paths, e.g. module.submodule&#34;
+    # Attempting to mix these two types is a bad idea.
+    written: List[str] = []
+    for module in modules:
+        # file
+
+        if module.lower().endswith(&#34;.py&#34;):
+            full_path = writedoc(module[:-3], output_folder, document_internals)
+            if full_path:
+                written.append(full_path)
+        else:
+            full_path = writedoc(module, output_folder, document_internals)
+            if full_path:
+                written.append(full_path)
+            # &#34;.&#34; needs to mean pwd... does it?
+            full_paths = writedocs(
+                &#34;.&#34;, output_folder, document_internals, for_only=module
+            )
+            written.extend(full_paths)
+    # One pass, not ready to walk entire tree.
+
+    third_party_written = write_docs_live_module(
+        output_folder, document_internals, 0, skip_if_written
+    )
+    written.extend(third_party_written)
+    return written
+
+
+def write_docs_live_module(
+    # modules: List[Tuple[TypeLike, str]],
+    output_folder: str,
+    document_internals: bool,
+    total_third_party: int = 0,
+    skip_if_written: bool = False,
+) -&gt; List[str]:
+    &#34;&#34;&#34;Write out HTML documentation for all modules in a directory tree.&#34;&#34;&#34;
+
+    # This is going to handle filesystem paths, e.g. ./module/submodule.py
+    # There will be ANOTHER method to handle MODULE paths, e.g. module.submodule&#34;
+    # Attempting to mix these two types is a bad idea.
+    written: List[str] = []
+    while MENTIONED_MODULES and total_third_party &lt;= 100:
+        print(len(MENTIONED_MODULES))
+        module = MENTIONED_MODULES.pop()
+        thing, name = module  # destructure it
+        # should only be live modules or dot notation modules, not paths.
+        full_path = calculate_file_name(name, output_folder)
+        if os.path.exists(full_path) and skip_if_written:
+            MENTIONED_MODULES.discard(module)
+        else:
+            full_path = writedoc(thing, output_folder, document_internals)
+            total_third_party += 1
+            if full_path:
+                written.append(full_path)
+            MENTIONED_MODULES.discard(module)
+
+    # TODO: make this a param
+    return written
+
+
+def writedocs(
+    source_directory: str,
+    output_folder: str,
+    document_internals: bool,
+    for_only: str = &#34;&#34;,
+) -&gt; List[str]:
+    &#34;&#34;&#34;Write out HTML documentation for all modules in a directory tree.&#34;&#34;&#34;
+    # if done is None: done = {}
+    pkgpath = &#34;&#34;
+    # walk packages is why pydoc drags along with it tests folders
+    LOGGER.debug(f&#34;Walking packages for {source_directory}&#34;)
+
+    full_paths: List[str] = []
+    for _, modname, _ in pkgutil.walk_packages([source_directory], pkgpath):
+        if not str(modname).startswith(for_only):
+            continue
+        LOGGER.debug(f&#34;docing {modname})&#34;)
+        full_path = writedoc(modname, output_folder, document_internals)
+        if full_path:
+            full_paths.append(full_path)
+    return full_paths
+
+
+def cli(
+    files: List[str],
+    output_folder: str,
+    document_internals: bool,
+    overwrite_existing: bool = False,
+) -&gt; List[str]:
+    &#34;&#34;&#34;Command-line interface (looks at sys.argv to decide what to do).&#34;&#34;&#34;
+    LOGGER.debug(f&#34;{files}, {output_folder}, {document_internals}&#34;)
+
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+    copy2(locate_file(&#34;templates/style.css&#34;, __file__), output_folder)
+
+    _adjust_cli_sys_path()
+
+    # opts, args = getopt.getopt(sys.argv[1:], &#39;bk:n:p:w&#39;)
+    return write_docs_per_module(
+        files, output_folder, document_internals, skip_if_written=not overwrite_existing
+    )
+    # for file in files:
+    #     if ispath(file) and not os.path.exists(file):
+    #         print(&#34;file %r does not exist&#34; % files)
+    #         break
+    #     try:
+    #         # single file module
+    #         if ispath(file) and os.path.isfile(file):
+    #             # new type assigned to same name
+    #             arg_type = importfile(file)
+    #             writedoc(arg_type, output_folder, document_internals)
+    #         # directory
+    #         elif ispath(file) and os.path.isdir(file):
+    #             print(f&#34;We think this is a path &amp; a directory 1&#34;)
+    #
+    #         elif (
+    #             isinstance(files, str) and os.path.exists(files) and os.path.isdir(files)
+    #         ):
+    #             print(f&#34;We think this is a path &amp; a directory 2&#34;)
+    #             write_docs_per_module(files, output_folder, document_internals)
+    #         else:
+    #             print(f&#34;We think this is a built in or something on the PYTHONPATH&#34;)
+    #             # built ins?
+    #             write_docs_per_module(files, output_folder, document_internals)
+    #             # raise TypeError(&#34;Not a file, not a directory&#34;)
+    #
+    #     except ErrorDuringImport as value:
+    #         print(value)
+
+
+if __name__ == &#34;__main__&#34;:
+    cli([&#34;.\\&#34;], output_folder=&#34;docs_api&#34;, document_internals=True)
+    cli([&#34;pydoc_fork&#34;], output_folder=&#34;docs_api&#34;, document_internals=True)
+    cli([&#34;sys&#34;], output_folder=&#34;docs_api&#34;, document_internals=False)
+    cli(
+        [&#34;cats&#34;], output_folder=&#34;docs_api&#34;, document_internals=False
+    )  # writes cats.html, even tho this isn&#39;t a module!
+    cli([&#34;inspect&#34;], output_folder=&#34;docs_api&#34;, document_internals=False)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="pydoc_fork.cli_code.calculate_file_name"><code class="name flex">
+<span>def <span class="ident">calculate_file_name</span></span>(<span>name: str, output_folder: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>If this was written, what would its name be</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calculate_file_name(name: str, output_folder: str) -&gt; str:
+    &#34;&#34;&#34;If this was written, what would its name be&#34;&#34;&#34;
+    if name is None:
+        print(&#34;What&#34;)
+    full_path = output_folder + os.sep + name + &#34;.html&#34;
+    full_path = (
+        full_path.replace(&#34;&lt;&#34;, &#34;&#34;)
+        .replace(&#34;&gt;&#34;, &#34;&#34;)
+        .replace(&#34;:&#34;, &#34;&#34;)
+        .replace(&#34;,&#34;, &#34;_&#34;)
+        .replace(&#34; &#34;, &#34;_&#34;)
+        .replace(&#34;(&#34;, &#34;&#34;)
+        .replace(&#34;)&#34;, &#34;&#34;)
+    )
+
+    return full_path</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.cli_code.cli"><code class="name flex">
+<span>def <span class="ident">cli</span></span>(<span>files: List[str], output_folder: str, document_internals: bool, overwrite_existing: bool = False) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Command-line interface (looks at sys.argv to decide what to do).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def cli(
+    files: List[str],
+    output_folder: str,
+    document_internals: bool,
+    overwrite_existing: bool = False,
+) -&gt; List[str]:
+    &#34;&#34;&#34;Command-line interface (looks at sys.argv to decide what to do).&#34;&#34;&#34;
+    LOGGER.debug(f&#34;{files}, {output_folder}, {document_internals}&#34;)
+
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+    copy2(locate_file(&#34;templates/style.css&#34;, __file__), output_folder)
+
+    _adjust_cli_sys_path()
+
+    # opts, args = getopt.getopt(sys.argv[1:], &#39;bk:n:p:w&#39;)
+    return write_docs_per_module(
+        files, output_folder, document_internals, skip_if_written=not overwrite_existing
+    )
+    # for file in files:
+    #     if ispath(file) and not os.path.exists(file):
+    #         print(&#34;file %r does not exist&#34; % files)
+    #         break
+    #     try:
+    #         # single file module
+    #         if ispath(file) and os.path.isfile(file):
+    #             # new type assigned to same name
+    #             arg_type = importfile(file)
+    #             writedoc(arg_type, output_folder, document_internals)
+    #         # directory
+    #         elif ispath(file) and os.path.isdir(file):
+    #             print(f&#34;We think this is a path &amp; a directory 1&#34;)
+    #
+    #         elif (
+    #             isinstance(files, str) and os.path.exists(files) and os.path.isdir(files)
+    #         ):
+    #             print(f&#34;We think this is a path &amp; a directory 2&#34;)
+    #             write_docs_per_module(files, output_folder, document_internals)
+    #         else:
+    #             print(f&#34;We think this is a built in or something on the PYTHONPATH&#34;)
+    #             # built ins?
+    #             write_docs_per_module(files, output_folder, document_internals)
+    #             # raise TypeError(&#34;Not a file, not a directory&#34;)
+    #
+    #     except ErrorDuringImport as value:
+    #         print(value)</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.cli_code.write_docs_live_module"><code class="name flex">
+<span>def <span class="ident">write_docs_live_module</span></span>(<span>output_folder: str, document_internals: bool, total_third_party: int = 0, skip_if_written: bool = False) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write out HTML documentation for all modules in a directory tree.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_docs_live_module(
+    # modules: List[Tuple[TypeLike, str]],
+    output_folder: str,
+    document_internals: bool,
+    total_third_party: int = 0,
+    skip_if_written: bool = False,
+) -&gt; List[str]:
+    &#34;&#34;&#34;Write out HTML documentation for all modules in a directory tree.&#34;&#34;&#34;
+
+    # This is going to handle filesystem paths, e.g. ./module/submodule.py
+    # There will be ANOTHER method to handle MODULE paths, e.g. module.submodule&#34;
+    # Attempting to mix these two types is a bad idea.
+    written: List[str] = []
+    while MENTIONED_MODULES and total_third_party &lt;= 100:
+        print(len(MENTIONED_MODULES))
+        module = MENTIONED_MODULES.pop()
+        thing, name = module  # destructure it
+        # should only be live modules or dot notation modules, not paths.
+        full_path = calculate_file_name(name, output_folder)
+        if os.path.exists(full_path) and skip_if_written:
+            MENTIONED_MODULES.discard(module)
+        else:
+            full_path = writedoc(thing, output_folder, document_internals)
+            total_third_party += 1
+            if full_path:
+                written.append(full_path)
+            MENTIONED_MODULES.discard(module)
+
+    # TODO: make this a param
+    return written</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.cli_code.write_docs_per_module"><code class="name flex">
+<span>def <span class="ident">write_docs_per_module</span></span>(<span>modules: List[str], output_folder: str, document_internals: bool, skip_if_written: bool = False) ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write out HTML documentation for all modules in a directory tree.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_docs_per_module(
+    modules: List[str],
+    output_folder: str,
+    document_internals: bool,
+    skip_if_written: bool = False,
+) -&gt; List[str]:
+    &#34;&#34;&#34;Write out HTML documentation for all modules in a directory tree.&#34;&#34;&#34;
+
+    # This is going to handle filesystem paths, e.g. ./module/submodule.py
+    # There will be ANOTHER method to handle MODULE paths, e.g. module.submodule&#34;
+    # Attempting to mix these two types is a bad idea.
+    written: List[str] = []
+    for module in modules:
+        # file
+
+        if module.lower().endswith(&#34;.py&#34;):
+            full_path = writedoc(module[:-3], output_folder, document_internals)
+            if full_path:
+                written.append(full_path)
+        else:
+            full_path = writedoc(module, output_folder, document_internals)
+            if full_path:
+                written.append(full_path)
+            # &#34;.&#34; needs to mean pwd... does it?
+            full_paths = writedocs(
+                &#34;.&#34;, output_folder, document_internals, for_only=module
+            )
+            written.extend(full_paths)
+    # One pass, not ready to walk entire tree.
+
+    third_party_written = write_docs_live_module(
+        output_folder, document_internals, 0, skip_if_written
+    )
+    written.extend(third_party_written)
+    return written</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.cli_code.writedoc"><code class="name flex">
+<span>def <span class="ident">writedoc</span></span>(<span>thing: Union[<a title="pydoc_fork.custom_types.TypeLike" href="custom_types.html#pydoc_fork.custom_types.TypeLike">TypeLike</a>, str], output_folder: str, document_internals: bool, forceload: int = 0) ‑> Optional[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write HTML documentation to a file in the current directory.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def writedoc(
+    thing: Union[TypeLike, str],
+    output_folder: str,
+    document_internals: bool,
+    forceload: int = 0,
+) -&gt; Optional[str]:
+    &#34;&#34;&#34;Write HTML documentation to a file in the current directory.&#34;&#34;&#34;
+    # try:
+    the_object, name = resolve(thing, forceload)
+
+    # MR
+    # should go in constructor, but what? no constructor
+    html.OUTPUT_FOLDER = output_folder
+    html.DOCUMENT_INTERNALS = document_internals
+    page_out = render(describe(the_object), the_object, name)
+    # MR output_folder + os.sep
+    full_path = calculate_file_name(name, output_folder)
+
+    with open(full_path, &#34;w&#34;, encoding=&#34;utf-8&#34;) as file:
+        file.write(page_out)
+    print(&#34;wrote&#34;, name + &#34;.html&#34;)
+    return full_path
+    # except (ImportError, ErrorDuringImport) as value:
+    #     print(value)
+    # return &#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.cli_code.writedocs"><code class="name flex">
+<span>def <span class="ident">writedocs</span></span>(<span>source_directory: str, output_folder: str, document_internals: bool, for_only: str = '') ‑> List[str]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write out HTML documentation for all modules in a directory tree.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def writedocs(
+    source_directory: str,
+    output_folder: str,
+    document_internals: bool,
+    for_only: str = &#34;&#34;,
+) -&gt; List[str]:
+    &#34;&#34;&#34;Write out HTML documentation for all modules in a directory tree.&#34;&#34;&#34;
+    # if done is None: done = {}
+    pkgpath = &#34;&#34;
+    # walk packages is why pydoc drags along with it tests folders
+    LOGGER.debug(f&#34;Walking packages for {source_directory}&#34;)
+
+    full_paths: List[str] = []
+    for _, modname, _ in pkgutil.walk_packages([source_directory], pkgpath):
+        if not str(modname).startswith(for_only):
+            continue
+        LOGGER.debug(f&#34;docing {modname})&#34;)
+        full_path = writedoc(modname, output_folder, document_internals)
+        if full_path:
+            full_paths.append(full_path)
+    return full_paths</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pydoc_fork" href="index.html">pydoc_fork</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="pydoc_fork.cli_code.calculate_file_name" href="#pydoc_fork.cli_code.calculate_file_name">calculate_file_name</a></code></li>
+<li><code><a title="pydoc_fork.cli_code.cli" href="#pydoc_fork.cli_code.cli">cli</a></code></li>
+<li><code><a title="pydoc_fork.cli_code.write_docs_live_module" href="#pydoc_fork.cli_code.write_docs_live_module">write_docs_live_module</a></code></li>
+<li><code><a title="pydoc_fork.cli_code.write_docs_per_module" href="#pydoc_fork.cli_code.write_docs_per_module">write_docs_per_module</a></code></li>
+<li><code><a title="pydoc_fork.cli_code.writedoc" href="#pydoc_fork.cli_code.writedoc">writedoc</a></code></li>
+<li><code><a title="pydoc_fork.cli_code.writedocs" href="#pydoc_fork.cli_code.writedocs">writedocs</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

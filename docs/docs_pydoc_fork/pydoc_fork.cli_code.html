@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pydoc_fork.cli_code</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="pydoc_fork.html"><font color="#ffffff">pydoc_fork</font></a>.cli_code</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:pydoc_fork/cli_code.py">pydoc_fork/cli_code.py</a></font></td></tr></table>
+<p><tt>Just&nbsp;enough&nbsp;UI&nbsp;to&nbsp;let&nbsp;a&nbsp;build&nbsp;server&nbsp;generate&nbsp;documentation</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"></td><td>&nbsp;</td>
+<td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.formatter_html.html">pydoc_fork.formatter_html</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/os.html">os</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/pkgutil.html">pkgutil</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"></td><td>&nbsp;</td>
+<td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.format_page.html">pydoc_fork.format_page</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.custom_types.html">pydoc_fork.custom_types</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.utils.html">pydoc_fork.utils</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.path_utils.html">pydoc_fork.path_utils</a><br>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+
+<tr><td bgcolor="#eeaa77"></td><td>&nbsp;</td>
+<td width="100%%"><dl><dt><a name="-calculate_file_name"><strong>calculate_file_name</strong></a>(name: str, output_folder: str) -&gt; str</dt><dd><tt>If&nbsp;this&nbsp;was&nbsp;written,&nbsp;what&nbsp;would&nbsp;its&nbsp;name&nbsp;be</tt></dd></dl>
+ <dl><dt><a name="-cli"><strong>cli</strong></a>(files: List[str], output_folder: str, document_internals: bool) -&gt; List[str]</dt><dd><tt>Command-line&nbsp;interface&nbsp;(looks&nbsp;at&nbsp;sys.argv&nbsp;to&nbsp;decide&nbsp;what&nbsp;to&nbsp;do).</tt></dd></dl>
+ <dl><dt><a name="-describe"><strong>describe</strong></a>(thing: pydoc_fork.custom_types.TypeLike) -&gt; str</dt><dd><tt>Produce&nbsp;a&nbsp;short&nbsp;description&nbsp;of&nbsp;the&nbsp;given&nbsp;thing.</tt></dd></dl>
+ <dl><dt><a name="-render"><strong>render</strong></a>(title: str, the_object: pydoc_fork.custom_types.TypeLike, name: str) -&gt; str</dt><dd><tt>Compose&nbsp;two&nbsp;functions</tt></dd></dl>
+ <dl><dt><a name="-resolve"><strong>resolve</strong></a>(thing: Union[str, Any], forceload: int = 0) -&gt; Tuple[Any, Any]</dt><dd><tt>Given&nbsp;an&nbsp;object&nbsp;or&nbsp;a&nbsp;path&nbsp;to&nbsp;an&nbsp;object,&nbsp;get&nbsp;the&nbsp;object&nbsp;and&nbsp;its&nbsp;name.</tt></dd></dl>
+ <dl><dt><a name="-write_docs_live_module"><strong>write_docs_live_module</strong></a>(modules: List[Tuple[pydoc_fork.custom_types.TypeLike, str]], output_folder: str, document_internals: bool, total_third_party: int = 0, skip_if_written: bool = False) -&gt; List[str]</dt><dd><tt>Write&nbsp;out&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;all&nbsp;modules&nbsp;in&nbsp;a&nbsp;directory&nbsp;tree.</tt></dd></dl>
+ <dl><dt><a name="-write_docs_per_module"><strong>write_docs_per_module</strong></a>(modules: List[str], output_folder: str, document_internals: bool, skip_if_written: bool = False) -&gt; List[str]</dt><dd><tt>Write&nbsp;out&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;all&nbsp;modules&nbsp;in&nbsp;a&nbsp;directory&nbsp;tree.</tt></dd></dl>
+ <dl><dt><a name="-writedoc"><strong>writedoc</strong></a>(thing: Union[pydoc_fork.custom_types.TypeLike, str], output_folder: str, document_internals: bool, forceload: int = 0) -&gt; Optional[str]</dt><dd><tt>Write&nbsp;HTML&nbsp;documentation&nbsp;to&nbsp;a&nbsp;file&nbsp;in&nbsp;the&nbsp;current&nbsp;directory.</tt></dd></dl>
+ <dl><dt><a name="-writedocs"><strong>writedocs</strong></a>(source_directory: str, output_folder: str, document_internals: bool, for_only: str = '') -&gt; List[str]</dt><dd><tt>Write&nbsp;out&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;all&nbsp;modules&nbsp;in&nbsp;a&nbsp;directory&nbsp;tree.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+
+<tr><td bgcolor="#55aa55"></td><td>&nbsp;</td>
+<td width="100%%"><strong>LOGGER</strong> = &lt;Logger pydoc_fork.cli_code (WARNING)&gt;<br>
+<strong>List</strong> = typing.List<br>
+<strong>MENTIONED_MODULES</strong> = [(&lt;module 'pydoc_fork.utils' from 'C:\\Users\\matth\\public_record\\pydoc_fork\\pydoc_fork\\utils.py'&gt;, 'pydoc_fork.utils'), (&lt;module 'pydoc_fork.custom_types' from 'C:\\User...record\\pydoc_fork\\pydoc_fork\\custom_types.py'&gt;, 'pydoc_fork.custom_types'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.utils' from 'C:\\Users\\matth\\public_record\\pydoc_fork\\pydoc_fork\\utils.py'&gt;, 'pydoc_fork.utils'), (&lt;module 'pydoc_fork.utils' from 'C:\\Users\\matth\\public_record\\pydoc_fork\\pydoc_fork\\utils.py'&gt;, 'pydoc_fork.utils'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.custom_types' from 'C:\\User...record\\pydoc_fork\\pydoc_fork\\custom_types.py'&gt;, 'pydoc_fork.custom_types'), (&lt;module 'pydoc_fork.utils' from 'C:\\Users\\matth\\public_record\\pydoc_fork\\pydoc_fork\\utils.py'&gt;, 'pydoc_fork.utils'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'docopt' from 'C:\\Users\\matth\\.virtua...oc_fork-n_Va7mK6\\lib\\site-packages\\docopt.py'&gt;, 'docopt'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.custom_types' from 'C:\\User...record\\pydoc_fork\\pydoc_fork\\custom_types.py'&gt;, 'pydoc_fork.custom_types'), (&lt;module 'pydoc_fork.path_utils' from 'C:\\Users\...c_record\\pydoc_fork\\pydoc_fork\\path_utils.py'&gt;, 'pydoc_fork.path_utils'), (&lt;module 'pydoc_fork.utils' from 'C:\\Users\\matth\\public_record\\pydoc_fork\\pydoc_fork\\utils.py'&gt;, 'pydoc_fork.utils'), (&lt;module 'pydoc_fork.format_page' from 'C:\\Users..._record\\pydoc_fork\\pydoc_fork\\format_page.py'&gt;, 'pydoc_fork.format_page'), ...]<br>
+<strong>Optional</strong> = typing.Optional<br>
+<strong>Tuple</strong> = typing.Tuple<br>
+<strong>Union</strong> = typing.Union</td></tr></table>
+</body></html>

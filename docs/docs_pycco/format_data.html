@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>format_data.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>format_data.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Roughly a UI component for data</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.custom_types</span> <span class="kn">import</span> <span class="n">TypeLike</span>
+<span class="kn">from</span> <span class="nn">pydoc_fork.formatter_html</span> <span class="kn">import</span> <span class="n">markup</span>
+<span class="kn">from</span> <span class="nn">pydoc_fork.utils</span> <span class="kn">import</span> <span class="n">getdoc</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Produce html documentation for a data descriptor.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">docdata</span><span class="p">(</span>
+    <span class="n">the_object</span><span class="p">:</span> <span class="n">TypeLike</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># Null safety</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">results</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">push</span> <span class="o">=</span> <span class="n">results</span><span class="o">.</span><span class="n">append</span>
+
+    <span class="k">if</span> <span class="n">name</span><span class="p">:</span>
+        <span class="n">push</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;dl&gt;&lt;dt&gt;&lt;strong&gt;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&lt;/strong&gt;&lt;/dt&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">markup</span><span class="p">(</span><span class="n">getdoc</span><span class="p">(</span><span class="n">the_object</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">doc</span><span class="p">:</span>
+        <span class="n">push</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;dd&gt;&lt;tt&gt;</span><span class="si">{</span><span class="n">doc</span><span class="si">}</span><span class="s2">&lt;/tt&gt;&lt;/dd&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">push</span><span class="p">(</span><span class="s2">&quot;&lt;/dl&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pydoc_fork.module_utils</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="pydoc_fork.html"><font color="#ffffff">pydoc_fork</font></a>.module_utils</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:pydoc_fork/module_utils.py">pydoc_fork/module_utils.py</a></font></td></tr></table>
+<p><tt>Module&nbsp;Manipulation</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"></td><td>&nbsp;</td>
+<td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="builtins.html">builtins</a><br>
+<a href="https://docs.python.org/3.9/library/importlib.html">importlib</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/logging.html">logging</a><br>
+<a href="https://docs.python.org/3.9/library/os.html">os</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"></td><td>&nbsp;</td>
+<td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.custom_types.html">pydoc_fork.custom_types</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/typing.html">typing</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ee77aa">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td></tr>
+
+<tr><td bgcolor="#ee77aa"></td><td>&nbsp;</td>
+<td width="100%%"><dl>
+<dt><font face="helvetica, arial"><a href="builtins.html#Exception">builtins.Exception</a>(<a href="builtins.html#BaseException">builtins.BaseException</a>)
+</font></dt><dd>
+<dl>
+<dt><font face="helvetica, arial"><a href="pydoc_fork.module_utils.html#ErrorDuringImport">ErrorDuringImport</a>
+</font></dt></dl>
+</dd>
+</dl>
+ <p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#ffc8d8">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#000000" face="helvetica, arial"><a name="ErrorDuringImport">class <strong>ErrorDuringImport</strong></a>(<a href="builtins.html#Exception">builtins.Exception</a>)</font></td></tr>
+
+<tr bgcolor="#ffc8d8"><td rowspan=2></td>
+<td colspan=2><tt><a href="#ErrorDuringImport">ErrorDuringImport</a>(filename:&nbsp;str,&nbsp;exc_info:&nbsp;Tuple[Any,&nbsp;Any,&nbsp;Any])&nbsp;-&gt;&nbsp;None<br>
+&nbsp;<br>
+Errors&nbsp;that&nbsp;occurred&nbsp;while&nbsp;trying&nbsp;to&nbsp;import&nbsp;something&nbsp;to&nbsp;document&nbsp;it.<br>&nbsp;</tt></td></tr>
+<tr><td>&nbsp;</td>
+<td width="100%%"><dl><dt>Method resolution order:</dt>
+<dd><a href="pydoc_fork.module_utils.html#ErrorDuringImport">ErrorDuringImport</a></dd>
+<dd><a href="builtins.html#Exception">builtins.Exception</a></dd>
+<dd><a href="builtins.html#BaseException">builtins.BaseException</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="ErrorDuringImport-__init__"><strong>__init__</strong></a>(self, filename: str, exc_info: Tuple[Any, Any, Any]) -&gt; None</dt></dl>
+
+<dl><dt><a name="ErrorDuringImport-__str__"><strong>__str__</strong></a>(self) -&gt; str</dt></dl>
+
+<hr>
+Data descriptors defined here:<br>
+<dl><dt><strong>__weakref__</strong></dt>
+<dd><tt>list&nbsp;of&nbsp;weak&nbsp;references&nbsp;to&nbsp;the&nbsp;object&nbsp;(if&nbsp;defined)</tt></dd>
+</dl>
+<hr>
+Static methods inherited from <a href="builtins.html#Exception">builtins.Exception</a>:<br>
+<dl><dt><a name="ErrorDuringImport-__new__"><strong>__new__</strong></a>(*args, **kwargs)<font color="#909090"><font face="helvetica, arial"> from <a href="builtins.html#type">builtins.type</a></font></font></dt><dd><tt>Create&nbsp;and&nbsp;return&nbsp;a&nbsp;new&nbsp;object.&nbsp;&nbsp;See&nbsp;help(type)&nbsp;for&nbsp;accurate&nbsp;signature.</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><a name="ErrorDuringImport-__delattr__"><strong>__delattr__</strong></a>(self, name, /)</dt><dd><tt>Implement&nbsp;delattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="ErrorDuringImport-__getattribute__"><strong>__getattribute__</strong></a>(self, name, /)</dt><dd><tt>Return&nbsp;getattr(self,&nbsp;name).</tt></dd></dl>
+
+<dl><dt><a name="ErrorDuringImport-__reduce__"><strong>__reduce__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ErrorDuringImport-__repr__"><strong>__repr__</strong></a>(self, /)</dt><dd><tt>Return&nbsp;repr(self).</tt></dd></dl>
+
+<dl><dt><a name="ErrorDuringImport-__setattr__"><strong>__setattr__</strong></a>(self, name, value, /)</dt><dd><tt>Implement&nbsp;setattr(self,&nbsp;name,&nbsp;value).</tt></dd></dl>
+
+<dl><dt><a name="ErrorDuringImport-__setstate__"><strong>__setstate__</strong></a>(...)</dt></dl>
+
+<dl><dt><a name="ErrorDuringImport-with_traceback"><strong>with_traceback</strong></a>(...)</dt><dd><tt><a href="builtins.html#Exception">Exception</a>.<a href="#ErrorDuringImport-with_traceback">with_traceback</a>(tb)&nbsp;--<br>
+set&nbsp;self.<strong>__traceback__</strong>&nbsp;to&nbsp;tb&nbsp;and&nbsp;return&nbsp;self.</tt></dd></dl>
+
+<hr>
+Data descriptors inherited from <a href="builtins.html#BaseException">builtins.BaseException</a>:<br>
+<dl><dt><strong>__cause__</strong></dt>
+<dd><tt>exception&nbsp;cause</tt></dd>
+</dl>
+<dl><dt><strong>__context__</strong></dt>
+<dd><tt>exception&nbsp;context</tt></dd>
+</dl>
+<dl><dt><strong>__dict__</strong></dt>
+</dl>
+<dl><dt><strong>__suppress_context__</strong></dt>
+</dl>
+<dl><dt><strong>__traceback__</strong></dt>
+</dl>
+<dl><dt><strong>args</strong></dt>
+</dl>
+</td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+
+<tr><td bgcolor="#eeaa77"></td><td>&nbsp;</td>
+<td width="100%%"><dl><dt><a name="-cast"><strong>cast</strong></a>(typ, val)</dt><dd><tt>Cast&nbsp;a&nbsp;value&nbsp;to&nbsp;a&nbsp;type.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;the&nbsp;value&nbsp;unchanged.&nbsp;&nbsp;To&nbsp;the&nbsp;type&nbsp;checker&nbsp;this<br>
+signals&nbsp;that&nbsp;the&nbsp;return&nbsp;value&nbsp;has&nbsp;the&nbsp;designated&nbsp;type,&nbsp;but&nbsp;at<br>
+runtime&nbsp;we&nbsp;intentionally&nbsp;don't&nbsp;check&nbsp;anything&nbsp;(we&nbsp;want&nbsp;this<br>
+to&nbsp;be&nbsp;as&nbsp;fast&nbsp;as&nbsp;possible).</tt></dd></dl>
+ <dl><dt><a name="-importfile"><strong>importfile</strong></a>(path: str) -&gt; pydoc_fork.custom_types.TypeLike</dt><dd><tt>Import&nbsp;a&nbsp;Python&nbsp;source&nbsp;file&nbsp;or&nbsp;compiled&nbsp;file&nbsp;given&nbsp;its&nbsp;path.</tt></dd></dl>
+ <dl><dt><a name="-ispackage"><strong>ispackage</strong></a>(path: str) -&gt; bool</dt><dd><tt>Guess&nbsp;whether&nbsp;a&nbsp;path&nbsp;refers&nbsp;to&nbsp;a&nbsp;package&nbsp;directory.</tt></dd></dl>
+ <dl><dt><a name="-locate"><strong>locate</strong></a>(path: str, forceload: int = 0) -&gt; Any</dt><dd><tt>Locate&nbsp;an&nbsp;object&nbsp;by&nbsp;name&nbsp;or&nbsp;dotted&nbsp;path,&nbsp;importing&nbsp;as&nbsp;necessary.</tt></dd></dl>
+ <dl><dt><a name="-safe_import"><strong>safe_import</strong></a>(path: str, forceload: int = 0, cache: Dict[str, Any] = {}) -&gt; Any</dt><dd><tt>Import&nbsp;a&nbsp;module;&nbsp;handle&nbsp;errors;&nbsp;return&nbsp;None&nbsp;if&nbsp;the&nbsp;module&nbsp;isn't&nbsp;found.<br>
+&nbsp;<br>
+If&nbsp;the&nbsp;module&nbsp;*is*&nbsp;found&nbsp;but&nbsp;an&nbsp;exception&nbsp;occurs,&nbsp;it's&nbsp;wrapped&nbsp;in&nbsp;an<br>
+<a href="#ErrorDuringImport">ErrorDuringImport</a>&nbsp;exception&nbsp;and&nbsp;reraised.&nbsp;&nbsp;Unlike&nbsp;__import__,&nbsp;if&nbsp;a<br>
+package&nbsp;path&nbsp;is&nbsp;specified,&nbsp;the&nbsp;module&nbsp;at&nbsp;the&nbsp;end&nbsp;of&nbsp;the&nbsp;path&nbsp;is&nbsp;returned,<br>
+not&nbsp;the&nbsp;package&nbsp;at&nbsp;the&nbsp;beginning.&nbsp;&nbsp;If&nbsp;the&nbsp;optional&nbsp;'forceload'&nbsp;argument<br>
+is&nbsp;1,&nbsp;we&nbsp;reload&nbsp;the&nbsp;module&nbsp;from&nbsp;disk&nbsp;(unless&nbsp;it's&nbsp;a&nbsp;dynamic&nbsp;extension).</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+
+<tr><td bgcolor="#55aa55"></td><td>&nbsp;</td>
+<td width="100%%"><strong>Any</strong> = typing.Any<br>
+<strong>Dict</strong> = typing.Dict<br>
+<strong>LOGGER</strong> = &lt;Logger pydoc_fork.module_utils (WARNING)&gt;<br>
+<strong>Tuple</strong> = typing.Tuple</td></tr></table>
+</body></html>

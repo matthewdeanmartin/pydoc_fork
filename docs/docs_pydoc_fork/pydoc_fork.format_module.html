@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module pydoc_fork.format_module</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="pydoc_fork.html"><font color="#ffffff">pydoc_fork</font></a>.format_module</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:pydoc_fork/format_module.py">pydoc_fork/format_module.py</a></font></td></tr></table>
+<p><tt>Roughly&nbsp;a&nbsp;UI&nbsp;component&nbsp;for&nbsp;modules</tt></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"></td><td>&nbsp;</td>
+<td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/inspect.html">inspect</a><br>
+<a href="https://docs.python.org/3.9/library/os.html">os</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/pkgutil.html">pkgutil</a><br>
+<a href="https://docs.python.org/3.9/library/sys.html">sys</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/urllib.html">urllib</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td></tr>
+
+<tr><td bgcolor="#aa55cc"></td><td>&nbsp;</td>
+<td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.custom_types.html">pydoc_fork.custom_types</a><br>
+<a href="pydoc_fork.formatter_html.html">pydoc_fork.formatter_html</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.format_class.html">pydoc_fork.format_class</a><br>
+<a href="pydoc_fork.utils.html">pydoc_fork.utils</a><br>
+</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/typing.html">typing</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+
+<tr><td bgcolor="#eeaa77"></td><td>&nbsp;</td>
+<td width="100%%"><dl><dt><a name="-bigsection"><strong>bigsection</strong></a>(title: str, fgcol: str, bgcol: str, contents: str, width: int = 6, prelude: str = '', marginalia: str = '', gap: str = '&amp;nbsp;') -&gt; str</dt><dd><tt>Format&nbsp;a&nbsp;section&nbsp;with&nbsp;a&nbsp;big&nbsp;heading.</tt></dd></dl>
+ <dl><dt><a name="-cast"><strong>cast</strong></a>(typ, val)</dt><dd><tt>Cast&nbsp;a&nbsp;value&nbsp;to&nbsp;a&nbsp;type.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;the&nbsp;value&nbsp;unchanged.&nbsp;&nbsp;To&nbsp;the&nbsp;type&nbsp;checker&nbsp;this<br>
+signals&nbsp;that&nbsp;the&nbsp;return&nbsp;value&nbsp;has&nbsp;the&nbsp;designated&nbsp;type,&nbsp;but&nbsp;at<br>
+runtime&nbsp;we&nbsp;intentionally&nbsp;don't&nbsp;check&nbsp;anything&nbsp;(we&nbsp;want&nbsp;this<br>
+to&nbsp;be&nbsp;as&nbsp;fast&nbsp;as&nbsp;possible).</tt></dd></dl>
+ <dl><dt><a name="-docmodule"><strong>docmodule</strong></a>(the_object: pydoc_fork.custom_types.TypeLike) -&gt; str</dt><dd><tt>Produce&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;a&nbsp;module&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-escape"><strong>escape</strong></a>(value: Any) -&gt; str</dt><dd><tt>HTML&nbsp;safe&nbsp;repr&nbsp;and&nbsp;escape</tt></dd></dl>
+ <dl><dt><a name="-filelink"><strong>filelink</strong></a>(url: str, path: str) -&gt; str</dt><dd><tt>Make&nbsp;a&nbsp;link&nbsp;to&nbsp;source&nbsp;file.</tt></dd></dl>
+ <dl><dt><a name="-formattree"><strong>formattree</strong></a>(tree: List[Any], modname: str, parent: Optional[Any] = None) -&gt; str</dt><dd><tt>Produce&nbsp;HTML&nbsp;for&nbsp;a&nbsp;class&nbsp;tree&nbsp;as&nbsp;given&nbsp;by&nbsp;inspect.getclasstree().</tt></dd></dl>
+ <dl><dt><a name="-getdoc"><strong>getdoc</strong></a>(the_object: pydoc_fork.custom_types.TypeLike) -&gt; str</dt><dd><tt>Get&nbsp;the&nbsp;doc&nbsp;string&nbsp;or&nbsp;comments&nbsp;for&nbsp;an&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-getdocloc"><strong>getdocloc</strong></a>(the_object: pydoc_fork.custom_types.TypeLike, basedir: str = 'C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python39\\Lib') -&gt; Optional[str]</dt><dd><tt>Return&nbsp;the&nbsp;location&nbsp;of&nbsp;module&nbsp;docs&nbsp;or&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-heading"><strong>heading</strong></a>(title: str, fgcol: str, bgcol: str, extras: str = '') -&gt; str</dt><dd><tt>Format&nbsp;a&nbsp;page&nbsp;heading.</tt></dd></dl>
+ <dl><dt><a name="-isdata"><strong>isdata</strong></a>(the_object: Any) -&gt; bool</dt><dd><tt>Check&nbsp;if&nbsp;an&nbsp;object&nbsp;is&nbsp;of&nbsp;a&nbsp;type&nbsp;that&nbsp;probably&nbsp;means&nbsp;it's&nbsp;data.</tt></dd></dl>
+ <dl><dt><a name="-markup"><strong>markup</strong></a>(text: str, funcs: Dict[str, str] = {}, classes: Dict[str, str] = {}, methods: Dict[str, str] = {}) -&gt; str</dt><dd><tt>Mark&nbsp;up&nbsp;some&nbsp;plain&nbsp;text,&nbsp;given&nbsp;a&nbsp;context&nbsp;of&nbsp;symbols&nbsp;to&nbsp;look&nbsp;for.<br>
+Each&nbsp;context&nbsp;dictionary&nbsp;maps&nbsp;object&nbsp;names&nbsp;to&nbsp;anchor&nbsp;names.</tt></dd></dl>
+ <dl><dt><a name="-modpkglink"><strong>modpkglink</strong></a>(modpkginfo: Tuple[str, str, str, str]) -&gt; str</dt><dd><tt>Make&nbsp;a&nbsp;link&nbsp;for&nbsp;a&nbsp;module&nbsp;or&nbsp;package&nbsp;to&nbsp;display&nbsp;in&nbsp;an&nbsp;index.</tt></dd></dl>
+ <dl><dt><a name="-modulelink"><strong>modulelink</strong></a>(the_object: pydoc_fork.custom_types.TypeLike) -&gt; str</dt><dd><tt>Make&nbsp;a&nbsp;link&nbsp;for&nbsp;a&nbsp;module.</tt></dd></dl>
+ <dl><dt><a name="-multicolumn"><strong>multicolumn</strong></a>(the_list: Union[Sequence[Tuple[Any, str, Any, int]], Sequence[Tuple[str, Any]]], the_format: Callable[[Any], str], cols: int = 4) -&gt; str</dt><dd><tt>Format&nbsp;a&nbsp;list&nbsp;of&nbsp;items&nbsp;into&nbsp;a&nbsp;multi-column&nbsp;list.</tt></dd></dl>
+ <dl><dt><a name="-visiblename"><strong>visiblename</strong></a>(name: str, all_things: Optional[List[str]] = None, obj: Optional[Any] = None) -&gt; bool</dt><dd><tt>Decide&nbsp;whether&nbsp;to&nbsp;show&nbsp;documentation&nbsp;on&nbsp;a&nbsp;variable.</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+
+<tr><td bgcolor="#55aa55"></td><td>&nbsp;</td>
+<td width="100%%"><strong>DOCUMENT_INTERNALS</strong> = False<br>
+<strong>List</strong> = typing.List<br>
+<strong>MENTIONED_MODULES</strong> = [(&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'docopt' from 'C:\\Users\\matth\\.virtua...oc_fork-n_Va7mK6\\lib\\site-packages\\docopt.py'&gt;, 'docopt'), (&lt;module 'pydoc_fork.cli_code' from 'C:\\Users\\m...lic_record\\pydoc_fork\\pydoc_fork\\cli_code.py'&gt;, 'pydoc_fork.cli_code'), (&lt;module 'pydoc_fork.path_utils' from 'C:\\Users\...c_record\\pydoc_fork\\pydoc_fork\\path_utils.py'&gt;, 'pydoc_fork.path_utils'), (&lt;module 'pydoc_fork.format_page' from 'C:\\Users..._record\\pydoc_fork\\pydoc_fork\\format_page.py'&gt;, 'pydoc_fork.format_page'), (&lt;module 'pydoc_fork.path_utils' from 'C:\\Users\...c_record\\pydoc_fork\\pydoc_fork\\path_utils.py'&gt;, 'pydoc_fork.path_utils'), (&lt;module 'pydoc_fork.path_utils' from 'C:\\Users\...c_record\\pydoc_fork\\pydoc_fork\\path_utils.py'&gt;, 'pydoc_fork.path_utils'), (&lt;module 'pydoc_fork.format_page' from 'C:\\Users..._record\\pydoc_fork\\pydoc_fork\\format_page.py'&gt;, 'pydoc_fork.format_page'), (&lt;module 'pydoc_fork.format_page' from 'C:\\Users..._record\\pydoc_fork\\pydoc_fork\\format_page.py'&gt;, 'pydoc_fork.format_page'), (&lt;module 'pydoc_fork.path_utils' from 'C:\\Users\...c_record\\pydoc_fork\\pydoc_fork\\path_utils.py'&gt;, 'pydoc_fork.path_utils'), (&lt;module 'pydoc_fork.path_utils' from 'C:\\Users\...c_record\\pydoc_fork\\pydoc_fork\\path_utils.py'&gt;, 'pydoc_fork.path_utils'), (&lt;module 'pydoc_fork.format_page' from 'C:\\Users..._record\\pydoc_fork\\pydoc_fork\\format_page.py'&gt;, 'pydoc_fork.format_page'), (&lt;module 'pydoc_fork.format_page' from 'C:\\Users..._record\\pydoc_fork\\pydoc_fork\\format_page.py'&gt;, 'pydoc_fork.format_page'), (&lt;module 'pydoc_fork.path_utils' from 'C:\\Users\...c_record\\pydoc_fork\\pydoc_fork\\path_utils.py'&gt;, 'pydoc_fork.path_utils'), ...]<br>
+<strong>OUTPUT_FOLDER</strong> = ''<br>
+<strong>Optional</strong> = typing.Optional<br>
+<strong>PYTHONDOCS</strong> = 'https://docs.python.org/3.9/library'<br>
+<strong>STDLIB_BASEDIR</strong> = r'C:\Users\matth\AppData\Local\Programs\Python\Python39\Lib'<br>
+<strong>Tuple</strong> = typing.Tuple<br>
+<strong>__annotations__</strong> = {'MENTIONED_MODULES': typing.List[typing.Tuple[pydoc_fork.custom_types.TypeLike, str]]}</td></tr></table>
+</body></html>

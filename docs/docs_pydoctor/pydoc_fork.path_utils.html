@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+
+
+  <head>
+
+    <title>pydoc_fork.path_utils</title>
+    <meta name="generator" content="pydoctor 21.9.2">
+
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+
+
+    <nav class="navbar navbar-default">
+
+  <div class="container">
+
+    <div class="navbar-header">
+
+      <div class="navlinks">
+          <span class="navbar-brand">
+            pydoc_fork <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="pydoc_fork.html">pydoc_fork</a></code><wbr></wbr>.<code><a href="pydoc_fork.path_utils.html">path_utils</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Path Manipulation</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id21">
+
+
+  <tr class="function">
+
+    <td>Function</td>
+    <td><code><a href="#locate_file">locate_file</a></code></td>
+    <td>Find file relative to a source file, e.g. locate_file("foo/bar.txt", __file__)</td>
+  </tr><tr class="variable">
+
+    <td>Variable</td>
+    <td><code><a href="#LOGGER">LOGGER</a></code></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+
+    <td>Function</td>
+    <td><code><a href="#_adjust_cli_sys_path">_adjust_cli_sys_path</a></code></td>
+    <td>Ensures current directory is on sys.path, and __main__ directory is not.</td>
+  </tr><tr class="function private">
+
+    <td>Function</td>
+    <td><code><a href="#_get_revised_path">_get_revised_path</a></code></td>
+    <td>Ensures current directory is on returned path, and argv0 directory is not</td>
+  </tr>
+</table>
+
+
+
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+
+
+  <a name="pydoc_fork.path_utils.locate_file">
+
+  </a>
+  <a name="locate_file">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">locate_file</span>(file_name, executing_file):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div><p>Find file relative to a source file, e.g. locate_file("foo/bar.txt", __file__)</p>
+<p>Succeeds regardless to context of execution</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">file_name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">executing_file:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+
+
+  <a name="pydoc_fork.path_utils.LOGGER">
+
+  </a>
+  <a name="LOGGER">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-defname">LOGGER</span> =
+
+  </div>
+  <div class="functionBody">
+
+
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+
+
+  <a name="pydoc_fork.path_utils._adjust_cli_sys_path">
+
+  </a>
+  <a name="_adjust_cli_sys_path">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">_adjust_cli_sys_path</span>():
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div><p>Ensures current directory is on sys.path, and __main__ directory is not.</p>
+<p>Exception: __main__ dir is left alone if it's also pydoc's directory.</p>
+</div>
+  </div>
+</div><div class="basefunction private">
+
+
+  <a name="pydoc_fork.path_utils._get_revised_path">
+
+  </a>
+  <a name="_get_revised_path">
+
+  </a>
+  <div class="functionHeader">
+
+    <span class="py-keyword">def</span> <span class="py-defname">_get_revised_path</span>(current_python_path, script_path):
+
+  </div>
+  <div class="docstring functionBody">
+
+
+    <div><p>Ensures current directory is on returned path, and argv0 directory is not</p>
+<p>Exception: argv0 dir is left alone if it's also pydoc's directory.</p>
+<p>Returns a new path entry list, or None if no adjustment is needed.</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">current_python_path:</span><code>List[<wbr></wbr>str]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">script_path:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>Optional[<wbr></wbr>List[<wbr></wbr>str]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+
+  <div class="container">
+    <a href="index.html">API Documentation</a> for pydoc_fork,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    21.9.2 at 2021-11-25 14:27:43.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
