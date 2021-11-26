@@ -1,0 +1,25 @@
+site_name: pydoc_fork
+docs_dir: docs_md
+site_dir: docs/docs_mkdocstrings
+theme:
+  name: "mkdocs"
+
+nav:
+    - Home: index.md
+
+markdown_extensions:
+    - toc:
+          toc_depth: 3
+          permalink: True
+    - extra
+    - smarty
+#    - codehilite
+    - admonition
+    - pymdownx.details
+    - pymdownx.superfences
+    - pymdownx.emoji
+    - pymdownx.inlinehilite
+    - pymdownx.magiclink
+plugins:
+    - search
+    - mkdocstrings
