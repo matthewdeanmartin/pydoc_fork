@@ -30,6 +30,14 @@ pipx install pydoc_fork
 * [Prior Art](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/docs/prior_art.md)
 * [TODO](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/docs/TODO.md)
 
+## pydoc_fork documented in several ways:
+* [pydoc_fork](https://matthewdeanmartin.github.io/pydoc_fork/docs_pydoc_fork/pydoc_fork.html)
+* [Pycco](https://matthewdeanmartin.github.io/pydoc_fork/docs_pycco/index.html)
+* [PyDoctor](https://matthewdeanmartin.github.io/pydoc_fork/docs_pydoctor/index.html)
+* [pdoc3](https://matthewdeanmartin.github.io/pydoc_fork/docs_pdoc3/pydoc_fork/index.html)
+* [mkdocstrings](https://matthewdeanmartin.github.io/pydoc_fork/docs_mkdocstrings/index.html)
+* [sphinx](https://matthewdeanmartin.github.io/pydoc_fork/docs_sphinx/py-modindex.html)
+
 ## Credits
 Forked from python 3.10.
 https://github.com/python/cpython/blob/3.10/Lib/pydoc.py

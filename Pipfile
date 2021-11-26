@@ -7,6 +7,7 @@ name = "pypi"
 coverage = "*"
 docopt = "*"
 jinja2 = "*"
+typing-extensions = "*"
 
 [dev-packages]
 python-dotenv = "*"
@@ -44,6 +45,8 @@ pycco = "*"
 portray = "*"
 pydoctor = "*"
 handsdown = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
 
 [requires]
 python_version = "3.9"
