@@ -151,3 +151,5 @@ reports/
 !docs/**/*.html
 
 doc_out/
+
+doc_self/
