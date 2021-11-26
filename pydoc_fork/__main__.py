@@ -21,7 +21,7 @@ import sys
 
 import docopt
 
-from pydoc_fork import cli
+import pydoc_fork.commands as commands
 
 LOGGER = logging.getLogger(__name__)
 LOGGERS = []
@@ -37,7 +37,7 @@ def main() -> int:
     output_folder = arguments["--output"]
 
     # TODO: add lists of packages
-    package = arguments["<package>"] or ""
+    package = arguments["<package>"] or []
     # quiet = bool(arguments.get("--quiet", False))
     document_internals = arguments["--document_internals"]
 
@@ -54,7 +54,9 @@ def main() -> int:
             logger.addHandler(handler)
             LOGGERS.append(logger)
 
-    cli(package, output_folder=output_folder, document_internals=document_internals)
+    commands.cli(
+        package, output_folder=output_folder, document_internals=document_internals
+    )
     # # TODO
     #     print("Don't recognize that command.")
     #     return -1

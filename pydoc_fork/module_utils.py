@@ -89,7 +89,8 @@ def safe_import(
         if exc is SyntaxError:
             # A SyntaxError occurred before we could execute the module.
             # MR : this isn't null safe.
-            raise ErrorDuringImport(value.filename, info) from import_error
+            # Bug! exc is the exception with the file name, not value
+            raise ErrorDuringImport(exc.filename, info) from import_error
         if issubclass(exc, ImportError) and value.name == path:
             # No such module in the path.
             return None
@@ -116,7 +117,7 @@ def locate(path: str, forceload: int = 0) -> Any:
     """Locate an object by name or dotted path, importing as necessary."""
     if "-" in path:
         # Not sure about this
-        path = path.replace("-","_")
+        path = path.replace("-", "_")
 
     LOGGER.debug(f"locating {path}")
     parts = [part for part in path.split(".") if part]

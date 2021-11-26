@@ -5,11 +5,11 @@ import logging
 import os
 import pkgutil
 from shutil import copy2
-from typing import List, Optional, Tuple, Union
+from typing import List, Optional, Union
 
-import pydoc_fork.formatter_html as html
-from pydoc_fork.custom_types import TypeLike
+from pydoc_fork import settings
 from pydoc_fork.all_found import MENTIONED_MODULES
+from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_page import render
 from pydoc_fork.path_utils import _adjust_cli_sys_path, locate_file
 from pydoc_fork.utils import describe, resolve
@@ -30,8 +30,8 @@ def writedoc(
 
     # MR
     # should go in constructor, but what? no constructor
-    html.OUTPUT_FOLDER = output_folder
-    html.DOCUMENT_INTERNALS = document_internals
+    settings.OUTPUT_FOLDER = output_folder
+    settings.DOCUMENT_INTERNALS = document_internals
     page_out = render(describe(the_object), the_object, name)
     # MR output_folder + os.sep
     full_path = calculate_file_name(name, output_folder)
@@ -49,9 +49,8 @@ def calculate_file_name(name: str, output_folder: str) -> str:
     """If this was written, what would its name be"""
     if name is None:
         print("What")
-    full_path = output_folder + os.sep + name + ".html"
-    full_path = (
-        full_path.replace("<", "")
+    name = (
+        name.replace("<", "")
         .replace(">", "")
         .replace(":", "")
         .replace(",", "_")
@@ -59,6 +58,7 @@ def calculate_file_name(name: str, output_folder: str) -> str:
         .replace("(", "")
         .replace(")", "")
     )
+    full_path = output_folder + os.sep + name + ".html"
 
     return full_path
 
@@ -101,7 +101,6 @@ def write_docs_per_module(
 
 
 def write_docs_live_module(
-    # modules: List[Tuple[TypeLike, str]],
     output_folder: str,
     document_internals: bool,
     total_third_party: int = 0,
@@ -122,10 +121,10 @@ def write_docs_live_module(
         if os.path.exists(full_path) and skip_if_written:
             MENTIONED_MODULES.discard(module)
         else:
-            full_path = writedoc(thing, output_folder, document_internals)
+            actual_full_path = writedoc(thing, output_folder, document_internals)
             total_third_party += 1
-            if full_path:
-                written.append(full_path)
+            if actual_full_path:
+                written.append(actual_full_path)
             MENTIONED_MODULES.discard(module)
 
     # TODO: make this a param
@@ -139,7 +138,6 @@ def writedocs(
     for_only: str = "",
 ) -> List[str]:
     """Write out HTML documentation for all modules in a directory tree."""
-    # if done is None: done = {}
     pkgpath = ""
     # walk packages is why pydoc drags along with it tests folders
     LOGGER.debug(f"Walking packages for {source_directory}")
@@ -170,37 +168,9 @@ def cli(
 
     _adjust_cli_sys_path()
 
-    # opts, args = getopt.getopt(sys.argv[1:], 'bk:n:p:w')
     return write_docs_per_module(
         files, output_folder, document_internals, skip_if_written=not overwrite_existing
     )
-    # for file in files:
-    #     if ispath(file) and not os.path.exists(file):
-    #         print("file %r does not exist" % files)
-    #         break
-    #     try:
-    #         # single file module
-    #         if ispath(file) and os.path.isfile(file):
-    #             # new type assigned to same name
-    #             arg_type = importfile(file)
-    #             writedoc(arg_type, output_folder, document_internals)
-    #         # directory
-    #         elif ispath(file) and os.path.isdir(file):
-    #             print(f"We think this is a path & a directory 1")
-    #
-    #         elif (
-    #             isinstance(files, str) and os.path.exists(files) and os.path.isdir(files)
-    #         ):
-    #             print(f"We think this is a path & a directory 2")
-    #             write_docs_per_module(files, output_folder, document_internals)
-    #         else:
-    #             print(f"We think this is a built in or something on the PYTHONPATH")
-    #             # built ins?
-    #             write_docs_per_module(files, output_folder, document_internals)
-    #             # raise TypeError("Not a file, not a directory")
-    #
-    #     except ErrorDuringImport as value:
-    #         print(value)
 
 
 if __name__ == "__main__":

@@ -19,9 +19,6 @@ def cwd(path):
         os.chdir(oldpwd)
 
 
-
-
-
 def test_cli():
     with cwd("."):
         output_folder = "doc_self"
@@ -30,12 +27,6 @@ def test_cli():
         )
         results = cli(
             ["pydoc_fork"], output_folder=output_folder, document_internals=True
-        )
-        assert results
-        results = cli(
-            ["pydoc_fork//pydoc_fork"],
-            output_folder=output_folder,
-            document_internals=True,
         )
         assert results
         results = cli(

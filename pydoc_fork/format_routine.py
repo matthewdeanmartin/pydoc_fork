@@ -7,7 +7,7 @@ from typing import Any, Dict, Optional
 from pydoc_fork import inline_styles
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_class import classlink
-from pydoc_fork.formatter_html import escape, disabled_text, markup
+from pydoc_fork.formatter_html import disabled_text, escape, markup
 from pydoc_fork.utils import _is_bound_method, getdoc
 
 

@@ -5,6 +5,7 @@ from pydoc_fork import cli
 from pydoc_fork.module_utils import ErrorDuringImport
 from test.test_live_generation import cwd
 
+
 def run():
     installed_packages = pkg_resources.working_set
 
@@ -26,5 +27,6 @@ def run():
                 pass
             assert results
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     run()

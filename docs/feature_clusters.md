@@ -19,4 +19,10 @@
 - ad hoc (pydoc)
 - Well known (rst, md, google-style guidelines)
 
-# API first or hand writ
+# API first or hand written
+- sphinx, mkdocs favors handwritten docs
+- pdoc, pydoc, etc favor all machine written (except text in source files)
+
+# Validation and linting
+- Errors and warnings on generation
+- Linters, e.g. pydocstyle

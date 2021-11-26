@@ -12,3 +12,5 @@
 
 coverage
 docopt
+jinja2
+typing-extensions

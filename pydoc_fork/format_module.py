@@ -5,17 +5,14 @@ import inspect
 import os
 import pkgutil
 import sys
-import urllib.parse
-from typing import List, Optional, Tuple, cast, Set
+from typing import Optional, cast
 
+import pydoc_fork.settings as settings
 from pydoc_fork import inline_styles
 from pydoc_fork.all_found import MENTIONED_MODULES
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_class import formattree
 from pydoc_fork.formatter_html import (
-    DOCUMENT_INTERNALS,
-    OUTPUT_FOLDER,
-    PYTHONDOCS,
     STDLIB_BASEDIR,
     bigsection,
     escape,
@@ -34,9 +31,6 @@ def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[s
         file = inspect.getabsfile(cast(type, the_object))
     except TypeError:
         file = "(built-in)"
-
-    # null safety problem here
-    doc_loc: Optional[str] = os.environ.get("PYTHONDOCS", PYTHONDOCS)
 
     basedir = os.path.normcase(basedir)
     is_known_stdlib = the_object.__name__ in (
@@ -61,10 +55,14 @@ def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[s
     # "https://docs.python.org/3/library/xml.etree.elementtree.html"
 
     if is_module and (is_known_stdlib or is_in_pythons_folder):
-        if doc_loc.startswith(("http://", "https://")):
-            doc_loc = f"{doc_loc.rstrip('/')}/{the_object.__name__.lower()}.html"
+        if settings.PYTHONDOCS.startswith(("http://", "https://")):
+            doc_loc = (
+                f"{settings.PYTHONDOCS.rstrip('/')}/{the_object.__name__.lower()}.html"
+            )
         else:
-            doc_loc = os.path.join(doc_loc, the_object.__name__.lower() + ".html")
+            doc_loc = os.path.join(
+                settings.PYTHONDOCS, the_object.__name__.lower() + ".html"
+            )
     else:
         doc_loc = None
     return doc_loc
@@ -74,8 +72,8 @@ def modulelink(the_object: TypeLike) -> str:
     """Make a link for a module."""
     url = f"{the_object.__name__}.html"
     internet_link = getdocloc(the_object)
-    PREFER_INTERNET_DOCUMENTATION = True
-    if internet_link and PREFER_INTERNET_DOCUMENTATION:
+
+    if internet_link and settings.PREFER_INTERNET_DOCUMENTATION:
         url = internet_link
     # BUG: doesn't take into consideration an alternate base
     if not internet_link:
@@ -93,7 +91,7 @@ def docmodule(
     name = the_object.__name__
 
     try:
-        all_things = None if DOCUMENT_INTERNALS else the_object.__all__
+        all_things = None if settings.DOCUMENT_INTERNALS else the_object.__all__
     except AttributeError:
         all_things = None
     parts = name.split(".")
@@ -109,10 +107,11 @@ def docmodule(
     try:
         path = inspect.getabsfile(cast(type, the_object))
         # MR : Make relative
-        output_folder_path = os.path.normcase(os.path.abspath(OUTPUT_FOLDER))
+        output_folder_path = os.path.normcase(os.path.abspath(settings.OUTPUT_FOLDER))
         path = os.path.relpath(path, output_folder_path).replace("\\", "/")
         # end MR
-        url = urllib.parse.quote(path)
+        # uh, oh, forgot why I wrote this
+        # url = urllib.parse.quote(path)
         # MR
         filelink_text = filelink(path, path)
     except TypeError:
@@ -146,7 +145,7 @@ def docmodule(
     classes, cdict = [], {}
     for key, value in inspect.getmembers(the_object, inspect.isclass):
         _class_module = inspect.getmodule(value)
-        if _class_module and not _class_module is the_object:
+        if _class_module and _class_module is not the_object:
             modules_by_import_from.add((None, _class_module))
             MENTIONED_MODULES.add((_class_module, _class_module.__name__))
         # if __all__ exists, believe it.  Otherwise use old heuristic.
@@ -176,7 +175,7 @@ def docmodule(
         # if __all__ exists, believe it.  Otherwise use old heuristic.
         _func_module = inspect.getmodule(value)
         # why does this sometimes return no module?
-        if _func_module and not _func_module is the_object:
+        if _func_module and _func_module is not the_object:
             modules_by_import_from.add((None, _func_module))
             MENTIONED_MODULES.add((_func_module, _func_module.__name__))
         if (

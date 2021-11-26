@@ -11,7 +11,7 @@ from pydoc_fork import inline_styles
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_data import docdata
 from pydoc_fork.format_other import docother
-from pydoc_fork.formatter_html import escape, markup, section
+from pydoc_fork.formatter_html import markup, section
 from pydoc_fork.utils import (
     _split_list,
     classify_class_attrs,
@@ -243,6 +243,7 @@ def formattree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> s
     """Produce HTML for a class tree as given by inspect.getclasstree()."""
     result = ""
     for entry in tree:
+        class_object = entry
         if type(entry) is type(()):  # noqa - not sure of switching to isinstance
             class_object, bases = entry
             result = (

@@ -29,8 +29,7 @@ No Python documentation found for %r."""
     name = getattr(thing, "__name__", None)
     if isinstance(name, str):
         return thing, name
-    else:
-        return thing, str(thing)  # HACK
+    return thing, str(thing)  # HACK
 
 
 def describe(thing: TypeLike) -> str:
@@ -65,7 +64,7 @@ def _findclass(func: TypeLike) -> Optional[Module]:
         cls = getattr(cls, name)
     if not inspect.isclass(cls):
         return None
-    return cls
+    return cls  # type: ignore
 
 
 def _finddoc(obj: TypeLike) -> Optional[str]:
@@ -302,7 +301,7 @@ def sort_attributes(attrs: List[Any], the_object: Union[TypeLike, type]) -> None
 
     def keyfunc(attr: List[Any]) -> Tuple[Any, Any]:
         """Sorting function"""
-        return (field_order.get(attr[0], 0), attr[0])
+        return field_order.get(attr[0], 0), attr[0]
 
     attrs.sort(key=keyfunc)
 

@@ -1,39 +1,21 @@
 """
-Generate HTML documentation
-
-[[Page
-
-    [[Document
-
-    ]]
-]]
-
-
-
+Roughly components
 """
 import logging
-import os
 import re
-import sys
 import sysconfig
 from typing import Any, Callable, Dict, Sequence, Tuple, Union
 
 from pydoc_fork import inline_styles
-from pydoc_fork.utils import resolve
 from pydoc_fork.all_found import MENTIONED_MODULES
 from pydoc_fork.html_repr_class import HTMLRepr
 from pydoc_fork.jinja_code import JINJA_ENV
+from pydoc_fork.module_utils import ErrorDuringImport
 from pydoc_fork.string_utils import replace
+from pydoc_fork.utils import resolve
 
 LOGGER = logging.getLogger(__name__)
 STDLIB_BASEDIR = sysconfig.get_path("stdlib")
-
-DOCUMENT_INTERNALS = False
-OUTPUT_FOLDER = ""
-
-PYTHONDOCS = os.environ.get(
-    "PYTHONDOCS", "https://docs.python.org/%d.%d/library" % sys.version_info[:2]
-)
 
 """Formatter class for HTML documentation."""
 
@@ -60,16 +42,6 @@ def heading(title: str, fgcol: str, bgcol: str, extras: str = "") -> str:
     return template.render(title=title, fgcol=fgcol, bgcol=bgcol, extras=extras)
 
 
-#     return f"""
-# <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
-# <tr bgcolor="{bgcol}">
-# <td valign=bottom>&nbsp;<br>
-# <font color="{fgcol}" face="helvetica, arial">&nbsp;<br>{title}</font></td
-# ><td align=right valign=bottom
-# ><font color="{fgcol}" face="helvetica, arial">{extras or '&nbsp;'}</font></td></tr></table>
-# """
-
-
 def section(
     title: str,
     fgcol: str,
@@ -93,33 +65,6 @@ def section(
         contents=contents,
         gap=gap,
     )
-    # This is only used by docclass
-
-
-#     if marginalia is None:
-#         marginalia = "<tt>" + "&nbsp;" * width + "</tt>"
-#     result = f"""<p>
-# <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-# <tr bgcolor="{bgcol}">
-# <td colspan=3 valign=bottom>&nbsp;<br>
-# <font color="{fgcol}" face="helvetica, arial">{title}</font></td></tr>
-# """
-#     if prelude:
-#         result = (
-#             result
-#             + f"""
-# <tr bgcolor="{bgcol}"><td rowspan=2>{marginalia}</td>
-# <td colspan=2>{prelude}</td></tr>
-# <tr><td>{gap}</td>"""
-#         )
-#     else:
-#         result = (
-#             result
-#             + f"""
-# <tr><td bgcolor="{bgcol}">{marginalia}</td><td>{gap}</td>"""
-#         )
-#
-#     return result + f'\n<td width="100%%">{contents}</td></tr></table>'
 
 
 def bigsection(
@@ -180,7 +125,10 @@ def namelink(name: str, *dicts: Dict[str, str]) -> str:
 def modpkglink(modpkginfo: Tuple[str, str, str, str]) -> str:
     """Make a link for a module or package to display in an index."""
     name, path, ispackage, shadowed = modpkginfo
-    MENTIONED_MODULES.add((resolve(path + "." + name)[0], name))
+    try:
+        MENTIONED_MODULES.add((resolve(path + "." + name)[0], name))
+    except (ErrorDuringImport, ImportError):
+        print(f"Can't import {name}, won't doc")
     if shadowed:
         return disabled_text(name)
     if path:
@@ -228,7 +176,7 @@ def markup(
             url = preformat(the_all).replace('"', "&quot;")
             results.append(f'<a href="{url}">{url}</a>')
         elif rfc:
-            url = "http://www.rfc-editor.org/rfc/rfc%d.txt" % int(rfc)
+            url = "https://www.rfc-editor.org/rfc/rfc%d.txt" % int(rfc)
             results.append(f'<a href="{url}">{preformat(the_all)}</a>')
         elif pep:
             url = "https://www.python.org/dev/peps/pep-%04d/" % int(pep)
@@ -248,9 +196,3 @@ def markup(
         here = end
     results.append(preformat(text[here:]))
     return "".join(results)
-
-
-# dead code
-# def formatvalue(the_object: Any) -> str:
-#     """Format an argument default value as text."""
-#     return grey("=" + html_repr(the_object))
