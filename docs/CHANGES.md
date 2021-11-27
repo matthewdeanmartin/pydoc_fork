@@ -8,3 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - pydoc_fork can build basic docs from source
 - Fix README.MD so it looks good on pypi
+
+## [3.1.3] - 2017-06-20
+### Fixed
+- documents all references by default
+- documents stdlib in pydoc style by default
+- almost html 5, use jinja some
+- suppress typing module cruft by default

@@ -26,5 +26,3 @@ class TypeLike(Protocol):
     __date__: str
     __author__: str
     __credits__: str
-    # def __name__(self) -> str:
-    #    ...  # Empty method body (explicit '...')

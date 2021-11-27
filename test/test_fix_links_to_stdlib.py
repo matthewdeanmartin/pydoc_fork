@@ -3,10 +3,13 @@ import datetime
 
 import sys
 
+from pydoc_fork import settings
 from pydoc_fork.format_module import getdocloc
 
 
 def test_getdocloc_datetime():
+    old = settings.PREFER_INTERNET_DOCUMENTATION
+    settings.PREFER_INTERNET_DOCUMENTATION = True
     STDLIB_BASEDIR = sysconfig.get_path("stdlib")
     # PYTHONDOCS = os.environ.get(
     #     "PYTHONDOCS", "https://docs.python.org/%d.%d/library" % sys.version_info[:2]
@@ -14,9 +17,12 @@ def test_getdocloc_datetime():
     result = getdocloc(datetime, STDLIB_BASEDIR)
     print(result)
     assert "https://docs.python.org/3.9/library/datetime.html" in result
+    settings.PREFER_INTERNET_DOCUMENTATION = old
 
 
 def test_getdocloc_sys():
+    old = settings.PREFER_INTERNET_DOCUMENTATION
+    settings.PREFER_INTERNET_DOCUMENTATION = True
     STDLIB_BASEDIR = sysconfig.get_path("stdlib")
     # PYTHONDOCS = os.environ.get(
     #     "PYTHONDOCS", "https://docs.python.org/%d.%d/library" % sys.version_info[:2]
@@ -24,3 +30,4 @@ def test_getdocloc_sys():
     result = getdocloc(sys, STDLIB_BASEDIR)
     print(result)
     assert "https://docs.python.org/3.9/library/sys.html" in result
+    settings.PREFER_INTERNET_DOCUMENTATION = old

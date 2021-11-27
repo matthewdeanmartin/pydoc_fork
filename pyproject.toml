@@ -40,6 +40,7 @@ pydoc_fork = 'pydoc_fork.__main__:main'
 [tool.poetry.dependencies]
 python = ">=3.6, <4.0"
 docopt = "*"
+jinja2 = "*"
 typing_extensions = "*"
 
 [tool.poetry.dev-dependencies]

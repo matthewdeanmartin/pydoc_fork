@@ -7,7 +7,7 @@ import sys
 from collections import deque
 from typing import Any, Callable, Dict, List, Optional, Union, cast
 
-from pydoc_fork import inline_styles
+from pydoc_fork import inline_styles, settings
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_data import docdata
 from pydoc_fork.format_other import docother
@@ -185,6 +185,12 @@ def docclass(
         tag += ":<br>\n"
 
         sort_attributes(attrs, the_object)
+
+        # feature to remove typing annotations cruft.
+        for kind in attrs.copy():
+            module_name = inspect.getmodule(kind)
+            if module_name and module_name.__name__ in settings.SUPRESS_MODULES:
+                attrs.remove(kind)
 
         # Pump out the attrs, segregated by kind.
         is_method: Callable[[Any], Any] = lambda t: t[1] == "method"

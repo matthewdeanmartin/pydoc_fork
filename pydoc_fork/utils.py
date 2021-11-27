@@ -278,14 +278,19 @@ def visiblename(
 def classify_class_attrs(the_object: TypeLike) -> List[Tuple[str, str, type, object]]:
     """Wrap inspect.classify_class_attrs, with fixup for data descriptors."""
     results = []
-    for (name, kind, cls, value) in inspect.classify_class_attrs(
-        cast(type, the_object)
-    ):
-        if inspect.isdatadescriptor(value):
-            kind = "data descriptor"
-            if isinstance(value, property) and value.fset is None:
-                kind = "readonly property"
-        results.append((name, kind, cls, value))
+    try:
+        for (name, kind, cls, value) in inspect.classify_class_attrs(
+            cast(type, the_object)
+        ):
+            if inspect.isdatadescriptor(value):
+                kind = "data descriptor"
+                if isinstance(value, property) and value.fset is None:
+                    kind = "readonly property"
+            results.append((name, kind, cls, value))
+    except ValueError:
+        # py._xmlgen.Namespace
+        # ValueError: Namespace class is abstract
+        pass
     return results
 
 

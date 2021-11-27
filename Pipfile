@@ -4,7 +4,6 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-coverage = "*"
 docopt = "*"
 jinja2 = "*"
 typing-extensions = "*"

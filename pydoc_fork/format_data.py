@@ -13,14 +13,14 @@ def docdata(
     name: str = "",  # Null safety
 ) -> str:
     """Produce html documentation for a data descriptor."""
+
     results: List[str] = []
-    push = results.append
 
     if name:
-        push(f"<dl><dt><strong>{name}</strong></dt>\n")
+        results.append(f"<dl><dt><strong>{name}</strong></dt>\n")
     doc = markup(getdoc(the_object))
     if doc:
-        push(f"<dd><tt>{doc}</tt></dd>\n")
-    push("</dl>\n")
+        results.append(f"<dd><tt>{doc}</tt></dd>\n")
+    results.append("</dl>\n")
 
     return "".join(results)

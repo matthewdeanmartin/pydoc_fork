@@ -54,7 +54,11 @@ def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[s
     # # special case for etree
     # "https://docs.python.org/3/library/xml.etree.elementtree.html"
 
-    if is_module and (is_known_stdlib or is_in_pythons_folder):
+    if (
+        is_module
+        and (is_known_stdlib or is_in_pythons_folder)
+        and settings.PREFER_INTERNET_DOCUMENTATION
+    ):
         if settings.PYTHONDOCS.startswith(("http://", "https://")):
             doc_loc = (
                 f"{settings.PYTHONDOCS.rstrip('/')}/{the_object.__name__.lower()}.html"
@@ -141,13 +145,23 @@ def docmodule(
     # this will get `import foo` but ignore `from foo import bar`
     # And bar gets no doc string love either!
     modules = inspect.getmembers(the_object, inspect.ismodule)
+
+    for to_remove in settings.SUPRESS_MODULES:
+        for module_info in modules:
+            candidate_module, _ = module_info
+            if candidate_module == to_remove:
+                try:
+                    modules.remove(module_info)
+                except ValueError:
+                    pass
     modules_by_import_from = set()
     classes, cdict = [], {}
     for key, value in inspect.getmembers(the_object, inspect.isclass):
         _class_module = inspect.getmodule(value)
         if _class_module and _class_module is not the_object:
-            modules_by_import_from.add((None, _class_module))
-            MENTIONED_MODULES.add((_class_module, _class_module.__name__))
+            if _class_module.__name__ not in settings.SUPRESS_MODULES:
+                modules_by_import_from.add((None, _class_module))
+                MENTIONED_MODULES.add((_class_module, _class_module.__name__))
         # if __all__ exists, believe it.  Otherwise use old heuristic.
         if (
             # TODO put doc internals switch here
@@ -176,8 +190,9 @@ def docmodule(
         _func_module = inspect.getmodule(value)
         # why does this sometimes return no module?
         if _func_module and _func_module is not the_object:
-            modules_by_import_from.add((None, _func_module))
-            MENTIONED_MODULES.add((_func_module, _func_module.__name__))
+            if _func_module.__name__ not in settings.SUPRESS_MODULES:
+                modules_by_import_from.add((None, _func_module))
+                MENTIONED_MODULES.add((_func_module, _func_module.__name__))
         if (
             True
             # TODO put doc internals switch here
@@ -191,6 +206,8 @@ def docmodule(
                 fdict[value] = fdict[key]
     data = []
     for key, value in inspect.getmembers(the_object, isdata):
+        if inspect.getmodule(type(value)).__name__ in settings.SUPRESS_MODULES:
+            continue
         if visiblename(key, all_things, the_object):
             data.append((key, value))
 
@@ -201,7 +218,8 @@ def docmodule(
     if hasattr(the_object, "__path__"):
         modpkgs = []
         for _, modname, ispkg in pkgutil.iter_modules(the_object.__path__):
-            modpkgs.append((modname, name, ispkg, 0))
+            if modname not in settings.SUPRESS_MODULES:
+                modpkgs.append((modname, name, ispkg, 0))
         modpkgs.sort()
         contents_string = multicolumn(modpkgs, modpkglink)
         result = result + bigsection(

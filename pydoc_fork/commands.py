@@ -47,8 +47,6 @@ def writedoc(
 
 def calculate_file_name(name: str, output_folder: str) -> str:
     """If this was written, what would its name be"""
-    if name is None:
-        print("What")
     name = (
         name.replace("<", "")
         .replace(">", "")
@@ -113,7 +111,6 @@ def write_docs_live_module(
     # Attempting to mix these two types is a bad idea.
     written: List[str] = []
     while MENTIONED_MODULES and total_third_party <= 100:
-        print(len(MENTIONED_MODULES))
         module = MENTIONED_MODULES.pop()
         thing, name = module  # destructure it
         # should only be live modules or dot notation modules, not paths.

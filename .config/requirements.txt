@@ -10,7 +10,6 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
-coverage
 docopt
 jinja2
 typing-extensions
