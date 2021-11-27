@@ -21,65 +21,68 @@ def docroutine(
     cl: Optional[TypeLike] = None,
 ) -> str:
     """Produce HTML documentation for a function or method object."""
+
     # AttributeError: 'cached_property' object has no attribute '__name__'
     try:
-        realname = the_object.__name__
+        real_name = the_object.__name__
     except AttributeError:
-        realname = None
-    name = name or realname
+        real_name = None
+    name = name or real_name
     anchor = (cl and cl.__name__ or "") + "-" + name
     note = ""
-    skipdocs = 0
+    skip_docs = 0
     if _is_bound_method(the_object):
-        imclass = the_object.__self__.__class__
+        imported_class = the_object.__self__.__class__
         if cl:
-            if imclass is not cl:
-                note = " from " + classlink(imclass, mod)
+            if imported_class is not cl:
+                note = " from " + classlink(imported_class, mod)
         else:
             if the_object.__self__ is not None:
                 link = classlink(the_object.__self__.__class__, mod)
                 note = f" method of {link} instance"
             else:
-                link = classlink(imclass, mod)
+                link = classlink(imported_class, mod)
                 note = f" unbound {link} method"
 
     if inspect.iscoroutinefunction(the_object) or inspect.isasyncgenfunction(
         the_object
     ):
-        asyncqualifier = "async "
+        async_qualifier = "async "
     else:
-        asyncqualifier = ""
+        async_qualifier = ""
 
-    if name == realname:
-        title = f'<a name="{anchor}"><strong>{realname}</strong></a>'
+    if name == real_name:
+        title = f'<a name="{anchor}"><strong>{real_name}</strong></a>'
     else:
-        if cl and inspect.getattr_static(cl, realname, []) is the_object:
-            reallink = f'<a href="#{cl.__name__ + "-" + realname}">{realname}</a>'
-            skipdocs = 1
+        if cl and inspect.getattr_static(cl, real_name, []) is the_object:
+            real_link = f'<a href="#{cl.__name__ + "-" + real_name}">{real_name}</a>'
+            skip_docs = 1
         else:
-            reallink = realname
-        title = f'<a name="{anchor}"><strong>{name}</strong></a> = {reallink}'
-    argspec = None
+            real_link = real_name
+        title = f'<a name="{anchor}"><strong>{name}</strong></a> = {real_link}'
+    argument_specification = None
     if inspect.isroutine(the_object):
         try:
             signature = inspect.signature(the_object)
         except (ValueError, TypeError):
             signature = None
         if signature:
-            argspec = str(signature)
-            if realname == "<lambda>":
+            argument_specification = str(signature)
+            if real_name == "<lambda>":
                 title = f"<strong>{name}</strong> <em>lambda</em> "
                 # XXX lambda's won't usually have func_annotations['return']
                 # since the syntax doesn't support but it is possible.
                 # So removing parentheses isn't truly safe.
-                argspec = argspec[1:-1]  # remove parentheses
-    if not argspec:
-        argspec = "(...)"
+                argument_specification = argument_specification[
+                    1:-1
+                ]  # remove parentheses
+    if not argument_specification:
+        argument_specification = "(...)"
 
     decl = (
-        asyncqualifier
+        async_qualifier
         + title
-        + escape(argspec)
+        + escape(argument_specification)
         + (
             note
             and disabled_text(
@@ -88,7 +91,7 @@ def docroutine(
         )
     )
 
-    if skipdocs:
+    if skip_docs:
         return f"<dl><dt>{decl}</dt></dl>\n"
 
     doc = markup(getdoc(the_object), funcs, classes, methods)

@@ -7,6 +7,8 @@ name = "pypi"
 docopt = "*"
 jinja2 = "*"
 typing-extensions = "*"
+interrogate = "*"
+tomli = "*"
 
 [dev-packages]
 python-dotenv = "*"
@@ -46,6 +48,9 @@ pydoctor = "*"
 handsdown = "*"
 sphinx = "*"
 sphinx-rtd-theme = "*"
+darglint = "*"
+types-docutils = "*"
+types-markdown = "*"
 
 [requires]
 python_version = "3.9"

@@ -13,12 +13,13 @@ class HTMLRepr(Repr):
     def __init__(self) -> None:
         """Some maximums"""
         Repr.__init__(self)
-        self.maxlist = self.maxtuple = 20
-        self.maxdict = 10
-        self.maxstring = self.maxother = 100
+        self.maximum_list = self.maximum_tuple = 20
+        self.maximum_dict = 10
+        self.maximum_string = self.maximum_other = 100
 
     # pylint: disable=no-self-use
-    def escape(self, text: str) -> str:
+    @staticmethod
+    def escape(text: str) -> str:
         """Simple html escaping"""
         result = replace(text, "&", "&amp;", "<", "&lt;", ">", "&gt;")
         # if "&amp;" in result:
@@ -32,14 +33,14 @@ class HTMLRepr(Repr):
     def repr1(self, x: Any, level: int) -> str:
         """Not sure, is dead code?"""
         if hasattr(type(x), "__name__"):
-            methodname = "repr_" + "_".join(type(x).__name__.split())
-            if hasattr(self, methodname):
-                return cast(str, getattr(self, methodname)(x, level))
-        return self.escape(cram(stripid(repr(x)), self.maxother))
+            method_name = "repr_" + "_".join(type(x).__name__.split())
+            if hasattr(self, method_name):
+                return cast(str, getattr(self, method_name)(x, level))
+        return self.escape(cram(stripid(repr(x)), self.maximum_other))
 
     def repr_string(self, x: str, _: int) -> str:
         """Repr, but squash it into a window"""
-        test = cram(x, self.maxstring)
+        test = cram(x, self.maximum_string)
         test_repr = repr(test)
         if "\\" in test and "\\" not in replace(test_repr, r"\\", ""):
             # Backslashes are only literal in the string and are never
@@ -56,8 +57,9 @@ class HTMLRepr(Repr):
 
     def repr_instance(self, x: Any, level: int) -> str:
         """Repr, but squash it into a window"""
+        # noinspection PyBroadException
         try:
-            return self.escape(cram(stripid(repr(x)), self.maxstring))
+            return self.escape(cram(stripid(repr(x)), self.maximum_string))
         # pylint: disable=broad-except
         except BaseException:
             return self.escape(f"<{x.__class__.__name__} instance>")

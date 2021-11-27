@@ -5,7 +5,7 @@ description = "Fork of cpython's pydoc module to do just html document generatio
 authors = ["Matthew Martin <matthewdeanmartin@gmail.com>"]
 keywords = ["pydoc", "html documentation"]
 classifiers = [
-    "Development Status :: 3 - Alpha",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
@@ -112,3 +112,9 @@ known_first_party = ["pydoc_fork"]
 line_length = 88
 multi_line_output = 3
 use_parentheses = true
+
+[tool.pydoc_fork]
+SKIP_TYPING = true
+PREFER_INTERNET_DOCUMENTATION = false
+DOCUMENT_INTERNALS = false
+SKIP_MODULES = ["typing"]

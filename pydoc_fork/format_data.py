@@ -1,5 +1,5 @@
 """
-Roughly a UI component for data
+Roughly a UI component for variables and their values
 """
 from typing import List
 
@@ -8,9 +8,9 @@ from pydoc_fork.formatter_html import markup
 from pydoc_fork.utils import getdoc
 
 
-def docdata(
+def document_data(
     the_object: TypeLike,
-    name: str = "",  # Null safety
+    name: str = "",
 ) -> str:
     """Produce html documentation for a data descriptor."""
 

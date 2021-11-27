@@ -1,16 +1,4 @@
-"""Generate Python documentation in HTML
-
-Run "pydoc -w <name>" to write out the HTML documentation for a module
-to a file named "<name>.html".
-
-Module docs for core modules are assumed to be in
-
-    https://docs.python.org/X.Y/library/
-
-This can be overridden by setting the PYTHONDOCS environment variable
-to a different URL or to a local directory containing the Library
-Reference Manual pages.
-"""
+"""Generate Python documentation in HTML"""
 # __all__ = ['help']
 __author__ = "Ka-Ping Yee <ping@lfw.org>"
 __date__ = "26 February 2001"

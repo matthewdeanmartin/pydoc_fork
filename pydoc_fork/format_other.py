@@ -7,7 +7,7 @@ from pydoc_fork.formatter_html import html_repr
 
 def docother(
     the_object: TypeLike,
-    name: str = "",  # Null safety,
+    name: str = "",
 ) -> str:
     """Produce HTML documentation for a data object."""
     lhs = name and f"<strong>{name}</strong> = " or ""

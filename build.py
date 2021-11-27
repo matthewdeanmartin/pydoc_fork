@@ -5,7 +5,7 @@ This file should be concerned with the work flow and some business rules
 about what tasks to run. The parameters to those business rules should be handed
 off to the relevant tool in the /commands/ folder
 
-- don't run cli commands directly here, put that in a separate file
+- don't run process_path_or_dot_name commands directly here, put that in a separate file
 - this is a good place for deciding if *this* project needs to run a command
 - the commands may have code to handle if it makes sense to run a command, e.g.
   don't run git commands if not in a repo

@@ -9,7 +9,7 @@ from typing import Any, Callable, Dict, List, Optional, Union, cast
 
 from pydoc_fork import inline_styles, settings
 from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.format_data import docdata
+from pydoc_fork.format_data import document_data
 from pydoc_fork.format_other import docother
 from pydoc_fork.formatter_html import markup, section
 from pydoc_fork.utils import (
@@ -30,6 +30,7 @@ def classlink(the_object: Union[TypeLike, type], modname: str) -> str:
     return classname(the_object, modname)
 
 
+# noinspection PyBroadException
 def docclass(
     the_object: TypeLike,
     name: str = "",
@@ -39,8 +40,8 @@ def docclass(
     # *ignored: List[Any],
 ) -> str:
     """Produce HTML documentation for a class object."""
-    realname = the_object.__name__
-    name = name or realname
+    real_name = the_object.__name__
+    name = name or real_name
     bases = the_object.__bases__
 
     contents: List[str] = []
@@ -50,13 +51,13 @@ def docclass(
         """Cute little class to pump out a horizontal rule between sections."""
 
         def __init__(self) -> None:
-            self.needone = 0
+            self.need_one = 0
 
         def maybe(self) -> None:
             """Skip"""
-            if self.needone:
+            if self.need_one:
                 push("<hr>\n")
-            self.needone = 1
+            self.need_one = 1
 
     # pylint:disable=invalid-name
     hr = HorizontalRule()
@@ -79,13 +80,14 @@ def docclass(
             hr.maybe()
             push(msg)
             for name, _, _, value in ok:
+                # noinspection PyBroadException
                 try:
                     value = getattr(the_object, name)
                 except Exception:  # nosec
                     # Some descriptors may meet a failure in their __get__.
                     # (bug #1785)
                     push(
-                        docdata(
+                        document_data(
                             value,
                             name,
                             # mod, unused
@@ -96,7 +98,11 @@ def docclass(
                     # pylint: disable=import-outside-toplevel
                     from pydoc_fork.format_page import document
 
-                    push(document(value, name, mod, funcs, classes, mdict, the_object))
+                    push(
+                        document(
+                            value, name, mod, funcs, classes, module_dict, the_object
+                        )
+                    )
                 push("\n")
         return attrs
 
@@ -112,7 +118,7 @@ def docclass(
             push(msg)
             for name, _, _, value in ok:
                 push(
-                    docdata(
+                    document_data(
                         value,
                         name,
                         # mod, ignored
@@ -138,7 +144,7 @@ def docclass(
                 if not found_doc:
                     push(f"<dl><dt>{base}</dl>\n")
                 else:
-                    found_doc = markup(getdoc(value), funcs, classes, mdict)
+                    found_doc = markup(getdoc(value), funcs, classes, module_dict)
                     found_doc = f"<dd><tt>{found_doc}</tt>"
                     push(f"<dl><dt>{base}{found_doc}</dl>\n")
                 push("\n")
@@ -150,9 +156,9 @@ def docclass(
         if visiblename(name, obj=the_object)
     ]
 
-    mdict = {}
+    module_dict = {}
     for key, _, _, value in attrs:
-        mdict[key] = anchor = "#" + name + "-" + key
+        module_dict[key] = anchor = "#" + name + "-" + key
         try:
             value = getattr(the_object, name)
         except Exception:  # nosec
@@ -162,26 +168,26 @@ def docclass(
         try:
             # The value may not be hashable (e.g., a data attr with
             # a dict or list value).
-            mdict[value] = anchor
+            module_dict[value] = anchor
         except TypeError:
             pass  # nosec
 
     while attrs:
         if mro:
-            thisclass = mro.popleft()
+            this_class = mro.popleft()
         else:
-            thisclass = attrs[0][2]
+            this_class = attrs[0][2]
 
-        is_thisclass: Callable[[Any], Any] = lambda t: t[2] is thisclass
-        attrs, inherited = _split_list(attrs, is_thisclass)
+        is_this_class: Callable[[Any], Any] = lambda t: t[2] is this_class
+        attrs, inherited = _split_list(attrs, is_this_class)
 
-        if the_object is not builtins.object and thisclass is builtins.object:
+        if the_object is not builtins.object and this_class is builtins.object:
             attrs = inherited
             continue
-        if thisclass is the_object:
+        if this_class is the_object:
             tag = "defined here"
         else:
-            tag = f"inherited from {classlink(thisclass, the_object.__module__)}"
+            tag = f"inherited from {classlink(this_class, the_object.__module__)}"
         tag += ":<br>\n"
 
         sort_attributes(attrs, the_object)
@@ -189,7 +195,7 @@ def docclass(
         # feature to remove typing annotations cruft.
         for kind in attrs.copy():
             module_name = inspect.getmodule(kind)
-            if module_name and module_name.__name__ in settings.SUPRESS_MODULES:
+            if module_name and module_name.__name__ in settings.SKIP_MODULES:
                 attrs.remove(kind)
 
         # Pump out the attrs, segregated by kind.
@@ -214,10 +220,10 @@ def docclass(
 
     contents_as_string = "".join(contents)  # type got redefined
 
-    if name == realname:
-        title = f'<a name="{name}">class <strong>{realname}</strong></a>'
+    if name == real_name:
+        title = f'<a name="{name}">class <strong>{real_name}</strong></a>'
     else:
-        title = f'<strong>{name}</strong> = <a name="{name}">class {realname}</a>'
+        title = f'<strong>{name}</strong> = <a name="{name}">class {real_name}</a>'
     if bases:
         parents = []
         for base in bases:
@@ -230,23 +236,34 @@ def docclass(
     except (ValueError, TypeError):
         signature = None
     if signature:
-        argspec = str(signature)
-        if argspec and argspec != "()":
+        argument_specification = str(signature)
+        if argument_specification and argument_specification != "()":
             # this will cause double escape on ->
-            # escape(argspec)
-            decl = name + argspec + "\n\n"
+            # escape(argument_specification)
+            decl = name + argument_specification + "\n\n"
 
     doc = getdoc(the_object)
     if decl:
         doc = decl + (doc or "")
-    doc = markup(doc, funcs, classes, mdict)
+    doc = markup(doc, funcs, classes, module_dict)
     doc = doc and f"<tt>{doc}<br>&nbsp;</tt>"
 
     return section(title, "#000000", "#ffc8d8", contents_as_string, 3, doc)
 
 
-def formattree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> str:
-    """Produce HTML for a class tree as given by inspect.getclasstree()."""
+def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> str:
+    """
+    Creates a representation of class inheritance.
+
+    Args:
+        tree: list representing tree
+        modname: module name
+        parent: parent class
+
+    Returns: html representing class hierarchy
+    """
+
+    # """Produce HTML for a class tree as given by inspect.getclasstree()."""
     result = ""
     for entry in tree:
         class_object = entry
@@ -263,6 +280,6 @@ def formattree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> s
                 result = result + "(" + ", ".join(parents) + ")"
             result = result + "\n</span></dt>"
         elif type(entry) is type([]):  # noqa - not sure of switching to isinstance
-            tree = formattree(entry, modname, class_object)
+            tree = format_tree(entry, modname, class_object)
             result = result + f"<dd>\n{tree}</dd>\n"
     return f"<dl>\n{result}</dl>\n"

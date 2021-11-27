@@ -1,7 +1,7 @@
 import importlib_metadata
 import pkg_resources
 
-from pydoc_fork import cli
+from pydoc_fork import process_path_or_dot_name
 from pydoc_fork.module_utils import ErrorDuringImport
 from test.test_live_generation import cwd
 
@@ -17,7 +17,7 @@ def run():
             # name = package.project_name
             package_name, names = package
             try:
-                results = cli(
+                results = process_path_or_dot_name(
                     [package_name], output_folder=output_folder, document_internals=True
                 )
             except ImportError:

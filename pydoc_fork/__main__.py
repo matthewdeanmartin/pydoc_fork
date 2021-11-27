@@ -3,7 +3,7 @@
 A fork of pydoc that is optimized for generating html documentation in a CI context
 
 Usage:
-  pydoc_fork <package>... [--output=<folder>] [--document_internals]
+  pydoc_fork <package>... [--output=<folder>] [options]
   pydoc_fork (-h | --help)
   pydoc_fork --version
 
@@ -12,6 +12,9 @@ Options:
   -v --version                 Show version.
   --quiet                      No printing or logging.
   --verbose                    Crank up the logging.
+  --config <config>            pyproject.toml or other toml config.
+  --document_internals         respect underscore or __all__ private
+  --prefer_docs_python_org     link to python.org or generate own stdlib docs
 """
 
 # TODO: implement this
@@ -24,6 +27,8 @@ import sys
 import docopt
 
 import pydoc_fork.commands as commands
+from pydoc_fork import settings
+from pydoc_fork.settings import load_config
 
 LOGGER = logging.getLogger(__name__)
 LOGGERS = []
@@ -34,14 +39,21 @@ __version__ = "3.0.0"
 
 def main() -> int:
     """Get the args object from command parameters"""
-    arguments = docopt.docopt(__doc__, version=f"so_pip {__version__}")
+    arguments = docopt.docopt(__doc__, version=f"pydoc_fork {__version__}")
+    config_path = arguments.get("<config>")
+    if config_path:
+        load_config(config_path)
+
     LOGGER.debug(str(arguments))
     output_folder = arguments["--output"]
 
     # TODO: add lists of packages
     package = arguments["<package>"] or []
     # quiet = bool(arguments.get("--quiet", False))
-    document_internals = arguments["--document_internals"]
+    if arguments.get("--document_internals"):
+        settings.DOCUMENT_INTERNALS = arguments["--document_internals"]
+    if arguments.get("--prefer_docs_python_org"):
+        settings.PREFER_DOCS_PYTHON_ORG = arguments["--prefer_docs_python_org"]
 
     if arguments.get("--verbose"):
         # root logger, all modules
@@ -56,8 +68,9 @@ def main() -> int:
             logger.addHandler(handler)
             LOGGERS.append(logger)
 
-    commands.cli(
-        package, output_folder=output_folder, document_internals=document_internals
+    commands.process_path_or_dot_name(
+        package,
+        output_folder=output_folder,
     )
     # # TODO
     #     print("Don't recognize that command.")

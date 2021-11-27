@@ -15,11 +15,11 @@ def replace(text: str, *pairs: str) -> str:
     return text
 
 
-def cram(text: str, maxlen: int) -> str:
+def cram(text: str, maximum_length: int) -> str:
     """Omit part of a string if needed to make it fit in a maximum length."""
-    if len(text) > maxlen:
-        pre = max(0, (maxlen - 3) // 2)
-        post = max(0, maxlen - 3 - pre)
+    if len(text) > maximum_length:
+        pre = max(0, (maximum_length - 3) // 2)
+        post = max(0, maximum_length - 3 - pre)
         return text[:pre] + "..." + text[len(text) - post :]
     return text
 

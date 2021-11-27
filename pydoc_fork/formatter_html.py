@@ -4,13 +4,17 @@ Roughly components
 import logging
 import re
 import sysconfig
+from enum import Enum
 from typing import Any, Callable, Dict, Sequence, Tuple, Union
+
+import markdown
 
 from pydoc_fork import inline_styles
 from pydoc_fork.all_found import MENTIONED_MODULES
 from pydoc_fork.html_repr_class import HTMLRepr
 from pydoc_fork.jinja_code import JINJA_ENV
 from pydoc_fork.module_utils import ErrorDuringImport
+from pydoc_fork.rst_support import rst_to_html
 from pydoc_fork.string_utils import replace
 from pydoc_fork.utils import resolve
 
@@ -122,9 +126,9 @@ def namelink(name: str, *dicts: Dict[str, str]) -> str:
     return name
 
 
-def modpkglink(modpkginfo: Tuple[str, str, str, str]) -> str:
+def module_package_link(module_package_info: Tuple[str, str, str, str]) -> str:
     """Make a link for a module or package to display in an index."""
-    name, path, ispackage, shadowed = modpkginfo
+    name, path, ispackage, shadowed = module_package_info
     try:
         MENTIONED_MODULES.add((resolve(path + "." + name)[0], name))
     except (ErrorDuringImport, ImportError):
@@ -142,9 +146,15 @@ def modpkglink(modpkginfo: Tuple[str, str, str, str]) -> str:
     return f'<a href="{url}">{text}</a>'
 
 
-def filelink(url: str, path: str) -> str:
+def file_link(url: str, path: str) -> str:
     """Make a link to source file."""
     return f'<a href="file:{url}">{path}</a>'
+
+
+class MarkupSyntax(Enum):
+    Nothing = 0
+    RST = 1
+    Markdown = 2
 
 
 def markup(
@@ -153,8 +163,32 @@ def markup(
     classes: Dict[str, str] = {},  # noqa - clean up later
     methods: Dict[str, str] = {},  # noqa - clean up later
 ) -> str:
-    """Mark up some plain text, given a context of symbols to look for.
-    Each context dictionary maps object names to anchor names."""
+    """
+    Replace all linkable things with links of appropriate syntax.
+
+    Handle either an adhoc markup language, or RST or Markdown.
+    funcs, classes, methods are name/symbol to URL maps.
+    """
+
+    syntax = MarkupSyntax.Nothing
+
+    def nothing(_: str) -> str:
+        """Does nothing"""
+        return _
+
+    if syntax == MarkupSyntax.Nothing:
+        markup_to_html = nothing
+        # make_html_link =
+    elif syntax == MarkupSyntax.RST:
+        preformat = nothing
+        markup_to_html = rst_to_html
+        # make_rst_link =
+    elif syntax == MarkupSyntax.Markdown:
+        preformat = lambda _: _
+        markup_to_html = markdown.markdown
+        # make_markdown_link =
+    else:
+        raise NotImplemented()
 
     results = []
     here = 0
@@ -171,8 +205,9 @@ def markup(
         start, end = match.span()
         results.append(preformat(text[here:start]))
 
-        the_all, scheme, rfc, pep, selfdot, name = match.groups()
+        the_all, scheme, rfc, pep, self_dot, name = match.groups()
         if scheme:
+            # Hyperlink actual urls
             url = preformat(the_all).replace('"', "&quot;")
             results.append(f'<a href="{url}">{url}</a>')
         elif rfc:
@@ -181,7 +216,7 @@ def markup(
         elif pep:
             url = "https://www.python.org/dev/peps/pep-%04d/" % int(pep)
             results.append(f'<a href="{url}">{preformat(the_all)}</a>')
-        elif selfdot:
+        elif self_dot:
             # Create a link for methods like 'self.method(...)'
             # and use <strong> for attributes like 'self.attr'
             if text[end : end + 1] == "(":
@@ -194,5 +229,7 @@ def markup(
             # This assumes everything else is a class!!
             results.append(namelink(name, classes))
         here = end
+    # plain text with links to HTML
     results.append(preformat(text[here:]))
-    return "".join(results)
+    rejoined_semi_html = "".join(results)
+    return markup_to_html(rejoined_semi_html)

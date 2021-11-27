@@ -6,12 +6,14 @@ from typing import List
 from typing_extensions import Protocol
 
 
+# noinspection SpellCheckingInspection
 class TypeLike(Protocol):
     """This is a union of all sort of types"""
 
     __name__: str
     __module__: str
     __path__: str
+    # noinspection SpellCheckingInspection
     __objclass__: "TypeLike"
     __func__: "TypeLike"
     __self__: "TypeLike"

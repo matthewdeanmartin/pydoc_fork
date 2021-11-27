@@ -2,7 +2,11 @@
 Module Manipulation
 """
 import builtins
+
+# noinspection PyProtectedMember
 import importlib._bootstrap
+
+# noinspection PyProtectedMember
 import importlib._bootstrap_external
 import importlib.machinery
 import importlib.util
@@ -28,6 +32,7 @@ class ErrorDuringImport(Exception):
         return f"problem in {self.filename} - {exc}: {self.value}"
 
 
+# noinspection PyProtectedMember
 def importfile(path: str) -> TypeLike:
     """Import a Python source file or compiled file given its path."""
     magic = importlib.util.MAGIC_NUMBER
@@ -50,7 +55,7 @@ def importfile(path: str) -> TypeLike:
 
 def safe_import(
     path: str,
-    forceload: int = 0,
+    force_load: bool = False,
     cache: Dict[str, Any] = {},  # noqa - this is mutable on purpose!
 ) -> Any:
     """Import a module; handle errors; return None if the module isn't found.
@@ -58,15 +63,14 @@ def safe_import(
     If the module *is* found but an exception occurs, it's wrapped in an
     ErrorDuringImport exception and reraised.  Unlike __import__, if a
     package path is specified, the module at the end of the path is returned,
-    not the package at the beginning.  If the optional 'forceload' argument
-    is 1, we reload the module from disk (unless it's a dynamic extension)."""
-    LOGGER.debug(str(path))
+    not the package at the beginning.  If the optional 'force_load' argument
+    is True, we reload the module from disk (unless it's a dynamic extension)."""
     try:
-        # If forceload is 1 and the module has been previously loaded from
+        # If force_load is True and the module has been previously loaded from
         # disk, we always have to reload the module.  Checking the file's
         # mtime isn't good enough (e.g. the module could contain a class
         # that inherits from another module that has changed).
-        if forceload and path in sys.modules:
+        if force_load and path in sys.modules:
             if path not in sys.builtin_module_names:
                 # Remove the module from sys.modules and re-import to try
                 # and avoid problems with partially loaded modules.
@@ -100,6 +104,7 @@ def safe_import(
         try:
             module = getattr(module, part)
         except AttributeError:
+            LOGGER.warning(f"{str(module)} does not have {part} from dot path {path}")
             return None
     return module
 
@@ -113,7 +118,7 @@ def ispackage(path: str) -> bool:
     return False
 
 
-def locate(path: str, forceload: int = 0) -> Any:
+def locate(path: str, force_load: bool = False) -> Any:
     """Locate an object by name or dotted path, importing as necessary."""
     if "-" in path:
         # Not sure about this
@@ -124,9 +129,9 @@ def locate(path: str, forceload: int = 0) -> Any:
     LOGGER.debug(str(parts))
     module, index = None, 0
     while index < len(parts):
-        nextmodule = safe_import(".".join(parts[: index + 1]), forceload)
-        if nextmodule:
-            module, index = nextmodule, index + 1
+        next_module = safe_import(".".join(parts[: index + 1]), force_load)
+        if next_module:
+            module, index = next_module, index + 1
         else:
             break
     if module:

@@ -11,15 +11,15 @@ import pydoc_fork.settings as settings
 from pydoc_fork import inline_styles
 from pydoc_fork.all_found import MENTIONED_MODULES
 from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.format_class import formattree
+from pydoc_fork.format_class import format_tree
 from pydoc_fork.formatter_html import (
     STDLIB_BASEDIR,
     bigsection,
     escape,
-    filelink,
+    file_link,
     heading,
     markup,
-    modpkglink,
+    module_package_link,
     multicolumn,
 )
 from pydoc_fork.utils import getdoc, isdata, visiblename
@@ -57,7 +57,7 @@ def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[s
     if (
         is_module
         and (is_known_stdlib or is_in_pythons_folder)
-        and settings.PREFER_INTERNET_DOCUMENTATION
+        and settings.PREFER_DOCS_PYTHON_ORG
     ):
         if settings.PYTHONDOCS.startswith(("http://", "https://")):
             doc_loc = (
@@ -77,7 +77,7 @@ def modulelink(the_object: TypeLike) -> str:
     url = f"{the_object.__name__}.html"
     internet_link = getdocloc(the_object)
 
-    if internet_link and settings.PREFER_INTERNET_DOCUMENTATION:
+    if internet_link and settings.PREFER_DOCS_PYTHON_ORG:
         url = internet_link
     # BUG: doesn't take into consideration an alternate base
     if not internet_link:
@@ -106,8 +106,8 @@ def docmodule(
         links.append(
             f'<a href="{link_url}.html"><span style="color:{inline_styles.MODULE_LINK}">{link_text}</span></a>'
         )
-    linkedname = ".".join(links + parts[-1:])
-    head = f"<big><big><strong>{linkedname}</strong></big></big>"
+    linked_name = ".".join(links + parts[-1:])
+    head = f"<big><big><strong>{linked_name}</strong></big></big>"
     try:
         path = inspect.getabsfile(cast(type, the_object))
         # MR : Make relative
@@ -117,9 +117,9 @@ def docmodule(
         # uh, oh, forgot why I wrote this
         # url = urllib.parse.quote(path)
         # MR
-        filelink_text = filelink(path, path)
+        file_link_text = file_link(path, path)
     except TypeError:
-        filelink_text = "(built-in)"
+        file_link_text = "(built-in)"
     info = []
     # TODO: Include the rest of the meta data
     if hasattr(the_object, "__version__"):
@@ -131,22 +131,25 @@ def docmodule(
         info.append(escape(str(the_object.__date__)))
     if info:
         head = head + f" ({', '.join(info)})"
-    docloc = getdocloc(the_object)
-    if docloc is not None:
-        # Was this just a bug? docloc/locals?
-        # docloc = '<br><a href="%(docloc)s">Module Reference</a>' % locals()
-        docloc = f'<br><a href="{docloc}">Module Reference</a>'
+    document_location = getdocloc(the_object)
+    if document_location is not None:
+        # Was this just a bug? document_location/locals?
+        # document_location = '<br><a href="%(docloc)s">Module Reference</a>' % locals()
+        document_location = f'<br><a href="{document_location}">Module Reference</a>'
     else:
-        docloc = ""
+        document_location = ""
     result = heading(
-        head, "#ffffff", "#7799ee", '<a href=".">index</a><br>' + filelink_text + docloc
+        head,
+        "#ffffff",
+        "#7799ee",
+        '<a href=".">index</a><br>' + file_link_text + document_location,
     )
 
     # this will get `import foo` but ignore `from foo import bar`
     # And bar gets no doc string love either!
     modules = inspect.getmembers(the_object, inspect.ismodule)
 
-    for to_remove in settings.SUPRESS_MODULES:
+    for to_remove in settings.SKIP_MODULES:
         for module_info in modules:
             candidate_module, _ = module_info
             if candidate_module == to_remove:
@@ -155,11 +158,11 @@ def docmodule(
                 except ValueError:
                     pass
     modules_by_import_from = set()
-    classes, cdict = [], {}
+    classes, class_dict = [], {}
     for key, value in inspect.getmembers(the_object, inspect.isclass):
         _class_module = inspect.getmodule(value)
         if _class_module and _class_module is not the_object:
-            if _class_module.__name__ not in settings.SUPRESS_MODULES:
+            if _class_module.__name__ not in settings.SKIP_MODULES:
                 modules_by_import_from.add((None, _class_module))
                 MENTIONED_MODULES.add((_class_module, _class_module.__name__))
         # if __all__ exists, believe it.  Otherwise use old heuristic.
@@ -171,7 +174,7 @@ def docmodule(
         ):
             if visiblename(key, all_things, the_object):
                 classes.append((key, value))
-                cdict[key] = cdict[value] = "#" + key
+                class_dict[key] = class_dict[value] = "#" + key
     for key, value in classes:
         for base in value.__bases__:
             key, modname = base.__name__, base.__module__
@@ -181,16 +184,16 @@ def docmodule(
                 and module
                 and hasattr(module, key)
                 and getattr(module, key) is base
-                and key not in cdict
+                and key not in class_dict
             ):
-                cdict[key] = cdict[base] = modname + ".html#" + key
-    funcs, fdict = [], {}
+                class_dict[key] = class_dict[base] = modname + ".html#" + key
+    funcs, function_dict = [], {}
     for key, value in inspect.getmembers(the_object, inspect.isroutine):
         # if __all__ exists, believe it.  Otherwise use old heuristic.
         _func_module = inspect.getmodule(value)
         # why does this sometimes return no module?
         if _func_module and _func_module is not the_object:
-            if _func_module.__name__ not in settings.SUPRESS_MODULES:
+            if _func_module.__name__ not in settings.SKIP_MODULES:
                 modules_by_import_from.add((None, _func_module))
                 MENTIONED_MODULES.add((_func_module, _func_module.__name__))
         if (
@@ -201,27 +204,27 @@ def docmodule(
             # or inspect.getmodule(value) is the_object # from foo import bar
         ) and visiblename(key, all_things, the_object):
             funcs.append((key, value))
-            fdict[key] = "#-" + key
+            function_dict[key] = "#-" + key
             if inspect.isfunction(value):
-                fdict[value] = fdict[key]
+                function_dict[value] = function_dict[key]
     data = []
     for key, value in inspect.getmembers(the_object, isdata):
-        if inspect.getmodule(type(value)).__name__ in settings.SUPRESS_MODULES:
+        if inspect.getmodule(type(value)).__name__ in settings.SKIP_MODULES:
             continue
         if visiblename(key, all_things, the_object):
             data.append((key, value))
 
-    doc = markup(getdoc(the_object), fdict, cdict)
+    doc = markup(getdoc(the_object), function_dict, class_dict)
     doc = doc and f"<tt>{doc}</tt>"
     result = result + f"<p>{doc}</p>\n"
 
     if hasattr(the_object, "__path__"):
-        modpkgs = []
-        for _, modname, ispkg in pkgutil.iter_modules(the_object.__path__):
-            if modname not in settings.SUPRESS_MODULES:
-                modpkgs.append((modname, name, ispkg, 0))
-        modpkgs.sort()
-        contents_string = multicolumn(modpkgs, modpkglink)
+        module_packages = []
+        for _, modname, is_package in pkgutil.iter_modules(the_object.__path__):
+            if modname not in settings.SKIP_MODULES:
+                module_packages.append((modname, name, is_package, 0))
+        module_packages.sort()
+        contents_string = multicolumn(module_packages, module_package_link)
         result = result + bigsection(
             "Package Contents", "#ffffff", "#aa55cc", contents_string
         )
@@ -240,16 +243,16 @@ def docmodule(
     if classes:
         class_list = [value for (key, value) in classes]
         # MR: boolean type safety
-        contents_list = [formattree(inspect.getclasstree(class_list, True), name)]
+        contents_list = [format_tree(inspect.getclasstree(class_list, True), name)]
         for key, value in classes:
-            contents_list.append(document(value, key, name, fdict, cdict))
+            contents_list.append(document(value, key, name, function_dict, class_dict))
         result = result + bigsection(
             "Classes", "#ffffff", "#ee77aa", " ".join(contents_list)
         )
     if funcs:
         contents_list = []
         for key, value in funcs:
-            contents_list.append(document(value, key, name, fdict, cdict))
+            contents_list.append(document(value, key, name, function_dict, class_dict))
         result = result + bigsection(
             "Functions", "#ffffff", "#eeaa77", " ".join(contents_list)
         )

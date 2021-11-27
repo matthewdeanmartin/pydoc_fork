@@ -7,11 +7,11 @@ from typing import Any, Dict, Optional
 
 from pydoc_fork.custom_types import TypeLike
 from pydoc_fork.format_class import docclass
-from pydoc_fork.format_data import docdata
+from pydoc_fork.format_data import document_data
 from pydoc_fork.format_module import docmodule
 from pydoc_fork.format_other import docother
 from pydoc_fork.format_routine import docroutine
-from pydoc_fork.formatter_html import bigsection, modpkglink, multicolumn
+from pydoc_fork.formatter_html import bigsection, module_package_link, multicolumn
 from pydoc_fork.jinja_code import JINJA_ENV
 
 
@@ -59,23 +59,23 @@ def document(the_object: TypeLike, name: str = "", *args: Any) -> str:  # Null s
     # except AttributeError:
     #     pass  # nosec
     if inspect.isdatadescriptor(the_object):
-        return docdata(the_object, name)
+        return document_data(the_object, name)
     return docother(the_object, name)
 
 
 # This is page
 def index(directory: str, shadowed: Optional[Dict[str, Any]] = None) -> str:
     """Generate an HTML index for a directory of modules."""
-    modpkgs = []
+    module_packages = []
     if shadowed is None:
         shadowed = {}
-    for _, name, ispkg in pkgutil.iter_modules([directory]):
+    for _, name, is_package in pkgutil.iter_modules([directory]):
         if any((0xD800 <= ord(ch) <= 0xDFFF) for ch in name):
             # ignore a module if its name contains a surrogate character
             continue
-        modpkgs.append((name, "", ispkg, name in shadowed))
+        module_packages.append((name, "", is_package, name in shadowed))
         shadowed[name] = 1
 
-    modpkgs.sort()
-    contents = multicolumn(modpkgs, modpkglink)
+    module_packages.sort()
+    contents = multicolumn(module_packages, module_package_link)
     return bigsection(directory, "#ffffff", "#ee77aa", contents)

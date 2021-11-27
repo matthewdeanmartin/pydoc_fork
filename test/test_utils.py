@@ -6,7 +6,7 @@ import sys
 
 from pydoc_fork import describe
 from pydoc_fork.format_other import docother
-from pydoc_fork.utils import isdata, _finddoc
+from pydoc_fork.utils import isdata, _find_doc_string
 
 
 class Thing:
@@ -119,6 +119,6 @@ def test_finddoc():
         datetime.time,
     ]
     for thing in various_types:
-        assert _finddoc(thing)
+        assert _find_doc_string(thing)
     for thing in various_without:
-        assert _finddoc(thing) in [None, ""]
+        assert _find_doc_string(thing) in [None, ""]

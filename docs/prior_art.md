@@ -31,6 +31,8 @@ Standard library pydoc recognizes none of those.
 - [portray](https://timothycrosley.github.io/portray/) -
 - [pycco](https://pycco-docs.github.io/pycco/) - Literate programming style
 - [handsdown](https://github.com/vemel/handsdown) - markdown first style
+- Docutils - RST generator 
+- Sphinx - RST generator (needs plugin)
 
 # Sphinx plugins
 - sphinx-apidoc
@@ -38,9 +40,19 @@ Standard library pydoc recognizes none of those.
 
 ## Linters
 - [Pydocstyle](http://www.pydocstyle.org/en/6.1.1/error_codes.html) - Not sure what style this is validating.
+- [Interogate](https://github.com/econchick/interrogate) - Fine grained rules on what to document,  
+  e.g. skip property getters/setters
+- [Pylint]() Has some rules to require docstrings
+- [flake8-docstrings](https://pypi.org/project/flake8-docstrings/) Lint according to a chosen syntax
+- [flake8-rst-docstrings](https://pypi.org/project/flake8-rst-docstrings/)
+- 
+## Formatters
+- [blacken-docs](https://github.com/asottile/blacken-docs) Formats code examples in docstrings
 
 ## IDE
 - Pycharm Ctrl-Q
+- Pycharm Docutil RST compilation
+- Pycharm Sphinx RST compilation
 
 
 # to review

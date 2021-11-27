@@ -1,6 +1,6 @@
 import os
 
-from pydoc_fork import cli
+from pydoc_fork import process_path_or_dot_name
 
 
 from contextlib import contextmanager
@@ -22,23 +22,23 @@ def cwd(path):
 def test_cli():
     with cwd("."):
         output_folder = "doc_self"
-        results = cli(
+        results = process_path_or_dot_name(
             ["navio_tasks"], output_folder=output_folder, document_internals=True
         )
-        results = cli(
+        results = process_path_or_dot_name(
             ["pydoc_fork"], output_folder=output_folder, document_internals=True
         )
         assert results
-        results = cli(
+        results = process_path_or_dot_name(
             ["test.pydocfodder"], output_folder=output_folder, document_internals=True
         )
         assert results
-        results = cli(
+        results = process_path_or_dot_name(
             ["test.pydoc_mod"], output_folder=output_folder, document_internals=True
         )
         assert results
         #  can't do this yet, pydoc stills imports each module!
-        # cli([".\\"], output_folder=".", document_internals=True)
+        # process_path_or_dot_name([".\\"], output_folder=".", document_internals=True)
         try:
             files_in_directory = os.listdir(".")
             filtered_files = [
