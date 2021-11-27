@@ -9,15 +9,20 @@ Real world documentation comes wildly different formats, missing, all over the p
 
 
 ### TODO:
-- suppress typing/annotation cruft
-- Separate "document source code at this path" from "document this imported type/module"
-- Option to walk the module tree (to some specified depth)
-  - https://stackoverflow.com/questions/48000761/list-submodules-of-a-python-module
-- copy source to target folder
+- Detect MD or RST &amp; format as such
+- Separate "document source code at this path" from "document this imported type/module" eg:
+  - pydoc_fork foo.bar
+  - pydoc_fork c:/src/foo/bar.py
+- copy source to target folder...using pycco!
 - index page
-- font tags in JINJA
+- Surface all settings in cmd switchs or yaml config or pyproject.toml config
 
 ### DONE
+- font tags in JINJA. DONE.Now HTML 4.5
+- Option to walk the module tree (to some specified depth) DONE...?
+  - https://stackoverflow.com/questions/48000761/list-submodules-of-a-python-module
+
+- suppress typing/annotation cruft- DONE!
 - font tags in .py code - DONE
 - Just enough jinja to fix the HTML- DONE
   - heading, page, section are templates
