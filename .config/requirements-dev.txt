@@ -10,8 +10,10 @@
 # `Pipfile.lock` and then regenerate `requirements*.txt`.
 ################################################################################
 
+blacken-docs
 checksumdir==1.1.7
 coverage
+darglint
 dodgy
 gitchangelog==3.0.4
 gitpython
@@ -44,4 +46,6 @@ sphinx
 sphinx-rtd-theme
 sshtunnel
 tox
+types-docutils
+types-markdown
 vendorize

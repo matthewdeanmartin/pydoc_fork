@@ -5,8 +5,8 @@ import html5lib
 import sys
 
 from pydoc_fork import describe
-from pydoc_fork.format_other import docother
-from pydoc_fork.utils import isdata, _find_doc_string
+from pydoc_fork.reporter.format_other import docother
+from pydoc_fork.inspector.utils import isdata, _find_doc_string
 
 
 class Thing:

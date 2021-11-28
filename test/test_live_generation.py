@@ -6,7 +6,7 @@ from pydoc_fork import process_path_or_dot_name
 from contextlib import contextmanager
 
 # https://stackoverflow.com/a/37996581/33264
-from pydoc_fork.module_utils import ErrorDuringImport
+from pydoc_fork.inspector.module_utils import ImportTimeError
 
 
 @contextmanager
@@ -23,18 +23,18 @@ def test_cli():
     with cwd("."):
         output_folder = "doc_self"
         results = process_path_or_dot_name(
-            ["navio_tasks"], output_folder=output_folder, document_internals=True
+            ["navio_tasks"], output_folder=output_folder,
         )
         results = process_path_or_dot_name(
-            ["pydoc_fork"], output_folder=output_folder, document_internals=True
-        )
-        assert results
-        results = process_path_or_dot_name(
-            ["test.pydocfodder"], output_folder=output_folder, document_internals=True
+            ["pydoc_fork"], output_folder=output_folder,
         )
         assert results
         results = process_path_or_dot_name(
-            ["test.pydoc_mod"], output_folder=output_folder, document_internals=True
+            ["test.pydocfodder"], output_folder=output_folder,
+        )
+        assert results
+        results = process_path_or_dot_name(
+            ["test.pydoc_mod"], output_folder=output_folder,
         )
         assert results
         #  can't do this yet, pydoc stills imports each module!

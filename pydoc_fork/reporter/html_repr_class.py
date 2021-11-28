@@ -3,8 +3,8 @@ import re
 from reprlib import Repr
 from typing import Any, cast
 
-from pydoc_fork import inline_styles
-from pydoc_fork.string_utils import cram, replace, stripid
+from pydoc_fork.reporter import inline_styles
+from pydoc_fork.reporter.string_utils import cram, replace, stripid
 
 
 class HTMLRepr(Repr):

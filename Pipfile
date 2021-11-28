@@ -51,6 +51,7 @@ sphinx-rtd-theme = "*"
 darglint = "*"
 types-docutils = "*"
 types-markdown = "*"
+blacken-docs = "*"
 
 [requires]
 python_version = "3.9"

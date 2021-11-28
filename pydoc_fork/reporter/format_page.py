@@ -5,14 +5,18 @@ import inspect
 import pkgutil
 from typing import Any, Dict, Optional
 
-from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.format_class import docclass
-from pydoc_fork.format_data import document_data
-from pydoc_fork.format_module import docmodule
-from pydoc_fork.format_other import docother
-from pydoc_fork.format_routine import docroutine
-from pydoc_fork.formatter_html import bigsection, module_package_link, multicolumn
-from pydoc_fork.jinja_code import JINJA_ENV
+from pydoc_fork.inspector.custom_types import TypeLike
+from pydoc_fork.reporter.format_class import docclass
+from pydoc_fork.reporter.format_data import document_data
+from pydoc_fork.reporter.format_module import docmodule
+from pydoc_fork.reporter.format_other import docother
+from pydoc_fork.reporter.format_routine import docroutine
+from pydoc_fork.reporter.formatter_html import (
+    bigsection,
+    module_package_link,
+    multicolumn,
+)
+from pydoc_fork.reporter.jinja_code import JINJA_ENV
 
 
 def render(title: str, the_object: TypeLike, name: str) -> str:

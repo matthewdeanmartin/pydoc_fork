@@ -4,7 +4,7 @@ import datetime
 import sys
 
 from pydoc_fork import settings
-from pydoc_fork.format_module import getdocloc
+from pydoc_fork.reporter.format_module import getdocloc
 
 
 def test_getdocloc_datetime():

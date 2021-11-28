@@ -4,24 +4,29 @@ Roughly a UI component for routines
 import inspect
 from typing import Any, Dict, Optional
 
-from pydoc_fork import inline_styles
-from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.format_class import classlink
-from pydoc_fork.formatter_html import disabled_text, escape, markup
-from pydoc_fork.utils import _is_bound_method, getdoc
+from pydoc_fork.inspector.custom_types import TypeLike
+from pydoc_fork.inspector.utils import _is_bound_method, getdoc
+from pydoc_fork.reporter import inline_styles
+from pydoc_fork.reporter.format_class import classlink
+from pydoc_fork.reporter.formatter_html import disabled_text, escape, markup
 
 
 def docroutine(
     the_object: TypeLike,
     name: str = "",
     mod: str = "",
-    funcs: Dict[str, Any] = {},  # noqa - clean up later
-    classes: Dict[str, Any] = {},  # noqa - clean up later
-    methods: Dict[str, Any] = {},  # noqa - clean up later
+    funcs: Optional[Dict[str, Any]] = None,  # noqa - clean up later
+    classes: Optional[Dict[str, Any]] = None,  # noqa - clean up later
+    methods: Optional[Dict[str, Any]] = None,  # noqa - clean up later
     cl: Optional[TypeLike] = None,
 ) -> str:
     """Produce HTML documentation for a function or method object."""
-
+    if not funcs:
+        funcs = {}
+    if not classes:
+        classes = {}
+    if not methods:
+        methods = {}
     # AttributeError: 'cached_property' object has no attribute '__name__'
     try:
         real_name = the_object.__name__
@@ -63,7 +68,7 @@ def docroutine(
     argument_specification = None
     if inspect.isroutine(the_object):
         try:
-            signature = inspect.signature(the_object)
+            signature: Optional[inspect.Signature] = inspect.signature(the_object)
         except (ValueError, TypeError):
             signature = None
         if signature:

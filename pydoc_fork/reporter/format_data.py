@@ -3,9 +3,9 @@ Roughly a UI component for variables and their values
 """
 from typing import List
 
-from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.formatter_html import markup
-from pydoc_fork.utils import getdoc
+from pydoc_fork.inspector.custom_types import TypeLike
+from pydoc_fork.inspector.utils import getdoc
+from pydoc_fork.reporter.formatter_html import markup
 
 
 def document_data(

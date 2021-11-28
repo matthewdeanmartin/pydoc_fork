@@ -8,8 +8,8 @@ import sys
 from modulefinder import Module
 from typing import Any, Callable, List, Optional, Sequence, Tuple, Union, cast
 
-from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.module_utils import locate
+from pydoc_fork.inspector.custom_types import TypeLike
+from pydoc_fork.inspector.module_utils import locate
 
 LOGGER = logging.getLogger(__name__)
 

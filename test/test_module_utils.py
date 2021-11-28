@@ -1,4 +1,4 @@
-import pydoc_fork.module_utils as module_utils
+import pydoc_fork.inspector.module_utils as module_utils
 
 from types import ModuleType
 

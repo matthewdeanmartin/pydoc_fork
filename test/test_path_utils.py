@@ -1,6 +1,6 @@
 import sys
 
-import pydoc_fork.path_utils as path_utils
+import pydoc_fork.inspector.path_utils as path_utils
 
 
 def test_get_revised_path():

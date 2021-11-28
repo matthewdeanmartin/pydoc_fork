@@ -1,5 +1,7 @@
 """
-Just enough UI to let a build server generate documentation
+Process commands as pure python functions.
+
+All the CLI logic should be handled in __main__.
 """
 import logging
 import os
@@ -8,11 +10,10 @@ from shutil import copy2
 from typing import List, Optional, Union
 
 from pydoc_fork import settings
-from pydoc_fork.all_found import MENTIONED_MODULES
-from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.format_page import render
-from pydoc_fork.path_utils import _adjust_cli_sys_path, locate_file
-from pydoc_fork.utils import describe, resolve
+from pydoc_fork.inspector.custom_types import TypeLike
+from pydoc_fork.inspector.path_utils import _adjust_cli_sys_path, locate_file
+from pydoc_fork.inspector.utils import describe, resolve
+from pydoc_fork.reporter.format_page import render
 
 LOGGER = logging.getLogger(__name__)
 
@@ -20,7 +21,7 @@ LOGGER = logging.getLogger(__name__)
 def writedoc(
     thing: Union[TypeLike, str],
     output_folder: str,
-    force_load: int = 0,
+    force_load: bool = False,
 ) -> Optional[str]:
     """Write HTML documentation to a file in the current directory."""
     # try:
@@ -101,19 +102,19 @@ def write_docs_live_module(
     # There will be ANOTHER method to handle MODULE paths, e.g. module.submodule"
     # Attempting to mix these two types is a bad idea.
     written: List[str] = []
-    while MENTIONED_MODULES and total_third_party <= 100:
-        module = MENTIONED_MODULES.pop()
+    while settings.MENTIONED_MODULES and total_third_party <= 100:
+        module = settings.MENTIONED_MODULES.pop()
         thing, name = module  # destructure it
         # should only be live modules or dot notation modules, not paths.
         full_path = calculate_file_name(name, output_folder)
         if os.path.exists(full_path) and skip_if_written:
-            MENTIONED_MODULES.discard(module)
+            settings.MENTIONED_MODULES.discard(module)
         else:
             actual_full_path = writedoc(thing, output_folder)
             total_third_party += 1
             if actual_full_path:
                 written.append(actual_full_path)
-            MENTIONED_MODULES.discard(module)
+            settings.MENTIONED_MODULES.discard(module)
 
     # TODO: make this a param
     return written
@@ -155,7 +156,7 @@ def process_path_or_dot_name(
         overwrite_existing:
 
     Returns:
-        List of successfully documentetd modules
+        List of successfully documented modules
     """
     LOGGER.debug(f"Processing {files} and writing to {output_folder}")
 

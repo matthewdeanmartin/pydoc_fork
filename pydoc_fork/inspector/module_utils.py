@@ -13,18 +13,19 @@ import importlib.util
 import logging
 import os
 import sys
-from typing import Any, Dict, Tuple, cast
+from typing import Any, Dict, Optional, Tuple, cast
 
-from pydoc_fork.custom_types import TypeLike
+from pydoc_fork.inspector.custom_types import TypeLike
 
 LOGGER = logging.getLogger(__name__)
 
 
-class ErrorDuringImport(Exception):
+class ImportTimeError(Exception):
     """Errors that occurred while trying to import something to document it."""
 
-    def __init__(self, filename: str, exc_info: Tuple[Any, Any, Any]) -> None:
+    def __init__(self, filename: Optional[str], exc_info: Tuple[Any, Any, Any]) -> None:
         self.filename = filename
+        # pylint: disable=invalid-name
         self.exc, self.value, self.tb = exc_info
 
     def __str__(self) -> str:
@@ -50,7 +51,7 @@ def importfile(path: str) -> TypeLike:
         return cast(TypeLike, importlib._bootstrap._load(spec))
     # pylint: disable=broad-except
     except BaseException as import_error:
-        raise ErrorDuringImport(path, sys.exc_info()) from import_error
+        raise ImportTimeError(path, sys.exc_info()) from import_error
 
 
 def safe_import(
@@ -89,17 +90,19 @@ def safe_import(
         (exc, value, _) = info = sys.exc_info()
         if path in sys.modules:
             # An error occurred while executing the imported module.
-            raise ErrorDuringImport(sys.modules[path].__file__, info) from import_error
+            raise ImportTimeError(sys.modules[path].__file__, info) from import_error
         if exc is SyntaxError:
             # A SyntaxError occurred before we could execute the module.
             # MR : this isn't null safe.
-            # Bug! exc is the exception with the file name, not value
-            raise ErrorDuringImport(exc.filename, info) from import_error
-        if issubclass(exc, ImportError) and value.name == path:
+            raise ImportTimeError(
+                cast(SyntaxError, value).filename, info
+            ) from import_error
+        if issubclass(exc, ImportError) and cast(ImportError, value).name == path:
+            LOGGER.warning(f"Cannot import this path: {path}")
             # No such module in the path.
             return None
         # Some other error occurred during the importing process.
-        raise ErrorDuringImport(path, sys.exc_info()) from import_error
+        raise ImportTimeError(path, sys.exc_info()) from import_error
     for part in path.split(".")[1:]:
         try:
             module = getattr(module, part)

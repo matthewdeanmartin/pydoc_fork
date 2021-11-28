@@ -7,12 +7,12 @@ import pkgutil
 import sys
 from typing import Optional, cast
 
-import pydoc_fork.settings as settings
-from pydoc_fork import inline_styles
-from pydoc_fork.all_found import MENTIONED_MODULES
-from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.format_class import format_tree
-from pydoc_fork.formatter_html import (
+from pydoc_fork import settings
+from pydoc_fork.inspector.custom_types import TypeLike
+from pydoc_fork.inspector.utils import getdoc, isdata, visiblename
+from pydoc_fork.reporter import inline_styles
+from pydoc_fork.reporter.format_class import format_tree
+from pydoc_fork.reporter.formatter_html import (
     STDLIB_BASEDIR,
     bigsection,
     escape,
@@ -22,7 +22,6 @@ from pydoc_fork.formatter_html import (
     module_package_link,
     multicolumn,
 )
-from pydoc_fork.utils import getdoc, isdata, visiblename
 
 
 def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[str]:
@@ -81,7 +80,7 @@ def modulelink(the_object: TypeLike) -> str:
         url = internet_link
     # BUG: doesn't take into consideration an alternate base
     if not internet_link:
-        MENTIONED_MODULES.add((the_object, the_object.__name__))
+        settings.MENTIONED_MODULES.add((the_object, the_object.__name__))
     return f'<a href="{url}">{the_object.__name__}</a>'
 
 
@@ -90,7 +89,7 @@ def docmodule(
 ) -> str:
     """Produce HTML documentation for a module object."""
     # circular ref
-    from pydoc_fork.format_page import document
+    from pydoc_fork.reporter.format_page import document
 
     name = the_object.__name__
 
@@ -164,7 +163,7 @@ def docmodule(
         if _class_module and _class_module is not the_object:
             if _class_module.__name__ not in settings.SKIP_MODULES:
                 modules_by_import_from.add((None, _class_module))
-                MENTIONED_MODULES.add((_class_module, _class_module.__name__))
+                settings.MENTIONED_MODULES.add((_class_module, _class_module.__name__))
         # if __all__ exists, believe it.  Otherwise use old heuristic.
         if (
             # TODO put doc internals switch here
@@ -195,7 +194,7 @@ def docmodule(
         if _func_module and _func_module is not the_object:
             if _func_module.__name__ not in settings.SKIP_MODULES:
                 modules_by_import_from.add((None, _func_module))
-                MENTIONED_MODULES.add((_func_module, _func_module.__name__))
+                settings.MENTIONED_MODULES.add((_func_module, _func_module.__name__))
         if (
             True
             # TODO put doc internals switch here

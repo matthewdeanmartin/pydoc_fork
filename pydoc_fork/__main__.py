@@ -26,8 +26,7 @@ import sys
 
 import docopt
 
-import pydoc_fork.commands as commands
-from pydoc_fork import settings
+from pydoc_fork import commands, settings
 from pydoc_fork.settings import load_config
 
 LOGGER = logging.getLogger(__name__)

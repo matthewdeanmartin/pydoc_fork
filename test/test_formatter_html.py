@@ -1,7 +1,7 @@
-import pydoc_fork.formatter_html as doc
-import pydoc_fork.format_page as page
-import pydoc_fork.module_utils as module_utils
-from pydoc_fork.path_utils import locate_file
+import pydoc_fork.reporter.formatter_html as doc
+import pydoc_fork.reporter.format_page as page
+import pydoc_fork.inspector.module_utils as module_utils
+from pydoc_fork.inspector.path_utils import locate_file
 
 
 def test_HTMLDoc_index():

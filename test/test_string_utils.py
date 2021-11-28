@@ -1,4 +1,4 @@
-import pydoc_fork.string_utils as string_utils
+import pydoc_fork.reporter.string_utils as string_utils
 
 
 def test_replace():

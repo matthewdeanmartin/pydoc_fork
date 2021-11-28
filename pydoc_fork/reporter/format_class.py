@@ -7,12 +7,9 @@ import sys
 from collections import deque
 from typing import Any, Callable, Dict, List, Optional, Union, cast
 
-from pydoc_fork import inline_styles, settings
-from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.format_data import document_data
-from pydoc_fork.format_other import docother
-from pydoc_fork.formatter_html import markup, section
-from pydoc_fork.utils import (
+from pydoc_fork import settings
+from pydoc_fork.inspector.custom_types import TypeLike
+from pydoc_fork.inspector.utils import (
     _split_list,
     classify_class_attrs,
     classname,
@@ -20,6 +17,10 @@ from pydoc_fork.utils import (
     sort_attributes,
     visiblename,
 )
+from pydoc_fork.reporter import inline_styles
+from pydoc_fork.reporter.format_data import document_data
+from pydoc_fork.reporter.format_other import docother
+from pydoc_fork.reporter.formatter_html import markup, section
 
 
 def classlink(the_object: Union[TypeLike, type], modname: str) -> str:
@@ -35,11 +36,13 @@ def docclass(
     the_object: TypeLike,
     name: str = "",
     mod: str = "",
-    funcs: Dict[str, str] = {},  # noqa - clean up later
-    classes: Dict[str, str] = {},  # noqa - clean up later
-    # *ignored: List[Any],
+    funcs: Optional[Dict[str, str]] = None,
+    classes: Optional[Dict[str, str]] = None,
 ) -> str:
     """Produce HTML documentation for a class object."""
+    funcs = funcs or {}
+    classes = classes or {}
+
     real_name = the_object.__name__
     name = name or real_name
     bases = the_object.__bases__
@@ -96,7 +99,7 @@ def docclass(
                 else:
                     # circular ref
                     # pylint: disable=import-outside-toplevel
-                    from pydoc_fork.format_page import document
+                    from pydoc_fork.reporter.format_page import document
 
                     push(
                         document(
@@ -215,7 +218,7 @@ def docclass(
         attrs = spilldescriptors(f"Data descriptors {tag}", attrs, is_data_descriptor)
         is_data: Callable[[Any], Any] = lambda t: t[1] == "data"
         attrs = spilldata(f"Data and other attributes {tag}", attrs, is_data)
-        assert attrs == []  # nosec
+        assert not attrs  # nosec
         attrs = inherited
 
     contents_as_string = "".join(contents)  # type got redefined

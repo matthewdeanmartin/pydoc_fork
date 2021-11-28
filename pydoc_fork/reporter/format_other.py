@@ -1,8 +1,8 @@
 """
 Fallback docs
 """
-from pydoc_fork.custom_types import TypeLike
-from pydoc_fork.formatter_html import html_repr
+from pydoc_fork.inspector.custom_types import TypeLike
+from pydoc_fork.reporter.formatter_html import html_repr
 
 
 def docother(

@@ -1,16 +1,21 @@
 """
 Configuration options that could be used by anything.
+
+Also global variables
 """
 import logging
 import os
 import pathlib
 import sys
-from typing import Any, Dict, Optional
+from typing import Any, Dict, Optional, Set, Tuple
 
 import tomli
 
-LOGGER = logging.getLogger(__name__)
+from pydoc_fork.inspector.custom_types import TypeLike
 
+LOGGER = logging.getLogger(__name__)
+# pylint: disable=global-statement
+MENTIONED_MODULES: Set[Tuple[TypeLike, str]] = set()
 SKIP_TYPING = True
 SKIP_MODULES = ["typing"]
 PREFER_DOCS_PYTHON_ORG = False
@@ -45,14 +50,17 @@ def load_config(path: Optional[str]):
     SKIP_MODULES = pairs.get("SKIP_MODULES", ["typing"])
 
 
-def parse_toml(path: Optional[str]) -> Dict[str, Any]:
-    if not path:
+def parse_toml(path_string: Optional[str]) -> Dict[str, Any]:
+    """Parse toml"""
+    if not path_string:
         path = pathlib.Path(os.getcwd())
+    else:
+        path = pathlib.Path(path_string)
     toml_path = path / "pyproject.toml"
     if not toml_path.exists():
         return {}
-    with open(toml_path, encoding="utf8") as f:
-        pyproject_toml = tomli.loads(f.read())
+    with open(toml_path, encoding="utf8") as handle:
+        pyproject_toml = tomli.loads(handle.read())
     config = pyproject_toml.get("tool", {}).get("pydoc_fork", {})
     loose_matching = {
         k.replace("--", "").replace("-", "_"): v for k, v in config.items()
