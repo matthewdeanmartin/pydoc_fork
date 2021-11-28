@@ -19,6 +19,7 @@ def resolve(thing: Union[str, Any], force_load: bool = False) -> Tuple[Any, Any]
     if isinstance(thing, str):
         the_object = locate(thing, force_load)
         if the_object is None:
+
             raise ImportError(
                 """\
 No Python documentation found for %r."""
@@ -134,6 +135,7 @@ def _get_own_doc_string(obj: TypeLike) -> str:
                 return ""  # null safety
         return cast(str, doc)
     except AttributeError:
+        LOGGER.debug(f"No docstring for {str(obj)}")
         return ""  # null safety
 
 
@@ -278,6 +280,7 @@ def classify_class_attrs(the_object: TypeLike) -> List[Tuple[str, str, type, obj
                     kind = "readonly property"
             results.append((name, kind, cls, value))
     except ValueError:
+        LOGGER.warning(f"Skipping classify_class_attrs for {str(the_object)} got ValueError, maybe this is a Namespace")
         # py._xmlgen.Namespace
         # ValueError: Namespace class is abstract
         pass

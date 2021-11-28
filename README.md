@@ -12,7 +12,7 @@ pip install pydoc_fork
 # or virtual environment access
 pipenv install pydoc_fork
 
-# or for global, isolated, access
+# WARNING- installation by pipx will only allow for doc generation of the python standard library!
 pipx install pydoc_fork
 ```
 

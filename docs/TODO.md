@@ -4,6 +4,7 @@ Pydoc excels at:
   - your code
   - standard lib code (except when it links to external)
   - 3rd package code
+  - (will have) switch to document only own code
 
 Real world documentation comes wildly different formats, missing, all over the place.
 

@@ -7,10 +7,12 @@ name = "pypi"
 docopt = "*"
 jinja2 = "*"
 typing-extensions = "*"
-interrogate = "*"
 tomli = "*"
+markdown = "*"
+docutils = "*"
 
 [dev-packages]
+interrogate = "*"
 python-dotenv = "*"
 coverage = "*"
 pdoc3 = "*"

@@ -43,7 +43,7 @@ def main() -> int:
     if config_path:
         load_config(config_path)
 
-    LOGGER.debug(str(arguments))
+    LOGGER.debug(f"Invoking with docopts: {str(arguments)}")
     output_folder = arguments["--output"]
 
     # TODO: add lists of packages

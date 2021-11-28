@@ -51,6 +51,7 @@ def importfile(path: str) -> TypeLike:
         return cast(TypeLike, importlib._bootstrap._load(spec))
     # pylint: disable=broad-except
     except BaseException as import_error:
+        LOGGER.warning(f"Skipping importfile for {name} at {path}, got a {import_error}")
         raise ImportTimeError(path, sys.exc_info()) from import_error
 
 
@@ -90,24 +91,28 @@ def safe_import(
         (exc, value, _) = info = sys.exc_info()
         if path in sys.modules:
             # An error occurred while executing the imported module.
+            LOGGER.warning(f"Skipping safe_import for {path}, got a {import_error}")
             raise ImportTimeError(sys.modules[path].__file__, info) from import_error
         if exc is SyntaxError:
             # A SyntaxError occurred before we could execute the module.
             # MR : this isn't null safe.
+            LOGGER.warning(f"Skipping safe_import for {path}, got a {str(exc)}")
             raise ImportTimeError(
                 cast(SyntaxError, value).filename, info
             ) from import_error
         if issubclass(exc, ImportError) and cast(ImportError, value).name == path:
+            LOGGER.warning(f"Skipping safe_import for {path}, got a {import_error}")
             LOGGER.warning(f"Cannot import this path: {path}")
             # No such module in the path.
             return None
+        LOGGER.warning(f"Skipping safe_import for {path}, got a {import_error}")
         # Some other error occurred during the importing process.
         raise ImportTimeError(path, sys.exc_info()) from import_error
     for part in path.split(".")[1:]:
         try:
             module = getattr(module, part)
         except AttributeError:
-            LOGGER.warning(f"{str(module)} does not have {part} from dot path {path}")
+            LOGGER.warning(f"While safe_import - {str(module)} does not have {part} from dot path {path}")
             return None
     return module
 
@@ -127,9 +132,9 @@ def locate(path: str, force_load: bool = False) -> Any:
         # Not sure about this
         path = path.replace("-", "_")
 
-    LOGGER.debug(f"locating {path}")
+    LOGGER.debug(f"locate(): locating {path}")
     parts = [part for part in path.split(".") if part]
-    LOGGER.debug(str(parts))
+
     module, index = None, 0
     while index < len(parts):
         next_module = safe_import(".".join(parts[: index + 1]), force_load)
@@ -148,6 +153,6 @@ def locate(path: str, force_load: bool = False) -> Any:
         try:
             the_object = getattr(the_object, part)
         except AttributeError:
-            LOGGER.debug(f"Don't think this is a module {the_object}")
+            LOGGER.debug(f"locate(): Don't think this is a module {the_object}")
             return None
     return the_object

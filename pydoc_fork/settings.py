@@ -16,10 +16,11 @@ from pydoc_fork.inspector.custom_types import TypeLike
 LOGGER = logging.getLogger(__name__)
 # pylint: disable=global-statement
 MENTIONED_MODULES: Set[Tuple[TypeLike, str]] = set()
-SKIP_TYPING = True
 SKIP_MODULES = ["typing"]
 PREFER_DOCS_PYTHON_ORG = False
 DOCUMENT_INTERNALS = False
+ONLY_NAMED_AND_SUBS = False
+
 OUTPUT_FOLDER = ""
 
 PYTHONDOCS = os.environ.get(
@@ -36,19 +37,18 @@ Reference Manual pages."""
 
 def load_config(path: Optional[str]):
     """Copy config from toml to globals"""
-    global SKIP_TYPING
     global PREFER_DOCS_PYTHON_ORG
     global DOCUMENT_INTERNALS
     global SKIP_MODULES
+    global ONLY_NAMED_AND_SUBS
 
     pairs = parse_toml(path)
     if pairs:
         LOGGER.debug(f"Found config at {path}")
-    SKIP_TYPING = pairs.get("SKIP_TYPING", True)
-    PREFER_DOCS_PYTHON_ORG = pairs.get("PREFER_INTERNET_DOCUMENTATION", False)
+    PREFER_DOCS_PYTHON_ORG = pairs.get("PREFER_DOCS_PYTHON_ORG", False)
     DOCUMENT_INTERNALS = pairs.get("DOCUMENT_INTERNALS", True)
     SKIP_MODULES = pairs.get("SKIP_MODULES", ["typing"])
-
+    ONLY_NAMED_AND_SUBS= pairs.get("ONLY_NAMED_AND_SUBS", False)
 
 def parse_toml(path_string: Optional[str]) -> Dict[str, Any]:
     """Parse toml"""

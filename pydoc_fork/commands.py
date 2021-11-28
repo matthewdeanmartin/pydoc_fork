@@ -11,6 +11,7 @@ from typing import List, Optional, Union
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
+from pydoc_fork.inspector.module_utils import ImportTimeError
 from pydoc_fork.inspector.path_utils import _adjust_cli_sys_path, locate_file
 from pydoc_fork.inspector.utils import describe, resolve
 from pydoc_fork.reporter.format_page import render
@@ -18,14 +19,17 @@ from pydoc_fork.reporter.format_page import render
 LOGGER = logging.getLogger(__name__)
 
 
-def writedoc(
+def document_one(
     thing: Union[TypeLike, str],
     output_folder: str,
     force_load: bool = False,
 ) -> Optional[str]:
     """Write HTML documentation to a file in the current directory."""
-    # try:
-    the_object, name = resolve(thing, force_load)
+    try:
+        the_object, name = resolve(thing, force_load)
+    except (ImportError, ImportTimeError):
+        LOGGER.warning(f"document_one failed for {str(thing)} with folder {output_folder}")
+        return None
 
     # MR
     # should go in constructor, but what? no constructor
@@ -74,15 +78,15 @@ def write_docs_per_module(
         # file
 
         if module.lower().endswith(".py"):
-            full_path = writedoc(module[:-3], output_folder)
+            full_path = document_one(module[:-3], output_folder)
             if full_path:
                 written.append(full_path)
         else:
-            full_path = writedoc(module, output_folder)
+            full_path = document_one(module, output_folder)
             if full_path:
                 written.append(full_path)
             # "." needs to mean pwd... does it?
-            full_paths = writedocs(".", output_folder, for_only=module)
+            full_paths = document_directory(".", output_folder, for_only=module)
             written.extend(full_paths)
     # One pass, not ready to walk entire tree.
 
@@ -110,7 +114,7 @@ def write_docs_live_module(
         if os.path.exists(full_path) and skip_if_written:
             settings.MENTIONED_MODULES.discard(module)
         else:
-            actual_full_path = writedoc(thing, output_folder)
+            actual_full_path = document_one(thing, output_folder)
             total_third_party += 1
             if actual_full_path:
                 written.append(actual_full_path)
@@ -120,7 +124,7 @@ def write_docs_live_module(
     return written
 
 
-def writedocs(
+def document_directory(
     source_directory: str,
     output_folder: str,
     for_only: str = "",
@@ -128,14 +132,14 @@ def writedocs(
     """Write out HTML documentation for all modules in a directory tree."""
     package_path = ""
     # walk packages is why pydoc drags along with it tests folders
-    LOGGER.debug(f"Walking packages for {source_directory}")
+    LOGGER.debug(f"document_directory: Walking packages for {source_directory}")
 
     full_paths: List[str] = []
     for _, modname, _ in pkgutil.walk_packages([source_directory], package_path):
         if not str(modname).startswith(for_only):
             continue
-        LOGGER.debug(f"documenting {modname})")
-        full_path = writedoc(modname, output_folder)
+        LOGGER.debug(f"document_directory: current module: {modname})")
+        full_path = document_one(modname, output_folder)
         if full_path:
             full_paths.append(full_path)
     return full_paths
@@ -158,7 +162,7 @@ def process_path_or_dot_name(
     Returns:
         List of successfully documented modules
     """
-    LOGGER.debug(f"Processing {files} and writing to {output_folder}")
+    LOGGER.debug(f"process_path_or_dot_name for {files} and writing to {output_folder}")
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
