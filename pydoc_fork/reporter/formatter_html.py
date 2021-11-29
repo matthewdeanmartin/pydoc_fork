@@ -28,7 +28,10 @@ STDLIB_BASEDIR = cast(str, sysconfig.get_path("stdlib"))
 def html_repr(value: Any) -> str:  # noqa - unhiding could break code?
     """Turn method into function"""
     _repr_instance = HTMLRepr()
-    return _repr_instance.repr(value)
+    try:
+        return _repr_instance.repr(value)
+    except Exception as exception:
+        return f"No representation, got {str(exception)}"
 
 
 def escape(value: Any) -> str:
