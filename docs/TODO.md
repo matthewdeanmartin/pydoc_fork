@@ -10,6 +10,18 @@ Real world documentation comes wildly different formats, missing, all over the p
 
 
 ### TODO:
+- https://pypi.org/project/docstring-parser/
+- FEATURE:
+  - pydoc_fork --path .
+  - pydoc_fork --path foo.py
+  - pydoc_fork --dot_path foo.bar 
+  - pydoc_fork --package bs4
+- bug: when folder is empty, still pulls in `site` and dependencies (how?!)
+- need clean folder option
+- bug, writes . folder as ..html
+- bug, misleading message if you omit --output folder
+- irritation, no abbreviation for --output
+- just copy pdoc, pydoc or the likes extension switches
 - Detect MD or RST &amp; format as such
 - Separate "document source code at this path" from "document this imported type/module" eg:
   - pydoc_fork foo.bar

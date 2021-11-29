@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.10.0" />
-<title>pydoc_fork API documentation</title>
-<meta name="description" content="Generate Python documentation in HTML" />
+<title>pydoc_fork.reporter.inline_styles API documentation</title>
+<meta name="description" content="Style sheet for hardcoded styles" />
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
 <link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
 <link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
@@ -19,64 +19,24 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Package <code>pydoc_fork</code></h1>
+<h1 class="title">Module <code>pydoc_fork.reporter.inline_styles</code></h1>
 </header>
 <section id="section-intro">
-<p>Generate Python documentation in HTML</p>
+<p>Style sheet for hardcoded styles</p>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;Generate Python documentation in HTML&#34;&#34;&#34;
-# __all__ = [&#39;help&#39;]
-__author__ = &#34;Ka-Ping Yee &lt;ping@lfw.org&gt;&#34;
-__date__ = &#34;26 February 2001&#34;
-
-__credits__ = &#34;&#34;&#34;Guido van Rossum, for an excellent programming language.
-Tommy Burnette, the original creator of manpy.
-Paul Prescod, for all his work on onlinehelp.
-Richard Chamberlain, for the first implementation of textdoc.
+<pre><code class="python">&#34;&#34;&#34;
+Style sheet for hardcoded styles
 &#34;&#34;&#34;
-
-# Known bugs that can&#39;t be fixed here:
-#   - synopsis() cannot be prevented from clobbering existing
-#     loaded modules.
-#   - If the __file__ attribute on a module is a relative path and
-#     the current directory is changed with os.chdir(), an incorrect
-#     path will be displayed.
-from pydoc_fork.commands import *  # noqa
-
-# from pydoc_fork.formatter_html import *  # noqa
-# from pydoc_fork.module_utils import *  # noqa
-# from pydoc_fork.path_utils import *  # noqa
-# from pydoc_fork.string_utils import *  # noqa
-# from pydoc_fork.utils import *  # noqa
-
-# forgot why I needed this
-# __spec__ = &#34;123&#34;  # noqa</code></pre>
+REPR_COLOR = &#34;#c040c0&#34;  # purple
+DISABLED_TEXT = &#34;#909090&#34;  # grey
+MODULE_LINK = &#34;&#34;  # ffffff&#34; # white
+SAN_SERIF = &#34;helvetica, arial, sans-serif&#34;</code></pre>
 </details>
 </section>
 <section>
-<h2 class="section-title" id="header-submodules">Sub-modules</h2>
-<dl>
-<dt><code class="name"><a title="pydoc_fork.commands" href="commands.html">pydoc_fork.commands</a></code></dt>
-<dd>
-<div class="desc"><p>Process commands as pure python functions …</p></div>
-</dd>
-<dt><code class="name"><a title="pydoc_fork.inspector" href="inspector/index.html">pydoc_fork.inspector</a></code></dt>
-<dd>
-<div class="desc"><p>This submodule has all the logic related to type-lookup and type-discovery. It has nothing to do with
-UI output other than it is creating a view model …</p></div>
-</dd>
-<dt><code class="name"><a title="pydoc_fork.reporter" href="reporter/index.html">pydoc_fork.reporter</a></code></dt>
-<dd>
-<div class="desc"><p>This module has everything that turns type info into html …</p></div>
-</dd>
-<dt><code class="name"><a title="pydoc_fork.settings" href="settings.html">pydoc_fork.settings</a></code></dt>
-<dd>
-<div class="desc"><p>Configuration options that could be used by anything …</p></div>
-</dd>
-</dl>
 </section>
 <section>
 </section>
@@ -91,12 +51,9 @@ UI output other than it is creating a view model …</p></div>
 <ul></ul>
 </div>
 <ul id="index">
-<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<li><h3>Super-module</h3>
 <ul>
-<li><code><a title="pydoc_fork.commands" href="commands.html">pydoc_fork.commands</a></code></li>
-<li><code><a title="pydoc_fork.inspector" href="inspector/index.html">pydoc_fork.inspector</a></code></li>
-<li><code><a title="pydoc_fork.reporter" href="reporter/index.html">pydoc_fork.reporter</a></code></li>
-<li><code><a title="pydoc_fork.settings" href="settings.html">pydoc_fork.settings</a></code></li>
+<li><code><a title="pydoc_fork.reporter" href="index.html">pydoc_fork.reporter</a></code></li>
 </ul>
 </li>
 </ul>

@@ -53,7 +53,8 @@ Standard library pydoc recognizes none of those.
 - Pycharm Ctrl-Q
 - Pycharm Docutil RST compilation
 - Pycharm Sphinx RST compilation
-
+- VSCode generator - https://pythonrepo.com/repo/NilsJPWerner-autoDocstring-python-documentation
+- 
 
 # to review
 -

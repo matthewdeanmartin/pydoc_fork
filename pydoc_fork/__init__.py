@@ -1,4 +1,4 @@
-"""Generate Python documentation in HTML"""
+"""Generate Python documentation in HTML."""
 # __all__ = ['help']
 __author__ = "Ka-Ping Yee <ping@lfw.org>"
 __date__ = "26 February 2001"

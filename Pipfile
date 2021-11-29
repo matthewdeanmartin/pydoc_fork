@@ -54,6 +54,7 @@ darglint = "*"
 types-docutils = "*"
 types-markdown = "*"
 blacken-docs = "*"
+docstring-parser = "*"
 
 [requires]
 python_version = "3.9"

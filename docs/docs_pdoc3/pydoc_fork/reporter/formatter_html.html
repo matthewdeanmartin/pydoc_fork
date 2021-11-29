@@ -1,0 +1,699 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pydoc_fork.reporter.formatter_html API documentation</title>
+<meta name="description" content="Roughly components" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pydoc_fork.reporter.formatter_html</code></h1>
+</header>
+<section id="section-intro">
+<p>Roughly components</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Roughly components
+&#34;&#34;&#34;
+import logging
+import re
+import sysconfig
+from enum import Enum
+from typing import Any, Callable, Dict, Optional, Sequence, Tuple, Union, cast
+
+import markdown
+
+from pydoc_fork import settings
+from pydoc_fork.inspector.module_utils import ImportTimeError
+from pydoc_fork.inspector.utils import resolve
+from pydoc_fork.reporter import inline_styles
+from pydoc_fork.reporter.html_repr_class import HTMLRepr
+from pydoc_fork.reporter.jinja_code import JINJA_ENV
+from pydoc_fork.reporter.rst_support import rst_to_html
+from pydoc_fork.reporter.string_utils import replace
+
+LOGGER = logging.getLogger(__name__)
+STDLIB_BASEDIR = cast(str, sysconfig.get_path(&#34;stdlib&#34;))
+
+&#34;&#34;&#34;Formatter class for HTML documentation.&#34;&#34;&#34;
+
+
+# monkey patching was messing with mypy-- is this now a redeclare?
+def html_repr(value: Any) -&gt; str:  # noqa - unhiding could break code?
+    &#34;&#34;&#34;Turn method into function&#34;&#34;&#34;
+    _repr_instance = HTMLRepr()
+    return _repr_instance.repr(value)
+
+
+def escape(value: Any) -&gt; str:
+    &#34;&#34;&#34;HTML safe repr and escape&#34;&#34;&#34;
+    _repr_instance = HTMLRepr()
+    result = _repr_instance.escape(value)
+    if &#34;&amp;amp;gt;&#34; in result:
+        print(&#34;possible double escape&#34;)
+    return result
+
+
+def heading(title: str, fgcol: str, bgcol: str, extras: str = &#34;&#34;) -&gt; str:
+    &#34;&#34;&#34;Format a page heading.&#34;&#34;&#34;
+    template = JINJA_ENV.get_template(&#34;heading.jinja2&#34;)
+    return template.render(title=title, fgcol=fgcol, bgcol=bgcol, extras=extras)
+
+
+def section(
+    title: str,
+    fgcol: str,
+    bgcol: str,
+    contents: str,
+    width: int = 6,  # used by marginalia?
+    prelude: str = &#34;&#34;,
+    marginalia: str = &#34;&#34;,  # not used
+    gap: str = &#34;&amp;nbsp;&#34;,  # not used
+) -&gt; str:
+    &#34;&#34;&#34;Format a section with a heading.&#34;&#34;&#34;
+    if marginalia is None:
+        marginalia = &#34;&lt;tt&gt;&#34; + &#34;&amp;nbsp;&#34; * width + &#34;&lt;/tt&gt;&#34;
+    template = JINJA_ENV.get_template(&#34;section.jinja2&#34;)
+    return template.render(
+        title=title,
+        fgcol=fgcol,
+        bgcol=bgcol,
+        marginalia=marginalia,
+        prelude=prelude,
+        contents=contents,
+        gap=gap,
+    )
+
+
+def bigsection(
+    title: str,
+    fgcol: str,
+    bgcol: str,
+    contents: str,
+    width: int = 6,  # used by marginalia?
+    prelude: str = &#34;&#34;,
+    marginalia: str = &#34;&#34;,  # not used
+    gap: str = &#34;&amp;nbsp;&#34;,  # not used
+) -&gt; str:
+    &#34;&#34;&#34;Format a section with a big heading.&#34;&#34;&#34;
+    title = f&#34;&lt;big&gt;&lt;strong&gt;{title}&lt;/strong&gt;&lt;/big&gt;&#34;
+    # prefer explicit interfaces over secret hidden ones
+    return section(title, fgcol, bgcol, contents, width, prelude, marginalia, gap)
+
+
+def preformat(text: str) -&gt; str:
+    &#34;&#34;&#34;Format literal preformatted text.&#34;&#34;&#34;
+    text = escape(text.expandtabs())
+    return replace(
+        text, &#34;\n\n&#34;, &#34;\n \n&#34;, &#34;\n\n&#34;, &#34;\n \n&#34;, &#34; &#34;, &#34;&amp;nbsp;&#34;, &#34;\n&#34;, &#34;&lt;br&gt;\n&#34;
+    )
+
+
+def multicolumn(
+    the_list: Union[Sequence[Tuple[Any, str, Any, int]], Sequence[Tuple[str, Any]]],
+    the_format: Callable[[Any], str],
+    cols: int = 4,
+) -&gt; str:
+    &#34;&#34;&#34;Format a list of items into a multi-column list.&#34;&#34;&#34;
+    result = &#34;&#34;
+    rows = (len(the_list) + cols - 1) // cols
+    for col in range(cols):
+        result = result + &#39;&lt;td width=&#34;%d%%&#34; valign=top&gt;&#39; % (100 // cols)
+        for i in range(rows * col, rows * col + rows):
+            if i &lt; len(the_list):
+                result = result + the_format(the_list[i]) + &#34;&lt;br&gt;\n&#34;
+        result = result + &#34;&lt;/td&gt;&#34;
+    return f&#39;&lt;table width=&#34;100%%&#34; summary=&#34;list&#34;&gt;&lt;tr&gt;{result}&lt;/tr&gt;&lt;/table&gt;&#39;
+
+
+def disabled_text(text: str) -&gt; str:
+    &#34;&#34;&#34;Wrap in grey&#34;&#34;&#34;
+    return f&#39;&lt;span style=&#34;color:{inline_styles.DISABLED_TEXT}&#34;&gt;{text}&lt;/span&gt;&#39;
+
+
+def namelink(name: str, *dicts: Dict[str, str]) -&gt; str:
+    &#34;&#34;&#34;Make a link for an identifier, given name-to-URL mappings.&#34;&#34;&#34;
+    for the_dict in dicts:
+        if name in the_dict:
+            return f&#39;&lt;a href=&#34;{the_dict[name]}&#34;&gt;{name}&lt;/a&gt;&#39;
+    # LOGGER.warning(f&#34;Failed to find link for {name}&#34;)
+    return name
+
+
+def module_package_link(module_package_info: Tuple[str, str, str, str]) -&gt; str:
+    &#34;&#34;&#34;Make a link for a module or package to display in an index.&#34;&#34;&#34;
+    name, path, ispackage, shadowed = module_package_info
+    try:
+        settings.MENTIONED_MODULES.add((resolve(path + &#34;.&#34; + name)[0], name))
+    except (ImportTimeError, ImportError):
+        print(f&#34;Can&#39;t import {name}, won&#39;t doc&#34;)
+    if shadowed:
+        return disabled_text(name)
+    if path:
+        url = f&#34;{path}.{name}.html&#34;
+    else:
+        url = f&#34;{name}.html&#34;
+    if ispackage:
+        text = f&#34;&lt;strong&gt;{name}&lt;/strong&gt;&amp;nbsp;(package)&#34;
+    else:
+        text = name
+    return f&#39;&lt;a href=&#34;{url}&#34;&gt;{text}&lt;/a&gt;&#39;
+
+
+def file_link(url: str, path: str) -&gt; str:
+    &#34;&#34;&#34;Make a link to source file.&#34;&#34;&#34;
+    return f&#39;&lt;a href=&#34;file:{url}&#34;&gt;{path}&lt;/a&gt;&#39;
+
+
+class MarkupSyntax(Enum):
+    &#34;&#34;&#34;Syntax type we assume comments are using&#34;&#34;&#34;
+
+    NOTHING = 0
+    RST = 1
+    MARKDOWN = 2
+
+
+def markup(
+    text: str,
+    funcs: Optional[Dict[str, str]] = None,
+    classes: Optional[Dict[str, str]] = None,
+    methods: Optional[Dict[str, str]] = None,
+) -&gt; str:
+    &#34;&#34;&#34;
+    Replace all linkable things with links of appropriate syntax.
+
+    Handle either an adhoc markup language, or RST or Markdown.
+    funcs, classes, methods are name/symbol to URL maps.
+    &#34;&#34;&#34;
+    funcs = funcs or {}
+    classes = classes or {}
+    methods = methods or {}
+
+    syntax = MarkupSyntax.NOTHING
+
+    def nothing(_: str) -&gt; str:
+        &#34;&#34;&#34;Does nothing&#34;&#34;&#34;
+        return _
+
+    if syntax == MarkupSyntax.NOTHING:
+        _preformat = preformat
+        markup_to_html = nothing
+    elif syntax == MarkupSyntax.RST:
+        _preformat = nothing
+        markup_to_html = rst_to_html
+        # make_rst_link =
+    elif syntax == MarkupSyntax.MARKDOWN:
+        _preformat = nothing
+        markup_to_html = markdown.markdown
+        # make_markdown_link =
+    else:
+        raise NotImplementedError()
+
+    results = []
+    here = 0
+    pattern = re.compile(
+        r&#34;\b((http|https|ftp)://\S+[\w/]|&#34;
+        r&#34;RFC[- ]?(\d+)|&#34;
+        r&#34;PEP[- ]?(\d+)|&#34;
+        r&#34;(self\.)?(\w+))&#34;
+    )
+    while True:
+        match = pattern.search(text, here)
+        if not match:
+            break
+        start, end = match.span()
+        results.append(_preformat(text[here:start]))
+
+        the_all, scheme, rfc, pep, self_dot, name = match.groups()
+        if scheme:
+            # Hyperlink actual urls
+            url = _preformat(the_all).replace(&#39;&#34;&#39;, &#34;&amp;quot;&#34;)
+            results.append(f&#39;&lt;a href=&#34;{url}&#34;&gt;{url}&lt;/a&gt;&#39;)
+        elif rfc:
+            url = &#34;https://www.rfc-editor.org/rfc/rfc%d.txt&#34; % int(rfc)
+            results.append(f&#39;&lt;a href=&#34;{url}&#34;&gt;{_preformat(the_all)}&lt;/a&gt;&#39;)
+        elif pep:
+            url = &#34;https://www.python.org/dev/peps/pep-%04d/&#34; % int(pep)
+            results.append(f&#39;&lt;a href=&#34;{url}&#34;&gt;{_preformat(the_all)}&lt;/a&gt;&#39;)
+        elif self_dot:
+            # Create a link for methods like &#39;self.method(...)&#39;
+            # and use &lt;strong&gt; for attributes like &#39;self.attr&#39;
+            if text[end : end + 1] == &#34;(&#34;:
+                results.append(&#34;self.&#34; + namelink(name, methods))
+            else:
+                results.append(f&#34;self.&lt;strong&gt;{name}&lt;/strong&gt;&#34;)
+        elif text[end : end + 1] == &#34;(&#34;:
+            results.append(namelink(name, methods, funcs, classes))
+        else:
+            # This assumes everything else is a class!!
+            results.append(namelink(name, classes))
+        here = end
+    # plain text with links to HTML
+    results.append(_preformat(text[here:]))
+    rejoined_semi_html = &#34;&#34;.join(results)
+    return markup_to_html(rejoined_semi_html)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-variables">Global variables</h2>
+<dl>
+<dt id="pydoc_fork.reporter.formatter_html.STDLIB_BASEDIR"><code class="name">var <span class="ident">STDLIB_BASEDIR</span></code></dt>
+<dd>
+<div class="desc"><p>Formatter class for HTML documentation.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="pydoc_fork.reporter.formatter_html.bigsection"><code class="name flex">
+<span>def <span class="ident">bigsection</span></span>(<span>title: str, fgcol: str, bgcol: str, contents: str, width: int = 6, prelude: str = '', marginalia: str = '', gap: str = '&nbsp;') ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Format a section with a big heading.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bigsection(
+    title: str,
+    fgcol: str,
+    bgcol: str,
+    contents: str,
+    width: int = 6,  # used by marginalia?
+    prelude: str = &#34;&#34;,
+    marginalia: str = &#34;&#34;,  # not used
+    gap: str = &#34;&amp;nbsp;&#34;,  # not used
+) -&gt; str:
+    &#34;&#34;&#34;Format a section with a big heading.&#34;&#34;&#34;
+    title = f&#34;&lt;big&gt;&lt;strong&gt;{title}&lt;/strong&gt;&lt;/big&gt;&#34;
+    # prefer explicit interfaces over secret hidden ones
+    return section(title, fgcol, bgcol, contents, width, prelude, marginalia, gap)</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.disabled_text"><code class="name flex">
+<span>def <span class="ident">disabled_text</span></span>(<span>text: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Wrap in grey</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def disabled_text(text: str) -&gt; str:
+    &#34;&#34;&#34;Wrap in grey&#34;&#34;&#34;
+    return f&#39;&lt;span style=&#34;color:{inline_styles.DISABLED_TEXT}&#34;&gt;{text}&lt;/span&gt;&#39;</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.escape"><code class="name flex">
+<span>def <span class="ident">escape</span></span>(<span>value: Any) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>HTML safe repr and escape</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def escape(value: Any) -&gt; str:
+    &#34;&#34;&#34;HTML safe repr and escape&#34;&#34;&#34;
+    _repr_instance = HTMLRepr()
+    result = _repr_instance.escape(value)
+    if &#34;&amp;amp;gt;&#34; in result:
+        print(&#34;possible double escape&#34;)
+    return result</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.file_link"><code class="name flex">
+<span>def <span class="ident">file_link</span></span>(<span>url: str, path: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Make a link to source file.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def file_link(url: str, path: str) -&gt; str:
+    &#34;&#34;&#34;Make a link to source file.&#34;&#34;&#34;
+    return f&#39;&lt;a href=&#34;file:{url}&#34;&gt;{path}&lt;/a&gt;&#39;</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.heading"><code class="name flex">
+<span>def <span class="ident">heading</span></span>(<span>title: str, fgcol: str, bgcol: str, extras: str = '') ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Format a page heading.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def heading(title: str, fgcol: str, bgcol: str, extras: str = &#34;&#34;) -&gt; str:
+    &#34;&#34;&#34;Format a page heading.&#34;&#34;&#34;
+    template = JINJA_ENV.get_template(&#34;heading.jinja2&#34;)
+    return template.render(title=title, fgcol=fgcol, bgcol=bgcol, extras=extras)</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.html_repr"><code class="name flex">
+<span>def <span class="ident">html_repr</span></span>(<span>value: Any) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Turn method into function</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def html_repr(value: Any) -&gt; str:  # noqa - unhiding could break code?
+    &#34;&#34;&#34;Turn method into function&#34;&#34;&#34;
+    _repr_instance = HTMLRepr()
+    return _repr_instance.repr(value)</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.markup"><code class="name flex">
+<span>def <span class="ident">markup</span></span>(<span>text: str, funcs: Optional[Dict[str, str]] = None, classes: Optional[Dict[str, str]] = None, methods: Optional[Dict[str, str]] = None) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Replace all linkable things with links of appropriate syntax.</p>
+<p>Handle either an adhoc markup language, or RST or Markdown.
+funcs, classes, methods are name/symbol to URL maps.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def markup(
+    text: str,
+    funcs: Optional[Dict[str, str]] = None,
+    classes: Optional[Dict[str, str]] = None,
+    methods: Optional[Dict[str, str]] = None,
+) -&gt; str:
+    &#34;&#34;&#34;
+    Replace all linkable things with links of appropriate syntax.
+
+    Handle either an adhoc markup language, or RST or Markdown.
+    funcs, classes, methods are name/symbol to URL maps.
+    &#34;&#34;&#34;
+    funcs = funcs or {}
+    classes = classes or {}
+    methods = methods or {}
+
+    syntax = MarkupSyntax.NOTHING
+
+    def nothing(_: str) -&gt; str:
+        &#34;&#34;&#34;Does nothing&#34;&#34;&#34;
+        return _
+
+    if syntax == MarkupSyntax.NOTHING:
+        _preformat = preformat
+        markup_to_html = nothing
+    elif syntax == MarkupSyntax.RST:
+        _preformat = nothing
+        markup_to_html = rst_to_html
+        # make_rst_link =
+    elif syntax == MarkupSyntax.MARKDOWN:
+        _preformat = nothing
+        markup_to_html = markdown.markdown
+        # make_markdown_link =
+    else:
+        raise NotImplementedError()
+
+    results = []
+    here = 0
+    pattern = re.compile(
+        r&#34;\b((http|https|ftp)://\S+[\w/]|&#34;
+        r&#34;RFC[- ]?(\d+)|&#34;
+        r&#34;PEP[- ]?(\d+)|&#34;
+        r&#34;(self\.)?(\w+))&#34;
+    )
+    while True:
+        match = pattern.search(text, here)
+        if not match:
+            break
+        start, end = match.span()
+        results.append(_preformat(text[here:start]))
+
+        the_all, scheme, rfc, pep, self_dot, name = match.groups()
+        if scheme:
+            # Hyperlink actual urls
+            url = _preformat(the_all).replace(&#39;&#34;&#39;, &#34;&amp;quot;&#34;)
+            results.append(f&#39;&lt;a href=&#34;{url}&#34;&gt;{url}&lt;/a&gt;&#39;)
+        elif rfc:
+            url = &#34;https://www.rfc-editor.org/rfc/rfc%d.txt&#34; % int(rfc)
+            results.append(f&#39;&lt;a href=&#34;{url}&#34;&gt;{_preformat(the_all)}&lt;/a&gt;&#39;)
+        elif pep:
+            url = &#34;https://www.python.org/dev/peps/pep-%04d/&#34; % int(pep)
+            results.append(f&#39;&lt;a href=&#34;{url}&#34;&gt;{_preformat(the_all)}&lt;/a&gt;&#39;)
+        elif self_dot:
+            # Create a link for methods like &#39;self.method(...)&#39;
+            # and use &lt;strong&gt; for attributes like &#39;self.attr&#39;
+            if text[end : end + 1] == &#34;(&#34;:
+                results.append(&#34;self.&#34; + namelink(name, methods))
+            else:
+                results.append(f&#34;self.&lt;strong&gt;{name}&lt;/strong&gt;&#34;)
+        elif text[end : end + 1] == &#34;(&#34;:
+            results.append(namelink(name, methods, funcs, classes))
+        else:
+            # This assumes everything else is a class!!
+            results.append(namelink(name, classes))
+        here = end
+    # plain text with links to HTML
+    results.append(_preformat(text[here:]))
+    rejoined_semi_html = &#34;&#34;.join(results)
+    return markup_to_html(rejoined_semi_html)</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.module_package_link"><code class="name flex">
+<span>def <span class="ident">module_package_link</span></span>(<span>module_package_info: Tuple[str, str, str, str]) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Make a link for a module or package to display in an index.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def module_package_link(module_package_info: Tuple[str, str, str, str]) -&gt; str:
+    &#34;&#34;&#34;Make a link for a module or package to display in an index.&#34;&#34;&#34;
+    name, path, ispackage, shadowed = module_package_info
+    try:
+        settings.MENTIONED_MODULES.add((resolve(path + &#34;.&#34; + name)[0], name))
+    except (ImportTimeError, ImportError):
+        print(f&#34;Can&#39;t import {name}, won&#39;t doc&#34;)
+    if shadowed:
+        return disabled_text(name)
+    if path:
+        url = f&#34;{path}.{name}.html&#34;
+    else:
+        url = f&#34;{name}.html&#34;
+    if ispackage:
+        text = f&#34;&lt;strong&gt;{name}&lt;/strong&gt;&amp;nbsp;(package)&#34;
+    else:
+        text = name
+    return f&#39;&lt;a href=&#34;{url}&#34;&gt;{text}&lt;/a&gt;&#39;</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.multicolumn"><code class="name flex">
+<span>def <span class="ident">multicolumn</span></span>(<span>the_list: Union[Sequence[Tuple[Any, str, Any, int]], Sequence[Tuple[str, Any]]], the_format: Callable[[Any], str], cols: int = 4) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Format a list of items into a multi-column list.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def multicolumn(
+    the_list: Union[Sequence[Tuple[Any, str, Any, int]], Sequence[Tuple[str, Any]]],
+    the_format: Callable[[Any], str],
+    cols: int = 4,
+) -&gt; str:
+    &#34;&#34;&#34;Format a list of items into a multi-column list.&#34;&#34;&#34;
+    result = &#34;&#34;
+    rows = (len(the_list) + cols - 1) // cols
+    for col in range(cols):
+        result = result + &#39;&lt;td width=&#34;%d%%&#34; valign=top&gt;&#39; % (100 // cols)
+        for i in range(rows * col, rows * col + rows):
+            if i &lt; len(the_list):
+                result = result + the_format(the_list[i]) + &#34;&lt;br&gt;\n&#34;
+        result = result + &#34;&lt;/td&gt;&#34;
+    return f&#39;&lt;table width=&#34;100%%&#34; summary=&#34;list&#34;&gt;&lt;tr&gt;{result}&lt;/tr&gt;&lt;/table&gt;&#39;</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.namelink"><code class="name flex">
+<span>def <span class="ident">namelink</span></span>(<span>name: str, *dicts: Dict[str, str]) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Make a link for an identifier, given name-to-URL mappings.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def namelink(name: str, *dicts: Dict[str, str]) -&gt; str:
+    &#34;&#34;&#34;Make a link for an identifier, given name-to-URL mappings.&#34;&#34;&#34;
+    for the_dict in dicts:
+        if name in the_dict:
+            return f&#39;&lt;a href=&#34;{the_dict[name]}&#34;&gt;{name}&lt;/a&gt;&#39;
+    # LOGGER.warning(f&#34;Failed to find link for {name}&#34;)
+    return name</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.preformat"><code class="name flex">
+<span>def <span class="ident">preformat</span></span>(<span>text: str) ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Format literal preformatted text.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def preformat(text: str) -&gt; str:
+    &#34;&#34;&#34;Format literal preformatted text.&#34;&#34;&#34;
+    text = escape(text.expandtabs())
+    return replace(
+        text, &#34;\n\n&#34;, &#34;\n \n&#34;, &#34;\n\n&#34;, &#34;\n \n&#34;, &#34; &#34;, &#34;&amp;nbsp;&#34;, &#34;\n&#34;, &#34;&lt;br&gt;\n&#34;
+    )</code></pre>
+</details>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.section"><code class="name flex">
+<span>def <span class="ident">section</span></span>(<span>title: str, fgcol: str, bgcol: str, contents: str, width: int = 6, prelude: str = '', marginalia: str = '', gap: str = '&nbsp;') ‑> str</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Format a section with a heading.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def section(
+    title: str,
+    fgcol: str,
+    bgcol: str,
+    contents: str,
+    width: int = 6,  # used by marginalia?
+    prelude: str = &#34;&#34;,
+    marginalia: str = &#34;&#34;,  # not used
+    gap: str = &#34;&amp;nbsp;&#34;,  # not used
+) -&gt; str:
+    &#34;&#34;&#34;Format a section with a heading.&#34;&#34;&#34;
+    if marginalia is None:
+        marginalia = &#34;&lt;tt&gt;&#34; + &#34;&amp;nbsp;&#34; * width + &#34;&lt;/tt&gt;&#34;
+    template = JINJA_ENV.get_template(&#34;section.jinja2&#34;)
+    return template.render(
+        title=title,
+        fgcol=fgcol,
+        bgcol=bgcol,
+        marginalia=marginalia,
+        prelude=prelude,
+        contents=contents,
+        gap=gap,
+    )</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pydoc_fork.reporter.formatter_html.MarkupSyntax"><code class="flex name class">
+<span>class <span class="ident">MarkupSyntax</span></span>
+<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Syntax type we assume comments are using</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class MarkupSyntax(Enum):
+    &#34;&#34;&#34;Syntax type we assume comments are using&#34;&#34;&#34;
+
+    NOTHING = 0
+    RST = 1
+    MARKDOWN = 2</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>enum.Enum</li>
+</ul>
+<h3>Class variables</h3>
+<dl>
+<dt id="pydoc_fork.reporter.formatter_html.MarkupSyntax.MARKDOWN"><code class="name">var <span class="ident">MARKDOWN</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.MarkupSyntax.NOTHING"><code class="name">var <span class="ident">NOTHING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="pydoc_fork.reporter.formatter_html.MarkupSyntax.RST"><code class="name">var <span class="ident">RST</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pydoc_fork.reporter" href="index.html">pydoc_fork.reporter</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-variables">Global variables</a></h3>
+<ul class="">
+<li><code><a title="pydoc_fork.reporter.formatter_html.STDLIB_BASEDIR" href="#pydoc_fork.reporter.formatter_html.STDLIB_BASEDIR">STDLIB_BASEDIR</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="pydoc_fork.reporter.formatter_html.bigsection" href="#pydoc_fork.reporter.formatter_html.bigsection">bigsection</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.disabled_text" href="#pydoc_fork.reporter.formatter_html.disabled_text">disabled_text</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.escape" href="#pydoc_fork.reporter.formatter_html.escape">escape</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.file_link" href="#pydoc_fork.reporter.formatter_html.file_link">file_link</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.heading" href="#pydoc_fork.reporter.formatter_html.heading">heading</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.html_repr" href="#pydoc_fork.reporter.formatter_html.html_repr">html_repr</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.markup" href="#pydoc_fork.reporter.formatter_html.markup">markup</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.module_package_link" href="#pydoc_fork.reporter.formatter_html.module_package_link">module_package_link</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.multicolumn" href="#pydoc_fork.reporter.formatter_html.multicolumn">multicolumn</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.namelink" href="#pydoc_fork.reporter.formatter_html.namelink">namelink</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.preformat" href="#pydoc_fork.reporter.formatter_html.preformat">preformat</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.section" href="#pydoc_fork.reporter.formatter_html.section">section</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pydoc_fork.reporter.formatter_html.MarkupSyntax" href="#pydoc_fork.reporter.formatter_html.MarkupSyntax">MarkupSyntax</a></code></h4>
+<ul class="">
+<li><code><a title="pydoc_fork.reporter.formatter_html.MarkupSyntax.MARKDOWN" href="#pydoc_fork.reporter.formatter_html.MarkupSyntax.MARKDOWN">MARKDOWN</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.MarkupSyntax.NOTHING" href="#pydoc_fork.reporter.formatter_html.MarkupSyntax.NOTHING">NOTHING</a></code></li>
+<li><code><a title="pydoc_fork.reporter.formatter_html.MarkupSyntax.RST" href="#pydoc_fork.reporter.formatter_html.MarkupSyntax.RST">RST</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

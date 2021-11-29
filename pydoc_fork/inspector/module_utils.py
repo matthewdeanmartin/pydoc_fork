@@ -60,13 +60,15 @@ def safe_import(
     force_load: bool = False,
     cache: Dict[str, Any] = {},  # noqa - this is mutable on purpose!
 ) -> Any:
-    """Import a module; handle errors; return None if the module isn't found.
+    """
+    Import a module; handle errors; return None if the module isn't found.
 
     If the module *is* found but an exception occurs, it's wrapped in an
     ErrorDuringImport exception and reraised.  Unlike __import__, if a
     package path is specified, the module at the end of the path is returned,
     not the package at the beginning.  If the optional 'force_load' argument
-    is True, we reload the module from disk (unless it's a dynamic extension)."""
+    is True, we reload the module from disk (unless it's a dynamic extension).
+    """
     try:
         # If force_load is True and the module has been previously loaded from
         # disk, we always have to reload the module.  Checking the file's

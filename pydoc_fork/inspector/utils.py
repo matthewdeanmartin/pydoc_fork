@@ -155,7 +155,12 @@ def _getdoc(the_object: TypeLike) -> str:
             return ""  # null safety
     if not isinstance(doc, str):
         return ""  # null safety
-    return inspect.cleandoc(doc)
+    result = inspect.cleandoc(doc)
+    # not sure what to do with this not sure it validates.
+    # from docstring_parser import parse
+    # parsed_result = parse(result)
+    # https://pypi.org/project/jsonnet-docblock-parser/
+    return result
 
 
 def getdoc(the_object: TypeLike) -> str:
@@ -237,11 +242,15 @@ def visiblename(
     # Certain special names are redundant or internal.
     # XXX Remove __initializing__?
     if name in {
-        "__author__",
+        # people use these for all sorts of things
+        # "__author__",
+        # "__credits__",
+        # "__date__",
+        # "__version__",
+        #
+        # These are internal implementation details USUALLY
         "__builtins__",
         "__cached__",
-        "__credits__",
-        "__date__",
         "__doc__",
         "__file__",
         "__spec__",
@@ -252,7 +261,8 @@ def visiblename(
         "__path__",
         "__qualname__",
         "__slots__",
-        "__version__",
+        "__dict__",
+        "__weakref__",
     }:
         return False
     # Private names are hidden, but special names are displayed.

@@ -1,5 +1,4 @@
-"""
-Process commands as pure python functions.
+"""Process commands as pure python functions.
 
 All the CLI logic should be handled in __main__.
 """
@@ -20,9 +19,9 @@ LOGGER = logging.getLogger(__name__)
 
 
 def document_one(
-    thing: Union[TypeLike, str],
-    output_folder: str,
-    force_load: bool = False,
+        thing: Union[TypeLike, str],
+        output_folder: str,
+        force_load: bool = False,
 ) -> Optional[str]:
     """Write HTML documentation to a file in the current directory."""
     try:
@@ -48,35 +47,50 @@ def document_one(
 
 
 def calculate_file_name(name: str, output_folder: str) -> str:
-    """If this was written, what would its name be"""
+    """Returns name. If this was written, what would its name be"""
     name = (
         name.replace("<", "")
-        .replace(">", "")
-        .replace(":", "")
-        .replace(",", "_")
-        .replace(" ", "_")
-        .replace("(", "")
-        .replace(")", "")
+            .replace(">", "")
+            .replace(":", "")
+            .replace(",", "_")
+            .replace(" ", "_")
+            .replace("(", "")
+            .replace(")", "")
     )
     full_path = output_folder + os.sep + name + ".html"
 
     return full_path
 
 
+def modules_in_current() -> List[str]:
+    import os.path
+    import glob
+    current = os.getcwd()
+    files = glob.glob(os.path.join(os.path.dirname(current), "*.py"))
+    py_files = [os.path.basename(f)[:-3] for f in files if os.path.isdir(f)]
+    folders = glob.glob(os.path.join(os.path.dirname(current), "*.py"))
+
+    py_folders = [os.path.basename(f) for f in folders if os.path.isdir(f)]
+    found = py_files + py_folders
+    LOGGER.debug(f"Adding these modules from current folder to document {found}")
+    return found
+
+
 def write_docs_per_module(
-    modules: List[str],
-    output_folder: str,
-    skip_if_written: bool = False,
+        modules: List[str],
+        output_folder: str,
+        skip_if_written: bool = False,
 ) -> List[str]:
     """Write out HTML documentation for all modules in a directory tree."""
 
+    if "." in modules:
+        modules.extend(modules_in_current())
     # This is going to handle filesystem paths, e.g. ./module/submodule.py
     # There will be ANOTHER method to handle MODULE paths, e.g. module.submodule"
     # Attempting to mix these two types is a bad idea.
     written: List[str] = []
     for module in modules:
         # file
-
         if module.lower().endswith(".py"):
             full_path = document_one(module[:-3], output_folder)
             if full_path:
@@ -96,9 +110,9 @@ def write_docs_per_module(
 
 
 def write_docs_live_module(
-    output_folder: str,
-    total_third_party: int = 0,
-    skip_if_written: bool = False,
+        output_folder: str,
+        total_third_party: int = 0,
+        skip_if_written: bool = False,
 ) -> List[str]:
     """Write out HTML documentation for all modules in a directory tree."""
 
@@ -125,9 +139,9 @@ def write_docs_live_module(
 
 
 def document_directory(
-    source_directory: str,
-    output_folder: str,
-    for_only: str = "",
+        source_directory: str,
+        output_folder: str,
+        for_only: str = "",
 ) -> List[str]:
     """Write out HTML documentation for all modules in a directory tree."""
     package_path = ""
@@ -146,9 +160,9 @@ def document_directory(
 
 
 def process_path_or_dot_name(
-    files: List[str],
-    output_folder: str,
-    overwrite_existing: bool = False,
+        files: List[str],
+        output_folder: str,
+        overwrite_existing: bool = False,
 ) -> List[str]:
     """
     Generate html documentation for all modules found at paths or
@@ -174,12 +188,19 @@ def process_path_or_dot_name(
         files, output_folder, skip_if_written=not overwrite_existing
     )
 
+def something():
+    """ a doctest in a docstring
+    >>> something()
+    42
+    """
+    return 42
 
 if __name__ == "__main__":
-    process_path_or_dot_name([".\\"], output_folder="docs_api")
-    process_path_or_dot_name(["pydoc_fork"], output_folder="docs_api")
-    process_path_or_dot_name(["sys"], output_folder="docs_api")
-    process_path_or_dot_name(
-        ["cats"], output_folder="docs_api"
-    )  # writes cats.html, even tho this isn't a module!
-    process_path_or_dot_name(["inspect"], output_folder="docs_api")
+    process_path_or_dot_name(["."],output_folder="tmp")
+    # process_path_or_dot_name([".\\"], output_folder="docs_api")
+    # process_path_or_dot_name(["pydoc_fork"], output_folder="docs_api")
+    # process_path_or_dot_name(["sys"], output_folder="docs_api")
+    # process_path_or_dot_name(
+    #     ["cats"], output_folder="docs_api"
+    # )  # writes cats.html, even tho this isn't a module!
+    # process_path_or_dot_name(["inspect"], output_folder="docs_api")
