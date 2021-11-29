@@ -286,19 +286,13 @@ def docclass(
 def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -&gt; str:
     &#34;&#34;&#34;
     Creates a representation of class inheritance.
-
-    Args:
-        tree: list representing tree
-        modname: module name
-        parent: parent class
-
-    Returns: html representing class hierarchy
     &#34;&#34;&#34;
 
     # &#34;&#34;&#34;Produce HTML for a class tree as given by inspect.getclasstree().&#34;&#34;&#34;
     result = &#34;&#34;
     for entry in tree:
         class_object = entry
+        # pylint: disable=unidiomatic-typecheck
         if type(entry) is type(()):  # noqa - not sure of switching to isinstance
             class_object, bases = entry
             result = (
@@ -311,6 +305,7 @@ def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -&g
                     parents.append(classlink(base, modname))
                 result = result + &#34;(&#34; + &#34;, &#34;.join(parents) + &#34;)&#34;
             result = result + &#34;\n&lt;/span&gt;&lt;/dt&gt;&#34;
+
         elif type(entry) is type([]):  # noqa - not sure of switching to isinstance
             tree = format_tree(entry, modname, class_object)
             result = result + f&#34;&lt;dd&gt;\n{tree}&lt;/dd&gt;\n&#34;
@@ -576,17 +571,7 @@ def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -&g
 <span>def <span class="ident">format_tree</span></span>(<span>tree: List[Any], modname: str, parent: Optional[Any] = None) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Creates a representation of class inheritance.</p>
-<h2 id="args">Args</h2>
-<dl>
-<dt><strong><code>tree</code></strong></dt>
-<dd>list representing tree</dd>
-<dt><strong><code>modname</code></strong></dt>
-<dd>module name</dd>
-<dt><strong><code>parent</code></strong></dt>
-<dd>parent class</dd>
-</dl>
-<p>Returns: html representing class hierarchy</p></div>
+<div class="desc"><p>Creates a representation of class inheritance.</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -594,19 +579,13 @@ def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -&g
 <pre><code class="python">def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -&gt; str:
     &#34;&#34;&#34;
     Creates a representation of class inheritance.
-
-    Args:
-        tree: list representing tree
-        modname: module name
-        parent: parent class
-
-    Returns: html representing class hierarchy
     &#34;&#34;&#34;
 
     # &#34;&#34;&#34;Produce HTML for a class tree as given by inspect.getclasstree().&#34;&#34;&#34;
     result = &#34;&#34;
     for entry in tree:
         class_object = entry
+        # pylint: disable=unidiomatic-typecheck
         if type(entry) is type(()):  # noqa - not sure of switching to isinstance
             class_object, bases = entry
             result = (
@@ -619,6 +598,7 @@ def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -&g
                     parents.append(classlink(base, modname))
                 result = result + &#34;(&#34; + &#34;, &#34;.join(parents) + &#34;)&#34;
             result = result + &#34;\n&lt;/span&gt;&lt;/dt&gt;&#34;
+
         elif type(entry) is type([]):  # noqa - not sure of switching to isinstance
             tree = format_tree(entry, modname, class_object)
             result = result + f&#34;&lt;dd&gt;\n{tree}&lt;/dd&gt;\n&#34;

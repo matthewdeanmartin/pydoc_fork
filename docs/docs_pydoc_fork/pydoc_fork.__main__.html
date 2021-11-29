@@ -1,21 +1,39 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<html><head><title>Python: module pydoc_fork.__main__</title>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-</head><body bgcolor="#f0f0f8">
+<html lang="en">
+<head><title>Python: module pydoc_fork.__main__</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#f0f0f8">
+<table class="heading">
+    <tr style="background-color: #7799ee;">
+        <td class="title" style="vertical-align: bottom">&nbsp;<br>
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+            &nbsp;<br><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.__main__</strong></big></big> (version 3.0.0)
+            </span>
+        </td>
+        <td style="vertical-align: bottom; text-align: right;">
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+                <a href=".">index</a><br><a href="file:../../pydoc_fork/__main__.py">../../pydoc_fork/__main__.py</a>
+            </span>
+        </td>
+    </tr>
+</table>
 
-<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
-<tr bgcolor="#7799ee">
-<td valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong><a href="pydoc_fork.html"><font color="#ffffff">pydoc_fork</font></a>.__main__</strong></big></big> (version 3.0.0)</font></td
-><td align=right valign=bottom
-><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:pydoc_fork/__main__.py">pydoc_fork/__main__.py</a></font></td></tr></table>
+
+
+
+
+
+
+
+
+
 <p><tt>pydoc_fork<br>
 A&nbsp;fork&nbsp;of&nbsp;pydoc&nbsp;that&nbsp;is&nbsp;optimized&nbsp;for&nbsp;generating&nbsp;html&nbsp;documentation&nbsp;in&nbsp;a&nbsp;CI&nbsp;context<br>
 &nbsp;<br>
 Usage:<br>
-&nbsp;&nbsp;pydoc_fork&nbsp;&lt;package&gt;...&nbsp;[--output=&lt;folder&gt;]&nbsp;[--document_internals]<br>
-&nbsp;&nbsp;pydoc_fork&nbsp;importable&nbsp;&lt;importable&gt;...&nbsp;[--output=&lt;folder&gt;]&nbsp;[--document_internals]<br>
-&nbsp;&nbsp;pydoc_fork&nbsp;source&nbsp;&lt;path&gt;...&nbsp;[--output=&lt;folder&gt;]&nbsp;[--document_internals]<br>
+&nbsp;&nbsp;pydoc_fork&nbsp;&lt;package&gt;...&nbsp;[options]<br>
 &nbsp;&nbsp;pydoc_fork&nbsp;(-h&nbsp;|&nbsp;--help)<br>
 &nbsp;&nbsp;pydoc_fork&nbsp;--version<br>
 &nbsp;<br>
@@ -23,41 +41,85 @@ Options:<br>
 &nbsp;&nbsp;-h&nbsp;--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show&nbsp;this&nbsp;screen.<br>
 &nbsp;&nbsp;-v&nbsp;--version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show&nbsp;version.<br>
 &nbsp;&nbsp;--quiet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;printing&nbsp;or&nbsp;logging.<br>
-&nbsp;&nbsp;--verbose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crank&nbsp;up&nbsp;the&nbsp;logging.</tt></p>
+&nbsp;&nbsp;--verbose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crank&nbsp;up&nbsp;the&nbsp;logging.<br>
+&nbsp;&nbsp;--config&nbsp;&lt;config&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pyproject.toml&nbsp;or&nbsp;other&nbsp;toml&nbsp;config.<br>
+&nbsp;&nbsp;--document_internals&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;respect&nbsp;underscore&nbsp;or&nbsp;__all__&nbsp;private<br>
+&nbsp;&nbsp;--prefer_docs_python_org&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link&nbsp;to&nbsp;python.org&nbsp;or&nbsp;generate&nbsp;own&nbsp;stdlib&nbsp;docs<br>
+&nbsp;&nbsp;-o&nbsp;--output&nbsp;&lt;folder&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;to&nbsp;write&nbsp;files</tt></p>
+
+
+
 <p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#aa55cc">
-<td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td>
+    </tr>
 
-<tr><td bgcolor="#aa55cc"></td><td>&nbsp;</td>
-<td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="docopt.html">docopt</a><br>
-</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/logging.html">logging</a><br>
-</td><td width="25%" valign=top><a href="https://docs.python.org/3.9/library/sys.html">sys</a><br>
-</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.commands.html">pydoc_fork.commands</a><br>
+<a href="docopt.html">docopt</a><br>
+</td><td width="25%" valign=top><a href="logging.html">logging</a><br>
+<a href="pydoc_fork.settings.html">pydoc_fork.settings</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr>
+</table>
+
+
+<p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#aa55cc">
-<td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td></tr>
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td>
+    </tr>
 
-<tr><td bgcolor="#aa55cc"></td><td>&nbsp;</td>
-<td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.cli_code.html">pydoc_fork.cli_code</a><br>
-</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.settings.html">pydoc_fork.settings</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr>
+</table>
+
+
+<p>
 <table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#eeaa77">
-<td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    <tr bgcolor="#eeaa77">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td>
+    </tr>
 
-<tr><td bgcolor="#eeaa77"></td><td>&nbsp;</td>
-<td width="100%%"><dl><dt><a name="-cli"><strong>cli</strong></a>(files: List[str], output_folder: str, document_internals: bool) -&gt; List[str]</dt><dd><tt>Command-line&nbsp;interface&nbsp;(looks&nbsp;at&nbsp;sys.argv&nbsp;to&nbsp;decide&nbsp;what&nbsp;to&nbsp;do).</tt></dd></dl>
+    
+        <tr>
+        <td bgcolor="#eeaa77"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><dl><dt><a name="-load_config"><strong>load_config</strong></a>(path: Optional[str])</dt><dd><tt>Copy&nbsp;config&nbsp;from&nbsp;toml&nbsp;to&nbsp;globals</tt></dd></dl>
  <dl><dt><a name="-main"><strong>main</strong></a>() -&gt; int</dt><dd><tt>Get&nbsp;the&nbsp;args&nbsp;object&nbsp;from&nbsp;command&nbsp;parameters</tt></dd></dl>
-</td></tr></table><p>
-<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
-<tr bgcolor="#55aa55">
-<td colspan=3 valign=bottom>&nbsp;<br>
-<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+</td></tr>
+</table>
 
-<tr><td bgcolor="#55aa55"></td><td>&nbsp;</td>
-<td width="100%%"><strong>LOGGER</strong> = &lt;Logger pydoc_fork.__main__ (WARNING)&gt;<br>
-<strong>LOGGERS</strong> = []</td></tr></table>
-</body></html>
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#55aa55">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#55aa55"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><strong>LOGGER</strong> = &lt;Logger pydoc_fork.__main__ (WARNING)&gt;<br>
+<strong>LOGGERS</strong> = []<br>
+<strong>__version__</strong> = '3.0.0'</td></tr>
+</table>
+</body>
+</html>

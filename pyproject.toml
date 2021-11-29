@@ -122,3 +122,6 @@ PREFER_INTERNET_DOCUMENTATION = false
 DOCUMENT_INTERNALS = false
 SKIP_MODULES = ["typing"]
 ONLY_NAMED_AND_SUBS = false
+
+[tool.portray]
+output_dir = "doc/docs_portray"

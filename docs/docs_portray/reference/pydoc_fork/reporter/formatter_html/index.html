@@ -1,0 +1,2191 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.0">
+    
+    
+      
+        <title>Formatter Html - pydoc_fork</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8b42a75e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-pydoc_forkreporterformatter_html" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="pydoc_fork" class="md-header__button md-logo" aria-label="pydoc_fork" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            pydoc_fork
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Formatter Html
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/matthewdeanmartin/pydoc_fork/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pydoc_fork
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="pydoc_fork" class="md-nav__button md-logo" aria-label="pydoc_fork" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    pydoc_fork
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/matthewdeanmartin/pydoc_fork/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pydoc_fork
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/CHANGES/" class="md-nav__link">
+        Changes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/TODO/" class="md-nav__link">
+        Todo
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/feature_clusters/" class="md-nav__link">
+        Feature Clusters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/motivation/" class="md-nav__link">
+        Motivation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/prior_art/" class="md-nav__link">
+        Prior Art
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/usage/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/workflows/" class="md-nav__link">
+        Workflows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1" type="checkbox" id="__nav_10_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1">
+          Pydoc Fork
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pydoc Fork" data-md-level="2">
+        <label class="md-nav__title" for="__nav_10_1">
+          <span class="md-nav__icon md-icon"></span>
+          Pydoc Fork
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/" class="md-nav__link">
+        Commands
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/" class="md-nav__link">
+        Settings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1_4" type="checkbox" id="__nav_10_1_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1_4">
+          Inspector
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Inspector" data-md-level="3">
+        <label class="md-nav__title" for="__nav_10_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          Inspector
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/custom_types/" class="md-nav__link">
+        Custom Types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/module_utils/" class="md-nav__link">
+        Module Utils
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/path_utils/" class="md-nav__link">
+        Path Utils
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/utils/" class="md-nav__link">
+        Utils
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1_5" type="checkbox" id="__nav_10_1_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1_5">
+          Reporter
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reporter" data-md-level="3">
+        <label class="md-nav__title" for="__nav_10_1_5">
+          <span class="md-nav__icon md-icon"></span>
+          Reporter
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_class/" class="md-nav__link">
+        Format Class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_data/" class="md-nav__link">
+        Format Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_module/" class="md-nav__link">
+        Format Module
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_other/" class="md-nav__link">
+        Format Other
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_page/" class="md-nav__link">
+        Format Page
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_routine/" class="md-nav__link">
+        Format Routine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Formatter Html
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Formatter Html
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bigsection" class="md-nav__link">
+    bigsection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabled_text" class="md-nav__link">
+    disabled_text
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escape" class="md-nav__link">
+    escape
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file_link" class="md-nav__link">
+    file_link
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heading" class="md-nav__link">
+    heading
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#html_repr" class="md-nav__link">
+    html_repr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#markup" class="md-nav__link">
+    markup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module_package_link" class="md-nav__link">
+    module_package_link
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multicolumn" class="md-nav__link">
+    multicolumn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namelink" class="md-nav__link">
+    namelink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preformat" class="md-nav__link">
+    preformat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section" class="md-nav__link">
+    section
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#markupsyntax" class="md-nav__link">
+    MarkupSyntax
+  </a>
+  
+    <nav class="md-nav" aria-label="MarkupSyntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html_repr_class/" class="md-nav__link">
+        Html Repr Class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inline_styles/" class="md-nav__link">
+        Inline Styles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jinja_code/" class="md-nav__link">
+        Jinja Code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rst_support/" class="md-nav__link">
+        Rst Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../string_utils/" class="md-nav__link">
+        String Utils
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bigsection" class="md-nav__link">
+    bigsection
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#disabled_text" class="md-nav__link">
+    disabled_text
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#escape" class="md-nav__link">
+    escape
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#file_link" class="md-nav__link">
+    file_link
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heading" class="md-nav__link">
+    heading
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#html_repr" class="md-nav__link">
+    html_repr
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#markup" class="md-nav__link">
+    markup
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module_package_link" class="md-nav__link">
+    module_package_link
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#multicolumn" class="md-nav__link">
+    multicolumn
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namelink" class="md-nav__link">
+    namelink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#preformat" class="md-nav__link">
+    preformat
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#section" class="md-nav__link">
+    section
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#classes" class="md-nav__link">
+    Classes
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#markupsyntax" class="md-nav__link">
+    MarkupSyntax
+  </a>
+  
+    <nav class="md-nav" aria-label="MarkupSyntax">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancestors-in-mro" class="md-nav__link">
+    Ancestors (in MRO)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#class-variables" class="md-nav__link">
+    Class variables
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/matthewdeanmartin/pydoc_fork/edit/main/reference/pydoc_fork/reporter/formatter_html.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-pydoc_forkreporterformatter_html">Module pydoc_fork.reporter.formatter_html</h1>
+<p>Roughly components</p>
+<p>None</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">Roughly components</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">logging</span>
+
+<span class="kn">import</span> <span class="nn">re</span>
+
+<span class="kn">import</span> <span class="nn">sysconfig</span>
+
+<span class="kn">from</span> <span class="nn">enum</span> <span class="kn">import</span> <span class="n">Enum</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Sequence</span><span class="p">,</span> <span class="n">Tuple</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="kn">import</span> <span class="nn">markdown</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork</span> <span class="kn">import</span> <span class="n">settings</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.inspector.module_utils</span> <span class="kn">import</span> <span class="n">ImportTimeError</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.inspector.utils</span> <span class="kn">import</span> <span class="n">resolve</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.reporter</span> <span class="kn">import</span> <span class="n">inline_styles</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.reporter.html_repr_class</span> <span class="kn">import</span> <span class="n">HTMLRepr</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.reporter.jinja_code</span> <span class="kn">import</span> <span class="n">JINJA_ENV</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.reporter.rst_support</span> <span class="kn">import</span> <span class="n">rst_to_html</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.reporter.string_utils</span> <span class="kn">import</span> <span class="n">replace</span>
+
+<span class="n">LOGGER</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="n">STDLIB_BASEDIR</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="n">sysconfig</span><span class="o">.</span><span class="n">get_path</span><span class="p">(</span><span class="s2">&quot;stdlib&quot;</span><span class="p">))</span>
+
+<span class="sd">&quot;&quot;&quot;Formatter class for HTML documentation.&quot;&quot;&quot;</span>
+
+<span class="c1"># monkey patching was messing with mypy-- is this now a redeclare?</span>
+
+<span class="k">def</span> <span class="nf">html_repr</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>  <span class="c1"># noqa - unhiding could break code?</span>
+
+    <span class="sd">&quot;&quot;&quot;Turn method into function&quot;&quot;&quot;</span>
+
+    <span class="n">_repr_instance</span> <span class="o">=</span> <span class="n">HTMLRepr</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">_repr_instance</span><span class="o">.</span><span class="n">repr</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">escape</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;HTML safe repr and escape&quot;&quot;&quot;</span>
+
+    <span class="n">_repr_instance</span> <span class="o">=</span> <span class="n">HTMLRepr</span><span class="p">()</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">_repr_instance</span><span class="o">.</span><span class="n">escape</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s2">&quot;&amp;amp;gt;&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;possible double escape&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="k">def</span> <span class="nf">heading</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">fgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">bgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extras</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Format a page heading.&quot;&quot;&quot;</span>
+
+    <span class="n">template</span> <span class="o">=</span> <span class="n">JINJA_ENV</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;heading.jinja2&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">fgcol</span><span class="o">=</span><span class="n">fgcol</span><span class="p">,</span> <span class="n">bgcol</span><span class="o">=</span><span class="n">bgcol</span><span class="p">,</span> <span class="n">extras</span><span class="o">=</span><span class="n">extras</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">section</span><span class="p">(</span>
+
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+    <span class="n">fgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+    <span class="n">bgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+    <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+    <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>  <span class="c1"># used by marginalia?</span>
+
+    <span class="n">prelude</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+
+    <span class="n">marginalia</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># not used</span>
+
+    <span class="n">gap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&amp;nbsp;&quot;</span><span class="p">,</span>  <span class="c1"># not used</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Format a section with a heading.&quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">marginalia</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+
+        <span class="n">marginalia</span> <span class="o">=</span> <span class="s2">&quot;&lt;tt&gt;&quot;</span> <span class="o">+</span> <span class="s2">&quot;&amp;nbsp;&quot;</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="s2">&quot;&lt;/tt&gt;&quot;</span>
+
+    <span class="n">template</span> <span class="o">=</span> <span class="n">JINJA_ENV</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;section.jinja2&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span>
+
+        <span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span>
+
+        <span class="n">fgcol</span><span class="o">=</span><span class="n">fgcol</span><span class="p">,</span>
+
+        <span class="n">bgcol</span><span class="o">=</span><span class="n">bgcol</span><span class="p">,</span>
+
+        <span class="n">marginalia</span><span class="o">=</span><span class="n">marginalia</span><span class="p">,</span>
+
+        <span class="n">prelude</span><span class="o">=</span><span class="n">prelude</span><span class="p">,</span>
+
+        <span class="n">contents</span><span class="o">=</span><span class="n">contents</span><span class="p">,</span>
+
+        <span class="n">gap</span><span class="o">=</span><span class="n">gap</span><span class="p">,</span>
+
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+    <span class="n">fgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+    <span class="n">bgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+    <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+    <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>  <span class="c1"># used by marginalia?</span>
+
+    <span class="n">prelude</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+
+    <span class="n">marginalia</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>  <span class="c1"># not used</span>
+
+    <span class="n">gap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&amp;nbsp;&quot;</span><span class="p">,</span>  <span class="c1"># not used</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Format a section with a big heading.&quot;&quot;&quot;</span>
+
+    <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&lt;big&gt;&lt;strong&gt;</span><span class="si">{</span><span class="n">title</span><span class="si">}</span><span class="s2">&lt;/strong&gt;&lt;/big&gt;&quot;</span>
+
+    <span class="c1"># prefer explicit interfaces over secret hidden ones</span>
+
+    <span class="k">return</span> <span class="n">section</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">fgcol</span><span class="p">,</span> <span class="n">bgcol</span><span class="p">,</span> <span class="n">contents</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">prelude</span><span class="p">,</span> <span class="n">marginalia</span><span class="p">,</span> <span class="n">gap</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">preformat</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Format literal preformatted text.&quot;&quot;&quot;</span>
+
+    <span class="n">text</span> <span class="o">=</span> <span class="n">escape</span><span class="p">(</span><span class="n">text</span><span class="o">.</span><span class="n">expandtabs</span><span class="p">())</span>
+
+    <span class="k">return</span> <span class="n">replace</span><span class="p">(</span>
+
+        <span class="n">text</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2"> </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;&amp;nbsp;&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;br&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">multicolumn</span><span class="p">(</span>
+
+    <span class="n">the_list</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span>
+
+    <span class="n">the_format</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="nb">str</span><span class="p">],</span>
+
+    <span class="n">cols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Format a list of items into a multi-column list.&quot;&quot;&quot;</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">the_list</span><span class="p">)</span> <span class="o">+</span> <span class="n">cols</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">//</span> <span class="n">cols</span>
+
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">cols</span><span class="p">):</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="s1">&#39;&lt;td width=&quot;</span><span class="si">%d%%</span><span class="s1">&quot; valign=top&gt;&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="mi">100</span> <span class="o">//</span> <span class="n">cols</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rows</span> <span class="o">*</span> <span class="n">col</span><span class="p">,</span> <span class="n">rows</span> <span class="o">*</span> <span class="n">col</span> <span class="o">+</span> <span class="n">rows</span><span class="p">):</span>
+
+            <span class="k">if</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">the_list</span><span class="p">):</span>
+
+                <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="n">the_format</span><span class="p">(</span><span class="n">the_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;&lt;br&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="s2">&quot;&lt;/td&gt;&quot;</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;table width=&quot;100%%&quot; summary=&quot;list&quot;&gt;&lt;tr&gt;</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s1">&lt;/tr&gt;&lt;/table&gt;&#39;</span>
+
+<span class="k">def</span> <span class="nf">disabled_text</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Wrap in grey&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;span style=&quot;color:</span><span class="si">{</span><span class="n">inline_styles</span><span class="o">.</span><span class="n">DISABLED_TEXT</span><span class="si">}</span><span class="s1">&quot;&gt;</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s1">&lt;/span&gt;&#39;</span>
+
+<span class="k">def</span> <span class="nf">namelink</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">*</span><span class="n">dicts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Make a link for an identifier, given name-to-URL mappings.&quot;&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">the_dict</span> <span class="ow">in</span> <span class="n">dicts</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">the_dict</span><span class="p">:</span>
+
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;a href=&quot;</span><span class="si">{</span><span class="n">the_dict</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="si">}</span><span class="s1">&quot;&gt;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&lt;/a&gt;&#39;</span>
+
+    <span class="c1"># LOGGER.warning(f&quot;Failed to find link for {name}&quot;)</span>
+
+    <span class="k">return</span> <span class="n">name</span>
+
+<span class="k">def</span> <span class="nf">module_package_link</span><span class="p">(</span><span class="n">module_package_info</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Make a link for a module or package to display in an index.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">ispackage</span><span class="p">,</span> <span class="n">shadowed</span> <span class="o">=</span> <span class="n">module_package_info</span>
+
+    <span class="k">try</span><span class="p">:</span>
+
+        <span class="n">settings</span><span class="o">.</span><span class="n">MENTIONED_MODULES</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">resolve</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">name</span><span class="p">))</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="n">ImportTimeError</span><span class="p">,</span> <span class="ne">ImportError</span><span class="p">):</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t import </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, won&#39;t doc&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">shadowed</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">disabled_text</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.html&quot;</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.html&quot;</span>
+
+    <span class="k">if</span> <span class="n">ispackage</span><span class="p">:</span>
+
+        <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&lt;strong&gt;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&lt;/strong&gt;&amp;nbsp;(package)&quot;</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">text</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;a href=&quot;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&quot;&gt;</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s1">&lt;/a&gt;&#39;</span>
+
+<span class="k">def</span> <span class="nf">file_link</span><span class="p">(</span><span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">path</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Make a link to source file.&quot;&quot;&quot;</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;a href=&quot;file:</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&quot;&gt;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s1">&lt;/a&gt;&#39;</span>
+
+<span class="k">class</span> <span class="nc">MarkupSyntax</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+
+    <span class="sd">&quot;&quot;&quot;Syntax type we assume comments are using&quot;&quot;&quot;</span>
+
+    <span class="n">NOTHING</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">RST</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">MARKDOWN</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="k">def</span> <span class="nf">markup</span><span class="p">(</span>
+
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+    <span class="n">funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+
+    <span class="n">classes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+
+    <span class="n">methods</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Replace all linkable things with links of appropriate syntax.</span>
+
+<span class="sd">    Handle either an adhoc markup language, or RST or Markdown.</span>
+
+<span class="sd">    funcs, classes, methods are name/symbol to URL maps.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">funcs</span> <span class="o">=</span> <span class="n">funcs</span> <span class="ow">or</span> <span class="p">{}</span>
+
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span> <span class="ow">or</span> <span class="p">{}</span>
+
+    <span class="n">methods</span> <span class="o">=</span> <span class="n">methods</span> <span class="ow">or</span> <span class="p">{}</span>
+
+    <span class="n">syntax</span> <span class="o">=</span> <span class="n">MarkupSyntax</span><span class="o">.</span><span class="n">NOTHING</span>
+
+    <span class="k">def</span> <span class="nf">nothing</span><span class="p">(</span><span class="n">_</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;Does nothing&quot;&quot;&quot;</span>
+
+        <span class="k">return</span> <span class="n">_</span>
+
+    <span class="k">if</span> <span class="n">syntax</span> <span class="o">==</span> <span class="n">MarkupSyntax</span><span class="o">.</span><span class="n">NOTHING</span><span class="p">:</span>
+
+        <span class="n">_preformat</span> <span class="o">=</span> <span class="n">preformat</span>
+
+        <span class="n">markup_to_html</span> <span class="o">=</span> <span class="n">nothing</span>
+
+    <span class="k">elif</span> <span class="n">syntax</span> <span class="o">==</span> <span class="n">MarkupSyntax</span><span class="o">.</span><span class="n">RST</span><span class="p">:</span>
+
+        <span class="n">_preformat</span> <span class="o">=</span> <span class="n">nothing</span>
+
+        <span class="n">markup_to_html</span> <span class="o">=</span> <span class="n">rst_to_html</span>
+
+        <span class="c1"># make_rst_link =</span>
+
+    <span class="k">elif</span> <span class="n">syntax</span> <span class="o">==</span> <span class="n">MarkupSyntax</span><span class="o">.</span><span class="n">MARKDOWN</span><span class="p">:</span>
+
+        <span class="n">_preformat</span> <span class="o">=</span> <span class="n">nothing</span>
+
+        <span class="n">markup_to_html</span> <span class="o">=</span> <span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span>
+
+        <span class="c1"># make_markdown_link =</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">()</span>
+
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">here</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span>
+
+        <span class="sa">r</span><span class="s2">&quot;\b((http|https|ftp)://\S+[\w/]|&quot;</span>
+
+        <span class="sa">r</span><span class="s2">&quot;RFC[- ]?(\d+)|&quot;</span>
+
+        <span class="sa">r</span><span class="s2">&quot;PEP[- ]?(\d+)|&quot;</span>
+
+        <span class="sa">r</span><span class="s2">&quot;(self\.)?(\w+))&quot;</span>
+
+    <span class="p">)</span>
+
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+        <span class="n">match</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">here</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">match</span><span class="p">:</span>
+
+            <span class="k">break</span>
+
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">span</span><span class="p">()</span>
+
+        <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_preformat</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">here</span><span class="p">:</span><span class="n">start</span><span class="p">]))</span>
+
+        <span class="n">the_all</span><span class="p">,</span> <span class="n">scheme</span><span class="p">,</span> <span class="n">rfc</span><span class="p">,</span> <span class="n">pep</span><span class="p">,</span> <span class="n">self_dot</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">match</span><span class="o">.</span><span class="n">groups</span><span class="p">()</span>
+
+        <span class="k">if</span> <span class="n">scheme</span><span class="p">:</span>
+
+            <span class="c1"># Hyperlink actual urls</span>
+
+            <span class="n">url</span> <span class="o">=</span> <span class="n">_preformat</span><span class="p">(</span><span class="n">the_all</span><span class="p">)</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span> <span class="s2">&quot;&amp;quot;&quot;</span><span class="p">)</span>
+
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;a href=&quot;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&quot;&gt;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&lt;/a&gt;&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">rfc</span><span class="p">:</span>
+
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.rfc-editor.org/rfc/rfc</span><span class="si">%d</span><span class="s2">.txt&quot;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">rfc</span><span class="p">)</span>
+
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;a href=&quot;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&quot;&gt;</span><span class="si">{</span><span class="n">_preformat</span><span class="p">(</span><span class="n">the_all</span><span class="p">)</span><span class="si">}</span><span class="s1">&lt;/a&gt;&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">pep</span><span class="p">:</span>
+
+            <span class="n">url</span> <span class="o">=</span> <span class="s2">&quot;https://www.python.org/dev/peps/pep-</span><span class="si">%04d</span><span class="s2">/&quot;</span> <span class="o">%</span> <span class="nb">int</span><span class="p">(</span><span class="n">pep</span><span class="p">)</span>
+
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;&lt;a href=&quot;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&quot;&gt;</span><span class="si">{</span><span class="n">_preformat</span><span class="p">(</span><span class="n">the_all</span><span class="p">)</span><span class="si">}</span><span class="s1">&lt;/a&gt;&#39;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">self_dot</span><span class="p">:</span>
+
+            <span class="c1"># Create a link for methods like &#39;self.method(...)&#39;</span>
+
+            <span class="c1"># and use &lt;strong&gt; for attributes like &#39;self.attr&#39;</span>
+
+            <span class="k">if</span> <span class="n">text</span><span class="p">[</span><span class="n">end</span> <span class="p">:</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;(&quot;</span><span class="p">:</span>
+
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s2">&quot;self.&quot;</span> <span class="o">+</span> <span class="n">namelink</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">methods</span><span class="p">))</span>
+
+            <span class="k">else</span><span class="p">:</span>
+
+                <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;self.&lt;strong&gt;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&lt;/strong&gt;&quot;</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">text</span><span class="p">[</span><span class="n">end</span> <span class="p">:</span> <span class="n">end</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;(&quot;</span><span class="p">:</span>
+
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">namelink</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">methods</span><span class="p">,</span> <span class="n">funcs</span><span class="p">,</span> <span class="n">classes</span><span class="p">))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="c1"># This assumes everything else is a class!!</span>
+
+            <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">namelink</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">classes</span><span class="p">))</span>
+
+        <span class="n">here</span> <span class="o">=</span> <span class="n">end</span>
+
+    <span class="c1"># plain text with links to HTML</span>
+
+    <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">_preformat</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="n">here</span><span class="p">:]))</span>
+
+    <span class="n">rejoined_semi_html</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">markup_to_html</span><span class="p">(</span><span class="n">rejoined_semi_html</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h2 id="variables">Variables</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">LOGGER</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">STDLIB_BASEDIR</span>
+</code></pre></div>
+
+<p>Formatter class for HTML documentation.</p>
+<h2 id="functions">Functions</h2>
+<h3 id="bigsection">bigsection</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">bigsection</span><span class="p">(</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">fgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">bgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="n">prelude</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">marginalia</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">gap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&amp;nbsp;&#39;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Format a section with a big heading.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code>def bigsection(
+
+    title: str,
+
+    fgcol: str,
+
+    bgcol: str,
+
+    contents: str,
+
+    width: int = 6,  # used by marginalia?
+
+    prelude: str = &quot;&quot;,
+
+    marginalia: str = &quot;&quot;,  # not used
+
+    gap: str = &quot;<span class="ni">&amp;nbsp;</span>&quot;,  # not used
+
+) -&gt; str:
+
+    &quot;&quot;&quot;Format a section with a big heading.&quot;&quot;&quot;
+
+    title = f&quot;<span class="nt">&lt;big&gt;&lt;strong&gt;</span>{title}<span class="nt">&lt;/strong&gt;&lt;/big&gt;</span>&quot;
+
+    # prefer explicit interfaces over secret hidden ones
+
+    return section(title, fgcol, bgcol, contents, width, prelude, marginalia, gap)
+</code></pre></div>
+
+</details>
+<h3 id="disabled_text">disabled_text</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">disabled_text</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Wrap in grey</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code>def disabled_text(text: str) -&gt; str:
+
+    &quot;&quot;&quot;Wrap in grey&quot;&quot;&quot;
+
+    return f&#39;<span class="nt">&lt;span</span> <span class="na">style=</span><span class="s">&quot;color:{inline_styles.DISABLED_TEXT}&quot;</span><span class="nt">&gt;</span>{text}<span class="nt">&lt;/span&gt;</span>&#39;
+</code></pre></div>
+
+</details>
+<h3 id="escape">escape</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">escape</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>HTML safe repr and escape</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="nt">def</span> <span class="nt">escape</span><span class="o">(</span><span class="nt">value</span><span class="o">:</span> <span class="nt">Any</span><span class="o">)</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">str</span><span class="o">:</span>
+
+    <span class="s2">&quot;&quot;&quot;HTML safe repr and escape&quot;&quot;&quot;</span>
+
+    <span class="nt">_repr_instance</span> <span class="o">=</span> <span class="nt">HTMLRepr</span><span class="o">()</span>
+
+    <span class="nt">result</span> <span class="o">=</span> <span class="nt">_repr_instance</span><span class="p">.</span><span class="nc">escape</span><span class="o">(</span><span class="nt">value</span><span class="o">)</span>
+
+    <span class="nt">if</span> <span class="s2">&quot;&amp;amp;gt;&quot;</span> <span class="nt">in</span> <span class="nt">result</span><span class="o">:</span>
+
+        <span class="nt">print</span><span class="o">(</span><span class="s2">&quot;possible double escape&quot;</span><span class="o">)</span>
+
+    <span class="nt">return</span> <span class="nt">result</span>
+</code></pre></div>
+
+</details>
+<h3 id="file_link">file_link</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">file_link</span><span class="p">(</span>
+    <span class="n">url</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">path</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Make a link to source file.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code>def file_link(url: str, path: str) -&gt; str:
+
+    &quot;&quot;&quot;Make a link to source file.&quot;&quot;&quot;
+
+    return f&#39;<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;file:{url}&quot;</span><span class="nt">&gt;</span>{path}<span class="nt">&lt;/a&gt;</span>&#39;
+</code></pre></div>
+
+</details>
+<h3 id="heading">heading</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">heading</span><span class="p">(</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">fgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">bgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">extras</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Format a page heading.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="kr">heading</span><span class="p">(</span><span class="n">title</span><span class="o">:</span> <span class="n">str</span><span class="p">,</span> <span class="n">fgcol</span><span class="o">:</span> <span class="n">str</span><span class="p">,</span> <span class="n">bgcol</span><span class="o">:</span> <span class="n">str</span><span class="p">,</span> <span class="n">extras</span><span class="o">:</span> <span class="n">str</span> <span class="o">=</span> <span class="s">&quot;&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">str</span><span class="o">:</span>
+
+    <span class="s">&quot;&quot;&quot;Format a page heading.&quot;&quot;&quot;</span>
+
+    <span class="n">template</span> <span class="o">=</span> <span class="n">JINJA_ENV</span><span class="p">.</span><span class="n">get_template</span><span class="p">(</span><span class="s">&quot;heading.jinja2&quot;</span><span class="p">)</span>
+
+    <span class="kr">return</span> <span class="n">template</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">fgcol</span><span class="o">=</span><span class="n">fgcol</span><span class="p">,</span> <span class="n">bgcol</span><span class="o">=</span><span class="n">bgcol</span><span class="p">,</span> <span class="n">extras</span><span class="o">=</span><span class="n">extras</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h3 id="html_repr">html_repr</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">html_repr</span><span class="p">(</span>
+    <span class="n">value</span><span class="p">:</span> <span class="n">Any</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Turn method into function</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">html_repr</span><span class="p">(</span><span class="n">value</span><span class="o">:</span> <span class="kr">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">str</span><span class="o">:</span>  <span class="err">#</span> <span class="n">noqa</span> <span class="o">-</span> <span class="n">unhiding</span> <span class="n">could</span> <span class="n">break</span> <span class="n">code</span><span class="o">?</span>
+
+    <span class="s">&quot;&quot;&quot;Turn method into function&quot;&quot;&quot;</span>
+
+    <span class="n">_repr_instance</span> <span class="o">=</span> <span class="n">HTMLRepr</span><span class="p">()</span>
+
+    <span class="kr">return</span> <span class="n">_repr_instance</span><span class="p">.</span><span class="n">repr</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+</code></pre></div>
+
+</details>
+<h3 id="markup">markup</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">markup</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">classes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">methods</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Replace all linkable things with links of appropriate syntax.</p>
+<p>Handle either an adhoc markup language, or RST or Markdown.
+funcs, classes, methods are name/symbol to URL maps.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="nf">markup</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">text</span><span class="p">:</span><span class="w"> </span><span class="n">str</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">funcs</span><span class="p">:</span><span class="w"> </span><span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">None</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">classes</span><span class="p">:</span><span class="w"> </span><span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">None</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">methods</span><span class="p">:</span><span class="w"> </span><span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="n">str</span><span class="p">,</span><span class="w"> </span><span class="n">str</span><span class="p">]]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">None</span><span class="p">,</span><span class="w"></span>
+
+<span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nl">str</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="n">Replace</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">linkable</span><span class="w"> </span><span class="n">things</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">links</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">appropriate</span><span class="w"> </span><span class="n">syntax</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">Handle</span><span class="w"> </span><span class="n">either</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">adhoc</span><span class="w"> </span><span class="n">markup</span><span class="w"> </span><span class="n">language</span><span class="p">,</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">RST</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="n">Markdown</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">funcs</span><span class="p">,</span><span class="w"> </span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">methods</span><span class="w"> </span><span class="n">are</span><span class="w"> </span><span class="n">name</span><span class="o">/</span><span class="n">symbol</span><span class="w"> </span><span class="n">to</span><span class="w"> </span><span class="n">URL</span><span class="w"> </span><span class="n">maps</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="s">&quot;&quot;&quot;</span>
+
+<span class="w">    </span><span class="n">funcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">funcs</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">classes</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">methods</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">methods</span><span class="w"> </span><span class="n">or</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">syntax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MarkupSyntax</span><span class="p">.</span><span class="n">NOTHING</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">nothing</span><span class="p">(</span><span class="nl">_</span><span class="p">:</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nl">str</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="s">&quot;&quot;&quot;Does nothing&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">_</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">syntax</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MarkupSyntax</span><span class="p">.</span><span class="nl">NOTHING</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">_preformat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">preformat</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">markup_to_html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nothing</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">elif</span><span class="w"> </span><span class="n">syntax</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MarkupSyntax</span><span class="p">.</span><span class="nl">RST</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">_preformat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nothing</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">markup_to_html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rst_to_html</span><span class="w"></span>
+
+<span class="w">        </span><span class="cp"># make_rst_link =</span>
+
+<span class="w">    </span><span class="n">elif</span><span class="w"> </span><span class="n">syntax</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">MarkupSyntax</span><span class="p">.</span><span class="nl">MARKDOWN</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">_preformat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nothing</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">markup_to_html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">markdown</span><span class="p">.</span><span class="n">markdown</span><span class="w"></span>
+
+<span class="w">        </span><span class="cp"># make_markdown_link =</span>
+
+<span class="w">    </span><span class="k">else</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">raise</span><span class="w"> </span><span class="n">NotImplementedError</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">here</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">pattern</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">re</span><span class="p">.</span><span class="n">compile</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">r</span><span class="s">&quot;</span><span class="se">\b</span><span class="s">((http|https|ftp)://\S+[\w/]|&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">r</span><span class="s">&quot;RFC[- ]?(\d+)|&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">r</span><span class="s">&quot;PEP[- ]?(\d+)|&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">r</span><span class="s">&quot;(self\.)?(\w+))&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nl">True</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">match</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pattern</span><span class="p">.</span><span class="n">search</span><span class="p">(</span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="n">here</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">not</span><span class="w"> </span><span class="nl">match</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">break</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">match</span><span class="p">.</span><span class="n">span</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">_preformat</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="nl">here</span><span class="p">:</span><span class="n">start</span><span class="p">]))</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">the_all</span><span class="p">,</span><span class="w"> </span><span class="n">scheme</span><span class="p">,</span><span class="w"> </span><span class="n">rfc</span><span class="p">,</span><span class="w"> </span><span class="n">pep</span><span class="p">,</span><span class="w"> </span><span class="n">self_dot</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">match</span><span class="p">.</span><span class="n">groups</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nl">scheme</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="cp"># Hyperlink actual urls</span>
+
+<span class="w">            </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_preformat</span><span class="p">(</span><span class="n">the_all</span><span class="p">).</span><span class="n">replace</span><span class="p">(</span><span class="sc">&#39;&quot;&#39;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;&amp;quot;&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="err">&#39;</span><span class="o">&lt;</span><span class="n">a</span><span class="w"> </span><span class="n">href</span><span class="o">=</span><span class="s">&quot;{url}&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="n">url</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="err">&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="nl">rfc</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://www.rfc-editor.org/rfc/rfc%d.txt&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">rfc</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="err">&#39;</span><span class="o">&lt;</span><span class="n">a</span><span class="w"> </span><span class="n">href</span><span class="o">=</span><span class="s">&quot;{url}&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="n">_preformat</span><span class="p">(</span><span class="n">the_all</span><span class="p">)}</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="err">&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="nl">pep</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">url</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;https://www.python.org/dev/peps/pep-%04d/&quot;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="kt">int</span><span class="p">(</span><span class="n">pep</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="err">&#39;</span><span class="o">&lt;</span><span class="n">a</span><span class="w"> </span><span class="n">href</span><span class="o">=</span><span class="s">&quot;{url}&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="n">_preformat</span><span class="p">(</span><span class="n">the_all</span><span class="p">)}</span><span class="o">&lt;/</span><span class="n">a</span><span class="o">&gt;</span><span class="err">&#39;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="nl">self_dot</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="cp"># Create a link for methods like &#39;self.method(...)&#39;</span>
+
+<span class="w">            </span><span class="cp"># and use &lt;strong&gt; for attributes like &#39;self.attr&#39;</span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">text</span><span class="p">[</span><span class="nl">end</span> <span class="p">:</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">&quot;self.&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">namelink</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">methods</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">else</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">f</span><span class="s">&quot;self.&lt;strong&gt;{name}&lt;/strong&gt;&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="n">text</span><span class="p">[</span><span class="nl">end</span> <span class="p">:</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;(&quot;</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">namelink</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">methods</span><span class="p">,</span><span class="w"> </span><span class="n">funcs</span><span class="p">,</span><span class="w"> </span><span class="n">classes</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else</span><span class="o">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="cp"># This assumes everything else is a class!!</span>
+
+<span class="w">            </span><span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">namelink</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">classes</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">here</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">end</span><span class="w"></span>
+
+<span class="w">    </span><span class="cp"># plain text with links to HTML</span>
+
+<span class="w">    </span><span class="n">results</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">_preformat</span><span class="p">(</span><span class="n">text</span><span class="p">[</span><span class="nl">here</span><span class="p">:]))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">rejoined_semi_html</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;</span><span class="p">.</span><span class="n">join</span><span class="p">(</span><span class="n">results</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">markup_to_html</span><span class="p">(</span><span class="n">rejoined_semi_html</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="module_package_link">module_package_link</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">module_package_link</span><span class="p">(</span>
+    <span class="n">module_package_info</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Make a link for a module or package to display in an index.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">module_package_link</span><span class="p">(</span><span class="n">module_package_info</span><span class="p">:</span> <span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Make a link for a module or package to display in an index.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">,</span> <span class="n">path</span><span class="p">,</span> <span class="n">ispackage</span><span class="p">,</span> <span class="n">shadowed</span> <span class="o">=</span> <span class="n">module_package_info</span>
+
+    <span class="k">try</span><span class="p">:</span>
+
+        <span class="n">settings</span><span class="o">.</span><span class="n">MENTIONED_MODULES</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">resolve</span><span class="p">(</span><span class="n">path</span> <span class="o">+</span> <span class="s2">&quot;.&quot;</span> <span class="o">+</span> <span class="n">name</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">name</span><span class="p">))</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="n">ImportTimeError</span><span class="p">,</span> <span class="ne">ImportError</span><span class="p">):</span>
+
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Can&#39;t import </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, won&#39;t doc&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">shadowed</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="n">disabled_text</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">path</span><span class="p">:</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">.</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.html&quot;</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.html&quot;</span>
+
+    <span class="k">if</span> <span class="n">ispackage</span><span class="p">:</span>
+
+        <span class="n">text</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&lt;strong&gt;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&lt;/strong&gt;&amp;nbsp;(package)&quot;</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">text</span> <span class="o">=</span> <span class="n">name</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;a href=&quot;</span><span class="si">{</span><span class="n">url</span><span class="si">}</span><span class="s1">&quot;&gt;</span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s1">&lt;/a&gt;&#39;</span>
+</code></pre></div>
+
+</details>
+<h3 id="multicolumn">multicolumn</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">multicolumn</span><span class="p">(</span>
+    <span class="n">the_list</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="n">Any</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">,</span> <span class="nb">int</span><span class="p">]],</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]]],</span>
+    <span class="n">the_format</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="nb">str</span><span class="p">],</span>
+    <span class="n">cols</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Format a list of items into a multi-column list.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">multicolumn</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">the_list</span><span class="p">:</span><span class="w"> </span><span class="ow">Union</span><span class="o">[</span><span class="n">Sequence[Tuple[Any, str, Any, int</span><span class="o">]</span><span class="err">]</span><span class="p">,</span><span class="w"> </span><span class="k">Sequence</span><span class="o">[</span><span class="n">Tuple[str, Any</span><span class="o">]</span><span class="err">]]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">the_format</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="nf">str</span><span class="err">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">cols</span><span class="p">:</span><span class="w"> </span><span class="nc">int</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"></span>
+
+<span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nf">str</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Format a list of items into a multi-column list.&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">rows</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="n">the_list</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cols</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">cols</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="n">cols</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s1">&#39;&lt;td width=&quot;%d%%&quot; valign=top&gt;&#39;</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="p">(</span><span class="mi">100</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">cols</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">range</span><span class="p">(</span><span class="k">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">col</span><span class="p">,</span><span class="w"> </span><span class="k">rows</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">col</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">rows</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">the_list</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">the_format</span><span class="p">(</span><span class="n">the_list</span><span class="o">[</span><span class="n">i</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;&lt;br&gt;\n&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;&lt;/td&gt;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="s1">&#39;&lt;table width=&quot;100%%&quot; summary=&quot;list&quot;&gt;&lt;tr&gt;{result}&lt;/tr&gt;&lt;/table&gt;&#39;</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="namelink">namelink</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">namelink</span><span class="p">(</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">dicts</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Make a link for an identifier, given name-to-URL mappings.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">namelink</span><span class="p">(</span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="nl">dicts</span><span class="p">:</span><span class="w"> </span><span class="n">Dict</span><span class="o">[</span><span class="n">str, str</span><span class="o">]</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nf">str</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Make a link for an identifier, given name-to-URL mappings.&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">the_dict</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">dicts</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">the_dict</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="s1">&#39;&lt;a href=&quot;{the_dict[name]}&quot;&gt;{name}&lt;/a&gt;&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">LOGGER</span><span class="p">.</span><span class="n">warning</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Failed to find link for {name}&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="preformat">preformat</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">preformat</span><span class="p">(</span>
+    <span class="n">text</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Format literal preformatted text.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="nt">def</span> <span class="nt">preformat</span><span class="o">(</span><span class="nt">text</span><span class="o">:</span> <span class="nt">str</span><span class="o">)</span> <span class="nt">-</span><span class="o">&gt;</span> <span class="nt">str</span><span class="o">:</span>
+
+    <span class="s2">&quot;&quot;&quot;Format literal preformatted text.&quot;&quot;&quot;</span>
+
+    <span class="nt">text</span> <span class="o">=</span> <span class="nt">escape</span><span class="o">(</span><span class="nt">text</span><span class="p">.</span><span class="nc">expandtabs</span><span class="o">())</span>
+
+    <span class="nt">return</span> <span class="nt">replace</span><span class="o">(</span>
+
+        <span class="nt">text</span><span class="o">,</span> <span class="s2">&quot;\n\n&quot;</span><span class="o">,</span> <span class="s2">&quot;\n \n&quot;</span><span class="o">,</span> <span class="s2">&quot;\n\n&quot;</span><span class="o">,</span> <span class="s2">&quot;\n \n&quot;</span><span class="o">,</span> <span class="s2">&quot; &quot;</span><span class="o">,</span> <span class="s2">&quot;&amp;nbsp;&quot;</span><span class="o">,</span> <span class="s2">&quot;\n&quot;</span><span class="o">,</span> <span class="s2">&quot;&lt;br&gt;\n&quot;</span>
+
+    <span class="o">)</span>
+</code></pre></div>
+
+</details>
+<h3 id="section">section</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">section</span><span class="p">(</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">fgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">bgcol</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="n">prelude</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">marginalia</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">gap</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&amp;nbsp;&#39;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Format a section with a heading.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code>def section(
+
+    title: str,
+
+    fgcol: str,
+
+    bgcol: str,
+
+    contents: str,
+
+    width: int = 6,  # used by marginalia?
+
+    prelude: str = &quot;&quot;,
+
+    marginalia: str = &quot;&quot;,  # not used
+
+    gap: str = &quot;<span class="ni">&amp;nbsp;</span>&quot;,  # not used
+
+) -&gt; str:
+
+    &quot;&quot;&quot;Format a section with a heading.&quot;&quot;&quot;
+
+    if marginalia is None:
+
+        marginalia = &quot;<span class="nt">&lt;tt&gt;</span>&quot; + &quot;<span class="ni">&amp;nbsp;</span>&quot; * width + &quot;<span class="nt">&lt;/tt&gt;</span>&quot;
+
+    template = JINJA_ENV.get_template(&quot;section.jinja2&quot;)
+
+    return template.render(
+
+        title=title,
+
+        fgcol=fgcol,
+
+        bgcol=bgcol,
+
+        marginalia=marginalia,
+
+        prelude=prelude,
+
+        contents=contents,
+
+        gap=gap,
+
+    )
+</code></pre></div>
+
+</details>
+<h2 id="classes">Classes</h2>
+<h3 id="markupsyntax">MarkupSyntax</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">MarkupSyntax</span><span class="p">(</span>
+    <span class="o">/</span><span class="p">,</span>
+    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+    <span class="o">**</span><span class="n">kwargs</span>
+<span class="p">)</span>
+</code></pre></div>
+
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">MarkupSyntax</span>(<span class="n">Enum</span>):
+
+    <span class="s">&quot;&quot;&quot;Syntax type we assume comments are using&quot;&quot;&quot;</span>
+
+    <span class="n">NOTHING</span> = <span class="mi">0</span>
+
+    <span class="n">RST</span> = <span class="mi">1</span>
+
+    <span class="n">MARKDOWN</span> = <span class="mi">2</span>
+</code></pre></div>
+
+</details>
+<hr />
+<h4 id="ancestors-in-mro">Ancestors (in MRO)</h4>
+<ul>
+<li>enum.Enum</li>
+</ul>
+<h4 id="class-variables">Class variables</h4>
+<div class="codehilite"><pre><span></span><code><span class="n">MARKDOWN</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">NOTHING</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">RST</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">name</span>
+</code></pre></div>
+
+<div class="codehilite"><pre><span></span><code><span class="n">value</span>
+</code></pre></div>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../format_routine/" title="Format Routine" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Format Routine
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../html_repr_class/" title="Html Repr Class" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Html Repr Class
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.f8263e09.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.4fc53ad4.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -17,7 +17,7 @@ def docroutine(
     funcs: Optional[Dict[str, Any]] = None,  # noqa - clean up later
     classes: Optional[Dict[str, Any]] = None,  # noqa - clean up later
     methods: Optional[Dict[str, Any]] = None,  # noqa - clean up later
-    cl: Optional[TypeLike] = None,
+    class_object: Optional[TypeLike] = None,
 ) -> str:
     """Produce HTML documentation for a function or method object."""
     if not funcs:
@@ -32,13 +32,13 @@ def docroutine(
     except AttributeError:
         real_name = None
     name = name or real_name
-    anchor = (cl and cl.__name__ or "") + "-" + name
+    anchor = (class_object and class_object.__name__ or "") + "-" + name
     note = ""
     skip_docs = 0
     if _is_bound_method(the_object):
         imported_class = the_object.__self__.__class__
-        if cl:
-            if imported_class is not cl:
+        if class_object:
+            if imported_class is not class_object:
                 note = " from " + classlink(imported_class, mod)
         else:
             if the_object.__self__ is not None:
@@ -58,8 +58,8 @@ def docroutine(
     if name == real_name:
         title = f'<a name="{anchor}"><strong>{real_name}</strong></a>'
     else:
-        if cl and inspect.getattr_static(cl, real_name, []) is the_object:
-            real_link = f'<a href="#{cl.__name__ + "-" + real_name}">{real_name}</a>'
+        if class_object and inspect.getattr_static(class_object, real_name, []) is the_object:
+            real_link = f'<a href="#{class_object.__name__ + "-" + real_name}">{real_name}</a>'
             skip_docs = 1
         else:
             real_link = real_name

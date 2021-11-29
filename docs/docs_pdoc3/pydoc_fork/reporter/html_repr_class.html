@@ -67,6 +67,7 @@ class HTMLRepr(Repr):
                 return cast(str, getattr(self, method_name)(x, level))
         return self.escape(cram(stripid(repr(x)), self.maximum_other))
 
+    # pylint: disable=invalid-name
     def repr_string(self, x: str, _: int) -&gt; str:
         &#34;&#34;&#34;Repr, but squash it into a window&#34;&#34;&#34;
         test = cram(x, self.maximum_string)
@@ -146,6 +147,7 @@ class HTMLRepr(Repr):
                 return cast(str, getattr(self, method_name)(x, level))
         return self.escape(cram(stripid(repr(x)), self.maximum_other))
 
+    # pylint: disable=invalid-name
     def repr_string(self, x: str, _: int) -&gt; str:
         &#34;&#34;&#34;Repr, but squash it into a window&#34;&#34;&#34;
         test = cram(x, self.maximum_string)

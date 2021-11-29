@@ -38,6 +38,7 @@ class HTMLRepr(Repr):
                 return cast(str, getattr(self, method_name)(x, level))
         return self.escape(cram(stripid(repr(x)), self.maximum_other))
 
+    # pylint: disable=invalid-name
     def repr_string(self, x: str, _: int) -> str:
         """Repr, but squash it into a window"""
         test = cram(x, self.maximum_string)

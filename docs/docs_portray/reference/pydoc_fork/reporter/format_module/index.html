@@ -1,0 +1,2020 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.0">
+    
+    
+      
+        <title>Format Module - pydoc_fork</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8b42a75e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-pydoc_forkreporterformat_module" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="pydoc_fork" class="md-header__button md-logo" aria-label="pydoc_fork" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            pydoc_fork
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Format Module
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/matthewdeanmartin/pydoc_fork/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pydoc_fork
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="pydoc_fork" class="md-nav__button md-logo" aria-label="pydoc_fork" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    pydoc_fork
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/matthewdeanmartin/pydoc_fork/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pydoc_fork
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/CHANGES/" class="md-nav__link">
+        Changes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/TODO/" class="md-nav__link">
+        Todo
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/feature_clusters/" class="md-nav__link">
+        Feature Clusters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/motivation/" class="md-nav__link">
+        Motivation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/prior_art/" class="md-nav__link">
+        Prior Art
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/usage/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/workflows/" class="md-nav__link">
+        Workflows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1" type="checkbox" id="__nav_10_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1">
+          Pydoc Fork
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pydoc Fork" data-md-level="2">
+        <label class="md-nav__title" for="__nav_10_1">
+          <span class="md-nav__icon md-icon"></span>
+          Pydoc Fork
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/" class="md-nav__link">
+        Commands
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/" class="md-nav__link">
+        Settings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1_4" type="checkbox" id="__nav_10_1_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1_4">
+          Inspector
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Inspector" data-md-level="3">
+        <label class="md-nav__title" for="__nav_10_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          Inspector
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/custom_types/" class="md-nav__link">
+        Custom Types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/module_utils/" class="md-nav__link">
+        Module Utils
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/path_utils/" class="md-nav__link">
+        Path Utils
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/utils/" class="md-nav__link">
+        Utils
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1_5" type="checkbox" id="__nav_10_1_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1_5">
+          Reporter
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reporter" data-md-level="3">
+        <label class="md-nav__title" for="__nav_10_1_5">
+          <span class="md-nav__icon md-icon"></span>
+          Reporter
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_class/" class="md-nav__link">
+        Format Class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_data/" class="md-nav__link">
+        Format Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Format Module
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Format Module
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docmodule" class="md-nav__link">
+    docmodule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getdocloc" class="md-nav__link">
+    getdocloc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modulelink" class="md-nav__link">
+    modulelink
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_other/" class="md-nav__link">
+        Format Other
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_page/" class="md-nav__link">
+        Format Page
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_routine/" class="md-nav__link">
+        Format Routine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formatter_html/" class="md-nav__link">
+        Formatter Html
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html_repr_class/" class="md-nav__link">
+        Html Repr Class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inline_styles/" class="md-nav__link">
+        Inline Styles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jinja_code/" class="md-nav__link">
+        Jinja Code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rst_support/" class="md-nav__link">
+        Rst Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../string_utils/" class="md-nav__link">
+        String Utils
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#variables" class="md-nav__link">
+    Variables
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docmodule" class="md-nav__link">
+    docmodule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#getdocloc" class="md-nav__link">
+    getdocloc
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#modulelink" class="md-nav__link">
+    modulelink
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/matthewdeanmartin/pydoc_fork/edit/main/reference/pydoc_fork/reporter/format_module.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-pydoc_forkreporterformat_module">Module pydoc_fork.reporter.format_module</h1>
+<p>Roughly a UI component for modules</p>
+<p>None</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s2">Roughly a UI component for modules</span>
+
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="s s-Atom">import</span> <span class="s s-Atom">inspect</span>
+
+<span class="s s-Atom">import</span> <span class="s s-Atom">os</span>
+
+<span class="s s-Atom">import</span> <span class="s s-Atom">pkgutil</span>
+
+<span class="s s-Atom">import</span> <span class="s s-Atom">sys</span>
+
+<span class="s s-Atom">from</span> <span class="s s-Atom">typing</span> <span class="s s-Atom">import</span> <span class="nv">Optional</span><span class="p">,</span> <span class="s s-Atom">cast</span>
+
+<span class="s s-Atom">from</span> <span class="s s-Atom">pydoc_fork</span> <span class="s s-Atom">import</span> <span class="s s-Atom">settings</span>
+
+<span class="s s-Atom">from</span> <span class="s s-Atom">pydoc_fork</span><span class="p">.</span><span class="s s-Atom">inspector</span><span class="p">.</span><span class="s s-Atom">custom_types</span> <span class="s s-Atom">import</span> <span class="nv">TypeLike</span>
+
+<span class="s s-Atom">from</span> <span class="s s-Atom">pydoc_fork</span><span class="p">.</span><span class="s s-Atom">inspector</span><span class="p">.</span><span class="s s-Atom">utils</span> <span class="s s-Atom">import</span> <span class="s s-Atom">getdoc</span><span class="p">,</span> <span class="s s-Atom">isdata</span><span class="p">,</span> <span class="s s-Atom">visiblename</span>
+
+<span class="s s-Atom">from</span> <span class="s s-Atom">pydoc_fork</span><span class="p">.</span><span class="s s-Atom">reporter</span> <span class="s s-Atom">import</span> <span class="s s-Atom">inline_styles</span>
+
+<span class="s s-Atom">from</span> <span class="s s-Atom">pydoc_fork</span><span class="p">.</span><span class="s s-Atom">reporter</span><span class="p">.</span><span class="s s-Atom">format_class</span> <span class="s s-Atom">import</span> <span class="s s-Atom">format_tree</span>
+
+<span class="s s-Atom">from</span> <span class="s s-Atom">pydoc_fork</span><span class="p">.</span><span class="s s-Atom">reporter</span><span class="p">.</span><span class="s s-Atom">formatter_html</span> <span class="nf">import</span> <span class="p">(</span>
+
+    <span class="nv">STDLIB_BASEDIR</span><span class="p">,</span>
+
+    <span class="s s-Atom">bigsection</span><span class="p">,</span>
+
+    <span class="s s-Atom">escape</span><span class="p">,</span>
+
+    <span class="s s-Atom">file_link</span><span class="p">,</span>
+
+    <span class="s s-Atom">heading</span><span class="p">,</span>
+
+    <span class="s s-Atom">markup</span><span class="p">,</span>
+
+    <span class="s s-Atom">module_package_link</span><span class="p">,</span>
+
+    <span class="s s-Atom">multicolumn</span><span class="p">,</span>
+
+<span class="p">)</span>
+
+<span class="s s-Atom">def</span> <span class="nf">getdocloc</span><span class="p">(</span><span class="s s-Atom">the_object:</span> <span class="nv">TypeLike</span><span class="p">,</span> <span class="nn">basedir</span><span class="p">:</span> <span class="s s-Atom">str</span> <span class="o">=</span> <span class="nv">STDLIB_BASEDIR</span><span class="p">)</span> <span class="s s-Atom">-&gt;</span> <span class="nv">Optional</span><span class="p">[</span><span class="s s-Atom">str</span><span class="p">]</span><span class="s s-Atom">:</span>
+
+    <span class="s2">&quot;&quot;&quot;Return the location of module docs or None&quot;&quot;&quot;</span>
+
+    <span class="nn">try</span><span class="p">:</span>
+
+        <span class="s s-Atom">file</span> <span class="o">=</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getabsfile</span><span class="p">(</span><span class="nf">cast</span><span class="p">(</span><span class="s s-Atom">type</span><span class="p">,</span> <span class="s s-Atom">the_object</span><span class="p">))</span>
+
+    <span class="s s-Atom">except</span> <span class="nv">TypeError</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">file</span> <span class="o">=</span> <span class="s2">&quot;(built-in)&quot;</span>
+
+    <span class="s s-Atom">basedir</span> <span class="o">=</span> <span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span><span class="p">.</span><span class="nf">normcase</span><span class="p">(</span><span class="s s-Atom">basedir</span><span class="p">)</span>
+
+    <span class="s s-Atom">is_known_stdlib</span> <span class="o">=</span> <span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span> <span class="nf">in</span> <span class="p">(</span>
+
+        <span class="s2">&quot;errno&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;exceptions&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;gc&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;imp&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;marshal&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;posix&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;signal&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;sys&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;_thread&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;zipimport&quot;</span><span class="p">,</span>
+
+    <span class="p">)</span>
+
+    <span class="s s-Atom">is_module</span> <span class="o">=</span> <span class="nf">isinstance</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="nf">type</span><span class="p">(</span><span class="s s-Atom">os</span><span class="p">))</span>
+
+    <span class="s s-Atom">is_in_pythons_folder</span> <span class="o">=</span> <span class="s s-Atom">file</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span><span class="s s-Atom">basedir</span><span class="p">)</span> <span class="s s-Atom">and</span> <span class="o">not</span> <span class="s s-Atom">file</span><span class="p">.</span><span class="nf">startswith</span><span class="p">(</span>
+
+        <span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">basedir</span><span class="p">,</span> <span class="s2">&quot;site-packages&quot;</span><span class="p">)</span>
+
+    <span class="p">)</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">#</span> <span class="nv">This</span> <span class="o">is</span> <span class="s s-Atom">nasty</span> <span class="s s-Atom">special</span> <span class="s s-Atom">case</span> <span class="s s-Atom">coding</span><span class="p">,</span> <span class="s s-Atom">how</span> <span class="s s-Atom">many</span> <span class="s s-Atom">more</span> <span class="s s-Atom">special</span> <span class="s s-Atom">cases</span> <span class="s s-Atom">are</span> <span class="s s-Atom">there?</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">is_exception</span> <span class="o">=</span><span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span> <span class="nf">in</span> <span class="p">(</span><span class="s2">&quot;xml.etree&quot;</span><span class="p">,</span> <span class="s2">&quot;test.pydoc_mod&quot;</span><span class="p">)</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">#</span> <span class="s s-Atom">special</span> <span class="s s-Atom">case</span> <span class="s s-Atom">for</span> <span class="s s-Atom">etree</span>
+
+    <span class="s s-Atom">#</span> <span class="s2">&quot;https://docs.python.org/3/library/xml.etree.elementtree.html&quot;</span>
+
+    <span class="nf">if</span> <span class="p">(</span>
+
+        <span class="s s-Atom">is_module</span>
+
+        <span class="nf">and</span> <span class="p">(</span><span class="s s-Atom">is_known_stdlib</span> <span class="s s-Atom">or</span> <span class="s s-Atom">is_in_pythons_folder</span><span class="p">)</span>
+
+        <span class="s s-Atom">and</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">PREFER_DOCS_PYTHON_ORG</span>
+
+    <span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">if</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">PYTHONDOCS</span><span class="p">.</span><span class="nf">startswith</span><span class="p">((</span><span class="s2">&quot;http://&quot;</span><span class="p">,</span> <span class="s2">&quot;https://&quot;</span><span class="p">))</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">doc_loc</span> <span class="o">=</span> <span class="p">(</span>
+
+                <span class="s s-Atom">f</span><span class="s2">&quot;{settings.PYTHONDOCS.rstrip(&#39;/&#39;)}/{the_object.__name__.lower()}.html&quot;</span>
+
+            <span class="p">)</span>
+
+        <span class="nn">else</span><span class="p">:</span>
+
+            <span class="s s-Atom">doc_loc</span> <span class="o">=</span> <span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span>
+
+                <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">PYTHONDOCS</span><span class="p">,</span> <span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span><span class="p">.</span><span class="nf">lower</span><span class="p">()</span> <span class="o">+</span> <span class="s2">&quot;.html&quot;</span>
+
+            <span class="p">)</span>
+
+    <span class="nn">else</span><span class="p">:</span>
+
+        <span class="s s-Atom">doc_loc</span> <span class="o">=</span> <span class="nv">None</span>
+
+    <span class="s s-Atom">return</span> <span class="s s-Atom">doc_loc</span>
+
+<span class="s s-Atom">def</span> <span class="nf">modulelink</span><span class="p">(</span><span class="s s-Atom">the_object:</span> <span class="nv">TypeLike</span><span class="p">)</span> <span class="s s-Atom">-&gt;</span> <span class="nn">str</span><span class="p">:</span>
+
+    <span class="s2">&quot;&quot;&quot;Make a link for a module.&quot;&quot;&quot;</span>
+
+    <span class="s s-Atom">url</span> <span class="o">=</span> <span class="s s-Atom">f</span><span class="s2">&quot;{the_object.__name__}.html&quot;</span>
+
+    <span class="s s-Atom">internet_link</span> <span class="o">=</span> <span class="nf">getdocloc</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">internet_link</span> <span class="s s-Atom">and</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">PREFER_DOCS_PYTHON_ORG</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">url</span> <span class="o">=</span> <span class="s s-Atom">internet_link</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">BUG</span><span class="s s-Atom">:</span> <span class="s s-Atom">doesn&#39;t take into consideration an alternate base</span>
+
+<span class="s s-Atom">    if not internet_link:</span>
+
+<span class="s s-Atom">        settings.MENTIONED_MODULES.add((the_object, the_object.__name__))</span>
+
+<span class="s s-Atom">    return f&#39;</span><span class="o">&lt;</span><span class="s s-Atom">a</span> <span class="s s-Atom">href=</span><span class="s2">&quot;{url}&quot;</span><span class="s s-Atom">&gt;</span><span class="p">{</span><span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span><span class="p">}</span><span class="s s-Atom">&lt;/a&gt;&#39;</span>
+
+<span class="s s-Atom">def docmodule(</span>
+
+<span class="s s-Atom">    the_object: TypeLike,</span>
+
+<span class="s s-Atom">) -&gt; str:</span>
+
+<span class="s s-Atom">    &quot;&quot;&quot;Produce HTML documentation for a module object.&quot;&quot;&quot;</span>
+
+<span class="s s-Atom">    # circular ref</span>
+
+<span class="s s-Atom">    from pydoc_fork.reporter.format_page import document</span>
+
+<span class="s s-Atom">    name = the_object.__name__</span>
+
+<span class="s s-Atom">    try:</span>
+
+<span class="s s-Atom">        all_things = None if settings.DOCUMENT_INTERNALS else the_object.__all__</span>
+
+<span class="s s-Atom">    except AttributeError:</span>
+
+<span class="s s-Atom">        all_things = None</span>
+
+<span class="s s-Atom">    parts = name.split(&quot;.&quot;)</span>
+
+<span class="s s-Atom">    links = []</span>
+
+<span class="s s-Atom">    for i in range(len(parts) - 1):</span>
+
+<span class="s s-Atom">        link_url = &quot;.&quot;.join(parts[: i + 1])</span>
+
+<span class="s s-Atom">        link_text = parts[i]</span>
+
+<span class="s s-Atom">        links.append(</span>
+
+<span class="s s-Atom">            f&#39;</span><span class="o">&lt;</span><span class="s s-Atom">a</span> <span class="s s-Atom">href=</span><span class="s2">&quot;{link_url}.html&quot;</span><span class="s s-Atom">&gt;&lt;span</span> <span class="s s-Atom">style=</span><span class="s2">&quot;color:{inline_styles.MODULE_LINK}&quot;</span><span class="s s-Atom">&gt;</span><span class="p">{</span><span class="s s-Atom">link_text</span><span class="p">}</span><span class="s s-Atom">&lt;/span&gt;&lt;/a&gt;&#39;</span>
+
+<span class="s s-Atom">        )</span>
+
+<span class="s s-Atom">    linked_name = &quot;.&quot;.join(links + parts[-1:])</span>
+
+<span class="s s-Atom">    head = f&quot;&lt;big&gt;&lt;big&gt;&lt;strong&gt;{linked_name}&lt;/strong&gt;&lt;/big&gt;&lt;/big&gt;&quot;</span>
+
+<span class="s s-Atom">    try:</span>
+
+<span class="s s-Atom">        path = inspect.getabsfile(cast(type, the_object))</span>
+
+<span class="s s-Atom">        # MR : Make relative</span>
+
+<span class="s s-Atom">        output_folder_path = os.path.normcase(os.path.abspath(settings.OUTPUT_FOLDER))</span>
+
+<span class="s s-Atom">        path = os.path.relpath(path, output_folder_path).replace(&quot;\\&quot;, &quot;/&quot;)</span>
+
+<span class="s s-Atom">        # end MR</span>
+
+<span class="s s-Atom">        # uh, oh, forgot why I wrote this</span>
+
+<span class="s s-Atom">        # url = urllib.parse.quote(path)</span>
+
+<span class="s s-Atom">        # MR</span>
+
+<span class="s s-Atom">        file_link_text = file_link(path, path)</span>
+
+<span class="s s-Atom">    except TypeError:</span>
+
+<span class="s s-Atom">        file_link_text = &quot;(built-in)&quot;</span>
+
+<span class="s s-Atom">    info = []</span>
+
+<span class="s s-Atom">    # TODO: Include the rest of the meta data</span>
+
+<span class="s s-Atom">    if hasattr(the_object, &quot;__version__&quot;):</span>
+
+<span class="s s-Atom">        version = str(the_object.__version__)</span>
+
+<span class="s s-Atom">        if version[:11] == &quot;$&quot; + &quot;Revision: &quot; and version[-1:] == &quot;$&quot;:</span>
+
+<span class="s s-Atom">            version = version[11:-1].strip()</span>
+
+<span class="s s-Atom">        info.append(f&quot;version {escape(version)}&quot;)</span>
+
+<span class="s s-Atom">    if hasattr(the_object, &quot;__date__&quot;):</span>
+
+<span class="s s-Atom">        info.append(escape(str(the_object.__date__)))</span>
+
+<span class="s s-Atom">    if info:</span>
+
+<span class="s s-Atom">        head = head + f&quot; ({&#39;</span><span class="p">,</span> <span class="s s-Atom">&#39;.join(info)})&quot;</span>
+
+<span class="s s-Atom">    document_location = getdocloc(the_object)</span>
+
+<span class="s s-Atom">    if document_location is not None:</span>
+
+<span class="s s-Atom">        # Was this just a bug? document_location/locals?</span>
+
+<span class="s s-Atom">        # document_location = &#39;</span><span class="o">&lt;</span><span class="s s-Atom">br&gt;&lt;a</span> <span class="s s-Atom">href=</span><span class="s2">&quot;%(docloc)s&quot;</span><span class="o">&gt;</span><span class="nv">Module</span> <span class="nv">Reference</span><span class="s s-Atom">&lt;/a&gt;&#39; % locals()</span>
+
+<span class="s s-Atom">        document_location = f&#39;</span><span class="o">&lt;</span><span class="s s-Atom">br&gt;&lt;a</span> <span class="s s-Atom">href=</span><span class="s2">&quot;{document_location}&quot;</span><span class="o">&gt;</span><span class="nv">Module</span> <span class="nv">Reference</span><span class="s s-Atom">&lt;/a&gt;&#39;</span>
+
+<span class="s s-Atom">    else:</span>
+
+<span class="s s-Atom">        document_location = &quot;&quot;</span>
+
+<span class="s s-Atom">    result = heading(</span>
+
+<span class="s s-Atom">        head,</span>
+
+<span class="s s-Atom">        &quot;#ffffff&quot;,</span>
+
+<span class="s s-Atom">        &quot;#7799ee&quot;,</span>
+
+<span class="s s-Atom">        &#39;</span><span class="o">&lt;</span><span class="s s-Atom">a</span> <span class="s s-Atom">href=</span><span class="s2">&quot;.&quot;</span><span class="o">&gt;</span><span class="s s-Atom">index&lt;/a&gt;&lt;br&gt;</span><span class="err">&#39;</span> <span class="o">+</span> <span class="s s-Atom">file_link_text</span> <span class="o">+</span> <span class="s s-Atom">document_location</span><span class="p">,</span>
+
+    <span class="p">)</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="s s-Atom">will</span> <span class="s s-Atom">get</span> <span class="err">`</span><span class="s s-Atom">import</span> <span class="s s-Atom">foo</span><span class="err">`</span> <span class="s s-Atom">but</span> <span class="s s-Atom">ignore</span> <span class="err">`</span><span class="s s-Atom">from</span> <span class="s s-Atom">foo</span> <span class="s s-Atom">import</span> <span class="s s-Atom">bar</span><span class="err">`</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">And</span> <span class="s s-Atom">bar</span> <span class="s s-Atom">gets</span> <span class="s s-Atom">no</span> <span class="s s-Atom">doc</span> <span class="s s-Atom">string</span> <span class="s s-Atom">love</span> <span class="s s-Atom">either</span><span class="p">!</span>
+
+    <span class="s s-Atom">modules</span> <span class="o">=</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmembers</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="s s-Atom">ismodule</span><span class="p">)</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">to_remove</span> <span class="s s-Atom">in</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">SKIP_MODULES</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">module_info</span> <span class="s s-Atom">in</span> <span class="nn">modules</span><span class="p">:</span>
+
+            <span class="s s-Atom">candidate_module</span><span class="p">,</span> <span class="k">_</span> <span class="o">=</span> <span class="s s-Atom">module_info</span>
+
+            <span class="s s-Atom">if</span> <span class="s s-Atom">candidate_module</span> <span class="o">==</span> <span class="s s-Atom">to_remove:</span>
+
+                <span class="nn">try</span><span class="p">:</span>
+
+                    <span class="s s-Atom">modules</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="s s-Atom">module_info</span><span class="p">)</span>
+
+                <span class="s s-Atom">except</span> <span class="nv">ValueError</span><span class="s s-Atom">:</span>
+
+                    <span class="s s-Atom">pass</span>
+
+    <span class="s s-Atom">modules_by_import_from</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+
+    <span class="s s-Atom">classes</span><span class="p">,</span> <span class="s s-Atom">class_dict</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{}</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmembers</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="s s-Atom">isclass</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="k">_</span><span class="s s-Atom">class_module</span> <span class="o">=</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmodule</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span>
+
+        <span class="s s-Atom">if</span> <span class="k">_</span><span class="s s-Atom">class_module</span> <span class="s s-Atom">and</span> <span class="k">_</span><span class="s s-Atom">class_module</span> <span class="o">is</span> <span class="o">not</span> <span class="s s-Atom">the_object:</span>
+
+            <span class="s s-Atom">if</span> <span class="k">_</span><span class="s s-Atom">class_module</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">SKIP_MODULES</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">modules_by_import_from</span><span class="p">.</span><span class="nf">add</span><span class="p">((</span><span class="nv">None</span><span class="p">,</span> <span class="k">_</span><span class="s s-Atom">class_module</span><span class="p">))</span>
+
+                <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">MENTIONED_MODULES</span><span class="p">.</span><span class="nf">add</span><span class="p">((</span><span class="k">_</span><span class="s s-Atom">class_module</span><span class="p">,</span> <span class="k">_</span><span class="s s-Atom">class_module</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span><span class="p">))</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">if</span> <span class="k">__</span><span class="s s-Atom">all__</span> <span class="s s-Atom">exists</span><span class="p">,</span> <span class="s s-Atom">believe</span> <span class="s s-Atom">it</span><span class="p">.</span>  <span class="nv">Otherwise</span> <span class="s s-Atom">use</span> <span class="s s-Atom">old</span> <span class="s s-Atom">heuristic</span><span class="p">.</span>
+
+        <span class="nf">if</span> <span class="p">(</span>
+
+            <span class="s s-Atom">#</span> <span class="nv">TODO</span> <span class="s s-Atom">put</span> <span class="s s-Atom">doc</span> <span class="s s-Atom">internals</span> <span class="s s-Atom">switch</span> <span class="s s-Atom">here</span>
+
+            <span class="s s-Atom">#</span> <span class="s s-Atom">all_things</span> <span class="o">is</span> <span class="o">not</span> <span class="nv">None</span> <span class="nf">or</span>
+
+            <span class="p">(</span><span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmodule</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span> <span class="s s-Atom">or</span> <span class="s s-Atom">the_object</span><span class="p">)</span>
+
+            <span class="o">is</span> <span class="s s-Atom">the_object</span>
+
+        <span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">if</span> <span class="nf">visiblename</span><span class="p">(</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">all_things</span><span class="p">,</span> <span class="s s-Atom">the_object</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">classes</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span><span class="p">))</span>
+
+                <span class="s s-Atom">class_dict</span><span class="p">[</span><span class="s s-Atom">key</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">class_dict</span><span class="p">[</span><span class="s s-Atom">value</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span> <span class="o">+</span> <span class="s s-Atom">key</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="nn">classes</span><span class="p">:</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">base</span> <span class="s s-Atom">in</span> <span class="s s-Atom">value</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">bases__:</span>
+
+            <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">modname</span> <span class="o">=</span> <span class="s s-Atom">base</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span><span class="p">,</span> <span class="s s-Atom">base</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">module__</span>
+
+            <span class="s s-Atom">module</span> <span class="o">=</span> <span class="s s-Atom">sys</span><span class="p">.</span><span class="s s-Atom">modules</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s s-Atom">modname</span><span class="p">)</span>
+
+            <span class="nf">if</span> <span class="p">(</span>
+
+                <span class="s s-Atom">modname</span> <span class="p">!</span><span class="o">=</span> <span class="s s-Atom">name</span>
+
+                <span class="s s-Atom">and</span> <span class="s s-Atom">module</span>
+
+                <span class="s s-Atom">and</span> <span class="nf">hasattr</span><span class="p">(</span><span class="s s-Atom">module</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">)</span>
+
+                <span class="s s-Atom">and</span> <span class="nf">getattr</span><span class="p">(</span><span class="s s-Atom">module</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">)</span> <span class="o">is</span> <span class="s s-Atom">base</span>
+
+                <span class="s s-Atom">and</span> <span class="s s-Atom">key</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">class_dict</span>
+
+            <span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">class_dict</span><span class="p">[</span><span class="s s-Atom">key</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">class_dict</span><span class="p">[</span><span class="s s-Atom">base</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">modname</span> <span class="o">+</span> <span class="s2">&quot;.html#&quot;</span> <span class="o">+</span> <span class="s s-Atom">key</span>
+
+    <span class="s s-Atom">funcs</span><span class="p">,</span> <span class="s s-Atom">function_dict</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{}</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmembers</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="s s-Atom">isroutine</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">if</span> <span class="k">__</span><span class="s s-Atom">all__</span> <span class="s s-Atom">exists</span><span class="p">,</span> <span class="s s-Atom">believe</span> <span class="s s-Atom">it</span><span class="p">.</span>  <span class="nv">Otherwise</span> <span class="s s-Atom">use</span> <span class="s s-Atom">old</span> <span class="s s-Atom">heuristic</span><span class="p">.</span>
+
+        <span class="k">_</span><span class="s s-Atom">func_module</span> <span class="o">=</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmodule</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">why</span> <span class="s s-Atom">does</span> <span class="s s-Atom">this</span> <span class="s s-Atom">sometimes</span> <span class="s s-Atom">return</span> <span class="s s-Atom">no</span> <span class="s s-Atom">module?</span>
+
+        <span class="s s-Atom">if</span> <span class="k">_</span><span class="s s-Atom">func_module</span> <span class="s s-Atom">and</span> <span class="k">_</span><span class="s s-Atom">func_module</span> <span class="o">is</span> <span class="o">not</span> <span class="s s-Atom">the_object:</span>
+
+            <span class="s s-Atom">if</span> <span class="k">_</span><span class="s s-Atom">func_module</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">SKIP_MODULES</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">modules_by_import_from</span><span class="p">.</span><span class="nf">add</span><span class="p">((</span><span class="nv">None</span><span class="p">,</span> <span class="k">_</span><span class="s s-Atom">func_module</span><span class="p">))</span>
+
+                <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">MENTIONED_MODULES</span><span class="p">.</span><span class="nf">add</span><span class="p">((</span><span class="k">_</span><span class="s s-Atom">func_module</span><span class="p">,</span> <span class="k">_</span><span class="s s-Atom">func_module</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span><span class="p">))</span>
+
+        <span class="nf">if</span> <span class="p">(</span>
+
+            <span class="nv">True</span>
+
+            <span class="s s-Atom">#</span> <span class="nv">TODO</span> <span class="s s-Atom">put</span> <span class="s s-Atom">doc</span> <span class="s s-Atom">internals</span> <span class="s s-Atom">switch</span> <span class="s s-Atom">here</span>
+
+            <span class="s s-Atom">#</span> <span class="s s-Atom">all_things</span> <span class="o">is</span> <span class="o">not</span> <span class="nv">None</span> <span class="s s-Atom">or</span> <span class="s s-Atom">#</span> <span class="k">__</span><span class="s s-Atom">all__</span> <span class="s s-Atom">as</span> <span class="s s-Atom">scope</span> <span class="s s-Atom">limiter</span>
+
+            <span class="s s-Atom">#</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">isbuiltin</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">thing</span> <span class="s s-Atom">w</span><span class="o">/</span><span class="s s-Atom">o</span> <span class="s s-Atom">module</span>
+
+            <span class="s s-Atom">#</span> <span class="s s-Atom">or</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmodule</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span> <span class="o">is</span> <span class="s s-Atom">the_object</span> <span class="s s-Atom">#</span> <span class="s s-Atom">from</span> <span class="s s-Atom">foo</span> <span class="s s-Atom">import</span> <span class="s s-Atom">bar</span>
+
+        <span class="p">)</span> <span class="s s-Atom">and</span> <span class="nf">visiblename</span><span class="p">(</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">all_things</span><span class="p">,</span> <span class="s s-Atom">the_object</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">funcs</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span><span class="p">))</span>
+
+            <span class="s s-Atom">function_dict</span><span class="p">[</span><span class="s s-Atom">key</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;#-&quot;</span> <span class="o">+</span> <span class="s s-Atom">key</span>
+
+            <span class="s s-Atom">if</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">isfunction</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">function_dict</span><span class="p">[</span><span class="s s-Atom">value</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">function_dict</span><span class="p">[</span><span class="s s-Atom">key</span><span class="p">]</span>
+
+    <span class="s s-Atom">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmembers</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s s-Atom">isdata</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">if</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmodule</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)).</span><span class="k">__</span><span class="s s-Atom">name__</span> <span class="s s-Atom">in</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">SKIP_MODULES</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">continue</span>
+
+        <span class="s s-Atom">if</span> <span class="nf">visiblename</span><span class="p">(</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">all_things</span><span class="p">,</span> <span class="s s-Atom">the_object</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">data</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span><span class="p">))</span>
+
+    <span class="s s-Atom">doc</span> <span class="o">=</span> <span class="nf">markup</span><span class="p">(</span><span class="nf">getdoc</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">),</span> <span class="s s-Atom">function_dict</span><span class="p">,</span> <span class="s s-Atom">class_dict</span><span class="p">)</span>
+
+    <span class="s s-Atom">doc</span> <span class="o">=</span> <span class="s s-Atom">doc</span> <span class="s s-Atom">and</span> <span class="s s-Atom">f</span><span class="s2">&quot;&lt;tt&gt;{doc}&lt;/tt&gt;&quot;</span>
+
+    <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="s s-Atom">f</span><span class="s2">&quot;&lt;p&gt;{doc}&lt;/p&gt;\n&quot;</span>
+
+    <span class="s s-Atom">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s2">&quot;__path__&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">module_packages</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="s s-Atom">for</span> <span class="k">_</span><span class="p">,</span> <span class="s s-Atom">modname</span><span class="p">,</span> <span class="s s-Atom">is_package</span> <span class="s s-Atom">in</span> <span class="s s-Atom">pkgutil</span><span class="p">.</span><span class="nf">iter_modules</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">path__</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">if</span> <span class="s s-Atom">modname</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">SKIP_MODULES</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">module_packages</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="s s-Atom">modname</span><span class="p">,</span> <span class="s s-Atom">name</span><span class="p">,</span> <span class="s s-Atom">is_package</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+        <span class="s s-Atom">module_packages</span><span class="p">.</span><span class="nf">sort</span><span class="p">()</span>
+
+        <span class="s s-Atom">contents_string</span> <span class="o">=</span> <span class="nf">multicolumn</span><span class="p">(</span><span class="s s-Atom">module_packages</span><span class="p">,</span> <span class="s s-Atom">module_package_link</span><span class="p">)</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+            <span class="s2">&quot;Package Contents&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#aa55cc&quot;</span><span class="p">,</span> <span class="s s-Atom">contents_string</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">elif</span> <span class="nn">modules</span><span class="p">:</span>
+
+        <span class="s s-Atom">contents_string</span> <span class="o">=</span> <span class="nf">multicolumn</span><span class="p">(</span><span class="s s-Atom">modules</span><span class="p">,</span> <span class="s s-Atom">lambda</span> <span class="nn">t</span><span class="p">:</span> <span class="nf">modulelink</span><span class="p">(</span><span class="s s-Atom">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span><span class="s2">&quot;Modules&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#aa55cc&quot;</span><span class="p">,</span> <span class="s s-Atom">contents_string</span><span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">modules_by_import_from:</span>
+
+        <span class="s s-Atom">contents_string</span> <span class="o">=</span> <span class="nf">multicolumn</span><span class="p">(</span>
+
+            <span class="nf">list</span><span class="p">(</span><span class="s s-Atom">modules_by_import_from</span><span class="p">),</span> <span class="s s-Atom">lambda</span> <span class="nn">t</span><span class="p">:</span> <span class="nf">modulelink</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="s s-Atom">t</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="p">)</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+            <span class="s2">&quot;`from` Modules&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#aa55cc&quot;</span><span class="p">,</span> <span class="s s-Atom">contents_string</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nn">classes</span><span class="p">:</span>
+
+        <span class="s s-Atom">class_list</span> <span class="o">=</span> <span class="p">[</span><span class="s s-Atom">value</span> <span class="nf">for</span> <span class="p">(</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span><span class="p">)</span> <span class="s s-Atom">in</span> <span class="s s-Atom">classes</span><span class="p">]</span>
+
+        <span class="s s-Atom">#</span> <span class="nv">MR</span><span class="s s-Atom">:</span> <span class="s s-Atom">boolean</span> <span class="s s-Atom">type</span> <span class="s s-Atom">safety</span>
+
+        <span class="s s-Atom">contents_list</span> <span class="o">=</span> <span class="p">[</span><span class="nf">format_tree</span><span class="p">(</span><span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getclasstree</span><span class="p">(</span><span class="s s-Atom">class_list</span><span class="p">,</span> <span class="nv">True</span><span class="p">),</span> <span class="s s-Atom">name</span><span class="p">)]</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="nn">classes</span><span class="p">:</span>
+
+            <span class="s s-Atom">contents_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">document</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">name</span><span class="p">,</span> <span class="s s-Atom">function_dict</span><span class="p">,</span> <span class="s s-Atom">class_dict</span><span class="p">))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+            <span class="s2">&quot;Classes&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#ee77aa&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">contents_list</span><span class="p">)</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nn">funcs</span><span class="p">:</span>
+
+        <span class="s s-Atom">contents_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="nn">funcs</span><span class="p">:</span>
+
+            <span class="s s-Atom">contents_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">document</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">name</span><span class="p">,</span> <span class="s s-Atom">function_dict</span><span class="p">,</span> <span class="s s-Atom">class_dict</span><span class="p">))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+            <span class="s2">&quot;Functions&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#eeaa77&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">contents_list</span><span class="p">)</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nn">data</span><span class="p">:</span>
+
+        <span class="s s-Atom">contents_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="nn">data</span><span class="p">:</span>
+
+            <span class="s s-Atom">contents_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">document</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+            <span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#55aa55&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;br&gt;\n&quot;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">contents_list</span><span class="p">)</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s2">&quot;__author__&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">contents</span> <span class="o">=</span> <span class="nf">markup</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">author__</span><span class="p">))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span><span class="s2">&quot;Author&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#7799ee&quot;</span><span class="p">,</span> <span class="s s-Atom">contents</span><span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s2">&quot;__credits__&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">contents</span> <span class="o">=</span> <span class="nf">markup</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">credits__</span><span class="p">))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span><span class="s2">&quot;Credits&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#7799ee&quot;</span><span class="p">,</span> <span class="s s-Atom">contents</span><span class="p">)</span>
+
+    <span class="s s-Atom">return</span> <span class="s s-Atom">result</span>
+</code></pre></div>
+
+</details>
+<h2 id="variables">Variables</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">STDLIB_BASEDIR</span>
+</code></pre></div>
+
+<h2 id="functions">Functions</h2>
+<h3 id="docmodule">docmodule</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">docmodule</span><span class="p">(</span>
+    <span class="n">the_object</span><span class="p">:</span> <span class="n">pydoc_fork</span><span class="o">.</span><span class="n">inspector</span><span class="o">.</span><span class="n">custom_types</span><span class="o">.</span><span class="n">TypeLike</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Produce HTML documentation for a module object.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="s s-Atom">def</span> <span class="nf">docmodule</span><span class="p">(</span>
+
+    <span class="s s-Atom">the_object:</span> <span class="nv">TypeLike</span><span class="p">,</span>
+
+<span class="p">)</span> <span class="s s-Atom">-&gt;</span> <span class="nn">str</span><span class="p">:</span>
+
+    <span class="s2">&quot;&quot;&quot;Produce HTML documentation for a module object.&quot;&quot;&quot;</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">circular</span> <span class="s s-Atom">ref</span>
+
+    <span class="s s-Atom">from</span> <span class="s s-Atom">pydoc_fork</span><span class="p">.</span><span class="s s-Atom">reporter</span><span class="p">.</span><span class="s s-Atom">format_page</span> <span class="s s-Atom">import</span> <span class="s s-Atom">document</span>
+
+    <span class="s s-Atom">name</span> <span class="o">=</span> <span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span>
+
+    <span class="nn">try</span><span class="p">:</span>
+
+        <span class="s s-Atom">all_things</span> <span class="o">=</span> <span class="nv">None</span> <span class="s s-Atom">if</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">DOCUMENT_INTERNALS</span> <span class="s s-Atom">else</span> <span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">all__</span>
+
+    <span class="s s-Atom">except</span> <span class="nv">AttributeError</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">all_things</span> <span class="o">=</span> <span class="nv">None</span>
+
+    <span class="s s-Atom">parts</span> <span class="o">=</span> <span class="s s-Atom">name</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s2">&quot;.&quot;</span><span class="p">)</span>
+
+    <span class="s s-Atom">links</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">i</span> <span class="s s-Atom">in</span> <span class="nf">range</span><span class="p">(</span><span class="nf">len</span><span class="p">(</span><span class="s s-Atom">parts</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">link_url</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">parts</span><span class="p">[</span><span class="s s-Atom">:</span> <span class="s s-Atom">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">])</span>
+
+        <span class="s s-Atom">link_text</span> <span class="o">=</span> <span class="s s-Atom">parts</span><span class="p">[</span><span class="s s-Atom">i</span><span class="p">]</span>
+
+        <span class="s s-Atom">links</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span>
+
+            <span class="s s-Atom">f&#39;&lt;a href=&quot;{link_url}.html&quot;&gt;&lt;span style=&quot;color:{inline_styles.MODULE_LINK}&quot;&gt;{link_text}&lt;/span&gt;&lt;/a&gt;&#39;</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">linked_name</span> <span class="o">=</span> <span class="s2">&quot;.&quot;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">links</span> <span class="o">+</span> <span class="s s-Atom">parts</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="s s-Atom">:</span><span class="p">])</span>
+
+    <span class="s s-Atom">head</span> <span class="o">=</span> <span class="s s-Atom">f</span><span class="s2">&quot;&lt;big&gt;&lt;big&gt;&lt;strong&gt;{linked_name}&lt;/strong&gt;&lt;/big&gt;&lt;/big&gt;&quot;</span>
+
+    <span class="nn">try</span><span class="p">:</span>
+
+        <span class="s s-Atom">path</span> <span class="o">=</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getabsfile</span><span class="p">(</span><span class="nf">cast</span><span class="p">(</span><span class="s s-Atom">type</span><span class="p">,</span> <span class="s s-Atom">the_object</span><span class="p">))</span>
+
+        <span class="s s-Atom">#</span> <span class="nv">MR</span> <span class="s s-Atom">:</span> <span class="nv">Make</span> <span class="s s-Atom">relative</span>
+
+        <span class="s s-Atom">output_folder_path</span> <span class="o">=</span> <span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span><span class="p">.</span><span class="nf">normcase</span><span class="p">(</span><span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span><span class="p">.</span><span class="nf">abspath</span><span class="p">(</span><span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">OUTPUT_FOLDER</span><span class="p">))</span>
+
+        <span class="s s-Atom">path</span> <span class="o">=</span> <span class="s s-Atom">os</span><span class="p">.</span><span class="s s-Atom">path</span><span class="p">.</span><span class="nf">relpath</span><span class="p">(</span><span class="s s-Atom">path</span><span class="p">,</span> <span class="s s-Atom">output_folder_path</span><span class="p">).</span><span class="nf">replace</span><span class="p">(</span><span class="err">&quot;</span><span class="s s-Atom">\\</span><span class="s2">&quot;, &quot;</span><span class="s s-Atom">/</span><span class="s2">&quot;)</span>
+
+<span class="s2">        # end MR</span>
+
+<span class="s2">        # uh, oh, forgot why I wrote this</span>
+
+<span class="s2">        # url = urllib.parse.quote(path)</span>
+
+<span class="s2">        # MR</span>
+
+<span class="s2">        file_link_text = file_link(path, path)</span>
+
+<span class="s2">    except TypeError:</span>
+
+<span class="s2">        file_link_text = &quot;</span><span class="p">(</span><span class="s s-Atom">built</span><span class="o">-</span><span class="s s-Atom">in</span><span class="p">)</span><span class="s2">&quot;</span>
+
+<span class="s2">    info = []</span>
+
+<span class="s2">    # TODO: Include the rest of the meta data</span>
+
+<span class="s2">    if hasattr(the_object, &quot;</span><span class="k">__</span><span class="s s-Atom">version__</span><span class="s2">&quot;):</span>
+
+<span class="s2">        version = str(the_object.__version__)</span>
+
+<span class="s2">        if version[:11] == &quot;</span><span class="err">$</span><span class="s2">&quot; + &quot;</span><span class="nv">Revision</span><span class="s s-Atom">:</span> <span class="s2">&quot; and version[-1:] == &quot;</span><span class="err">$</span><span class="s2">&quot;:</span>
+
+<span class="s2">            version = version[11:-1].strip()</span>
+
+<span class="s2">        info.append(f&quot;</span><span class="s s-Atom">version</span> <span class="p">{</span><span class="nf">escape</span><span class="p">(</span><span class="s s-Atom">version</span><span class="p">)}</span><span class="s2">&quot;)</span>
+
+<span class="s2">    if hasattr(the_object, &quot;</span><span class="k">__</span><span class="s s-Atom">date__</span><span class="s2">&quot;):</span>
+
+<span class="s2">        info.append(escape(str(the_object.__date__)))</span>
+
+<span class="s2">    if info:</span>
+
+<span class="s2">        head = head + f&quot;</span> <span class="p">({</span><span class="s s-Atom">&#39;, &#39;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">info</span><span class="p">)})</span><span class="s2">&quot;</span>
+
+<span class="s2">    document_location = getdocloc(the_object)</span>
+
+<span class="s2">    if document_location is not None:</span>
+
+<span class="s2">        # Was this just a bug? document_location/locals?</span>
+
+<span class="s2">        # document_location = &#39;&lt;br&gt;&lt;a href=&quot;</span><span class="c1">%(docloc)s&quot;&gt;Module Reference&lt;/a&gt;&#39; % locals()</span>
+
+        <span class="s s-Atom">document_location</span> <span class="o">=</span> <span class="s s-Atom">f&#39;&lt;br&gt;&lt;a href=&quot;{document_location}&quot;&gt;Module Reference&lt;/a&gt;&#39;</span>
+
+    <span class="nn">else</span><span class="p">:</span>
+
+        <span class="s s-Atom">document_location</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="s s-Atom">result</span> <span class="o">=</span> <span class="nf">heading</span><span class="p">(</span>
+
+        <span class="s s-Atom">head</span><span class="p">,</span>
+
+        <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span>
+
+        <span class="s2">&quot;#7799ee&quot;</span><span class="p">,</span>
+
+        <span class="s s-Atom">&#39;&lt;a href=&quot;.&quot;&gt;index&lt;/a&gt;&lt;br&gt;&#39;</span> <span class="o">+</span> <span class="s s-Atom">file_link_text</span> <span class="o">+</span> <span class="s s-Atom">document_location</span><span class="p">,</span>
+
+    <span class="p">)</span>
+
+    <span class="s s-Atom">#</span> <span class="s s-Atom">this</span> <span class="s s-Atom">will</span> <span class="s s-Atom">get</span> <span class="err">`</span><span class="s s-Atom">import</span> <span class="s s-Atom">foo</span><span class="err">`</span> <span class="s s-Atom">but</span> <span class="s s-Atom">ignore</span> <span class="err">`</span><span class="s s-Atom">from</span> <span class="s s-Atom">foo</span> <span class="s s-Atom">import</span> <span class="s s-Atom">bar</span><span class="err">`</span>
+
+    <span class="s s-Atom">#</span> <span class="nv">And</span> <span class="s s-Atom">bar</span> <span class="s s-Atom">gets</span> <span class="s s-Atom">no</span> <span class="s s-Atom">doc</span> <span class="s s-Atom">string</span> <span class="s s-Atom">love</span> <span class="s s-Atom">either</span><span class="p">!</span>
+
+    <span class="s s-Atom">modules</span> <span class="o">=</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmembers</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="s s-Atom">ismodule</span><span class="p">)</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">to_remove</span> <span class="s s-Atom">in</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">SKIP_MODULES</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">module_info</span> <span class="s s-Atom">in</span> <span class="nn">modules</span><span class="p">:</span>
+
+            <span class="s s-Atom">candidate_module</span><span class="p">,</span> <span class="k">_</span> <span class="o">=</span> <span class="s s-Atom">module_info</span>
+
+            <span class="s s-Atom">if</span> <span class="s s-Atom">candidate_module</span> <span class="o">==</span> <span class="s s-Atom">to_remove:</span>
+
+                <span class="nn">try</span><span class="p">:</span>
+
+                    <span class="s s-Atom">modules</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="s s-Atom">module_info</span><span class="p">)</span>
+
+                <span class="s s-Atom">except</span> <span class="nv">ValueError</span><span class="s s-Atom">:</span>
+
+                    <span class="s s-Atom">pass</span>
+
+    <span class="s s-Atom">modules_by_import_from</span> <span class="o">=</span> <span class="nf">set</span><span class="p">()</span>
+
+    <span class="s s-Atom">classes</span><span class="p">,</span> <span class="s s-Atom">class_dict</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{}</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmembers</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="s s-Atom">isclass</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="k">_</span><span class="s s-Atom">class_module</span> <span class="o">=</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmodule</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span>
+
+        <span class="s s-Atom">if</span> <span class="k">_</span><span class="s s-Atom">class_module</span> <span class="s s-Atom">and</span> <span class="k">_</span><span class="s s-Atom">class_module</span> <span class="o">is</span> <span class="o">not</span> <span class="s s-Atom">the_object:</span>
+
+            <span class="s s-Atom">if</span> <span class="k">_</span><span class="s s-Atom">class_module</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">SKIP_MODULES</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">modules_by_import_from</span><span class="p">.</span><span class="nf">add</span><span class="p">((</span><span class="nv">None</span><span class="p">,</span> <span class="k">_</span><span class="s s-Atom">class_module</span><span class="p">))</span>
+
+                <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">MENTIONED_MODULES</span><span class="p">.</span><span class="nf">add</span><span class="p">((</span><span class="k">_</span><span class="s s-Atom">class_module</span><span class="p">,</span> <span class="k">_</span><span class="s s-Atom">class_module</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span><span class="p">))</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">if</span> <span class="k">__</span><span class="s s-Atom">all__</span> <span class="s s-Atom">exists</span><span class="p">,</span> <span class="s s-Atom">believe</span> <span class="s s-Atom">it</span><span class="p">.</span>  <span class="nv">Otherwise</span> <span class="s s-Atom">use</span> <span class="s s-Atom">old</span> <span class="s s-Atom">heuristic</span><span class="p">.</span>
+
+        <span class="nf">if</span> <span class="p">(</span>
+
+            <span class="s s-Atom">#</span> <span class="nv">TODO</span> <span class="s s-Atom">put</span> <span class="s s-Atom">doc</span> <span class="s s-Atom">internals</span> <span class="s s-Atom">switch</span> <span class="s s-Atom">here</span>
+
+            <span class="s s-Atom">#</span> <span class="s s-Atom">all_things</span> <span class="o">is</span> <span class="o">not</span> <span class="nv">None</span> <span class="nf">or</span>
+
+            <span class="p">(</span><span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmodule</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span> <span class="s s-Atom">or</span> <span class="s s-Atom">the_object</span><span class="p">)</span>
+
+            <span class="o">is</span> <span class="s s-Atom">the_object</span>
+
+        <span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">if</span> <span class="nf">visiblename</span><span class="p">(</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">all_things</span><span class="p">,</span> <span class="s s-Atom">the_object</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">classes</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span><span class="p">))</span>
+
+                <span class="s s-Atom">class_dict</span><span class="p">[</span><span class="s s-Atom">key</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">class_dict</span><span class="p">[</span><span class="s s-Atom">value</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span> <span class="o">+</span> <span class="s s-Atom">key</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="nn">classes</span><span class="p">:</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">base</span> <span class="s s-Atom">in</span> <span class="s s-Atom">value</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">bases__:</span>
+
+            <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">modname</span> <span class="o">=</span> <span class="s s-Atom">base</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span><span class="p">,</span> <span class="s s-Atom">base</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">module__</span>
+
+            <span class="s s-Atom">module</span> <span class="o">=</span> <span class="s s-Atom">sys</span><span class="p">.</span><span class="s s-Atom">modules</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="s s-Atom">modname</span><span class="p">)</span>
+
+            <span class="nf">if</span> <span class="p">(</span>
+
+                <span class="s s-Atom">modname</span> <span class="p">!</span><span class="o">=</span> <span class="s s-Atom">name</span>
+
+                <span class="s s-Atom">and</span> <span class="s s-Atom">module</span>
+
+                <span class="s s-Atom">and</span> <span class="nf">hasattr</span><span class="p">(</span><span class="s s-Atom">module</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">)</span>
+
+                <span class="s s-Atom">and</span> <span class="nf">getattr</span><span class="p">(</span><span class="s s-Atom">module</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">)</span> <span class="o">is</span> <span class="s s-Atom">base</span>
+
+                <span class="s s-Atom">and</span> <span class="s s-Atom">key</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">class_dict</span>
+
+            <span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">class_dict</span><span class="p">[</span><span class="s s-Atom">key</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">class_dict</span><span class="p">[</span><span class="s s-Atom">base</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">modname</span> <span class="o">+</span> <span class="s2">&quot;.html#&quot;</span> <span class="o">+</span> <span class="s s-Atom">key</span>
+
+    <span class="s s-Atom">funcs</span><span class="p">,</span> <span class="s s-Atom">function_dict</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">{}</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmembers</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="s s-Atom">isroutine</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">if</span> <span class="k">__</span><span class="s s-Atom">all__</span> <span class="s s-Atom">exists</span><span class="p">,</span> <span class="s s-Atom">believe</span> <span class="s s-Atom">it</span><span class="p">.</span>  <span class="nv">Otherwise</span> <span class="s s-Atom">use</span> <span class="s s-Atom">old</span> <span class="s s-Atom">heuristic</span><span class="p">.</span>
+
+        <span class="k">_</span><span class="s s-Atom">func_module</span> <span class="o">=</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmodule</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span>
+
+        <span class="s s-Atom">#</span> <span class="s s-Atom">why</span> <span class="s s-Atom">does</span> <span class="s s-Atom">this</span> <span class="s s-Atom">sometimes</span> <span class="s s-Atom">return</span> <span class="s s-Atom">no</span> <span class="s s-Atom">module?</span>
+
+        <span class="s s-Atom">if</span> <span class="k">_</span><span class="s s-Atom">func_module</span> <span class="s s-Atom">and</span> <span class="k">_</span><span class="s s-Atom">func_module</span> <span class="o">is</span> <span class="o">not</span> <span class="s s-Atom">the_object:</span>
+
+            <span class="s s-Atom">if</span> <span class="k">_</span><span class="s s-Atom">func_module</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">SKIP_MODULES</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">modules_by_import_from</span><span class="p">.</span><span class="nf">add</span><span class="p">((</span><span class="nv">None</span><span class="p">,</span> <span class="k">_</span><span class="s s-Atom">func_module</span><span class="p">))</span>
+
+                <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">MENTIONED_MODULES</span><span class="p">.</span><span class="nf">add</span><span class="p">((</span><span class="k">_</span><span class="s s-Atom">func_module</span><span class="p">,</span> <span class="k">_</span><span class="s s-Atom">func_module</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">name__</span><span class="p">))</span>
+
+        <span class="nf">if</span> <span class="p">(</span>
+
+            <span class="nv">True</span>
+
+            <span class="s s-Atom">#</span> <span class="nv">TODO</span> <span class="s s-Atom">put</span> <span class="s s-Atom">doc</span> <span class="s s-Atom">internals</span> <span class="s s-Atom">switch</span> <span class="s s-Atom">here</span>
+
+            <span class="s s-Atom">#</span> <span class="s s-Atom">all_things</span> <span class="o">is</span> <span class="o">not</span> <span class="nv">None</span> <span class="s s-Atom">or</span> <span class="s s-Atom">#</span> <span class="k">__</span><span class="s s-Atom">all__</span> <span class="s s-Atom">as</span> <span class="s s-Atom">scope</span> <span class="s s-Atom">limiter</span>
+
+            <span class="s s-Atom">#</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">isbuiltin</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span>  <span class="s s-Atom">#</span> <span class="s s-Atom">thing</span> <span class="s s-Atom">w</span><span class="o">/</span><span class="s s-Atom">o</span> <span class="s s-Atom">module</span>
+
+            <span class="s s-Atom">#</span> <span class="s s-Atom">or</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmodule</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span> <span class="o">is</span> <span class="s s-Atom">the_object</span> <span class="s s-Atom">#</span> <span class="s s-Atom">from</span> <span class="s s-Atom">foo</span> <span class="s s-Atom">import</span> <span class="s s-Atom">bar</span>
+
+        <span class="p">)</span> <span class="s s-Atom">and</span> <span class="nf">visiblename</span><span class="p">(</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">all_things</span><span class="p">,</span> <span class="s s-Atom">the_object</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">funcs</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span><span class="p">))</span>
+
+            <span class="s s-Atom">function_dict</span><span class="p">[</span><span class="s s-Atom">key</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;#-&quot;</span> <span class="o">+</span> <span class="s s-Atom">key</span>
+
+            <span class="s s-Atom">if</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">isfunction</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">function_dict</span><span class="p">[</span><span class="s s-Atom">value</span><span class="p">]</span> <span class="o">=</span> <span class="s s-Atom">function_dict</span><span class="p">[</span><span class="s s-Atom">key</span><span class="p">]</span>
+
+    <span class="s s-Atom">data</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmembers</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s s-Atom">isdata</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">if</span> <span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getmodule</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">)).</span><span class="k">__</span><span class="s s-Atom">name__</span> <span class="s s-Atom">in</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">SKIP_MODULES</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">continue</span>
+
+        <span class="s s-Atom">if</span> <span class="nf">visiblename</span><span class="p">(</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">all_things</span><span class="p">,</span> <span class="s s-Atom">the_object</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">data</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span><span class="p">))</span>
+
+    <span class="s s-Atom">doc</span> <span class="o">=</span> <span class="nf">markup</span><span class="p">(</span><span class="nf">getdoc</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">),</span> <span class="s s-Atom">function_dict</span><span class="p">,</span> <span class="s s-Atom">class_dict</span><span class="p">)</span>
+
+    <span class="s s-Atom">doc</span> <span class="o">=</span> <span class="s s-Atom">doc</span> <span class="s s-Atom">and</span> <span class="s s-Atom">f</span><span class="s2">&quot;&lt;tt&gt;{doc}&lt;/tt&gt;&quot;</span>
+
+    <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="s s-Atom">f</span><span class="s2">&quot;&lt;p&gt;{doc}&lt;/p&gt;\n&quot;</span>
+
+    <span class="s s-Atom">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s2">&quot;__path__&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">module_packages</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="s s-Atom">for</span> <span class="k">_</span><span class="p">,</span> <span class="s s-Atom">modname</span><span class="p">,</span> <span class="s s-Atom">is_package</span> <span class="s s-Atom">in</span> <span class="s s-Atom">pkgutil</span><span class="p">.</span><span class="nf">iter_modules</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">path__</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+            <span class="s s-Atom">if</span> <span class="s s-Atom">modname</span> <span class="o">not</span> <span class="s s-Atom">in</span> <span class="s s-Atom">settings</span><span class="p">.</span><span class="nv">SKIP_MODULES</span><span class="s s-Atom">:</span>
+
+                <span class="s s-Atom">module_packages</span><span class="p">.</span><span class="nf">append</span><span class="p">((</span><span class="s s-Atom">modname</span><span class="p">,</span> <span class="s s-Atom">name</span><span class="p">,</span> <span class="s s-Atom">is_package</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+
+        <span class="s s-Atom">module_packages</span><span class="p">.</span><span class="nf">sort</span><span class="p">()</span>
+
+        <span class="s s-Atom">contents_string</span> <span class="o">=</span> <span class="nf">multicolumn</span><span class="p">(</span><span class="s s-Atom">module_packages</span><span class="p">,</span> <span class="s s-Atom">module_package_link</span><span class="p">)</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+            <span class="s2">&quot;Package Contents&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#aa55cc&quot;</span><span class="p">,</span> <span class="s s-Atom">contents_string</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">elif</span> <span class="nn">modules</span><span class="p">:</span>
+
+        <span class="s s-Atom">contents_string</span> <span class="o">=</span> <span class="nf">multicolumn</span><span class="p">(</span><span class="s s-Atom">modules</span><span class="p">,</span> <span class="s s-Atom">lambda</span> <span class="nn">t</span><span class="p">:</span> <span class="nf">modulelink</span><span class="p">(</span><span class="s s-Atom">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span><span class="s2">&quot;Modules&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#aa55cc&quot;</span><span class="p">,</span> <span class="s s-Atom">contents_string</span><span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="s s-Atom">modules_by_import_from:</span>
+
+        <span class="s s-Atom">contents_string</span> <span class="o">=</span> <span class="nf">multicolumn</span><span class="p">(</span>
+
+            <span class="nf">list</span><span class="p">(</span><span class="s s-Atom">modules_by_import_from</span><span class="p">),</span> <span class="s s-Atom">lambda</span> <span class="nn">t</span><span class="p">:</span> <span class="nf">modulelink</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="s s-Atom">t</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+
+        <span class="p">)</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+            <span class="s2">&quot;`from` Modules&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#aa55cc&quot;</span><span class="p">,</span> <span class="s s-Atom">contents_string</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nn">classes</span><span class="p">:</span>
+
+        <span class="s s-Atom">class_list</span> <span class="o">=</span> <span class="p">[</span><span class="s s-Atom">value</span> <span class="nf">for</span> <span class="p">(</span><span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span><span class="p">)</span> <span class="s s-Atom">in</span> <span class="s s-Atom">classes</span><span class="p">]</span>
+
+        <span class="s s-Atom">#</span> <span class="nv">MR</span><span class="s s-Atom">:</span> <span class="s s-Atom">boolean</span> <span class="s s-Atom">type</span> <span class="s s-Atom">safety</span>
+
+        <span class="s s-Atom">contents_list</span> <span class="o">=</span> <span class="p">[</span><span class="nf">format_tree</span><span class="p">(</span><span class="s s-Atom">inspect</span><span class="p">.</span><span class="nf">getclasstree</span><span class="p">(</span><span class="s s-Atom">class_list</span><span class="p">,</span> <span class="nv">True</span><span class="p">),</span> <span class="s s-Atom">name</span><span class="p">)]</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="nn">classes</span><span class="p">:</span>
+
+            <span class="s s-Atom">contents_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">document</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">name</span><span class="p">,</span> <span class="s s-Atom">function_dict</span><span class="p">,</span> <span class="s s-Atom">class_dict</span><span class="p">))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+            <span class="s2">&quot;Classes&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#ee77aa&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">contents_list</span><span class="p">)</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nn">funcs</span><span class="p">:</span>
+
+        <span class="s s-Atom">contents_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="nn">funcs</span><span class="p">:</span>
+
+            <span class="s s-Atom">contents_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">document</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">name</span><span class="p">,</span> <span class="s s-Atom">function_dict</span><span class="p">,</span> <span class="s s-Atom">class_dict</span><span class="p">))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+            <span class="s2">&quot;Functions&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#eeaa77&quot;</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">contents_list</span><span class="p">)</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nn">data</span><span class="p">:</span>
+
+        <span class="s s-Atom">contents_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="s s-Atom">for</span> <span class="s s-Atom">key</span><span class="p">,</span> <span class="s s-Atom">value</span> <span class="s s-Atom">in</span> <span class="nn">data</span><span class="p">:</span>
+
+            <span class="s s-Atom">contents_list</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="nf">document</span><span class="p">(</span><span class="s s-Atom">value</span><span class="p">,</span> <span class="s s-Atom">key</span><span class="p">))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span>
+
+            <span class="s2">&quot;Data&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#55aa55&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;br&gt;\n&quot;</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="s s-Atom">contents_list</span><span class="p">)</span>
+
+        <span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s2">&quot;__author__&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">contents</span> <span class="o">=</span> <span class="nf">markup</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">author__</span><span class="p">))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span><span class="s2">&quot;Author&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#7799ee&quot;</span><span class="p">,</span> <span class="s s-Atom">contents</span><span class="p">)</span>
+
+    <span class="s s-Atom">if</span> <span class="nf">hasattr</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">,</span> <span class="s2">&quot;__credits__&quot;</span><span class="p">)</span><span class="s s-Atom">:</span>
+
+        <span class="s s-Atom">contents</span> <span class="o">=</span> <span class="nf">markup</span><span class="p">(</span><span class="nf">str</span><span class="p">(</span><span class="s s-Atom">the_object</span><span class="p">.</span><span class="k">__</span><span class="s s-Atom">credits__</span><span class="p">))</span>
+
+        <span class="s s-Atom">result</span> <span class="o">=</span> <span class="s s-Atom">result</span> <span class="o">+</span> <span class="nf">bigsection</span><span class="p">(</span><span class="s2">&quot;Credits&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffffff&quot;</span><span class="p">,</span> <span class="s2">&quot;#7799ee&quot;</span><span class="p">,</span> <span class="s s-Atom">contents</span><span class="p">)</span>
+
+    <span class="s s-Atom">return</span> <span class="s s-Atom">result</span>
+</code></pre></div>
+
+</details>
+<h3 id="getdocloc">getdocloc</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">getdocloc</span><span class="p">(</span>
+    <span class="n">the_object</span><span class="p">:</span> <span class="n">pydoc_fork</span><span class="o">.</span><span class="n">inspector</span><span class="o">.</span><span class="n">custom_types</span><span class="o">.</span><span class="n">TypeLike</span><span class="p">,</span>
+    <span class="n">basedir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;C:</span><span class="se">\\</span><span class="s1">Users</span><span class="se">\\</span><span class="s1">matth</span><span class="se">\\</span><span class="s1">AppData</span><span class="se">\\</span><span class="s1">Local</span><span class="se">\\</span><span class="s1">Programs</span><span class="se">\\</span><span class="s1">Python</span><span class="se">\\</span><span class="s1">Python39</span><span class="se">\\</span><span class="s1">Lib&#39;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</code></pre></div>
+
+<p>Return the location of module docs or None</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">getdocloc</span><span class="p">(</span><span class="nl">the_object</span><span class="p">:</span><span class="w"> </span><span class="n">TypeLike</span><span class="p">,</span><span class="w"> </span><span class="nl">basedir</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">STDLIB_BASEDIR</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">Optional</span><span class="o">[</span><span class="n">str</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Return the location of module docs or None&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inspect</span><span class="p">.</span><span class="n">getabsfile</span><span class="p">(</span><span class="nf">cast</span><span class="p">(</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">the_object</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="ow">except</span><span class="w"> </span><span class="nl">TypeError</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;(built-in)&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">basedir</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="k">path</span><span class="p">.</span><span class="n">normcase</span><span class="p">(</span><span class="n">basedir</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">is_known_stdlib</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">the_object</span><span class="p">.</span><span class="n">__name__</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;errno&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;exceptions&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;gc&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;imp&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;marshal&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;posix&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;signal&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;sys&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;_thread&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;zipimport&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">is_module</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">isinstance</span><span class="p">(</span><span class="n">the_object</span><span class="p">,</span><span class="w"> </span><span class="n">type</span><span class="p">(</span><span class="n">os</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">is_in_pythons_folder</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">file</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">basedir</span><span class="p">)</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="k">file</span><span class="p">.</span><span class="n">startswith</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">os</span><span class="p">.</span><span class="k">path</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">basedir</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;site-packages&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">This</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">nasty</span><span class="w"> </span><span class="n">special</span><span class="w"> </span><span class="k">case</span><span class="w"> </span><span class="n">coding</span><span class="p">,</span><span class="w"> </span><span class="n">how</span><span class="w"> </span><span class="n">many</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">special</span><span class="w"> </span><span class="n">cases</span><span class="w"> </span><span class="k">are</span><span class="w"> </span><span class="n">there</span><span class="vm">?</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">is_exception</span><span class="w"> </span><span class="o">=</span><span class="n">the_object</span><span class="p">.</span><span class="n">__name__</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="p">(</span><span class="ss">&quot;xml.etree&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;test.pydoc_mod&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="n">special</span><span class="w"> </span><span class="k">case</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">etree</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="ss">&quot;https://docs.python.org/3/library/xml.etree.elementtree.html&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">is_module</span><span class="w"></span>
+
+<span class="w">        </span><span class="ow">and</span><span class="w"> </span><span class="p">(</span><span class="n">is_known_stdlib</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">is_in_pythons_folder</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="ow">and</span><span class="w"> </span><span class="n">settings</span><span class="p">.</span><span class="n">PREFER_DOCS_PYTHON_ORG</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">settings</span><span class="p">.</span><span class="n">PYTHONDOCS</span><span class="p">.</span><span class="n">startswith</span><span class="p">((</span><span class="ss">&quot;http://&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;https://&quot;</span><span class="p">))</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">doc_loc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">f</span><span class="ss">&quot;{settings.PYTHONDOCS.rstrip(&#39;/&#39;)}/{the_object.__name__.lower()}.html&quot;</span><span class="w"></span>
+
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">doc_loc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">os</span><span class="p">.</span><span class="k">path</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">settings</span><span class="p">.</span><span class="n">PYTHONDOCS</span><span class="p">,</span><span class="w"> </span><span class="n">the_object</span><span class="p">.</span><span class="n">__name__</span><span class="p">.</span><span class="nf">lower</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;.html&quot;</span><span class="w"></span>
+
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">doc_loc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">doc_loc</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="modulelink">modulelink</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">modulelink</span><span class="p">(</span>
+    <span class="n">the_object</span><span class="p">:</span> <span class="n">pydoc_fork</span><span class="o">.</span><span class="n">inspector</span><span class="o">.</span><span class="n">custom_types</span><span class="o">.</span><span class="n">TypeLike</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Make a link for a module.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code>def modulelink(the_object: TypeLike) -&gt; str:
+
+    &quot;&quot;&quot;Make a link for a module.&quot;&quot;&quot;
+
+    url = f&quot;{the_object.__name__}.html&quot;
+
+    internet_link = getdocloc(the_object)
+
+    if internet_link and settings.PREFER_DOCS_PYTHON_ORG:
+
+        url = internet_link
+
+    # BUG: doesn&#39;t take into consideration an alternate base
+
+    if not internet_link:
+
+        settings.MENTIONED_MODULES.add((the_object, the_object.__name__))
+
+    return f&#39;<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{url}&quot;</span><span class="nt">&gt;</span>{the_object.__name__}<span class="nt">&lt;/a&gt;</span>&#39;
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../format_data/" title="Format Data" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Format Data
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../format_other/" title="Format Other" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Format Other
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.f8263e09.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.4fc53ad4.min.js"></script>
+      
+    
+  </body>
+</html>

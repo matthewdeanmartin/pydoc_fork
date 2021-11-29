@@ -53,13 +53,15 @@ class ImportTimeError(Exception):
     &#34;&#34;&#34;Errors that occurred while trying to import something to document it.&#34;&#34;&#34;
 
     def __init__(self, filename: Optional[str], exc_info: Tuple[Any, Any, Any]) -&gt; None:
+        &#34;&#34;&#34;Set up&#34;&#34;&#34;
         self.filename = filename
         # pylint: disable=invalid-name
         self.exc, self.value, self.tb = exc_info
 
     def __str__(self) -&gt; str:
+        &#34;&#34;&#34;For display&#34;&#34;&#34;
         exc = self.exc.__name__
-        return f&#34;problem in {self.filename} - {exc}: {self.value}&#34;
+        return f&#34;Problem in {self.filename} - {exc}: {self.value}&#34;
 
 
 # noinspection PyProtectedMember
@@ -83,19 +85,21 @@ def importfile(path: str) -&gt; TypeLike:
         LOGGER.warning(f&#34;Skipping importfile for {name} at {path}, got a {import_error}&#34;)
         raise ImportTimeError(path, sys.exc_info()) from import_error
 
-
+# pylint: disable=dangerous-default-value
 def safe_import(
     path: str,
     force_load: bool = False,
     cache: Dict[str, Any] = {},  # noqa - this is mutable on purpose!
 ) -&gt; Any:
-    &#34;&#34;&#34;Import a module; handle errors; return None if the module isn&#39;t found.
+    &#34;&#34;&#34;
+    Import a module; handle errors; return None if the module isn&#39;t found.
 
     If the module *is* found but an exception occurs, it&#39;s wrapped in an
     ErrorDuringImport exception and reraised.  Unlike __import__, if a
     package path is specified, the module at the end of the path is returned,
     not the package at the beginning.  If the optional &#39;force_load&#39; argument
-    is True, we reload the module from disk (unless it&#39;s a dynamic extension).&#34;&#34;&#34;
+    is True, we reload the module from disk (unless it&#39;s a dynamic extension).
+    &#34;&#34;&#34;
     try:
         # If force_load is True and the module has been previously loaded from
         # disk, we always have to reload the module.  Checking the file&#39;s
@@ -304,13 +308,15 @@ is True, we reload the module from disk (unless it's a dynamic extension).</p></
     force_load: bool = False,
     cache: Dict[str, Any] = {},  # noqa - this is mutable on purpose!
 ) -&gt; Any:
-    &#34;&#34;&#34;Import a module; handle errors; return None if the module isn&#39;t found.
+    &#34;&#34;&#34;
+    Import a module; handle errors; return None if the module isn&#39;t found.
 
     If the module *is* found but an exception occurs, it&#39;s wrapped in an
     ErrorDuringImport exception and reraised.  Unlike __import__, if a
     package path is specified, the module at the end of the path is returned,
     not the package at the beginning.  If the optional &#39;force_load&#39; argument
-    is True, we reload the module from disk (unless it&#39;s a dynamic extension).&#34;&#34;&#34;
+    is True, we reload the module from disk (unless it&#39;s a dynamic extension).
+    &#34;&#34;&#34;
     try:
         # If force_load is True and the module has been previously loaded from
         # disk, we always have to reload the module.  Checking the file&#39;s
@@ -371,7 +377,8 @@ is True, we reload the module from disk (unless it's a dynamic extension).</p></
 <span>(</span><span>filename: Optional[str], exc_info: Tuple[Any, Any, Any])</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Errors that occurred while trying to import something to document it.</p></div>
+<div class="desc"><p>Errors that occurred while trying to import something to document it.</p>
+<p>Set up</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -380,13 +387,15 @@ is True, we reload the module from disk (unless it's a dynamic extension).</p></
     &#34;&#34;&#34;Errors that occurred while trying to import something to document it.&#34;&#34;&#34;
 
     def __init__(self, filename: Optional[str], exc_info: Tuple[Any, Any, Any]) -&gt; None:
+        &#34;&#34;&#34;Set up&#34;&#34;&#34;
         self.filename = filename
         # pylint: disable=invalid-name
         self.exc, self.value, self.tb = exc_info
 
     def __str__(self) -&gt; str:
+        &#34;&#34;&#34;For display&#34;&#34;&#34;
         exc = self.exc.__name__
-        return f&#34;problem in {self.filename} - {exc}: {self.value}&#34;</code></pre>
+        return f&#34;Problem in {self.filename} - {exc}: {self.value}&#34;</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">

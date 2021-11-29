@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  
+
+  <head>
+    
+    <title>format_page</title>
+    <meta name="generator" content="pydoctor 21.9.2"> 
+        
+    </meta>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.75" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+    <link rel="stylesheet" type="text/css" href="extra.css" />
+</head>
+
+  <body>
+
+    
+
+    <nav class="navbar navbar-default">
+  
+  <div class="container">
+
+    <div class="navbar-header">
+      
+      <div class="navlinks">
+          <span class="navbar-brand">
+            custom_types/string_utils/format_module/utils/__init__/format_class/format_other/formatter_html/inline_styles/format_data/html_repr_class/path_utils/format_routine/__init__ 0/jinja_code/rst_support/format_page/module_utils <a href="index.html">API Documentation</a>
+          </span>
+
+          <a href="moduleIndex.html">
+            Modules
+          </a>
+
+          <a href="classIndex.html">
+            Classes
+          </a>
+
+          <a href="nameIndex.html">
+            Names
+          </a>
+      </div>
+
+    </div>
+  </div>
+</nav>
+
+    
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><code><a href="format_page.html">format_page</a></code></code></h1>
+        <div id="showPrivate">
+          <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+        </div>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div>Roughly page and top level containers</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id11">
+  
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#document">document</a></code></td>
+    <td>Generate documentation for an object. This also part of the public API of class</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#index">index</a></code></td>
+    <td>Generate an HTML index for a directory of modules.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#page">page</a></code></td>
+    <td>Format an HTML page.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><code><a href="#render">render</a></code></td>
+    <td>Compose two functions</td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  
+  <a name="format_page.document">
+    
+  </a>
+  <a name="document">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">document</span>(the_object, name='', *args):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Generate documentation for an object. This also part of the public API of class</p>
+<p>Types of : Module, class, routine, data descriptor, "other" are supported</p>
+<p>Modules ignore 1st name.</p>
+<p>Public API doesn't call with *args Args are: name, fdict, cdict (name twice?) mod, funcs, classes, mdict, the_object</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">the_object:</span><code>TypeLike</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">args:</span><code>Any</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="format_page.index">
+    
+  </a>
+  <a name="index">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">index</span>(directory, shadowed=None):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Generate an HTML index for a directory of modules.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">directory:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">shadowed:</span><code>Optional[<wbr></wbr>Dict[<wbr></wbr>str, Any]]</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="format_page.page">
+    
+  </a>
+  <a name="page">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">page</span>(title, contents):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Format an HTML page.</p>
+<p>This is part of the public API</p>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">title:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">contents:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  
+  <a name="format_page.render">
+    
+  </a>
+  <a name="render">
+    
+  </a>
+  <div class="functionHeader">
+    
+    <span class="py-keyword">def</span> <span class="py-defname">render</span>(title, the_object, name):
+    
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div>Compose two functions<table class="fieldTable"><tr class="fieldStart"><td class="fieldName" colspan="2">Parameters</td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">title:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">the_object:</span><code>TypeLike</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr><td class="fieldArgContainer"><span class="fieldArg">name:</span><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr><tr class="fieldStart"><td class="fieldName" colspan="2">Returns</td></tr><tr><td class="fieldArgContainer"><code>str</code></td><td class="fieldArgDesc"><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+    </div>
+
+    <footer class="navbar navbar-default">
+  
+  <div class="container">
+    <a href="index.html">API Documentation</a> for custom_types/string_utils/format_module/utils/__init__/format_class/format_other/formatter_html/inline_styles/format_data/html_repr_class/path_utils/format_routine/__init__ 0/jinja_code/rst_support/format_page/module_utils,
+  generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a>
+    21.9.2 at 2021-11-28 23:09:16.
+  </div>
+</footer>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

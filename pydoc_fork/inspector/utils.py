@@ -220,8 +220,8 @@ def _split_list(
     """Split sequence s via predicate, and return pair ([true], [false]).
 
     The return value is a 2-tuple of lists,
-        ([x for x in s if predicate(x)],
-         [x for x in s if not predicate(x)])
+    ([x for x in s if predicate(x)],
+    [x for x in s if not predicate(x)])
     """
 
     yes = []
@@ -293,7 +293,6 @@ def classify_class_attrs(the_object: TypeLike) -> List[Tuple[str, str, type, obj
         LOGGER.warning(f"Skipping classify_class_attrs for {str(the_object)} got ValueError, maybe this is a Namespace")
         # py._xmlgen.Namespace
         # ValueError: Namespace class is abstract
-        pass
     return results
 
 

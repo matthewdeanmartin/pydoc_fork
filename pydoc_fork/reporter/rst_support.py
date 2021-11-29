@@ -11,6 +11,7 @@ class HTMLFragmentTranslator(HTMLTranslator):
     """Minimum to call docutils"""
 
     def __init__(self, document: Any) -> None:
+        """setup"""
         HTMLTranslator.__init__(self, document)
         self.head_prefix = ["", "", "", "", ""]
         self.body_prefix: List[Any] = []

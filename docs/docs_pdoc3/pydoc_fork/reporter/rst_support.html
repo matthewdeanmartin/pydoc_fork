@@ -33,16 +33,16 @@ Credits: <a href="https://stackoverflow.com/a/49047197/33264">https://stackoverf
 Rst to HTML function
 Credits: https://stackoverflow.com/a/49047197/33264
 &#34;&#34;&#34;
-from typing import Any, List
-
 from docutils import core
 from docutils.writers.html4css1 import HTMLTranslator, Writer
+from typing import Any, List
 
 
 class HTMLFragmentTranslator(HTMLTranslator):
     &#34;&#34;&#34;Minimum to call docutils&#34;&#34;&#34;
 
     def __init__(self, document: Any) -&gt; None:
+        &#34;&#34;&#34;setup&#34;&#34;&#34;
         HTMLTranslator.__init__(self, document)
         self.head_prefix = [&#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;]
         self.body_prefix: List[Any] = []
@@ -94,7 +94,8 @@ def rst_to_html(text: str) -&gt; str:
 <span>(</span><span>document: Any)</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Minimum to call docutils</p></div>
+<div class="desc"><p>Minimum to call docutils</p>
+<p>setup</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
@@ -103,6 +104,7 @@ def rst_to_html(text: str) -&gt; str:
     &#34;&#34;&#34;Minimum to call docutils&#34;&#34;&#34;
 
     def __init__(self, document: Any) -&gt; None:
+        &#34;&#34;&#34;setup&#34;&#34;&#34;
         HTMLTranslator.__init__(self, document)
         self.head_prefix = [&#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;]
         self.body_prefix: List[Any] = []

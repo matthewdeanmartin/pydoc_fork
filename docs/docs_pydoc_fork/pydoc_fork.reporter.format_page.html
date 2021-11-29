@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head><title>Python: module pydoc_fork.reporter.format_page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#f0f0f8">
+<table class="heading">
+    <tr style="background-color: #7799ee;">
+        <td class="title" style="vertical-align: bottom">&nbsp;<br>
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+            &nbsp;<br><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.<a href="pydoc_fork.reporter.html"><span style="color:">reporter</span></a>.format_page</strong></big></big>
+            </span>
+        </td>
+        <td style="vertical-align: bottom; text-align: right;">
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+                <a href=".">index</a><br><a href="file:../../pydoc_fork/reporter/format_page.py">../../pydoc_fork/reporter/format_page.py</a>
+            </span>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+<p><tt>Roughly&nbsp;page&nbsp;and&nbsp;top&nbsp;level&nbsp;containers</tt></p>
+
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="inspect.html">inspect</a><br>
+</td><td width="25%" valign=top><a href="pkgutil.html">pkgutil</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.inspector.custom_types.html">pydoc_fork.inspector.custom_types</a><br>
+<a href="pydoc_fork.reporter.format_class.html">pydoc_fork.reporter.format_class</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.reporter.format_module.html">pydoc_fork.reporter.format_module</a><br>
+<a href="pydoc_fork.reporter.format_other.html">pydoc_fork.reporter.format_other</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.reporter.format_data.html">pydoc_fork.reporter.format_data</a><br>
+<a href="pydoc_fork.reporter.format_routine.html">pydoc_fork.reporter.format_routine</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.reporter.formatter_html.html">pydoc_fork.reporter.formatter_html</a><br>
+</td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#eeaa77">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#eeaa77"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><dl><dt><a name="-bigsection"><strong>bigsection</strong></a>(title: str, fgcol: str, bgcol: str, contents: str, width: int = 6, prelude: str = '', marginalia: str = '', gap: str = '&amp;nbsp;') -&gt; str</dt><dd><tt>Format&nbsp;a&nbsp;section&nbsp;with&nbsp;a&nbsp;big&nbsp;heading.</tt></dd></dl>
+ <dl><dt><a name="-docclass"><strong>docclass</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike, name: str = '', mod: str = '', funcs: Optional[Dict[str, str]] = None, classes: Optional[Dict[str, str]] = None) -&gt; str</dt><dd><tt>Produce&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;a&nbsp;class&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-docmodule"><strong>docmodule</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike) -&gt; str</dt><dd><tt>Produce&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;a&nbsp;module&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-docother"><strong>docother</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike, name: str = '') -&gt; str</dt><dd><tt>Produce&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;a&nbsp;data&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-docroutine"><strong>docroutine</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike, name: str = '', mod: str = '', funcs: Optional[Dict[str, Any]] = None, classes: Optional[Dict[str, Any]] = None, methods: Optional[Dict[str, Any]] = None, class_object: Optional[pydoc_fork.inspector.custom_types.TypeLike] = None) -&gt; str</dt><dd><tt>Produce&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;a&nbsp;function&nbsp;or&nbsp;method&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-document"><strong>document</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike, name: str = '', *args: Any) -&gt; str</dt><dd><tt>Generate&nbsp;documentation&nbsp;for&nbsp;an&nbsp;object.<br>
+This&nbsp;also&nbsp;part&nbsp;of&nbsp;the&nbsp;public&nbsp;API&nbsp;of&nbsp;class<br>
+&nbsp;<br>
+Types&nbsp;of&nbsp;:&nbsp;Module,&nbsp;class,&nbsp;routine,&nbsp;data&nbsp;descriptor,&nbsp;"other"&nbsp;are&nbsp;supported<br>
+&nbsp;<br>
+Modules&nbsp;ignore&nbsp;1st&nbsp;name.<br>
+&nbsp;<br>
+Public&nbsp;API&nbsp;doesn't&nbsp;call&nbsp;with&nbsp;*args<br>
+Args&nbsp;are:<br>
+name,&nbsp;fdict,&nbsp;cdict&nbsp;(name&nbsp;twice?)<br>
+mod,&nbsp;funcs,&nbsp;classes,&nbsp;mdict,&nbsp;the_object</tt></dd></dl>
+ <dl><dt><a name="-document_data"><strong>document_data</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike, name: str = '') -&gt; str</dt><dd><tt>Produce&nbsp;html&nbsp;documentation&nbsp;for&nbsp;a&nbsp;data&nbsp;descriptor.</tt></dd></dl>
+ <dl><dt><a name="-index"><strong>index</strong></a>(directory: str, shadowed: Optional[Dict[str, Any]] = None) -&gt; str</dt><dd><tt>Generate&nbsp;an&nbsp;HTML&nbsp;index&nbsp;for&nbsp;a&nbsp;directory&nbsp;of&nbsp;modules.</tt></dd></dl>
+ <dl><dt><a name="-module_package_link"><strong>module_package_link</strong></a>(module_package_info: Tuple[str, str, str, str]) -&gt; str</dt><dd><tt>Make&nbsp;a&nbsp;link&nbsp;for&nbsp;a&nbsp;module&nbsp;or&nbsp;package&nbsp;to&nbsp;display&nbsp;in&nbsp;an&nbsp;index.</tt></dd></dl>
+ <dl><dt><a name="-multicolumn"><strong>multicolumn</strong></a>(the_list: Union[Sequence[Tuple[Any, str, Any, int]], Sequence[Tuple[str, Any]]], the_format: Callable[[Any], str], cols: int = 4) -&gt; str</dt><dd><tt>Format&nbsp;a&nbsp;list&nbsp;of&nbsp;items&nbsp;into&nbsp;a&nbsp;multi-column&nbsp;list.</tt></dd></dl>
+ <dl><dt><a name="-page"><strong>page</strong></a>(title: str, contents: str) -&gt; str</dt><dd><tt>Format&nbsp;an&nbsp;HTML&nbsp;page.<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;part&nbsp;of&nbsp;the&nbsp;public&nbsp;API</tt></dd></dl>
+ <dl><dt><a name="-render"><strong>render</strong></a>(title: str, the_object: pydoc_fork.inspector.custom_types.TypeLike, name: str) -&gt; str</dt><dd><tt>Compose&nbsp;two&nbsp;functions</tt></dd></dl>
+</td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#55aa55">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#55aa55"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><strong>JINJA_ENV</strong> = &lt;jinja2.environment.Environment object&gt;</td></tr>
+</table>
+</body>
+</html>

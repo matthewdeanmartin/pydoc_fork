@@ -184,7 +184,12 @@ def _getdoc(the_object: TypeLike) -&gt; str:
             return &#34;&#34;  # null safety
     if not isinstance(doc, str):
         return &#34;&#34;  # null safety
-    return inspect.cleandoc(doc)
+    result = inspect.cleandoc(doc)
+    # not sure what to do with this not sure it validates.
+    # from docstring_parser import parse
+    # parsed_result = parse(result)
+    # https://pypi.org/project/jsonnet-docblock-parser/
+    return result
 
 
 def getdoc(the_object: TypeLike) -&gt; str:
@@ -244,8 +249,8 @@ def _split_list(
     &#34;&#34;&#34;Split sequence s via predicate, and return pair ([true], [false]).
 
     The return value is a 2-tuple of lists,
-        ([x for x in s if predicate(x)],
-         [x for x in s if not predicate(x)])
+    ([x for x in s if predicate(x)],
+    [x for x in s if not predicate(x)])
     &#34;&#34;&#34;
 
     yes = []
@@ -317,7 +322,6 @@ def classify_class_attrs(the_object: TypeLike) -&gt; List[Tuple[str, str, type, 
         LOGGER.warning(f&#34;Skipping classify_class_attrs for {str(the_object)} got ValueError, maybe this is a Namespace&#34;)
         # py._xmlgen.Namespace
         # ValueError: Namespace class is abstract
-        pass
     return results
 
 
@@ -370,7 +374,6 @@ def sort_attributes(attrs: List[Any], the_object: Union[TypeLike, type]) -&gt; N
         LOGGER.warning(f&#34;Skipping classify_class_attrs for {str(the_object)} got ValueError, maybe this is a Namespace&#34;)
         # py._xmlgen.Namespace
         # ValueError: Namespace class is abstract
-        pass
     return results</code></pre>
 </details>
 </dd>

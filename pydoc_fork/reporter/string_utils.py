@@ -8,7 +8,10 @@ LOGGER = logging.getLogger(__name__)
 
 
 def replace(text: str, *pairs: str) -> str:
-    """Do a series of global replacements on a string."""
+    """Do a series of global replacements on a string.
+    >>> replace("abc xyz", "xyz", "abc")
+    'abc abc'
+    """
     while pairs:
         text = pairs[1].join(text.split(pairs[0]))
         pairs = pairs[2:]

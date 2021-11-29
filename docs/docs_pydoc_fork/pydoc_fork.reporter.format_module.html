@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head><title>Python: module pydoc_fork.reporter.format_module</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#f0f0f8">
+<table class="heading">
+    <tr style="background-color: #7799ee;">
+        <td class="title" style="vertical-align: bottom">&nbsp;<br>
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+            &nbsp;<br><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.<a href="pydoc_fork.reporter.html"><span style="color:">reporter</span></a>.format_module</strong></big></big>
+            </span>
+        </td>
+        <td style="vertical-align: bottom; text-align: right;">
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+                <a href=".">index</a><br><a href="file:../../pydoc_fork/reporter/format_module.py">../../pydoc_fork/reporter/format_module.py</a>
+            </span>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+<p><tt>Roughly&nbsp;a&nbsp;UI&nbsp;component&nbsp;for&nbsp;modules</tt></p>
+
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.reporter.inline_styles.html">pydoc_fork.reporter.inline_styles</a><br>
+<a href="inspect.html">inspect</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="pkgutil.html">pkgutil</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.settings.html">pydoc_fork.settings</a><br>
+<a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.reporter.format_class.html">pydoc_fork.reporter.format_class</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.inspector.custom_types.html">pydoc_fork.inspector.custom_types</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.reporter.formatter_html.html">pydoc_fork.reporter.formatter_html</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.inspector.utils.html">pydoc_fork.inspector.utils</a><br>
+</td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#eeaa77">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#eeaa77"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><dl><dt><a name="-bigsection"><strong>bigsection</strong></a>(title: str, fgcol: str, bgcol: str, contents: str, width: int = 6, prelude: str = '', marginalia: str = '', gap: str = '&amp;nbsp;') -&gt; str</dt><dd><tt>Format&nbsp;a&nbsp;section&nbsp;with&nbsp;a&nbsp;big&nbsp;heading.</tt></dd></dl>
+ <dl><dt><a name="-cast"><strong>cast</strong></a>(typ, val)</dt><dd><tt>Cast&nbsp;a&nbsp;value&nbsp;to&nbsp;a&nbsp;type.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;the&nbsp;value&nbsp;unchanged.&nbsp;&nbsp;To&nbsp;the&nbsp;type&nbsp;checker&nbsp;this<br>
+signals&nbsp;that&nbsp;the&nbsp;return&nbsp;value&nbsp;has&nbsp;the&nbsp;designated&nbsp;type,&nbsp;but&nbsp;at<br>
+runtime&nbsp;we&nbsp;intentionally&nbsp;don't&nbsp;check&nbsp;anything&nbsp;(we&nbsp;want&nbsp;this<br>
+to&nbsp;be&nbsp;as&nbsp;fast&nbsp;as&nbsp;possible).</tt></dd></dl>
+ <dl><dt><a name="-docmodule"><strong>docmodule</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike) -&gt; str</dt><dd><tt>Produce&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;a&nbsp;module&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-escape"><strong>escape</strong></a>(value: Any) -&gt; str</dt><dd><tt>HTML&nbsp;safe&nbsp;repr&nbsp;and&nbsp;escape</tt></dd></dl>
+ <dl><dt><a name="-file_link"><strong>file_link</strong></a>(url: str, path: str) -&gt; str</dt><dd><tt>Make&nbsp;a&nbsp;link&nbsp;to&nbsp;source&nbsp;file.</tt></dd></dl>
+ <dl><dt><a name="-format_tree"><strong>format_tree</strong></a>(tree: List[Any], modname: str, parent: Optional[Any] = None) -&gt; str</dt><dd><tt>Creates&nbsp;a&nbsp;representation&nbsp;of&nbsp;class&nbsp;inheritance.</tt></dd></dl>
+ <dl><dt><a name="-getdoc"><strong>getdoc</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike) -&gt; str</dt><dd><tt>Get&nbsp;the&nbsp;doc&nbsp;string&nbsp;or&nbsp;comments&nbsp;for&nbsp;an&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-getdocloc"><strong>getdocloc</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike, basedir: str = 'C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python39\\Lib') -&gt; Optional[str]</dt><dd><tt>Return&nbsp;the&nbsp;location&nbsp;of&nbsp;module&nbsp;docs&nbsp;or&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-heading"><strong>heading</strong></a>(title: str, fgcol: str, bgcol: str, extras: str = '') -&gt; str</dt><dd><tt>Format&nbsp;a&nbsp;page&nbsp;heading.</tt></dd></dl>
+ <dl><dt><a name="-isdata"><strong>isdata</strong></a>(the_object: Any) -&gt; bool</dt><dd><tt>Check&nbsp;if&nbsp;an&nbsp;object&nbsp;is&nbsp;of&nbsp;a&nbsp;type&nbsp;that&nbsp;probably&nbsp;means&nbsp;it's&nbsp;data.</tt></dd></dl>
+ <dl><dt><a name="-markup"><strong>markup</strong></a>(text: str, funcs: Optional[Dict[str, str]] = None, classes: Optional[Dict[str, str]] = None, methods: Optional[Dict[str, str]] = None) -&gt; str</dt><dd><tt>Replace&nbsp;all&nbsp;linkable&nbsp;things&nbsp;with&nbsp;links&nbsp;of&nbsp;appropriate&nbsp;syntax.<br>
+&nbsp;<br>
+Handle&nbsp;either&nbsp;an&nbsp;adhoc&nbsp;markup&nbsp;language,&nbsp;or&nbsp;RST&nbsp;or&nbsp;Markdown.<br>
+funcs,&nbsp;classes,&nbsp;methods&nbsp;are&nbsp;name/symbol&nbsp;to&nbsp;URL&nbsp;maps.</tt></dd></dl>
+ <dl><dt><a name="-module_package_link"><strong>module_package_link</strong></a>(module_package_info: Tuple[str, str, str, str]) -&gt; str</dt><dd><tt>Make&nbsp;a&nbsp;link&nbsp;for&nbsp;a&nbsp;module&nbsp;or&nbsp;package&nbsp;to&nbsp;display&nbsp;in&nbsp;an&nbsp;index.</tt></dd></dl>
+ <dl><dt><a name="-modulelink"><strong>modulelink</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike) -&gt; str</dt><dd><tt>Make&nbsp;a&nbsp;link&nbsp;for&nbsp;a&nbsp;module.</tt></dd></dl>
+ <dl><dt><a name="-multicolumn"><strong>multicolumn</strong></a>(the_list: Union[Sequence[Tuple[Any, str, Any, int]], Sequence[Tuple[str, Any]]], the_format: Callable[[Any], str], cols: int = 4) -&gt; str</dt><dd><tt>Format&nbsp;a&nbsp;list&nbsp;of&nbsp;items&nbsp;into&nbsp;a&nbsp;multi-column&nbsp;list.</tt></dd></dl>
+ <dl><dt><a name="-visiblename"><strong>visiblename</strong></a>(name: str, all_things: Optional[List[str]] = None, obj: Optional[Any] = None) -&gt; bool</dt><dd><tt>Decide&nbsp;whether&nbsp;to&nbsp;show&nbsp;documentation&nbsp;on&nbsp;a&nbsp;variable.</tt></dd></dl>
+</td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#55aa55">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#55aa55"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><strong>STDLIB_BASEDIR</strong> = r'C:\Users\matth\AppData\Local\Programs\Python\Python39\Lib'</td></tr>
+</table>
+</body>
+</html>

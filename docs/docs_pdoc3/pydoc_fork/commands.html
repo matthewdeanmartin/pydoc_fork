@@ -28,8 +28,7 @@
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">&#34;&#34;&#34;
-Process commands as pure python functions.
+<pre><code class="python">&#34;&#34;&#34;Process commands as pure python functions.
 
 All the CLI logic should be handled in __main__.
 &#34;&#34;&#34;
@@ -38,6 +37,8 @@ import os
 import pkgutil
 from shutil import copy2
 from typing import List, Optional, Union
+import os.path
+import glob
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -78,7 +79,7 @@ def document_one(
 
 
 def calculate_file_name(name: str, output_folder: str) -&gt; str:
-    &#34;&#34;&#34;If this was written, what would its name be&#34;&#34;&#34;
+    &#34;&#34;&#34;Returns name. If this was written, what would its name be&#34;&#34;&#34;
     name = (
         name.replace(&#34;&lt;&#34;, &#34;&#34;)
             .replace(&#34;&gt;&#34;, &#34;&#34;)
@@ -94,8 +95,7 @@ def calculate_file_name(name: str, output_folder: str) -&gt; str:
 
 
 def modules_in_current() -&gt; List[str]:
-    import os.path
-    import glob
+    &#34;&#34;&#34;Convert . shortcut into list of modules&#34;&#34;&#34;
     current = os.getcwd()
     files = glob.glob(os.path.join(os.path.dirname(current), &#34;*.py&#34;))
     py_files = [os.path.basename(f)[:-3] for f in files if os.path.isdir(f)]
@@ -219,6 +219,13 @@ def process_path_or_dot_name(
         files, output_folder, skip_if_written=not overwrite_existing
     )
 
+# def something():
+#     &#34;&#34;&#34; a doctest in a docstring
+#     &gt;&gt;&gt; something()
+#     42
+#     &#34;&#34;&#34;
+#     return 42
+
 if __name__ == &#34;__main__&#34;:
     process_path_or_dot_name([&#34;.&#34;],output_folder=&#34;tmp&#34;)
     # process_path_or_dot_name([&#34;.\\&#34;], output_folder=&#34;docs_api&#34;)
@@ -241,13 +248,13 @@ if __name__ == &#34;__main__&#34;:
 <span>def <span class="ident">calculate_file_name</span></span>(<span>name: str, output_folder: str) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>If this was written, what would its name be</p></div>
+<div class="desc"><p>Returns name. If this was written, what would its name be</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def calculate_file_name(name: str, output_folder: str) -&gt; str:
-    &#34;&#34;&#34;If this was written, what would its name be&#34;&#34;&#34;
+    &#34;&#34;&#34;Returns name. If this was written, what would its name be&#34;&#34;&#34;
     name = (
         name.replace(&#34;&lt;&#34;, &#34;&#34;)
             .replace(&#34;&gt;&#34;, &#34;&#34;)
@@ -333,14 +340,13 @@ if __name__ == &#34;__main__&#34;:
 <span>def <span class="ident">modules_in_current</span></span>(<span>) ‑> List[str]</span>
 </code></dt>
 <dd>
-<div class="desc"></div>
+<div class="desc"><p>Convert . shortcut into list of modules</p></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def modules_in_current() -&gt; List[str]:
-    import os.path
-    import glob
+    &#34;&#34;&#34;Convert . shortcut into list of modules&#34;&#34;&#34;
     current = os.getcwd()
     files = glob.glob(os.path.join(os.path.dirname(current), &#34;*.py&#34;))
     py_files = [os.path.basename(f)[:-3] for f in files if os.path.isdir(f)]

@@ -7,6 +7,8 @@ import os
 import pkgutil
 from shutil import copy2
 from typing import List, Optional, Union
+import os.path
+import glob
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -63,8 +65,7 @@ def calculate_file_name(name: str, output_folder: str) -> str:
 
 
 def modules_in_current() -> List[str]:
-    import os.path
-    import glob
+    """Convert . shortcut into list of modules"""
     current = os.getcwd()
     files = glob.glob(os.path.join(os.path.dirname(current), "*.py"))
     py_files = [os.path.basename(f)[:-3] for f in files if os.path.isdir(f)]
@@ -188,12 +189,12 @@ def process_path_or_dot_name(
         files, output_folder, skip_if_written=not overwrite_existing
     )
 
-def something():
-    """ a doctest in a docstring
-    >>> something()
-    42
-    """
-    return 42
+# def something():
+#     """ a doctest in a docstring
+#     >>> something()
+#     42
+#     """
+#     return 42
 
 if __name__ == "__main__":
     process_path_or_dot_name(["."],output_folder="tmp")

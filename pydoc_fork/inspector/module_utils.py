@@ -24,13 +24,15 @@ class ImportTimeError(Exception):
     """Errors that occurred while trying to import something to document it."""
 
     def __init__(self, filename: Optional[str], exc_info: Tuple[Any, Any, Any]) -> None:
+        """Set up"""
         self.filename = filename
         # pylint: disable=invalid-name
         self.exc, self.value, self.tb = exc_info
 
     def __str__(self) -> str:
+        """For display"""
         exc = self.exc.__name__
-        return f"problem in {self.filename} - {exc}: {self.value}"
+        return f"Problem in {self.filename} - {exc}: {self.value}"
 
 
 # noinspection PyProtectedMember
@@ -54,7 +56,7 @@ def importfile(path: str) -> TypeLike:
         LOGGER.warning(f"Skipping importfile for {name} at {path}, got a {import_error}")
         raise ImportTimeError(path, sys.exc_info()) from import_error
 
-
+# pylint: disable=dangerous-default-value
 def safe_import(
     path: str,
     force_load: bool = False,

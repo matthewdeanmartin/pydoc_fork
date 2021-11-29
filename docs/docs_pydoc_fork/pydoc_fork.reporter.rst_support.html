@@ -1,0 +1,616 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head><title>Python: module pydoc_fork.reporter.rst_support</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#f0f0f8">
+<table class="heading">
+    <tr style="background-color: #7799ee;">
+        <td class="title" style="vertical-align: bottom">&nbsp;<br>
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+            &nbsp;<br><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.<a href="pydoc_fork.reporter.html"><span style="color:">reporter</span></a>.rst_support</strong></big></big>
+            </span>
+        </td>
+        <td style="vertical-align: bottom; text-align: right;">
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+                <a href=".">index</a><br><a href="file:../../pydoc_fork/reporter/rst_support.py">../../pydoc_fork/reporter/rst_support.py</a>
+            </span>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+<p><tt>Rst&nbsp;to&nbsp;HTML&nbsp;function<br>
+Credits:&nbsp;<a href="https://stackoverflow.com/a/49047197/33264">https://stackoverflow.com/a/49047197/33264</a></tt></p>
+
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="docutils.core.html">docutils.core</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="docutils.writers.html4css1.html">docutils.writers.html4css1</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#ee77aa">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Classes</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#ee77aa"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><dl>
+<dt><span style="font-family:helvetica, arial, sans-serif"><a href="docutils.writers.html4css1.html#HTMLTranslator">docutils.writers.html4css1.HTMLTranslator</a>(<a href="docutils.writers._html_base.html#HTMLTranslator">docutils.writers._html_base.HTMLTranslator</a>)
+</span></dt><dd>
+<dl>
+<dt><span style="font-family:helvetica, arial, sans-serif"><a href="pydoc_fork.reporter.rst_support.html#HTMLFragmentTranslator">HTMLFragmentTranslator</a>(<a href="docutils.writers.html4css1.html#HTMLTranslator">docutils.writers.html4css1.HTMLTranslator</a>)
+</span></dt></dl>
+</dd>
+</dl>
+ 
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#ffc8d8">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#000000" face="helvetica, arial"><a name="HTMLFragmentTranslator">class <strong>HTMLFragmentTranslator</strong></a>(<a href="docutils.writers.html4css1.html#HTMLTranslator">docutils.writers.html4css1.HTMLTranslator</a>)</font></td>
+    </tr>
+
+    
+        <tr bgcolor="#ffc8d8">
+            <td rowspan=2><tt></tt></td>
+            <td colspan=2><tt><a href="#HTMLFragmentTranslator">HTMLFragmentTranslator</a>(document:&nbsp;Any)&nbsp;-&gt;&nbsp;None<br>
+&nbsp;<br>
+Minimum&nbsp;to&nbsp;call&nbsp;docutils<br>&nbsp;</tt></td>
+        </tr>
+        <tr>
+            <td>&nbsp;</td>
+            
+    <td width="100%%"><dl><dt>Method resolution order:</dt>
+<dd><a href="pydoc_fork.reporter.rst_support.html#HTMLFragmentTranslator">HTMLFragmentTranslator</a></dd>
+<dd><a href="docutils.writers.html4css1.html#HTMLTranslator">docutils.writers.html4css1.HTMLTranslator</a></dd>
+<dd><a href="docutils.writers._html_base.html#HTMLTranslator">docutils.writers._html_base.HTMLTranslator</a></dd>
+<dd><a href="docutils.nodes.html#NodeVisitor">docutils.nodes.NodeVisitor</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl><dt><a name="HTMLFragmentTranslator-__init__"><strong>__init__</strong></a>(self, document: Any) -&gt; None</dt><dd><tt>setup</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-astext"><strong>astext</strong></a>(self) -&gt; str</dt><dd><tt>minimum&nbsp;to&nbsp;call&nbsp;docutils</tt></dd></dl>
+
+<hr>
+Methods inherited from <a href="docutils.writers.html4css1.html#HTMLTranslator">docutils.writers.html4css1.HTMLTranslator</a>:<br>
+<dl><dt><a name="HTMLFragmentTranslator-depart_author"><strong>depart_author</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_authors"><strong>depart_authors</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_citation"><strong>depart_citation</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_colspec"><strong>depart_colspec</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_description"><strong>depart_description</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_docinfo"><strong>depart_docinfo</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_docinfo_item"><strong>depart_docinfo_item</strong></a>(self)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_enumerated_list"><strong>depart_enumerated_list</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_field"><strong>depart_field</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_field_body"><strong>depart_field_body</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_field_list"><strong>depart_field_list</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_field_name"><strong>depart_field_name</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_footnote"><strong>depart_footnote</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_footnote_reference"><strong>depart_footnote_reference</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_image"><strong>depart_image</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_label"><strong>depart_label</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_literal_block"><strong>depart_literal_block</strong></a>(self, node)</dt><dd><tt>#&nbsp;add&nbsp;newline</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_option_group"><strong>depart_option_group</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_option_list"><strong>depart_option_list</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_option_list_item"><strong>depart_option_list_item</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_paragraph"><strong>depart_paragraph</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_subscript"><strong>depart_subscript</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_subtitle"><strong>depart_subtitle</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_superscript"><strong>depart_superscript</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_table"><strong>depart_table</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_tbody"><strong>depart_tbody</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_thead"><strong>depart_thead</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-footnote_backrefs"><strong>footnote_backrefs</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-is_compactable"><strong>is_compactable</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-set_first_last"><strong>set_first_last</strong></a>(self, node)</dt><dd><tt>#&nbsp;ersatz&nbsp;for&nbsp;first/last&nbsp;pseudo-classes&nbsp;missing&nbsp;in&nbsp;CSS1</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-should_be_compact_paragraph"><strong>should_be_compact_paragraph</strong></a>(self, node)</dt><dd><tt>Determine&nbsp;if&nbsp;the&nbsp;&lt;p&gt;&nbsp;tags&nbsp;around&nbsp;paragraph&nbsp;``node``&nbsp;can&nbsp;be&nbsp;omitted.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_address"><strong>visit_address</strong></a>(self, node)</dt><dd><tt>#&nbsp;add&nbsp;newline&nbsp;after&nbsp;opening&nbsp;tag</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_admonition"><strong>visit_admonition</strong></a>(self, node)</dt><dd><tt>#&nbsp;ersatz&nbsp;for&nbsp;first/last&nbsp;pseudo-classes</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_author"><strong>visit_author</strong></a>(self, node)</dt><dd><tt>#&nbsp;author,&nbsp;authors:&nbsp;use&nbsp;&lt;br&gt;&nbsp;instead&nbsp;of&nbsp;paragraphs</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_authors"><strong>visit_authors</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_citation"><strong>visit_citation</strong></a>(self, node)</dt><dd><tt>#&nbsp;citations:&nbsp;Use&nbsp;table&nbsp;for&nbsp;bibliographic&nbsp;references.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_classifier"><strong>visit_classifier</strong></a>(self, node)</dt><dd><tt>#&nbsp;insert&nbsp;classifier-delimiter&nbsp;(not&nbsp;required&nbsp;with&nbsp;CSS2)</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_colspec"><strong>visit_colspec</strong></a>(self, node)</dt><dd><tt>#&nbsp;use&nbsp;"width"&nbsp;argument&nbsp;insted&nbsp;of&nbsp;"style:&nbsp;'width'":</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_definition"><strong>visit_definition</strong></a>(self, node)</dt><dd><tt>#&nbsp;ersatz&nbsp;for&nbsp;first/last&nbsp;pseudo-classes</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_definition_list"><strong>visit_definition_list</strong></a>(self, node)</dt><dd><tt>#&nbsp;don't&nbsp;add&nbsp;"simple"&nbsp;class&nbsp;value</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_description"><strong>visit_description</strong></a>(self, node)</dt><dd><tt>#&nbsp;use&nbsp;a&nbsp;table&nbsp;for&nbsp;description&nbsp;lists</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_docinfo"><strong>visit_docinfo</strong></a>(self, node)</dt><dd><tt>#&nbsp;use&nbsp;table&nbsp;for&nbsp;docinfo</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_docinfo_item"><strong>visit_docinfo_item</strong></a>(self, node, name, meta=True)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_doctest_block"><strong>visit_doctest_block</strong></a>(self, node)</dt><dd><tt>#&nbsp;add&nbsp;newline&nbsp;after&nbsp;opening&nbsp;tag</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_entry"><strong>visit_entry</strong></a>(self, node)</dt><dd><tt>#&nbsp;insert&nbsp;an&nbsp;NBSP&nbsp;into&nbsp;empty&nbsp;cells,&nbsp;ersatz&nbsp;for&nbsp;first/last</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_enumerated_list"><strong>visit_enumerated_list</strong></a>(self, node)</dt><dd><tt>The&nbsp;'start'&nbsp;attribute&nbsp;does&nbsp;not&nbsp;conform&nbsp;to&nbsp;HTML&nbsp;4.01's&nbsp;strict.dtd,&nbsp;but<br>
+cannot&nbsp;be&nbsp;emulated&nbsp;in&nbsp;CSS1&nbsp;(HTML&nbsp;5&nbsp;reincludes&nbsp;it).</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_field"><strong>visit_field</strong></a>(self, node)</dt><dd><tt>#&nbsp;use&nbsp;table&nbsp;for&nbsp;field-list:</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_field_body"><strong>visit_field_body</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_field_list"><strong>visit_field_list</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_field_name"><strong>visit_field_name</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_footnote"><strong>visit_footnote</strong></a>(self, node)</dt><dd><tt>#&nbsp;use&nbsp;table&nbsp;for&nbsp;footnote&nbsp;text</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_footnote_reference"><strong>visit_footnote_reference</strong></a>(self, node)</dt><dd><tt>#&nbsp;insert&nbsp;markers&nbsp;in&nbsp;text&nbsp;as&nbsp;pseudo-classes&nbsp;are&nbsp;not&nbsp;supported&nbsp;in&nbsp;CSS1:</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_generated"><strong>visit_generated</strong></a>(self, node)</dt><dd><tt>#&nbsp;just&nbsp;pass&nbsp;on&nbsp;generated&nbsp;text</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_image"><strong>visit_image</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_label"><strong>visit_label</strong></a>(self, node)</dt><dd><tt>#&nbsp;use&nbsp;table&nbsp;for&nbsp;footnote&nbsp;text,<br>
+#&nbsp;context&nbsp;added&nbsp;in&nbsp;footnote_backrefs.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_list_item"><strong>visit_list_item</strong></a>(self, node)</dt><dd><tt>#&nbsp;ersatz&nbsp;for&nbsp;first/last&nbsp;pseudo-classes</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_literal"><strong>visit_literal</strong></a>(self, node)</dt><dd><tt>#&nbsp;use&nbsp;&lt;tt&gt;&nbsp;(not&nbsp;supported&nbsp;by&nbsp;HTML5),<br>
+#&nbsp;cater&nbsp;for&nbsp;limited&nbsp;styling&nbsp;options&nbsp;in&nbsp;CSS1&nbsp;using&nbsp;hard-coded&nbsp;NBSPs</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_literal_block"><strong>visit_literal_block</strong></a>(self, node)</dt><dd><tt>#&nbsp;add&nbsp;newline&nbsp;after&nbsp;opening&nbsp;tag,&nbsp;don't&nbsp;use&nbsp;&lt;code&gt;&nbsp;for&nbsp;code</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_option_group"><strong>visit_option_group</strong></a>(self, node)</dt><dd><tt>#&nbsp;use&nbsp;table&nbsp;for&nbsp;option&nbsp;list</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_option_list"><strong>visit_option_list</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_option_list_item"><strong>visit_option_list_item</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_paragraph"><strong>visit_paragraph</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_sidebar"><strong>visit_sidebar</strong></a>(self, node)</dt><dd><tt>#&nbsp;ersatz&nbsp;for&nbsp;first/last&nbsp;pseudo-classes</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_subscript"><strong>visit_subscript</strong></a>(self, node)</dt><dd><tt>#&nbsp;&lt;sub&gt;&nbsp;not&nbsp;allowed&nbsp;in&nbsp;&lt;pre&gt;</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_subtitle"><strong>visit_subtitle</strong></a>(self, node)</dt><dd><tt>#&nbsp;Use&nbsp;&lt;h*&gt;&nbsp;for&nbsp;subtitles&nbsp;(deprecated&nbsp;in&nbsp;HTML&nbsp;5)</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_superscript"><strong>visit_superscript</strong></a>(self, node)</dt><dd><tt>#&nbsp;&lt;sup&gt;&nbsp;not&nbsp;allowed&nbsp;in&nbsp;&lt;pre&gt;&nbsp;in&nbsp;HTML&nbsp;4</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_system_message"><strong>visit_system_message</strong></a>(self, node)</dt><dd><tt>#&nbsp;&lt;tt&gt;&nbsp;element&nbsp;deprecated&nbsp;in&nbsp;HTML&nbsp;5</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_table"><strong>visit_table</strong></a>(self, node)</dt><dd><tt>#&nbsp;"hard&nbsp;coded"&nbsp;border&nbsp;setting</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_tbody"><strong>visit_tbody</strong></a>(self, node)</dt><dd><tt>#&nbsp;hard-coded&nbsp;vertical&nbsp;alignment</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_thead"><strong>visit_thead</strong></a>(self, node)</dt><dd><tt>#&nbsp;hard-coded&nbsp;vertical&nbsp;alignment</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="docutils.writers.html4css1.html#HTMLTranslator">docutils.writers.html4css1.HTMLTranslator</a>:<br>
+<dl><dt><strong>attribution_formats</strong> = {'dash': ('&amp;mdash;', ''), 'none': ('', ''), 'parens': ('(', ')'), 'parentheses': ('(', ')')}</dl>
+
+<dl><dt><strong>content_type</strong> = '&lt;meta http-equiv="Content-Type" content="text/html; charset=%s" /&gt;<span style="color:#c040c0">\n</span>'</dl>
+
+<dl><dt><strong>content_type_mathml</strong> = '&lt;meta http-equiv="Content-Type" content="application/xhtml+xml; charset=%s" /&gt;<span style="color:#c040c0">\n</span>'</dl>
+
+<dl><dt><strong>doctype</strong> = '&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Tra...w.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<span style="color:#c040c0">\n</span>'</dl>
+
+<dl><dt><strong>object_image_types</strong> = {'.svg': 'image/svg+xml', '.swf': 'application/x-shockwave-flash'}</dl>
+
+<dl><dt><strong>special_characters</strong> = {34: '&amp;quot;', 38: '&amp;amp;', 60: '&amp;lt;', 62: '&amp;gt;', ...}</dl>
+
+<hr>
+Methods inherited from <a href="docutils.writers._html_base.html#HTMLTranslator">docutils.writers._html_base.HTMLTranslator</a>:<br>
+<dl><dt><a name="HTMLFragmentTranslator-add_meta"><strong>add_meta</strong></a>(self, tag)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-attval"><strong>attval</strong></a>(self, text, whitespace=re.compile('[\n\r\t\x0b\x0c]'))</dt><dd><tt>Cleanse,&nbsp;HTML&nbsp;encode,&nbsp;and&nbsp;return&nbsp;attribute&nbsp;value&nbsp;text.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-check_simple_list"><strong>check_simple_list</strong></a>(self, node)</dt><dd><tt>Check&nbsp;for&nbsp;a&nbsp;simple&nbsp;list&nbsp;that&nbsp;can&nbsp;be&nbsp;rendered&nbsp;compactly.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-cloak_email"><strong>cloak_email</strong></a>(self, addr)</dt><dd><tt>Try&nbsp;to&nbsp;hide&nbsp;the&nbsp;link&nbsp;text&nbsp;of&nbsp;a&nbsp;email&nbsp;link&nbsp;from&nbsp;harversters.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-cloak_mailto"><strong>cloak_mailto</strong></a>(self, uri)</dt><dd><tt>Try&nbsp;to&nbsp;hide&nbsp;a&nbsp;mailto:&nbsp;URL&nbsp;from&nbsp;harvesters.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_Text"><strong>depart_Text</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_abbreviation"><strong>depart_abbreviation</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_acronym"><strong>depart_acronym</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_address"><strong>depart_address</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_admonition"><strong>depart_admonition</strong></a>(self, node=None)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_attribution"><strong>depart_attribution</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_block_quote"><strong>depart_block_quote</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_bullet_list"><strong>depart_bullet_list</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_caption"><strong>depart_caption</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_citation_reference"><strong>depart_citation_reference</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_classifier"><strong>depart_classifier</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_compound"><strong>depart_compound</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_contact"><strong>depart_contact</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_container"><strong>depart_container</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_copyright"><strong>depart_copyright</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_date"><strong>depart_date</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_decoration"><strong>depart_decoration</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_definition"><strong>depart_definition</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_definition_list"><strong>depart_definition_list</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_definition_list_item"><strong>depart_definition_list_item</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_doctest_block"><strong>depart_doctest_block</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_document"><strong>depart_document</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_emphasis"><strong>depart_emphasis</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_entry"><strong>depart_entry</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_figure"><strong>depart_figure</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_footer"><strong>depart_footer</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_generated"><strong>depart_generated</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_header"><strong>depart_header</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_inline"><strong>depart_inline</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_legend"><strong>depart_legend</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_line"><strong>depart_line</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_line_block"><strong>depart_line_block</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_list_item"><strong>depart_list_item</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_literal"><strong>depart_literal</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_math"><strong>depart_math</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_math_block"><strong>depart_math_block</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_meta"><strong>depart_meta</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_option"><strong>depart_option</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_option_argument"><strong>depart_option_argument</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_option_string"><strong>depart_option_string</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_organization"><strong>depart_organization</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_problematic"><strong>depart_problematic</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_reference"><strong>depart_reference</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_revision"><strong>depart_revision</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_row"><strong>depart_row</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_rubric"><strong>depart_rubric</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_section"><strong>depart_section</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_sidebar"><strong>depart_sidebar</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_status"><strong>depart_status</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_strong"><strong>depart_strong</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_system_message"><strong>depart_system_message</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_target"><strong>depart_target</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_term"><strong>depart_term</strong></a>(self, node)</dt><dd><tt>Leave&nbsp;the&nbsp;end&nbsp;tag&nbsp;to&nbsp;`self.<a href="#HTMLFragmentTranslator-visit_definition">visit_definition</a>()`,&nbsp;in&nbsp;case&nbsp;there's&nbsp;a<br>
+classifier.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_tgroup"><strong>depart_tgroup</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_title"><strong>depart_title</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_title_reference"><strong>depart_title_reference</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_topic"><strong>depart_topic</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_transition"><strong>depart_transition</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-depart_version"><strong>depart_version</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-emptytag"><strong>emptytag</strong></a>(self, node, tagname, suffix='\n', **attributes)</dt><dd><tt>Construct&nbsp;and&nbsp;return&nbsp;an&nbsp;XML-compatible&nbsp;empty&nbsp;tag.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-encode"><strong>encode</strong></a>(self, text)</dt><dd><tt>Encode&nbsp;special&nbsp;characters&nbsp;in&nbsp;`text`&nbsp;&amp;&nbsp;return.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-set_class_on_child"><strong>set_class_on_child</strong></a>(self, node, class_, index=0)</dt><dd><tt>Set&nbsp;class&nbsp;`class_`&nbsp;on&nbsp;the&nbsp;visible&nbsp;child&nbsp;no.&nbsp;index&nbsp;of&nbsp;`node`.<br>
+Do&nbsp;nothing&nbsp;if&nbsp;node&nbsp;has&nbsp;fewer&nbsp;children&nbsp;than&nbsp;`index`.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-starttag"><strong>starttag</strong></a>(self, node, tagname, suffix='\n', empty=False, **attributes)</dt><dd><tt>Construct&nbsp;and&nbsp;return&nbsp;a&nbsp;start&nbsp;tag&nbsp;given&nbsp;a&nbsp;node&nbsp;(id&nbsp;&amp;&nbsp;class&nbsp;attributes<br>
+are&nbsp;extracted),&nbsp;tag&nbsp;name,&nbsp;and&nbsp;optional&nbsp;attributes.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-stylesheet_call"><strong>stylesheet_call</strong></a>(self, path)</dt><dd><tt>Return&nbsp;code&nbsp;to&nbsp;reference&nbsp;or&nbsp;embed&nbsp;stylesheet&nbsp;file&nbsp;`path`</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-unimplemented_visit"><strong>unimplemented_visit</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_Text"><strong>visit_Text</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_abbreviation"><strong>visit_abbreviation</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_acronym"><strong>visit_acronym</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_attribution"><strong>visit_attribution</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_block_quote"><strong>visit_block_quote</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_bullet_list"><strong>visit_bullet_list</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_caption"><strong>visit_caption</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_citation_reference"><strong>visit_citation_reference</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_comment"><strong>visit_comment</strong></a>(self, node, sub=&lt;built-in method sub of re.Pattern object at 0x000001EC4BC2CBE0&gt;)</dt><dd><tt>Escape&nbsp;double-dashes&nbsp;in&nbsp;comment&nbsp;text.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_compound"><strong>visit_compound</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_contact"><strong>visit_contact</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_container"><strong>visit_container</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_copyright"><strong>visit_copyright</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_date"><strong>visit_date</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_decoration"><strong>visit_decoration</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_definition_list_item"><strong>visit_definition_list_item</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_document"><strong>visit_document</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_emphasis"><strong>visit_emphasis</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_figure"><strong>visit_figure</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_footer"><strong>visit_footer</strong></a>(self, node)</dt><dd><tt>#&nbsp;use&nbsp;HTML&nbsp;5&nbsp;&lt;footer&gt;&nbsp;element?</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_header"><strong>visit_header</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_inline"><strong>visit_inline</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_legend"><strong>visit_legend</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_line"><strong>visit_line</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_line_block"><strong>visit_line_block</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_math"><strong>visit_math</strong></a>(self, node, math_env='')</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_math_block"><strong>visit_math_block</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_meta"><strong>visit_meta</strong></a>(self, node)</dt><dd><tt>#&nbsp;Meta&nbsp;tags:&nbsp;'lang'&nbsp;attribute&nbsp;replaced&nbsp;by&nbsp;'xml:lang'&nbsp;in&nbsp;XHTML&nbsp;1.1<br>
+#&nbsp;HTML5/polyglot&nbsp;recommends&nbsp;using&nbsp;both</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_option"><strong>visit_option</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_option_argument"><strong>visit_option_argument</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_option_string"><strong>visit_option_string</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_organization"><strong>visit_organization</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_problematic"><strong>visit_problematic</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_raw"><strong>visit_raw</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_reference"><strong>visit_reference</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_revision"><strong>visit_revision</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_row"><strong>visit_row</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_rubric"><strong>visit_rubric</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_section"><strong>visit_section</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_status"><strong>visit_status</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_strong"><strong>visit_strong</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_substitution_definition"><strong>visit_substitution_definition</strong></a>(self, node)</dt><dd><tt>Internal&nbsp;only.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_substitution_reference"><strong>visit_substitution_reference</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_target"><strong>visit_target</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_term"><strong>visit_term</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_tgroup"><strong>visit_tgroup</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_title"><strong>visit_title</strong></a>(self, node)</dt><dd><tt>Only&nbsp;6&nbsp;section&nbsp;levels&nbsp;are&nbsp;supported&nbsp;by&nbsp;HTML.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_title_reference"><strong>visit_title_reference</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_topic"><strong>visit_topic</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_transition"><strong>visit_transition</strong></a>(self, node)</dt></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-visit_version"><strong>visit_version</strong></a>(self, node)</dt></dl>
+
+<hr>
+Data and other attributes inherited from <a href="docutils.writers._html_base.html#HTMLTranslator">docutils.writers._html_base.HTMLTranslator</a>:<br>
+<dl><dt><strong>doctype_mathml</strong> = '&lt;!DOCTYPE html&gt;<span style="color:#c040c0">\n</span>'</dl>
+
+<dl><dt><strong>embedded_stylesheet</strong> = '&lt;style type="text/css"&gt;<span style="color:#c040c0">\n\n</span>%s<span style="color:#c040c0">\n</span>&lt;/style&gt;<span style="color:#c040c0">\n</span>'</dl>
+
+<dl><dt><strong>generator</strong> = '&lt;meta name="generator" content="Docutils %s: http://docutils.sourceforge.net/" /&gt;<span style="color:#c040c0">\n</span>'</dl>
+
+<dl><dt><strong>head_prefix_template</strong> = '&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="%(lang)s" lang="%(lang)s"&gt;<span style="color:#c040c0">\n</span>&lt;head&gt;<span style="color:#c040c0">\n</span>'</dl>
+
+<dl><dt><strong>in_word_wrap_point</strong> = re.compile('.+\\W\\W.+|[-?].+')</dl>
+
+<dl><dt><strong>lang_attribute</strong> = 'lang'</dl>
+
+<dl><dt><strong>math_tags</strong> = {'html': ('div', 'span', 'formula'), 'latex': ('pre', 'tt', 'math'), 'mathjax': ('div', 'span', 'math'), 'mathml': ('div', '', '')}</dl>
+
+<dl><dt><strong>mathjax_script</strong> = '&lt;script type="text/javascript" src="%s"&gt;&lt;/script&gt;<span style="color:#c040c0">\n</span>'</dl>
+
+<dl><dt><strong>mathjax_url</strong> = 'file:/usr/share/javascript/mathjax/MathJax.js'</dl>
+
+<dl><dt><strong>stylesheet_link</strong> = '&lt;link rel="stylesheet" href="%s" type="text/css" /&gt;<span style="color:#c040c0">\n</span>'</dl>
+
+<dl><dt><strong>words_and_spaces</strong> = re.compile('[^ \\n]+| +|\\n')</dl>
+
+<dl><dt><strong>xml_declaration</strong> = '&lt;?xml version="1.0" encoding="%s" ?&gt;<span style="color:#c040c0">\n</span>'</dl>
+
+<hr>
+Methods inherited from <a href="docutils.nodes.html#NodeVisitor">docutils.nodes.NodeVisitor</a>:<br>
+<dl><dt><a name="HTMLFragmentTranslator-dispatch_departure"><strong>dispatch_departure</strong></a>(self, node)</dt><dd><tt>Call&nbsp;self."``depart_``&nbsp;+&nbsp;node&nbsp;class&nbsp;name"&nbsp;with&nbsp;`node`&nbsp;as<br>
+parameter.&nbsp;&nbsp;If&nbsp;the&nbsp;``depart_...``&nbsp;method&nbsp;does&nbsp;not&nbsp;exist,&nbsp;call<br>
+self.<strong>unknown_departure</strong>.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-dispatch_visit"><strong>dispatch_visit</strong></a>(self, node)</dt><dd><tt>Call&nbsp;self."``visit_``&nbsp;+&nbsp;node&nbsp;class&nbsp;name"&nbsp;with&nbsp;`node`&nbsp;as<br>
+parameter.&nbsp;&nbsp;If&nbsp;the&nbsp;``visit_...``&nbsp;method&nbsp;does&nbsp;not&nbsp;exist,&nbsp;call<br>
+self.<strong>unknown_visit</strong>.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-unknown_departure"><strong>unknown_departure</strong></a>(self, node)</dt><dd><tt>Called&nbsp;before&nbsp;exiting&nbsp;unknown&nbsp;`Node`&nbsp;types.<br>
+&nbsp;<br>
+Raise&nbsp;exception&nbsp;unless&nbsp;overridden.</tt></dd></dl>
+
+<dl><dt><a name="HTMLFragmentTranslator-unknown_visit"><strong>unknown_visit</strong></a>(self, node)</dt><dd><tt>Called&nbsp;when&nbsp;entering&nbsp;unknown&nbsp;`Node`&nbsp;types.<br>
+&nbsp;<br>
+Raise&nbsp;an&nbsp;exception&nbsp;unless&nbsp;overridden.</tt></dd></dl>
+
+<hr>
+Data and other attributes inherited from <a href="docutils.nodes.html#NodeVisitor">docutils.nodes.NodeVisitor</a>:<br>
+<dl><dt><strong>optional</strong> = ()</dl>
+
+</td></tr>
+</table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#eeaa77">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#eeaa77"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><dl><dt><a name="-rst_to_html"><strong>rst_to_html</strong></a>(text: str) -&gt; str</dt><dd><tt>Convert&nbsp;rst&nbsp;string&nbsp;to&nbsp;html&nbsp;string</tt></dd></dl>
+</td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#55aa55">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#55aa55"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><strong>html_fragment_writer</strong> = &lt;docutils.writers.html4css1.Writer object&gt;</td></tr>
+</table>
+</body>
+</html>

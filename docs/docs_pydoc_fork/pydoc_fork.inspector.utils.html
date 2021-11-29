@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head><title>Python: module pydoc_fork.inspector.utils</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#f0f0f8">
+<table class="heading">
+    <tr style="background-color: #7799ee;">
+        <td class="title" style="vertical-align: bottom">&nbsp;<br>
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+            &nbsp;<br><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.<a href="pydoc_fork.inspector.html"><span style="color:">inspector</span></a>.utils</strong></big></big>
+            </span>
+        </td>
+        <td style="vertical-align: bottom; text-align: right;">
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+                <a href=".">index</a><br><a href="file:../../pydoc_fork/inspector/utils.py">../../pydoc_fork/inspector/utils.py</a>
+            </span>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+<p><tt>Unclassified&nbsp;utils</tt></p>
+
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="inspect.html">inspect</a><br>
+</td><td width="25%" valign=top><a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="re.html">re</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.inspector.module_utils.html">pydoc_fork.inspector.module_utils</a><br>
+</td><td width="25%" valign=top><a href="modulefinder.html">modulefinder</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.inspector.custom_types.html">pydoc_fork.inspector.custom_types</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#eeaa77">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#eeaa77"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><dl><dt><a name="-cast"><strong>cast</strong></a>(typ, val)</dt><dd><tt>Cast&nbsp;a&nbsp;value&nbsp;to&nbsp;a&nbsp;type.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;the&nbsp;value&nbsp;unchanged.&nbsp;&nbsp;To&nbsp;the&nbsp;type&nbsp;checker&nbsp;this<br>
+signals&nbsp;that&nbsp;the&nbsp;return&nbsp;value&nbsp;has&nbsp;the&nbsp;designated&nbsp;type,&nbsp;but&nbsp;at<br>
+runtime&nbsp;we&nbsp;intentionally&nbsp;don't&nbsp;check&nbsp;anything&nbsp;(we&nbsp;want&nbsp;this<br>
+to&nbsp;be&nbsp;as&nbsp;fast&nbsp;as&nbsp;possible).</tt></dd></dl>
+ <dl><dt><a name="-classify_class_attrs"><strong>classify_class_attrs</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike) -&gt; List[Tuple[str, str, type, object]]</dt><dd><tt>Wrap&nbsp;inspect.classify_class_attrs,&nbsp;with&nbsp;fixup&nbsp;for&nbsp;data&nbsp;descriptors.</tt></dd></dl>
+ <dl><dt><a name="-classname"><strong>classname</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike, modname: str) -&gt; str</dt><dd><tt>Get&nbsp;a&nbsp;class&nbsp;name&nbsp;and&nbsp;qualify&nbsp;it&nbsp;with&nbsp;a&nbsp;module&nbsp;name&nbsp;if&nbsp;necessary.</tt></dd></dl>
+ <dl><dt><a name="-describe"><strong>describe</strong></a>(thing: pydoc_fork.inspector.custom_types.TypeLike) -&gt; str</dt><dd><tt>Produce&nbsp;a&nbsp;short&nbsp;description&nbsp;of&nbsp;the&nbsp;given&nbsp;thing.</tt></dd></dl>
+ <dl><dt><a name="-getdoc"><strong>getdoc</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike) -&gt; str</dt><dd><tt>Get&nbsp;the&nbsp;doc&nbsp;string&nbsp;or&nbsp;comments&nbsp;for&nbsp;an&nbsp;object.</tt></dd></dl>
+ <dl><dt><a name="-isdata"><strong>isdata</strong></a>(the_object: Any) -&gt; bool</dt><dd><tt>Check&nbsp;if&nbsp;an&nbsp;object&nbsp;is&nbsp;of&nbsp;a&nbsp;type&nbsp;that&nbsp;probably&nbsp;means&nbsp;it's&nbsp;data.</tt></dd></dl>
+ <dl><dt><a name="-locate"><strong>locate</strong></a>(path: str, force_load: bool = False) -&gt; Any</dt><dd><tt>Locate&nbsp;an&nbsp;object&nbsp;by&nbsp;name&nbsp;or&nbsp;dotted&nbsp;path,&nbsp;importing&nbsp;as&nbsp;necessary.</tt></dd></dl>
+ <dl><dt><a name="-resolve"><strong>resolve</strong></a>(thing: Union[str, Any], force_load: bool = False) -&gt; Tuple[Any, Any]</dt><dd><tt>Given&nbsp;an&nbsp;object&nbsp;or&nbsp;a&nbsp;path&nbsp;to&nbsp;an&nbsp;object,&nbsp;get&nbsp;the&nbsp;object&nbsp;and&nbsp;its&nbsp;name.</tt></dd></dl>
+ <dl><dt><a name="-sort_attributes"><strong>sort_attributes</strong></a>(attrs: List[Any], the_object: Union[pydoc_fork.inspector.custom_types.TypeLike, type]) -&gt; None</dt><dd><tt>Sort&nbsp;the&nbsp;attrs&nbsp;list&nbsp;in-place&nbsp;by&nbsp;_fields&nbsp;and&nbsp;then&nbsp;alphabetically&nbsp;by&nbsp;name</tt></dd></dl>
+ <dl><dt><a name="-visiblename"><strong>visiblename</strong></a>(name: str, all_things: Optional[List[str]] = None, obj: Optional[Any] = None) -&gt; bool</dt><dd><tt>Decide&nbsp;whether&nbsp;to&nbsp;show&nbsp;documentation&nbsp;on&nbsp;a&nbsp;variable.</tt></dd></dl>
+</td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#55aa55">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#55aa55"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><strong>LOGGER</strong> = &lt;Logger pydoc_fork.inspector.utils (WARNING)&gt;</td></tr>
+</table>
+</body>
+</html>

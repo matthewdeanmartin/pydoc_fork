@@ -15,7 +15,7 @@ Options:
   --config <config>            pyproject.toml or other toml config.
   --document_internals         respect underscore or __all__ private
   --prefer_docs_python_org     link to python.org or generate own stdlib docs
-  --o -output <folder>         where to write files
+  -o --output <folder>         where to write files
 """
 
 # TODO: implement this

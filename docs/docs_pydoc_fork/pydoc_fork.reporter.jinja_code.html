@@ -1,0 +1,119 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head><title>Python: module pydoc_fork.reporter.jinja_code</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#f0f0f8">
+<table class="heading">
+    <tr style="background-color: #7799ee;">
+        <td class="title" style="vertical-align: bottom">&nbsp;<br>
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+            &nbsp;<br><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.<a href="pydoc_fork.reporter.html"><span style="color:">reporter</span></a>.jinja_code</strong></big></big>
+            </span>
+        </td>
+        <td style="vertical-align: bottom; text-align: right;">
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+                <a href=".">index</a><br><a href="file:../../pydoc_fork/reporter/jinja_code.py">../../pydoc_fork/reporter/jinja_code.py</a>
+            </span>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+<p><tt>Jinja&nbsp;setup</tt></p>
+
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="jinja2.environment.html">jinja2.environment</a><br>
+</td><td width="25%" valign=top><a href="jinja2.utils.html">jinja2.utils</a><br>
+</td><td width="25%" valign=top><a href="jinja2.loaders.html">jinja2.loaders</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#eeaa77">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#eeaa77"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><dl><dt><a name="-select_autoescape"><strong>select_autoescape</strong></a>(enabled_extensions: Collection[str] = ('html', 'htm', 'xml'), disabled_extensions: Collection[str] = (), default_for_string: bool = True, default: bool = False) -&gt; Callable[[Optional[str]], bool]</dt><dd><tt>Intelligently&nbsp;sets&nbsp;the&nbsp;initial&nbsp;value&nbsp;of&nbsp;autoescaping&nbsp;based&nbsp;on&nbsp;the<br>
+filename&nbsp;of&nbsp;the&nbsp;template.&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;recommended&nbsp;way&nbsp;to&nbsp;configure<br>
+autoescaping&nbsp;if&nbsp;you&nbsp;do&nbsp;not&nbsp;want&nbsp;to&nbsp;write&nbsp;a&nbsp;custom&nbsp;function&nbsp;yourself.<br>
+&nbsp;<br>
+If&nbsp;you&nbsp;want&nbsp;to&nbsp;enable&nbsp;it&nbsp;for&nbsp;all&nbsp;templates&nbsp;created&nbsp;from&nbsp;strings&nbsp;or<br>
+for&nbsp;all&nbsp;templates&nbsp;with&nbsp;`.html`&nbsp;and&nbsp;`.xml`&nbsp;extensions::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;jinja2&nbsp;import&nbsp;Environment,&nbsp;select_autoescape<br>
+&nbsp;&nbsp;&nbsp;&nbsp;env&nbsp;=&nbsp;Environment(autoescape=<a href="#-select_autoescape">select_autoescape</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enabled_extensions=('html',&nbsp;'xml'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default_for_string=True,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;))<br>
+&nbsp;<br>
+Example&nbsp;configuration&nbsp;to&nbsp;turn&nbsp;it&nbsp;on&nbsp;at&nbsp;all&nbsp;times&nbsp;except&nbsp;if&nbsp;the&nbsp;template<br>
+ends&nbsp;with&nbsp;`.txt`::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;jinja2&nbsp;import&nbsp;Environment,&nbsp;select_autoescape<br>
+&nbsp;&nbsp;&nbsp;&nbsp;env&nbsp;=&nbsp;Environment(autoescape=<a href="#-select_autoescape">select_autoescape</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;disabled_extensions=('txt',),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default_for_string=True,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default=True,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;))<br>
+&nbsp;<br>
+The&nbsp;`enabled_extensions`&nbsp;is&nbsp;an&nbsp;iterable&nbsp;of&nbsp;all&nbsp;the&nbsp;extensions&nbsp;that<br>
+autoescaping&nbsp;should&nbsp;be&nbsp;enabled&nbsp;for.&nbsp;&nbsp;Likewise&nbsp;`disabled_extensions`&nbsp;is<br>
+a&nbsp;list&nbsp;of&nbsp;all&nbsp;templates&nbsp;it&nbsp;should&nbsp;be&nbsp;disabled&nbsp;for.&nbsp;&nbsp;If&nbsp;a&nbsp;template&nbsp;is<br>
+loaded&nbsp;from&nbsp;a&nbsp;string&nbsp;then&nbsp;the&nbsp;default&nbsp;from&nbsp;`default_for_string`&nbsp;is&nbsp;used.<br>
+If&nbsp;nothing&nbsp;matches&nbsp;then&nbsp;the&nbsp;initial&nbsp;value&nbsp;of&nbsp;autoescaping&nbsp;is&nbsp;set&nbsp;to&nbsp;the<br>
+value&nbsp;of&nbsp;`default`.<br>
+&nbsp;<br>
+For&nbsp;security&nbsp;reasons&nbsp;this&nbsp;function&nbsp;operates&nbsp;case&nbsp;insensitive.<br>
+&nbsp;<br>
+..&nbsp;versionadded::&nbsp;2.9</tt></dd></dl>
+</td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#55aa55">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#55aa55"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><strong>JINJA_ENV</strong> = &lt;jinja2.environment.Environment object&gt;</td></tr>
+</table>
+</body>
+</html>

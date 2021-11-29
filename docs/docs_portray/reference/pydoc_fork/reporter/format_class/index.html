@@ -1,0 +1,1996 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="icon" href="../../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.2.3, mkdocs-material-7.3.0">
+    
+    
+      
+        <title>Format Class - pydoc_fork</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../../assets/stylesheets/main.8b42a75e.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.3f5d1f46.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#4cae4f">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+    
+      
+
+
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="green" data-md-color-accent="lightgreen">
+  
+    
+    <script>function __prefix(e){return new URL("../../../..",location).pathname+"."+e}function __get(e,t=localStorage){return JSON.parse(t.getItem(__prefix(e)))}</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#module-pydoc_forkreporterformat_class" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../../.." title="pydoc_fork" class="md-header__button md-logo" aria-label="pydoc_fork" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            pydoc_fork
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Format Class
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/matthewdeanmartin/pydoc_fork/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pydoc_fork
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../../.." title="pydoc_fork" class="md-nav__button md-logo" aria-label="pydoc_fork" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    pydoc_fork
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/matthewdeanmartin/pydoc_fork/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    pydoc_fork
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../.." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/CHANGES/" class="md-nav__link">
+        Changes
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/TODO/" class="md-nav__link">
+        Todo
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/contributing/" class="md-nav__link">
+        Contributing
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/feature_clusters/" class="md-nav__link">
+        Feature Clusters
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/motivation/" class="md-nav__link">
+        Motivation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/prior_art/" class="md-nav__link">
+        Prior Art
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/usage/" class="md-nav__link">
+        Usage
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../../docs/workflows/" class="md-nav__link">
+        Workflows
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10" type="checkbox" id="__nav_10" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10">
+          Reference
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reference" data-md-level="1">
+        <label class="md-nav__title" for="__nav_10">
+          <span class="md-nav__icon md-icon"></span>
+          Reference
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1" type="checkbox" id="__nav_10_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1">
+          Pydoc Fork
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Pydoc Fork" data-md-level="2">
+        <label class="md-nav__title" for="__nav_10_1">
+          <span class="md-nav__icon md-icon"></span>
+          Pydoc Fork
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../commands/" class="md-nav__link">
+        Commands
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../settings/" class="md-nav__link">
+        Settings
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1_4" type="checkbox" id="__nav_10_1_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1_4">
+          Inspector
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Inspector" data-md-level="3">
+        <label class="md-nav__title" for="__nav_10_1_4">
+          <span class="md-nav__icon md-icon"></span>
+          Inspector
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/custom_types/" class="md-nav__link">
+        Custom Types
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/module_utils/" class="md-nav__link">
+        Module Utils
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/path_utils/" class="md-nav__link">
+        Path Utils
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../inspector/utils/" class="md-nav__link">
+        Utils
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_10_1_5" type="checkbox" id="__nav_10_1_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_10_1_5">
+          Reporter
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reporter" data-md-level="3">
+        <label class="md-nav__title" for="__nav_10_1_5">
+          <span class="md-nav__icon md-icon"></span>
+          Reporter
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Format Class
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Format Class
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classlink" class="md-nav__link">
+    classlink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docclass" class="md-nav__link">
+    docclass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format_tree" class="md-nav__link">
+    format_tree
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_data/" class="md-nav__link">
+        Format Data
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_module/" class="md-nav__link">
+        Format Module
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_other/" class="md-nav__link">
+        Format Other
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_page/" class="md-nav__link">
+        Format Page
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../format_routine/" class="md-nav__link">
+        Format Routine
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../formatter_html/" class="md-nav__link">
+        Formatter Html
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../html_repr_class/" class="md-nav__link">
+        Html Repr Class
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../inline_styles/" class="md-nav__link">
+        Inline Styles
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../jinja_code/" class="md-nav__link">
+        Jinja Code
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rst_support/" class="md-nav__link">
+        Rst Support
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../string_utils/" class="md-nav__link">
+        String Utils
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#functions" class="md-nav__link">
+    Functions
+  </a>
+  
+    <nav class="md-nav" aria-label="Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#classlink" class="md-nav__link">
+    classlink
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docclass" class="md-nav__link">
+    docclass
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#format_tree" class="md-nav__link">
+    format_tree
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/matthewdeanmartin/pydoc_fork/edit/main/reference/pydoc_fork/reporter/format_class.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="module-pydoc_forkreporterformat_class">Module pydoc_fork.reporter.format_class</h1>
+<p>Roughly a UI component for classes</p>
+<p>None</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">Roughly a UI component for classes</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">builtins</span>
+
+<span class="kn">import</span> <span class="nn">inspect</span>
+
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">deque</span>
+
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Optional</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">cast</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork</span> <span class="kn">import</span> <span class="n">settings</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.inspector.custom_types</span> <span class="kn">import</span> <span class="n">TypeLike</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.inspector.utils</span> <span class="kn">import</span> <span class="p">(</span>
+
+    <span class="n">_split_list</span><span class="p">,</span>
+
+    <span class="n">classify_class_attrs</span><span class="p">,</span>
+
+    <span class="n">classname</span><span class="p">,</span>
+
+    <span class="n">getdoc</span><span class="p">,</span>
+
+    <span class="n">sort_attributes</span><span class="p">,</span>
+
+    <span class="n">visiblename</span><span class="p">,</span>
+
+<span class="p">)</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.reporter</span> <span class="kn">import</span> <span class="n">inline_styles</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.reporter.format_data</span> <span class="kn">import</span> <span class="n">document_data</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.reporter.format_other</span> <span class="kn">import</span> <span class="n">docother</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.reporter.formatter_html</span> <span class="kn">import</span> <span class="n">markup</span><span class="p">,</span> <span class="n">section</span>
+
+<span class="k">def</span> <span class="nf">classlink</span><span class="p">(</span><span class="n">the_object</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">TypeLike</span><span class="p">,</span> <span class="nb">type</span><span class="p">],</span> <span class="n">modname</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Make a link for a class.&quot;&quot;&quot;</span>
+
+    <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="o">=</span> <span class="n">the_object</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">modules</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">the_object</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">and</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span> <span class="ow">is</span> <span class="n">the_object</span><span class="p">:</span>
+
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;&lt;a href=&quot;</span><span class="si">{</span><span class="n">module</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s1">.html#</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;&gt;</span><span class="si">{</span><span class="n">classname</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="n">TypeLike</span><span class="p">,</span> <span class="n">the_object</span><span class="p">),</span> <span class="n">modname</span><span class="p">)</span><span class="si">}</span><span class="s1">&lt;/a&gt;&#39;</span>
+
+    <span class="k">return</span> <span class="n">classname</span><span class="p">(</span><span class="n">the_object</span><span class="p">,</span> <span class="n">modname</span><span class="p">)</span>
+
+<span class="c1"># noinspection PyBroadException</span>
+
+<span class="k">def</span> <span class="nf">docclass</span><span class="p">(</span>
+
+    <span class="n">the_object</span><span class="p">:</span> <span class="n">TypeLike</span><span class="p">,</span>
+
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+
+    <span class="n">mod</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+
+    <span class="n">funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+
+    <span class="n">classes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;Produce HTML documentation for a class object.&quot;&quot;&quot;</span>
+
+    <span class="n">funcs</span> <span class="o">=</span> <span class="n">funcs</span> <span class="ow">or</span> <span class="p">{}</span>
+
+    <span class="n">classes</span> <span class="o">=</span> <span class="n">classes</span> <span class="ow">or</span> <span class="p">{}</span>
+
+    <span class="n">real_name</span> <span class="o">=</span> <span class="n">the_object</span><span class="o">.</span><span class="vm">__name__</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="ow">or</span> <span class="n">real_name</span>
+
+    <span class="n">bases</span> <span class="o">=</span> <span class="n">the_object</span><span class="o">.</span><span class="vm">__bases__</span>
+
+    <span class="n">contents</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="n">push</span> <span class="o">=</span> <span class="n">contents</span><span class="o">.</span><span class="n">append</span>
+
+    <span class="k">class</span> <span class="nc">HorizontalRule</span><span class="p">:</span>
+
+        <span class="sd">&quot;&quot;&quot;Cute little class to pump out a horizontal rule between sections.&quot;&quot;&quot;</span>
+
+        <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">need_one</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">def</span> <span class="nf">maybe</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+
+            <span class="sd">&quot;&quot;&quot;Skip&quot;&quot;&quot;</span>
+
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">need_one</span><span class="p">:</span>
+
+                <span class="n">push</span><span class="p">(</span><span class="s2">&quot;&lt;hr&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">need_one</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="c1"># pylint:disable=invalid-name</span>
+
+    <span class="n">hr</span> <span class="o">=</span> <span class="n">HorizontalRule</span><span class="p">()</span>
+
+    <span class="c1"># List the mro, if non-trivial.</span>
+
+    <span class="n">mro</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">inspect</span><span class="o">.</span><span class="n">getmro</span><span class="p">(</span><span class="n">cast</span><span class="p">(</span><span class="nb">type</span><span class="p">,</span> <span class="n">the_object</span><span class="p">)))</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">mro</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+
+        <span class="n">hr</span><span class="o">.</span><span class="n">maybe</span><span class="p">()</span>
+
+        <span class="n">push</span><span class="p">(</span><span class="s2">&quot;&lt;dl&gt;&lt;dt&gt;Method resolution order:&lt;/dt&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">mro</span><span class="p">:</span>
+
+            <span class="n">push</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;dd&gt;</span><span class="si">{</span><span class="n">classlink</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">the_object</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span><span class="si">}</span><span class="s2">&lt;/dd&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="n">push</span><span class="p">(</span><span class="s2">&quot;&lt;/dl&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">spill</span><span class="p">(</span>
+
+        <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attrs_in</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">predicate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span>
+
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+
+        <span class="sd">&quot;&quot;&quot;Not sure&quot;&quot;&quot;</span>
+
+        <span class="n">ok</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">_split_list</span><span class="p">(</span><span class="n">attrs_in</span><span class="p">,</span> <span class="n">predicate</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
+
+            <span class="n">hr</span><span class="o">.</span><span class="n">maybe</span><span class="p">()</span>
+
+            <span class="n">push</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">ok</span><span class="p">:</span>
+
+                <span class="c1"># noinspection PyBroadException</span>
+
+                <span class="k">try</span><span class="p">:</span>
+
+                    <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">the_object</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+                <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># nosec</span>
+
+                    <span class="c1"># Some descriptors may meet a failure in their __get__.</span>
+
+                    <span class="c1"># (bug #1785)</span>
+
+                    <span class="n">push</span><span class="p">(</span>
+
+                        <span class="n">document_data</span><span class="p">(</span>
+
+                            <span class="n">value</span><span class="p">,</span>
+
+                            <span class="n">name</span><span class="p">,</span>
+
+                            <span class="c1"># mod, unused</span>
+
+                        <span class="p">)</span>
+
+                    <span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+
+                    <span class="c1"># circular ref</span>
+
+                    <span class="c1"># pylint: disable=import-outside-toplevel</span>
+
+                    <span class="kn">from</span> <span class="nn">pydoc_fork.reporter.format_page</span> <span class="kn">import</span> <span class="n">document</span>
+
+                    <span class="n">push</span><span class="p">(</span>
+
+                        <span class="n">document</span><span class="p">(</span>
+
+                            <span class="n">value</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">mod</span><span class="p">,</span> <span class="n">funcs</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">module_dict</span><span class="p">,</span> <span class="n">the_object</span>
+
+                        <span class="p">)</span>
+
+                    <span class="p">)</span>
+
+                <span class="n">push</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">attrs</span>
+
+    <span class="k">def</span> <span class="nf">spilldescriptors</span><span class="p">(</span>
+
+        <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+
+        <span class="n">attrs_in</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>  <span class="c1"># Tuple[str, str, type, &quot;object&quot;]</span>
+
+        <span class="n">predicate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="nb">bool</span><span class="p">],</span>
+
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+
+        <span class="sd">&quot;&quot;&quot;Not sure&quot;&quot;&quot;</span>
+
+        <span class="n">ok</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">_split_list</span><span class="p">(</span><span class="n">attrs_in</span><span class="p">,</span> <span class="n">predicate</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
+
+            <span class="n">hr</span><span class="o">.</span><span class="n">maybe</span><span class="p">()</span>
+
+            <span class="n">push</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">ok</span><span class="p">:</span>
+
+                <span class="n">push</span><span class="p">(</span>
+
+                    <span class="n">document_data</span><span class="p">(</span>
+
+                        <span class="n">value</span><span class="p">,</span>
+
+                        <span class="n">name</span><span class="p">,</span>
+
+                        <span class="c1"># mod, ignored</span>
+
+                    <span class="p">)</span>
+
+                <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">attrs</span>
+
+    <span class="k">def</span> <span class="nf">spilldata</span><span class="p">(</span>
+
+        <span class="n">msg</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">attrs_in</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">predicate</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="nb">bool</span><span class="p">]</span>
+
+    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">]:</span>
+
+        <span class="sd">&quot;&quot;&quot;Not sure&quot;&quot;&quot;</span>
+
+        <span class="n">ok</span><span class="p">,</span> <span class="n">attrs</span> <span class="o">=</span> <span class="n">_split_list</span><span class="p">(</span><span class="n">attrs_in</span><span class="p">,</span> <span class="n">predicate</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">ok</span><span class="p">:</span>
+
+            <span class="n">hr</span><span class="o">.</span><span class="n">maybe</span><span class="p">()</span>
+
+            <span class="n">push</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">__</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">ok</span><span class="p">:</span>
+
+                <span class="n">base</span> <span class="o">=</span> <span class="n">docother</span><span class="p">(</span>
+
+                    <span class="nb">getattr</span><span class="p">(</span><span class="n">the_object</span><span class="p">,</span> <span class="n">name</span><span class="p">),</span>
+
+                    <span class="n">name</span><span class="p">,</span>
+
+                    <span class="c1"># mod ignored</span>
+
+                <span class="p">)</span>
+
+                <span class="n">found_doc</span> <span class="o">=</span> <span class="n">getdoc</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+                <span class="k">if</span> <span class="ow">not</span> <span class="n">found_doc</span><span class="p">:</span>
+
+                    <span class="n">push</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;dl&gt;&lt;dt&gt;</span><span class="si">{</span><span class="n">base</span><span class="si">}</span><span class="s2">&lt;/dl&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="k">else</span><span class="p">:</span>
+
+                    <span class="n">found_doc</span> <span class="o">=</span> <span class="n">markup</span><span class="p">(</span><span class="n">getdoc</span><span class="p">(</span><span class="n">value</span><span class="p">),</span> <span class="n">funcs</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">module_dict</span><span class="p">)</span>
+
+                    <span class="n">found_doc</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&lt;dd&gt;&lt;tt&gt;</span><span class="si">{</span><span class="n">found_doc</span><span class="si">}</span><span class="s2">&lt;/tt&gt;&quot;</span>
+
+                    <span class="n">push</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;&lt;dl&gt;&lt;dt&gt;</span><span class="si">{</span><span class="n">base</span><span class="si">}{</span><span class="n">found_doc</span><span class="si">}</span><span class="s2">&lt;/dl&gt;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+                <span class="n">push</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">attrs</span>
+
+    <span class="n">attrs</span> <span class="o">=</span> <span class="p">[</span>
+
+        <span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">kind</span><span class="p">,</span> <span class="bp">cls</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">classify_class_attrs</span><span class="p">(</span><span class="n">the_object</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">visiblename</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">obj</span><span class="o">=</span><span class="n">the_object</span><span class="p">)</span>
+
+    <span class="p">]</span>
+
+    <span class="n">module_dict</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">_</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">attrs</span><span class="p">:</span>
+
+        <span class="n">module_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchor</span> <span class="o">=</span> <span class="s2">&quot;#&quot;</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">+</span> <span class="n">key</span>
+
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="n">value</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">the_object</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>  <span class="c1"># nosec</span>
+
+            <span class="c1"># Some descriptors may meet a failure in their __get__.</span>
+
+            <span class="c1"># (bug #1785)</span>
+
+            <span class="k">pass</span>  <span class="c1"># nosec</span>
+
+        <span class="k">try</span><span class="p">:</span>
+
+            <span class="c1"># The value may not be hashable (e.g., a data attr with</span>
+
+            <span class="c1"># a dict or list value).</span>
+
+            <span class="n">module_dict</span><span class="p">[</span><span class="n">value</span><span class="p">]</span> <span class="o">=</span> <span class="n">anchor</span>
+
+        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
+
+            <span class="k">pass</span>  <span class="c1"># nosec</span>
+
+    <span class="k">while</span> <span class="n">attrs</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">mro</span><span class="p">:</span>
+
+            <span class="n">this_class</span> <span class="o">=</span> <span class="n">mro</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">this_class</span> <span class="o">=</span> <span class="n">attrs</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+
+        <span class="n">is_this_class</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="ow">is</span> <span class="n">this_class</span>
+
+        <span class="n">attrs</span><span class="p">,</span> <span class="n">inherited</span> <span class="o">=</span> <span class="n">_split_list</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span> <span class="n">is_this_class</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">the_object</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">builtins</span><span class="o">.</span><span class="n">object</span> <span class="ow">and</span> <span class="n">this_class</span> <span class="ow">is</span> <span class="n">builtins</span><span class="o">.</span><span class="n">object</span><span class="p">:</span>
+
+            <span class="n">attrs</span> <span class="o">=</span> <span class="n">inherited</span>
+
+            <span class="k">continue</span>
+
+        <span class="k">if</span> <span class="n">this_class</span> <span class="ow">is</span> <span class="n">the_object</span><span class="p">:</span>
+
+            <span class="n">tag</span> <span class="o">=</span> <span class="s2">&quot;defined here&quot;</span>
+
+        <span class="k">else</span><span class="p">:</span>
+
+            <span class="n">tag</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;inherited from </span><span class="si">{</span><span class="n">classlink</span><span class="p">(</span><span class="n">this_class</span><span class="p">,</span> <span class="n">the_object</span><span class="o">.</span><span class="vm">__module__</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+
+        <span class="n">tag</span> <span class="o">+=</span> <span class="s2">&quot;:&lt;br&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+        <span class="n">sort_attributes</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span> <span class="n">the_object</span><span class="p">)</span>
+
+        <span class="c1"># feature to remove typing annotations cruft.</span>
+
+        <span class="k">for</span> <span class="n">kind</span> <span class="ow">in</span> <span class="n">attrs</span><span class="o">.</span><span class="n">copy</span><span class="p">():</span>
+
+            <span class="n">module_name</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getmodule</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">module_name</span> <span class="ow">and</span> <span class="n">module_name</span><span class="o">.</span><span class="vm">__name__</span> <span class="ow">in</span> <span class="n">settings</span><span class="o">.</span><span class="n">SKIP_MODULES</span><span class="p">:</span>
+
+                <span class="n">attrs</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span>
+
+        <span class="c1"># Pump out the attrs, segregated by kind.</span>
+
+        <span class="n">is_method</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;method&quot;</span>
+
+        <span class="n">attrs</span> <span class="o">=</span> <span class="n">spill</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Methods </span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">is_method</span><span class="p">)</span>
+
+        <span class="n">is_class</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;class method&quot;</span>
+
+        <span class="n">attrs</span> <span class="o">=</span> <span class="n">spill</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Class methods </span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">is_class</span><span class="p">)</span>
+
+        <span class="n">is_static</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;static method&quot;</span>
+
+        <span class="n">attrs</span> <span class="o">=</span> <span class="n">spill</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Static methods </span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">is_static</span><span class="p">)</span>
+
+        <span class="n">is_read_only</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;readonly property&quot;</span>
+
+        <span class="n">attrs</span> <span class="o">=</span> <span class="n">spilldescriptors</span><span class="p">(</span>
+
+            <span class="sa">f</span><span class="s2">&quot;Readonly properties </span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+
+            <span class="n">attrs</span><span class="p">,</span>
+
+            <span class="n">is_read_only</span><span class="p">,</span>
+
+        <span class="p">)</span>
+
+        <span class="n">is_data_descriptor</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;data descriptor&quot;</span>
+
+        <span class="n">attrs</span> <span class="o">=</span> <span class="n">spilldescriptors</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data descriptors </span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">is_data_descriptor</span><span class="p">)</span>
+
+        <span class="n">is_data</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">Any</span><span class="p">],</span> <span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;data&quot;</span>
+
+        <span class="n">attrs</span> <span class="o">=</span> <span class="n">spilldata</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Data and other attributes </span><span class="si">{</span><span class="n">tag</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">attrs</span><span class="p">,</span> <span class="n">is_data</span><span class="p">)</span>
+
+        <span class="k">assert</span> <span class="ow">not</span> <span class="n">attrs</span>  <span class="c1"># nosec</span>
+
+        <span class="n">attrs</span> <span class="o">=</span> <span class="n">inherited</span>
+
+    <span class="n">contents_as_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span>  <span class="c1"># type got redefined</span>
+
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="n">real_name</span><span class="p">:</span>
+
+        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&lt;a name=&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;&gt;class &lt;strong&gt;</span><span class="si">{</span><span class="n">real_name</span><span class="si">}</span><span class="s1">&lt;/strong&gt;&lt;/a&gt;&#39;</span>
+
+    <span class="k">else</span><span class="p">:</span>
+
+        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;&lt;strong&gt;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&lt;/strong&gt; = &lt;a name=&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;&gt;class </span><span class="si">{</span><span class="n">real_name</span><span class="si">}</span><span class="s1">&lt;/a&gt;&#39;</span>
+
+    <span class="k">if</span> <span class="n">bases</span><span class="p">:</span>
+
+        <span class="n">parents</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
+
+            <span class="n">parents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classlink</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">the_object</span><span class="o">.</span><span class="vm">__module__</span><span class="p">))</span>
+
+        <span class="n">title</span> <span class="o">=</span> <span class="n">title</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="s1">&#39;, &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parents</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span>
+
+    <span class="n">decl</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+
+        <span class="n">signature</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">the_object</span><span class="p">)</span>
+
+    <span class="k">except</span> <span class="p">(</span><span class="ne">ValueError</span><span class="p">,</span> <span class="ne">TypeError</span><span class="p">):</span>
+
+        <span class="n">signature</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="k">if</span> <span class="n">signature</span><span class="p">:</span>
+
+        <span class="n">argument_specification</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">signature</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">argument_specification</span> <span class="ow">and</span> <span class="n">argument_specification</span> <span class="o">!=</span> <span class="s2">&quot;()&quot;</span><span class="p">:</span>
+
+            <span class="c1"># this will cause double escape on -&gt;</span>
+
+            <span class="c1"># escape(argument_specification)</span>
+
+            <span class="n">decl</span> <span class="o">=</span> <span class="n">name</span> <span class="o">+</span> <span class="n">argument_specification</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span>
+
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">getdoc</span><span class="p">(</span><span class="n">the_object</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">decl</span><span class="p">:</span>
+
+        <span class="n">doc</span> <span class="o">=</span> <span class="n">decl</span> <span class="o">+</span> <span class="p">(</span><span class="n">doc</span> <span class="ow">or</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">markup</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span> <span class="n">funcs</span><span class="p">,</span> <span class="n">classes</span><span class="p">,</span> <span class="n">module_dict</span><span class="p">)</span>
+
+    <span class="n">doc</span> <span class="o">=</span> <span class="n">doc</span> <span class="ow">and</span> <span class="sa">f</span><span class="s2">&quot;&lt;tt&gt;</span><span class="si">{</span><span class="n">doc</span><span class="si">}</span><span class="s2">&lt;br&gt;&amp;nbsp;&lt;/tt&gt;&quot;</span>
+
+    <span class="k">return</span> <span class="n">section</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="s2">&quot;#000000&quot;</span><span class="p">,</span> <span class="s2">&quot;#ffc8d8&quot;</span><span class="p">,</span> <span class="n">contents_as_string</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">doc</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">format_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span> <span class="n">modname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    Creates a representation of class inheritance.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># &quot;&quot;&quot;Produce HTML for a class tree as given by inspect.getclasstree().&quot;&quot;&quot;</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+    <span class="k">for</span> <span class="n">entry</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">:</span>
+
+        <span class="n">class_object</span> <span class="o">=</span> <span class="n">entry</span>
+
+        <span class="c1"># pylint: disable=unidiomatic-typecheck</span>
+
+        <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(()):</span>  <span class="c1"># noqa - not sure of switching to isinstance</span>
+
+            <span class="n">class_object</span><span class="p">,</span> <span class="n">bases</span> <span class="o">=</span> <span class="n">entry</span>
+
+            <span class="n">result</span> <span class="o">=</span> <span class="p">(</span>
+
+                <span class="n">result</span> <span class="o">+</span> <span class="sa">f</span><span class="s1">&#39;&lt;dt&gt;&lt;span style=&quot;font-family:</span><span class="si">{</span><span class="n">inline_styles</span><span class="o">.</span><span class="n">SAN_SERIF</span><span class="si">}</span><span class="s1">&quot;&gt;&#39;</span>
+
+            <span class="p">)</span>
+
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="n">classlink</span><span class="p">(</span><span class="n">class_object</span><span class="p">,</span> <span class="n">modname</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">bases</span> <span class="ow">and</span> <span class="n">bases</span> <span class="o">!=</span> <span class="p">(</span><span class="n">parent</span><span class="p">,):</span>
+
+                <span class="n">parents</span> <span class="o">=</span> <span class="p">[]</span>
+
+                <span class="k">for</span> <span class="n">base</span> <span class="ow">in</span> <span class="n">bases</span><span class="p">:</span>
+
+                    <span class="n">parents</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classlink</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">modname</span><span class="p">))</span>
+
+                <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="s2">&quot;(&quot;</span> <span class="o">+</span> <span class="s2">&quot;, &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">parents</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;)&quot;</span>
+
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&lt;/span&gt;&lt;/dt&gt;&quot;</span>
+
+        <span class="k">elif</span> <span class="nb">type</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">([]):</span>  <span class="c1"># noqa - not sure of switching to isinstance</span>
+
+            <span class="n">tree</span> <span class="o">=</span> <span class="n">format_tree</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span> <span class="n">modname</span><span class="p">,</span> <span class="n">class_object</span><span class="p">)</span>
+
+            <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">+</span> <span class="sa">f</span><span class="s2">&quot;&lt;dd&gt;</span><span class="se">\n</span><span class="si">{</span><span class="n">tree</span><span class="si">}</span><span class="s2">&lt;/dd&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;&lt;dl&gt;</span><span class="se">\n</span><span class="si">{</span><span class="n">result</span><span class="si">}</span><span class="s2">&lt;/dl&gt;</span><span class="se">\n</span><span class="s2">&quot;</span>
+</code></pre></div>
+
+</details>
+<h2 id="functions">Functions</h2>
+<h3 id="classlink">classlink</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">classlink</span><span class="p">(</span>
+    <span class="n">the_object</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">pydoc_fork</span><span class="o">.</span><span class="n">inspector</span><span class="o">.</span><span class="n">custom_types</span><span class="o">.</span><span class="n">TypeLike</span><span class="p">,</span> <span class="nb">type</span><span class="p">],</span>
+    <span class="n">modname</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Make a link for a class.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code>def classlink(the_object: Union[TypeLike, type], modname: str) -&gt; str:
+
+    &quot;&quot;&quot;Make a link for a class.&quot;&quot;&quot;
+
+    name, module = the_object.__name__, sys.modules.get(the_object.__module__)
+
+    if hasattr(module, name) and getattr(module, name) is the_object:
+
+        return f&#39;<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;{module.__name__}.html#{name}&quot;</span><span class="nt">&gt;</span>{classname(cast(TypeLike, the_object), modname)}<span class="nt">&lt;/a&gt;</span>&#39;
+
+    return classname(the_object, modname)
+</code></pre></div>
+
+</details>
+<h3 id="docclass">docclass</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">docclass</span><span class="p">(</span>
+    <span class="n">the_object</span><span class="p">:</span> <span class="n">pydoc_fork</span><span class="o">.</span><span class="n">inspector</span><span class="o">.</span><span class="n">custom_types</span><span class="o">.</span><span class="n">TypeLike</span><span class="p">,</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">mod</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+    <span class="n">funcs</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">classes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Produce HTML documentation for a class object.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">docclass</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">the_object</span><span class="p">:</span><span class="w"> </span><span class="n">TypeLike</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">name</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">mod</span><span class="err">:</span><span class="w"> </span><span class="nf">str</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">funcs</span><span class="p">:</span><span class="w"> </span><span class="n">Optional</span><span class="o">[</span><span class="n">Dict[str, str</span><span class="o">]</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">classes</span><span class="p">:</span><span class="w"> </span><span class="n">Optional</span><span class="o">[</span><span class="n">Dict[str, str</span><span class="o">]</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">,</span><span class="w"></span>
+
+<span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nf">str</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;Produce HTML documentation for a class object.&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">funcs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">funcs</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="err">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">classes</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="err">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">real_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">the_object</span><span class="p">.</span><span class="n">__name__</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">real_name</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">bases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">the_object</span><span class="p">.</span><span class="n">__bases__</span><span class="w"></span>
+
+<span class="w">    </span><span class="nl">contents</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">str</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">push</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contents</span><span class="p">.</span><span class="n">append</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">class</span><span class="w"> </span><span class="nl">HorizontalRule</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Cute little class to pump out a horizontal rule between sections.&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">def</span><span class="w"> </span><span class="n">__init__</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">need_one</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">def</span><span class="w"> </span><span class="n">maybe</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="k">None</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="ss">&quot;&quot;&quot;Skip&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="nl">need_one</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">push</span><span class="p">(</span><span class="ss">&quot;&lt;hr&gt;\n&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">need_one</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="nl">pylint</span><span class="p">:</span><span class="n">disable</span><span class="o">=</span><span class="n">invalid</span><span class="o">-</span><span class="n">name</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">hr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HorizontalRule</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="n">List</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">mro</span><span class="p">,</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">non</span><span class="o">-</span><span class="n">trivial</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">mro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">deque</span><span class="p">(</span><span class="n">inspect</span><span class="p">.</span><span class="n">getmro</span><span class="p">(</span><span class="nf">cast</span><span class="p">(</span><span class="n">type</span><span class="p">,</span><span class="w"> </span><span class="n">the_object</span><span class="p">)))</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nf">len</span><span class="p">(</span><span class="n">mro</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">hr</span><span class="p">.</span><span class="n">maybe</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">push</span><span class="p">(</span><span class="ss">&quot;&lt;dl&gt;&lt;dt&gt;Method resolution order:&lt;/dt&gt;\n&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">mro</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">push</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;&lt;dd&gt;{classlink(base, the_object.__module__)}&lt;/dd&gt;\n&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">push</span><span class="p">(</span><span class="ss">&quot;&lt;/dl&gt;\n&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">spill</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">msg</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">,</span><span class="w"> </span><span class="nl">attrs_in</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="nl">predicate</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ow">Any</span><span class="err">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Any</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Not sure&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_split_list</span><span class="p">(</span><span class="n">attrs_in</span><span class="p">,</span><span class="w"> </span><span class="n">predicate</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nl">ok</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">hr</span><span class="p">.</span><span class="n">maybe</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">push</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">ok</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="err">#</span><span class="w"> </span><span class="n">noinspection</span><span class="w"> </span><span class="n">PyBroadException</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getattr</span><span class="p">(</span><span class="n">the_object</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="ow">except</span><span class="w"> </span><span class="k">Exception</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">nosec</span><span class="w"></span>
+
+<span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="ow">Some</span><span class="w"> </span><span class="n">descriptors</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">meet</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">failure</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">their</span><span class="w"> </span><span class="n">__get__</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="p">(</span><span class="n">bug</span><span class="w"> </span><span class="n">#1785</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">push</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                        </span><span class="n">document_data</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                            </span><span class="k">value</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                            </span><span class="n">name</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                            </span><span class="err">#</span><span class="w"> </span><span class="k">mod</span><span class="p">,</span><span class="w"> </span><span class="n">unused</span><span class="w"></span>
+
+<span class="w">                        </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                    </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="n">circular</span><span class="w"> </span><span class="k">ref</span><span class="w"></span>
+
+<span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="nl">pylint</span><span class="p">:</span><span class="w"> </span><span class="n">disable</span><span class="o">=</span><span class="n">import</span><span class="o">-</span><span class="n">outside</span><span class="o">-</span><span class="n">toplevel</span><span class="w"></span>
+
+<span class="w">                    </span><span class="k">from</span><span class="w"> </span><span class="n">pydoc_fork</span><span class="p">.</span><span class="n">reporter</span><span class="p">.</span><span class="n">format_page</span><span class="w"> </span><span class="n">import</span><span class="w"> </span><span class="n">document</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">push</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                        </span><span class="n">document</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                            </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">mod</span><span class="p">,</span><span class="w"> </span><span class="n">funcs</span><span class="p">,</span><span class="w"> </span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">module_dict</span><span class="p">,</span><span class="w"> </span><span class="n">the_object</span><span class="w"></span>
+
+<span class="w">                        </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                    </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">push</span><span class="p">(</span><span class="ss">&quot;\n&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">attrs</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">spilldescriptors</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">msg</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">attrs_in</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Any</span><span class="o">]</span><span class="p">,</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">Tuple</span><span class="o">[</span><span class="n">str, str, type, &quot;object&quot;</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">predicate</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">bool</span><span class="err">]</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Any</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Not sure&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_split_list</span><span class="p">(</span><span class="n">attrs_in</span><span class="p">,</span><span class="w"> </span><span class="n">predicate</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nl">ok</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">hr</span><span class="p">.</span><span class="n">maybe</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">push</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">ok</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">push</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">document_data</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                        </span><span class="k">value</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                        </span><span class="n">name</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                        </span><span class="err">#</span><span class="w"> </span><span class="k">mod</span><span class="p">,</span><span class="w"> </span><span class="n">ignored</span><span class="w"></span>
+
+<span class="w">                    </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">attrs</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">def</span><span class="w"> </span><span class="n">spilldata</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">msg</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">,</span><span class="w"> </span><span class="nl">attrs_in</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="nl">predicate</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="n">bool</span><span class="err">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Any</span><span class="o">]</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="ss">&quot;&quot;&quot;Not sure&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">ok</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_split_list</span><span class="p">(</span><span class="n">attrs_in</span><span class="p">,</span><span class="w"> </span><span class="n">predicate</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nl">ok</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">hr</span><span class="p">.</span><span class="n">maybe</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">push</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">__</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">ok</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">base</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">docother</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">getattr</span><span class="p">(</span><span class="n">the_object</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">),</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">name</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">                    </span><span class="err">#</span><span class="w"> </span><span class="k">mod</span><span class="w"> </span><span class="n">ignored</span><span class="w"></span>
+
+<span class="w">                </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">found_doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getdoc</span><span class="p">(</span><span class="k">value</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="nl">found_doc</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">push</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;&lt;dl&gt;&lt;dt&gt;{base}&lt;/dl&gt;\n&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">found_doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">markup</span><span class="p">(</span><span class="n">getdoc</span><span class="p">(</span><span class="k">value</span><span class="p">),</span><span class="w"> </span><span class="n">funcs</span><span class="p">,</span><span class="w"> </span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">module_dict</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">found_doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;&lt;dd&gt;&lt;tt&gt;{found_doc}&lt;/tt&gt;&quot;</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">push</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;&lt;dl&gt;&lt;dt&gt;{base}{found_doc}&lt;/dl&gt;\n&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">push</span><span class="p">(</span><span class="ss">&quot;\n&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">attrs</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">[</span><span class="n"></span>
+
+<span class="n">        (name, kind, cls, value)</span>
+
+<span class="n">        for name, kind, cls, value in classify_class_attrs(the_object)</span>
+
+<span class="n">        if visiblename(name, obj=the_object)</span>
+
+<span class="n">    </span><span class="o">]</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">module_dict</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="k">key</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">attrs</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">module_dict</span><span class="o">[</span><span class="n">key</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;#&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;-&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="k">key</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getattr</span><span class="p">(</span><span class="n">the_object</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="ow">except</span><span class="w"> </span><span class="k">Exception</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">nosec</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="ow">Some</span><span class="w"> </span><span class="n">descriptors</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="n">meet</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">failure</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">their</span><span class="w"> </span><span class="n">__get__</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="p">(</span><span class="n">bug</span><span class="w"> </span><span class="n">#1785</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">pass</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">nosec</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">The</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="n">may</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">be</span><span class="w"> </span><span class="n">hashable</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">g</span><span class="p">.,</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">data</span><span class="w"> </span><span class="n">attr</span><span class="w"> </span><span class="k">with</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">dict</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="n">list</span><span class="w"> </span><span class="k">value</span><span class="p">).</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">module_dict</span><span class="o">[</span><span class="n">value</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">anchor</span><span class="w"></span>
+
+<span class="w">        </span><span class="ow">except</span><span class="w"> </span><span class="nl">TypeError</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">pass</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">nosec</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="nl">attrs</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="nl">mro</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">this_class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mro</span><span class="p">.</span><span class="n">popleft</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">this_class</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">attrs</span><span class="o">[</span><span class="n">0</span><span class="o">][</span><span class="n">2</span><span class="o">]</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">is_this_class</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ow">Any</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="nl">t</span><span class="p">:</span><span class="w"> </span><span class="n">t</span><span class="o">[</span><span class="n">2</span><span class="o">]</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">this_class</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">inherited</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_split_list</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">is_this_class</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">the_object</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">builtins</span><span class="p">.</span><span class="k">object</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">this_class</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">builtins</span><span class="p">.</span><span class="k">object</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inherited</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">continue</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">this_class</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="nl">the_object</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;defined here&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">tag</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;inherited from {classlink(this_class, the_object.__module__)}&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">tag</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="ss">&quot;:&lt;br&gt;\n&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">sort_attributes</span><span class="p">(</span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">the_object</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">feature</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">remove</span><span class="w"> </span><span class="n">typing</span><span class="w"> </span><span class="n">annotations</span><span class="w"> </span><span class="n">cruft</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">kind</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">attrs</span><span class="p">.</span><span class="n">copy</span><span class="p">()</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">module_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inspect</span><span class="p">.</span><span class="n">getmodule</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">module_name</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">module_name</span><span class="p">.</span><span class="n">__name__</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">settings</span><span class="p">.</span><span class="nl">SKIP_MODULES</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">attrs</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">kind</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="n">Pump</span><span class="w"> </span><span class="k">out</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">segregated</span><span class="w"> </span><span class="k">by</span><span class="w"> </span><span class="n">kind</span><span class="p">.</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">is_method</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ow">Any</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="nl">t</span><span class="p">:</span><span class="w"> </span><span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;method&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spill</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Methods {tag}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">is_method</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">is_class</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ow">Any</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="nl">t</span><span class="p">:</span><span class="w"> </span><span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;class method&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spill</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Class methods {tag}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">is_class</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">is_static</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ow">Any</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="nl">t</span><span class="p">:</span><span class="w"> </span><span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;static method&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spill</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Static methods {tag}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">is_static</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">is_read_only</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ow">Any</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="nl">t</span><span class="p">:</span><span class="w"> </span><span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;readonly property&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spilldescriptors</span><span class="p">(</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">f</span><span class="ss">&quot;Readonly properties {tag}&quot;</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">attrs</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">is_read_only</span><span class="p">,</span><span class="w"></span>
+
+<span class="w">        </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">is_data_descriptor</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ow">Any</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="nl">t</span><span class="p">:</span><span class="w"> </span><span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;data descriptor&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spilldescriptors</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Data descriptors {tag}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">is_data_descriptor</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="nl">is_data</span><span class="p">:</span><span class="w"> </span><span class="n">Callable</span><span class="o">[</span><span class="n">[Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="ow">Any</span><span class="err">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="nl">t</span><span class="p">:</span><span class="w"> </span><span class="n">t</span><span class="o">[</span><span class="n">1</span><span class="o">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="ss">&quot;data&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spilldata</span><span class="p">(</span><span class="n">f</span><span class="ss">&quot;Data and other attributes {tag}&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">attrs</span><span class="p">,</span><span class="w"> </span><span class="n">is_data</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">assert</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">attrs</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">nosec</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">attrs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inherited</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">contents_as_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">contents</span><span class="p">)</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">type</span><span class="w"> </span><span class="n">got</span><span class="w"> </span><span class="n">redefined</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="nl">real_name</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="s1">&#39;&lt;a name=&quot;{name}&quot;&gt;class &lt;strong&gt;{real_name}&lt;/strong&gt;&lt;/a&gt;&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">f</span><span class="s1">&#39;&lt;strong&gt;{name}&lt;/strong&gt; = &lt;a name=&quot;{name}&quot;&gt;class {real_name}&lt;/a&gt;&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nl">bases</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">parents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">bases</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">parents</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">classlink</span><span class="p">(</span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">the_object</span><span class="p">.</span><span class="n">__module__</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">title</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">title</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;({&#39;, &#39;.join(parents)})&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">decl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">try</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">inspect</span><span class="p">.</span><span class="n">signature</span><span class="p">(</span><span class="n">the_object</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="ow">except</span><span class="w"> </span><span class="p">(</span><span class="n">ValueError</span><span class="p">,</span><span class="w"> </span><span class="n">TypeError</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">signature</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nl">signature</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">argument_specification</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">str</span><span class="p">(</span><span class="n">signature</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">argument_specification</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">argument_specification</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="ss">&quot;()&quot;</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">cause</span><span class="w"> </span><span class="k">double</span><span class="w"> </span><span class="k">escape</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"></span>
+
+<span class="w">            </span><span class="err">#</span><span class="w"> </span><span class="k">escape</span><span class="p">(</span><span class="n">argument_specification</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">decl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">argument_specification</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;\n\n&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getdoc</span><span class="p">(</span><span class="n">the_object</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="nl">decl</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">decl</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">doc</span><span class="w"> </span><span class="ow">or</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">markup</span><span class="p">(</span><span class="n">doc</span><span class="p">,</span><span class="w"> </span><span class="n">funcs</span><span class="p">,</span><span class="w"> </span><span class="n">classes</span><span class="p">,</span><span class="w"> </span><span class="n">module_dict</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">doc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">doc</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;&lt;tt&gt;{doc}&lt;br&gt;&amp;nbsp;&lt;/tt&gt;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">section</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;#000000&quot;</span><span class="p">,</span><span class="w"> </span><span class="ss">&quot;#ffc8d8&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">contents_as_string</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">doc</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+<h3 id="format_tree">format_tree</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">format_tree</span><span class="p">(</span>
+    <span class="n">tree</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Any</span><span class="p">],</span>
+    <span class="n">modname</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">parent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</code></pre></div>
+
+<p>Creates a representation of class inheritance.</p>
+<details class="example">
+<summary>View Source</summary>
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">format_tree</span><span class="p">(</span><span class="nl">tree</span><span class="p">:</span><span class="w"> </span><span class="n">List</span><span class="o">[</span><span class="n">Any</span><span class="o">]</span><span class="p">,</span><span class="w"> </span><span class="nl">modname</span><span class="p">:</span><span class="w"> </span><span class="nf">str</span><span class="p">,</span><span class="w"> </span><span class="nl">parent</span><span class="p">:</span><span class="w"> </span><span class="n">Optional</span><span class="o">[</span><span class="n">Any</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">None</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="nf">str</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">    </span><span class="ss">&quot;&quot;&quot;</span>
+
+<span class="ss">    Creates a representation of class inheritance.</span>
+
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="err">#</span><span class="w"> </span><span class="ss">&quot;&quot;&quot;Produce HTML for a class tree as given by inspect.getclasstree().&quot;&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="ss">&quot;&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">entry</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">tree</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">class_object</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entry</span><span class="w"></span>
+
+<span class="w">        </span><span class="err">#</span><span class="w"> </span><span class="nl">pylint</span><span class="p">:</span><span class="w"> </span><span class="n">disable</span><span class="o">=</span><span class="n">unidiomatic</span><span class="o">-</span><span class="n">typecheck</span><span class="w"></span>
+
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="n">type</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">type</span><span class="p">(())</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">noqa</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">sure</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">switching</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">isinstance</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">class_object</span><span class="p">,</span><span class="w"> </span><span class="n">bases</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">entry</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="s1">&#39;&lt;dt&gt;&lt;span style=&quot;font-family:{inline_styles.SAN_SERIF}&quot;&gt;&#39;</span><span class="w"></span>
+
+<span class="w">            </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">classlink</span><span class="p">(</span><span class="n">class_object</span><span class="p">,</span><span class="w"> </span><span class="n">modname</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="n">bases</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">bases</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="p">(</span><span class="n">parent</span><span class="p">,)</span><span class="err">:</span><span class="w"></span>
+
+<span class="w">                </span><span class="n">parents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">[]</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">for</span><span class="w"> </span><span class="n">base</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">bases</span><span class="p">:</span><span class="w"></span>
+
+<span class="w">                    </span><span class="n">parents</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">classlink</span><span class="p">(</span><span class="n">base</span><span class="p">,</span><span class="w"> </span><span class="n">modname</span><span class="p">))</span><span class="w"></span>
+
+<span class="w">                </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;(&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;, &quot;</span><span class="p">.</span><span class="k">join</span><span class="p">(</span><span class="n">parents</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;)&quot;</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="ss">&quot;\n&lt;/span&gt;&lt;/dt&gt;&quot;</span><span class="w"></span>
+
+<span class="w">        </span><span class="n">elif</span><span class="w"> </span><span class="n">type</span><span class="p">(</span><span class="n">entry</span><span class="p">)</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">type</span><span class="p">(</span><span class="err">[]</span><span class="p">)</span><span class="err">:</span><span class="w">  </span><span class="err">#</span><span class="w"> </span><span class="n">noqa</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="n">sure</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">switching</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">isinstance</span><span class="w"></span>
+
+<span class="w">            </span><span class="n">tree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">format_tree</span><span class="p">(</span><span class="n">entry</span><span class="p">,</span><span class="w"> </span><span class="n">modname</span><span class="p">,</span><span class="w"> </span><span class="n">class_object</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">            </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;&lt;dd&gt;\n{tree}&lt;/dd&gt;\n&quot;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">f</span><span class="ss">&quot;&lt;dl&gt;\n{result}&lt;/dl&gt;\n&quot;</span><span class="w"></span>
+</code></pre></div>
+
+</details>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+        
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../../inspector/utils/" title="Utils" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Utils
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../format_data/" title="Format Data" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Format Data
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Powered by
+        <a href="http://timothycrosley.github.io/portray">portray.</a>
+        You too can
+        <a href="http://timothycrosley.github.io/portray">
+          portray</a>
+        your Python project well using automatic documentation.
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../../..", "features": [], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing", "select.version.title": "Select version"}, "search": "../../../../assets/javascripts/workers/search.f8263e09.min.js", "version": null}</script>
+    
+    
+      <script src="../../../../assets/javascripts/bundle.4fc53ad4.min.js"></script>
+      
+    
+  </body>
+</html>

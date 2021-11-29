@@ -37,7 +37,10 @@ LOGGER = logging.getLogger(__name__)
 
 
 def replace(text: str, *pairs: str) -&gt; str:
-    &#34;&#34;&#34;Do a series of global replacements on a string.&#34;&#34;&#34;
+    &#34;&#34;&#34;Do a series of global replacements on a string.
+    &gt;&gt;&gt; replace(&#34;abc xyz&#34;, &#34;xyz&#34;, &#34;abc&#34;)
+    &#39;abc abc&#39;
+    &#34;&#34;&#34;
     while pairs:
         text = pairs[1].join(text.split(pairs[0]))
         pairs = pairs[2:]
@@ -91,13 +94,19 @@ def stripid(text: str) -&gt; str:
 <span>def <span class="ident">replace</span></span>(<span>text: str, *pairs: str) ‑> str</span>
 </code></dt>
 <dd>
-<div class="desc"><p>Do a series of global replacements on a string.</p></div>
+<div class="desc"><p>Do a series of global replacements on a string.</p>
+<pre><code class="language-python-repl">&gt;&gt;&gt; replace(&quot;abc xyz&quot;, &quot;xyz&quot;, &quot;abc&quot;)
+'abc abc'
+</code></pre></div>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">def replace(text: str, *pairs: str) -&gt; str:
-    &#34;&#34;&#34;Do a series of global replacements on a string.&#34;&#34;&#34;
+    &#34;&#34;&#34;Do a series of global replacements on a string.
+    &gt;&gt;&gt; replace(&#34;abc xyz&#34;, &#34;xyz&#34;, &#34;abc&#34;)
+    &#39;abc abc&#39;
+    &#34;&#34;&#34;
     while pairs:
         text = pairs[1].join(text.split(pairs[0]))
         pairs = pairs[2:]

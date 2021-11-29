@@ -1,0 +1,144 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head><title>Python: module pydoc_fork.commands</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="#f0f0f8">
+<table class="heading">
+    <tr style="background-color: #7799ee;">
+        <td class="title" style="vertical-align: bottom">&nbsp;<br>
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+            &nbsp;<br><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.commands</strong></big></big>
+            </span>
+        </td>
+        <td style="vertical-align: bottom; text-align: right;">
+            <span style="color: #ffffff; font-family: helvetica, arial,sans-serif;">
+                <a href=".">index</a><br><a href="file:../../pydoc_fork/commands.py">../../pydoc_fork/commands.py</a>
+            </span>
+        </td>
+    </tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+<p><tt>Process&nbsp;commands&nbsp;as&nbsp;pure&nbsp;python&nbsp;functions.<br>
+&nbsp;<br>
+All&nbsp;the&nbsp;CLI&nbsp;logic&nbsp;should&nbsp;be&nbsp;handled&nbsp;in&nbsp;__main__.</tt></p>
+
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="glob.html">glob</a><br>
+<a href="logging.html">logging</a><br>
+</td><td width="25%" valign=top><a href="os.html">os</a><br>
+<a href="pkgutil.html">pkgutil</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.settings.html">pydoc_fork.settings</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#aa55cc">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>`from` Modules</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#aa55cc"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><table width="100%%" summary="list"><tr><td width="25%" valign=top><a href="pydoc_fork.inspector.path_utils.html">pydoc_fork.inspector.path_utils</a><br>
+<a href="pydoc_fork.inspector.custom_types.html">pydoc_fork.inspector.custom_types</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.inspector.utils.html">pydoc_fork.inspector.utils</a><br>
+<a href="shutil.html">shutil</a><br>
+</td><td width="25%" valign=top><a href="pydoc_fork.inspector.module_utils.html">pydoc_fork.inspector.module_utils</a><br>
+<a href="pydoc_fork.reporter.format_page.html">pydoc_fork.reporter.format_page</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#eeaa77">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#eeaa77"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><dl><dt><a name="-calculate_file_name"><strong>calculate_file_name</strong></a>(name: str, output_folder: str) -&gt; str</dt><dd><tt>Returns&nbsp;name.&nbsp;If&nbsp;this&nbsp;was&nbsp;written,&nbsp;what&nbsp;would&nbsp;its&nbsp;name&nbsp;be</tt></dd></dl>
+ <dl><dt><a name="-copy2"><strong>copy2</strong></a>(src, dst, *, follow_symlinks=True)</dt><dd><tt>Copy&nbsp;data&nbsp;and&nbsp;metadata.&nbsp;Return&nbsp;the&nbsp;file's&nbsp;destination.<br>
+&nbsp;<br>
+Metadata&nbsp;is&nbsp;copied&nbsp;with&nbsp;copystat().&nbsp;Please&nbsp;see&nbsp;the&nbsp;copystat&nbsp;function<br>
+for&nbsp;more&nbsp;information.<br>
+&nbsp;<br>
+The&nbsp;destination&nbsp;may&nbsp;be&nbsp;a&nbsp;directory.<br>
+&nbsp;<br>
+If&nbsp;follow_symlinks&nbsp;is&nbsp;false,&nbsp;symlinks&nbsp;won't&nbsp;be&nbsp;followed.&nbsp;This<br>
+resembles&nbsp;GNU's&nbsp;"cp&nbsp;-P&nbsp;src&nbsp;dst".</tt></dd></dl>
+ <dl><dt><a name="-describe"><strong>describe</strong></a>(thing: pydoc_fork.inspector.custom_types.TypeLike) -&gt; str</dt><dd><tt>Produce&nbsp;a&nbsp;short&nbsp;description&nbsp;of&nbsp;the&nbsp;given&nbsp;thing.</tt></dd></dl>
+ <dl><dt><a name="-document_directory"><strong>document_directory</strong></a>(source_directory: str, output_folder: str, for_only: str = '') -&gt; List[str]</dt><dd><tt>Write&nbsp;out&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;all&nbsp;modules&nbsp;in&nbsp;a&nbsp;directory&nbsp;tree.</tt></dd></dl>
+ <dl><dt><a name="-document_one"><strong>document_one</strong></a>(thing: Union[pydoc_fork.inspector.custom_types.TypeLike, str], output_folder: str, force_load: bool = False) -&gt; Optional[str]</dt><dd><tt>Write&nbsp;HTML&nbsp;documentation&nbsp;to&nbsp;a&nbsp;file&nbsp;in&nbsp;the&nbsp;current&nbsp;directory.</tt></dd></dl>
+ <dl><dt><a name="-locate_file"><strong>locate_file</strong></a>(file_name: str, executing_file: str) -&gt; str</dt><dd><tt>Find&nbsp;file&nbsp;relative&nbsp;to&nbsp;a&nbsp;source&nbsp;file,&nbsp;e.g.<br>
+<a href="#-locate_file">locate_file</a>("foo/bar.txt",&nbsp;__file__)<br>
+&nbsp;<br>
+Succeeds&nbsp;regardless&nbsp;to&nbsp;context&nbsp;of&nbsp;execution</tt></dd></dl>
+ <dl><dt><a name="-modules_in_current"><strong>modules_in_current</strong></a>() -&gt; List[str]</dt><dd><tt>Convert&nbsp;.&nbsp;shortcut&nbsp;into&nbsp;list&nbsp;of&nbsp;modules</tt></dd></dl>
+ <dl><dt><a name="-process_path_or_dot_name"><strong>process_path_or_dot_name</strong></a>(files: List[str], output_folder: str, overwrite_existing: bool = False) -&gt; List[str]</dt><dd><tt>Generate&nbsp;html&nbsp;documentation&nbsp;for&nbsp;all&nbsp;modules&nbsp;found&nbsp;at&nbsp;paths&nbsp;or<br>
+dot&nbsp;notation&nbsp;module&nbsp;names.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;files:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;output_folder:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;overwrite_existing:<br>
+&nbsp;<br>
+Returns:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;List&nbsp;of&nbsp;successfully&nbsp;documented&nbsp;modules</tt></dd></dl>
+ <dl><dt><a name="-render"><strong>render</strong></a>(title: str, the_object: pydoc_fork.inspector.custom_types.TypeLike, name: str) -&gt; str</dt><dd><tt>Compose&nbsp;two&nbsp;functions</tt></dd></dl>
+ <dl><dt><a name="-resolve"><strong>resolve</strong></a>(thing: Union[str, Any], force_load: bool = False) -&gt; Tuple[Any, Any]</dt><dd><tt>Given&nbsp;an&nbsp;object&nbsp;or&nbsp;a&nbsp;path&nbsp;to&nbsp;an&nbsp;object,&nbsp;get&nbsp;the&nbsp;object&nbsp;and&nbsp;its&nbsp;name.</tt></dd></dl>
+ <dl><dt><a name="-write_docs_live_module"><strong>write_docs_live_module</strong></a>(output_folder: str, total_third_party: int = 0, skip_if_written: bool = False) -&gt; List[str]</dt><dd><tt>Write&nbsp;out&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;all&nbsp;modules&nbsp;in&nbsp;a&nbsp;directory&nbsp;tree.</tt></dd></dl>
+ <dl><dt><a name="-write_docs_per_module"><strong>write_docs_per_module</strong></a>(modules: List[str], output_folder: str, skip_if_written: bool = False) -&gt; List[str]</dt><dd><tt>Write&nbsp;out&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;all&nbsp;modules&nbsp;in&nbsp;a&nbsp;directory&nbsp;tree.</tt></dd></dl>
+</td></tr>
+</table>
+
+
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+    <tr bgcolor="#55aa55">
+        <td colspan=3 valign=bottom>&nbsp;<br>
+            <font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td>
+    </tr>
+
+    
+        <tr>
+        <td bgcolor="#55aa55"><tt></tt></td>
+        <td>&nbsp;</td>
+    
+    <td width="100%%"><strong>LOGGER</strong> = &lt;Logger pydoc_fork.commands (WARNING)&gt;</td></tr>
+</table>
+</body>
+</html>
