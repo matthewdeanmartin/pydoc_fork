@@ -2,9 +2,10 @@
 Rst to HTML function
 Credits: https://stackoverflow.com/a/49047197/33264
 """
+from typing import Any, List
+
 from docutils import core
 from docutils.writers.html4css1 import HTMLTranslator, Writer
-from typing import Any, List
 
 
 class HTMLFragmentTranslator(HTMLTranslator):

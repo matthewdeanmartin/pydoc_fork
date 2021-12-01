@@ -58,8 +58,13 @@ def docroutine(
     if name == real_name:
         title = f'<a name="{anchor}"><strong>{real_name}</strong></a>'
     else:
-        if class_object and inspect.getattr_static(class_object, real_name, []) is the_object:
-            real_link = f'<a href="#{class_object.__name__ + "-" + real_name}">{real_name}</a>'
+        if (
+            class_object
+            and inspect.getattr_static(class_object, real_name, []) is the_object
+        ):
+            real_link = (
+                f'<a href="#{class_object.__name__ + "-" + real_name}">{real_name}</a>'
+            )
             skip_docs = 1
         else:
             real_link = real_name

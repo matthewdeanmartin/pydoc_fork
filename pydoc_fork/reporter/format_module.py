@@ -208,7 +208,10 @@ def docmodule(
                 function_dict[value] = function_dict[key]
     data = []
     for key, value in inspect.getmembers(the_object, isdata):
-        if inspect.getmodule(type(value)).__name__ in settings.SKIP_MODULES:
+        if (
+            getattr(inspect.getmodule(type(value)), __name__, lambda: None)()
+            in settings.SKIP_MODULES
+        ):
             continue
         if visiblename(key, all_things, the_object):
             data.append((key, value))

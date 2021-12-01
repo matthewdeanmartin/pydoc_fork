@@ -2,13 +2,13 @@
 
 All the CLI logic should be handled in __main__.
 """
+import glob
 import logging
 import os
+import os.path
 import pkgutil
 from shutil import copy2
 from typing import List, Optional, Union
-import os.path
-import glob
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -21,15 +21,17 @@ LOGGER = logging.getLogger(__name__)
 
 
 def document_one(
-        thing: Union[TypeLike, str],
-        output_folder: str,
-        force_load: bool = False,
+    thing: Union[TypeLike, str],
+    output_folder: str,
+    force_load: bool = False,
 ) -> Optional[str]:
     """Write HTML documentation to a file in the current directory."""
     try:
         the_object, name = resolve(thing, force_load)
     except (ImportError, ImportTimeError):
-        LOGGER.warning(f"document_one failed for {str(thing)} with folder {output_folder}")
+        LOGGER.warning(
+            f"document_one failed for {str(thing)} with folder {output_folder}"
+        )
         return None
 
     # MR
@@ -52,12 +54,12 @@ def calculate_file_name(name: str, output_folder: str) -> str:
     """Returns name. If this was written, what would its name be"""
     name = (
         name.replace("<", "")
-            .replace(">", "")
-            .replace(":", "")
-            .replace(",", "_")
-            .replace(" ", "_")
-            .replace("(", "")
-            .replace(")", "")
+        .replace(">", "")
+        .replace(":", "")
+        .replace(",", "_")
+        .replace(" ", "_")
+        .replace("(", "")
+        .replace(")", "")
     )
     full_path = output_folder + os.sep + name + ".html"
 
@@ -78,9 +80,9 @@ def modules_in_current() -> List[str]:
 
 
 def write_docs_per_module(
-        modules: List[str],
-        output_folder: str,
-        skip_if_written: bool = False,
+    modules: List[str],
+    output_folder: str,
+    skip_if_written: bool = False,
 ) -> List[str]:
     """Write out HTML documentation for all modules in a directory tree."""
 
@@ -111,9 +113,9 @@ def write_docs_per_module(
 
 
 def write_docs_live_module(
-        output_folder: str,
-        total_third_party: int = 0,
-        skip_if_written: bool = False,
+    output_folder: str,
+    total_third_party: int = 0,
+    skip_if_written: bool = False,
 ) -> List[str]:
     """Write out HTML documentation for all modules in a directory tree."""
 
@@ -140,9 +142,9 @@ def write_docs_live_module(
 
 
 def document_directory(
-        source_directory: str,
-        output_folder: str,
-        for_only: str = "",
+    source_directory: str,
+    output_folder: str,
+    for_only: str = "",
 ) -> List[str]:
     """Write out HTML documentation for all modules in a directory tree."""
     package_path = ""
@@ -161,9 +163,9 @@ def document_directory(
 
 
 def process_path_or_dot_name(
-        files: List[str],
-        output_folder: str,
-        overwrite_existing: bool = False,
+    files: List[str],
+    output_folder: str,
+    overwrite_existing: bool = False,
 ) -> List[str]:
     """
     Generate html documentation for all modules found at paths or
@@ -189,6 +191,7 @@ def process_path_or_dot_name(
         files, output_folder, skip_if_written=not overwrite_existing
     )
 
+
 # def something():
 #     """ a doctest in a docstring
 #     >>> something()
@@ -197,7 +200,7 @@ def process_path_or_dot_name(
 #     return 42
 
 if __name__ == "__main__":
-    process_path_or_dot_name(["."],output_folder="tmp")
+    process_path_or_dot_name(["."], output_folder="tmp")
     # process_path_or_dot_name([".\\"], output_folder="docs_api")
     # process_path_or_dot_name(["pydoc_fork"], output_folder="docs_api")
     # process_path_or_dot_name(["sys"], output_folder="docs_api")

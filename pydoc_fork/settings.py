@@ -48,7 +48,8 @@ def load_config(path: Optional[str]):
     PREFER_DOCS_PYTHON_ORG = pairs.get("PREFER_DOCS_PYTHON_ORG", False)
     DOCUMENT_INTERNALS = pairs.get("DOCUMENT_INTERNALS", True)
     SKIP_MODULES = pairs.get("SKIP_MODULES", ["typing"])
-    ONLY_NAMED_AND_SUBS= pairs.get("ONLY_NAMED_AND_SUBS", False)
+    ONLY_NAMED_AND_SUBS = pairs.get("ONLY_NAMED_AND_SUBS", False)
+
 
 def parse_toml(path_string: Optional[str]) -> Dict[str, Any]:
     """Parse toml"""

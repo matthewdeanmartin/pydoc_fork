@@ -11,7 +11,8 @@
 ################################################################################
 
 docopt
-interrogate
+docutils
 jinja2
+markdown
 tomli
 typing-extensions

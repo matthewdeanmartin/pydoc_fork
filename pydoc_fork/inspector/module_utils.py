@@ -53,8 +53,11 @@ def importfile(path: str) -> TypeLike:
         return cast(TypeLike, importlib._bootstrap._load(spec))
     # pylint: disable=broad-except
     except BaseException as import_error:
-        LOGGER.warning(f"Skipping importfile for {name} at {path}, got a {import_error}")
+        LOGGER.warning(
+            f"Skipping importfile for {name} at {path}, got a {import_error}"
+        )
         raise ImportTimeError(path, sys.exc_info()) from import_error
+
 
 # pylint: disable=dangerous-default-value
 def safe_import(
@@ -116,7 +119,9 @@ def safe_import(
         try:
             module = getattr(module, part)
         except AttributeError:
-            LOGGER.warning(f"While safe_import - {str(module)} does not have {part} from dot path {path}")
+            LOGGER.warning(
+                f"While safe_import - {str(module)} does not have {part} from dot path {path}"
+            )
             return None
     return module
 

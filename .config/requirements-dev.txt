@@ -14,12 +14,14 @@ blacken-docs
 checksumdir==1.1.7
 coverage
 darglint
+docstring-parser
 dodgy
 gitchangelog==3.0.4
 gitpython
 handsdown
 html5lib
 ifaddr
+interrogate
 jake
 lazydocs
 libyear

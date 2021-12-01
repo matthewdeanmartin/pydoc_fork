@@ -290,7 +290,9 @@ def classify_class_attrs(the_object: TypeLike) -> List[Tuple[str, str, type, obj
                     kind = "readonly property"
             results.append((name, kind, cls, value))
     except ValueError:
-        LOGGER.warning(f"Skipping classify_class_attrs for {str(the_object)} got ValueError, maybe this is a Namespace")
+        LOGGER.warning(
+            f"Skipping classify_class_attrs for {str(the_object)} got ValueError, maybe this is a Namespace"
+        )
         # py._xmlgen.Namespace
         # ValueError: Namespace class is abstract
     return results
