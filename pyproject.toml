@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pydoc_fork"
-version = "3.1.11"
+version = "3.1.13"
 description = "Fork of cpython's pydoc module to do just html document generation"
 authors = ["Matthew Martin <matthewdeanmartin@gmail.com>"]
 keywords = ["pydoc", "html documentation"]
@@ -39,7 +39,7 @@ pydoc_fork = 'pydoc_fork.__main__:main'
 
 [tool.poetry.dependencies]
 python = ">=3.6, <4.0"
-docopt = "*"
+docopt-ng = "*"
 jinja2 = "*"
 typing_extensions = "*"
 tomli = "*"
