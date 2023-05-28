@@ -10,12 +10,12 @@ Write documentation in comments, write stand-alone documents as appropriate.
 
 Code First build
 ----------------
-Before: 
+Before:
 ```python
 shit = None
 """String representation of hits"""
 ```
-After, fix names, annotate, docstrings: 
+After, fix names, annotate, docstrings:
 ```python
 hits:Optional[str] = None
 """Player hit points"""
@@ -38,7 +38,3 @@ Steps:
   - If Markdown and Github, source repo is the host
   - If html, use Github pages or the like
   - If read-the-docs, then ....
-
-
-
-

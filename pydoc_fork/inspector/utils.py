@@ -19,7 +19,6 @@ def resolve(thing: Union[str, Any], force_load: bool = False) -> Tuple[Any, Any]
     if isinstance(thing, str):
         the_object = locate(thing, force_load)
         if the_object is None:
-
             raise ImportError(
                 """\
 No Python documentation found for %r."""
@@ -281,7 +280,7 @@ def classify_class_attrs(the_object: TypeLike) -> List[Tuple[str, str, type, obj
     """Wrap inspect.classify_class_attrs, with fixup for data descriptors."""
     results = []
     try:
-        for (name, kind, cls, value) in inspect.classify_class_attrs(
+        for name, kind, cls, value in inspect.classify_class_attrs(
             cast(type, the_object)
         ):
             if inspect.isdatadescriptor(value):

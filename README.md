@@ -6,7 +6,7 @@ than [Sphinx](https://www.sphinx-doc.org/en/master/)
 
 ## Installation
 Requires Python 3.6+, according to `vermin`
-```
+```bash
 pip install pydoc_fork
 
 # or virtual environment access
@@ -17,12 +17,12 @@ pipx install pydoc_fork
 ```
 
 ## Usage
-```
+```bash
 # Generate HTML for all modules and submodules from source code
-> pydoc_fork my_module --output docs --document_internals
+pydoc_fork my_module --output docs --document_internals
 
 # Generate HTML for a module that is importable, e.g. sys
-> pydoc_fork sys --output docs
+pydoc_fork sys --output docs
 ```
 
 ## Docs

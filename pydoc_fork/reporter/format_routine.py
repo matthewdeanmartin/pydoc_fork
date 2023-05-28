@@ -73,6 +73,8 @@ def docroutine(
     if inspect.isroutine(the_object):
         try:
             signature: Optional[inspect.Signature] = inspect.signature(the_object)
+        except RuntimeError as what_happened:
+            print(f"RuntimeError: {what_happened}")
         except (ValueError, TypeError):
             signature = None
         if signature:

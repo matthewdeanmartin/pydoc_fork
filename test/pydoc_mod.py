@@ -24,11 +24,11 @@ class C(object):
         return "no"
 
     def get_answer(self):
-        """ Return say_no() """
+        """Return say_no()"""
         return self.say_no()
 
     def is_it_true(self):
-        """ Return self.get_answer() """
+        """Return self.get_answer()"""
         return self.get_answer()
 
 

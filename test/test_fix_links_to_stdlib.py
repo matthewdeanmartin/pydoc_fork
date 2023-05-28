@@ -16,7 +16,9 @@ def test_getdocloc_datetime():
     # )
     result = getdocloc(datetime, STDLIB_BASEDIR)
     print(result)
-    assert "https://docs.python.org/3.9/library/datetime.html" in result
+    assert result.startswith("https://docs.python.org/") and result.endswith(
+        "/library/datetime.html"
+    )
     settings.PREFER_DOCS_PYTHON_ORG = old
 
 
@@ -29,5 +31,7 @@ def test_getdocloc_sys():
     # )
     result = getdocloc(sys, STDLIB_BASEDIR)
     print(result)
-    assert "https://docs.python.org/3.9/library/sys.html" in result
+    assert result.startswith("https://docs.python.org/") and result.endswith(
+        "/library/sys.html"
+    )
     settings.PREFER_DOCS_PYTHON_ORG = old

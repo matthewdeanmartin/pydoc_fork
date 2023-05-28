@@ -17,7 +17,6 @@ class HTMLRepr(Repr):
         self.maximum_dict = 10
         self.maximum_string = self.maximum_other = 100
 
-    # pylint: disable=no-self-use
     @staticmethod
     def escape(text: str) -> str:
         """Simple html escaping"""

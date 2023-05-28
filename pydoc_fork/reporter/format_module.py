@@ -109,6 +109,7 @@ def docmodule(
     head = f"<big><big><strong>{linked_name}</strong></big></big>"
     try:
         path = inspect.getabsfile(cast(type, the_object))
+        # BUG Fails if these are on 2 different drives
         # MR : Make relative
         output_folder_path = os.path.normcase(os.path.abspath(settings.OUTPUT_FOLDER))
         path = os.path.relpath(path, output_folder_path).replace("\\", "/")

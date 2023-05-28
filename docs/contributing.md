@@ -19,5 +19,3 @@ Scenarios
   - Target is system python
   - Target is self (pydoc_fork)
     - Mentioning because pydoc itself has code to handle documenting pydoc.
-
-

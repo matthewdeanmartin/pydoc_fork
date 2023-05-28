@@ -14,7 +14,7 @@ Real world documentation comes wildly different formats, missing, all over the p
 - FEATURE:
   - pydoc_fork --path .
   - pydoc_fork --path foo.py
-  - pydoc_fork --dot_path foo.bar 
+  - pydoc_fork --dot_path foo.bar
   - pydoc_fork --package bs4
 - bug: when folder is empty, still pulls in `site` and dependencies (how?!)
 - need clean folder option

@@ -23,18 +23,22 @@ def test_cli():
     with cwd("."):
         output_folder = "doc_self"
         results = process_path_or_dot_name(
-            ["navio_tasks"], output_folder=output_folder,
+            ["navio_tasks"],
+            output_folder=output_folder,
         )
         results = process_path_or_dot_name(
-            ["pydoc_fork"], output_folder=output_folder,
-        )
-        assert results
-        results = process_path_or_dot_name(
-            ["test.pydocfodder"], output_folder=output_folder,
+            ["pydoc_fork"],
+            output_folder=output_folder,
         )
         assert results
         results = process_path_or_dot_name(
-            ["test.pydoc_mod"], output_folder=output_folder,
+            ["test.pydocfodder"],
+            output_folder=output_folder,
+        )
+        assert results
+        results = process_path_or_dot_name(
+            ["test.pydoc_mod"],
+            output_folder=output_folder,
         )
         assert results
         #  can't do this yet, pydoc stills imports each module!

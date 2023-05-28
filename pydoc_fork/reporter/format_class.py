@@ -181,7 +181,8 @@ def docclass(
         else:
             this_class = attrs[0][2]
 
-        is_this_class: Callable[[Any], Any] = lambda t: t[2] is this_class
+        # flake8 doesn't like the closure in the lambda
+        is_this_class: Callable[[Any], Any] = lambda t: t[2] is this_class  # noqa
         attrs, inherited = _split_list(attrs, is_this_class)
 
         if the_object is not builtins.object and this_class is builtins.object:

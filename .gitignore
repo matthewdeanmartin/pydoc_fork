@@ -153,3 +153,12 @@ reports/
 doc_out/
 
 doc_self/
+.failed-tests.txt
+
+.config/reqs.txt
+
+.config/requirements_for_safety.txt
+
+.config/requirements-dev.txt
+
+.config/requirements.txt

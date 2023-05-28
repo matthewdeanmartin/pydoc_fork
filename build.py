@@ -74,27 +74,18 @@ from navio_tasks.build_state import (
 from navio_tasks.clean import clean_old_files
 from navio_tasks.cli_commands import check_command_exists, execute
 from navio_tasks.commands.cli_bandit import do_bandit
-from navio_tasks.commands.cli_compile_py import do_compile_py
 from navio_tasks.commands.cli_detect_secrets import do_detect_secrets
-from navio_tasks.commands.cli_flake8 import do_flake8
 from navio_tasks.commands.cli_get_secrets import do_git_secrets
 from navio_tasks.commands.cli_mypy import do_mypy, evaluated_mypy_results
 from navio_tasks.commands.cli_pylint import do_lint, evaluated_lint_results
 from navio_tasks.commands.cli_pytest import do_pytest, do_pytest_coverage
 from navio_tasks.commands.cli_tox import do_tox
-from navio_tasks.commands.lib_dodgy import do_dodgy
 from navio_tasks.dependency_commands.cli_liccheck import do_liccheck
 from navio_tasks.dependency_commands.cli_pin_dependencies import (
     convert_pipenv_to_requirements,
 )
 from navio_tasks.dependency_commands.cli_pip import do_pip_check, do_register_scripts
 from navio_tasks.dependency_commands.cli_safety import do_safety
-from navio_tasks.deprecated_commands.cli_check_manifest import do_check_manifest
-from navio_tasks.deprecated_commands.cli_pyroma import do_pyroma
-from navio_tasks.deprecated_commands.cli_setup_py import (
-    do_package,
-    do_project_validation_for_setup_py,
-)
 from navio_tasks.file_system import initialize_folders
 from navio_tasks.mutating_commands.cli_black import do_formatting
 from navio_tasks.mutating_commands.cli_isort import do_isort
@@ -158,26 +149,6 @@ def check_python_version() -> None:
         sys.exit(-1)
 
 
-@task(check_python_version)
-@skip_if_no_change("compile_py")
-@timed()
-def compile_py() -> None:
-    """
-    Basic syntax check with compileall flag
-    """
-    # policy decision, which python version to use.
-    do_compile_py(PYTHON)
-
-
-@task()
-@timed()
-def validate_project_name() -> None:
-    """
-    Verify that all projects/modules are explicitly declared
-    """
-    do_project_validation_for_setup_py()
-
-
 @task()
 @timed()
 @skip_if_this_file_does_not_change("installs", file="Pipfile")
@@ -215,7 +186,8 @@ def git_secrets() -> None:
     """
     Run git secrets utility
     """
-    do_git_secrets()
+    if not os.environ.get("CI"):
+        do_git_secrets()
 
 
 @task()
@@ -251,7 +223,7 @@ def isort() -> None:
     do_isort()
 
 
-@task(pipenv_installs, pyupgrade, compile_py, isort)
+@task(pipenv_installs, pyupgrade, isort)
 @skip_if_no_change("formatting")
 @timed()
 def formatting() -> None:
@@ -274,24 +246,13 @@ def format_tests() -> None:
 BLACK_STATE = {"check_already_done": False}
 
 
-@task(pipenv_installs, compile_py)
+@task(pipenv_installs)
 @timed()
 def formatting_check() -> None:
     """
     Call with check parameter
     """
     do_formatting("--check", BLACK_STATE)
-
-
-@task()
-@timed()
-@skip_if_this_file_does_not_change("pyroma", "setup.py")
-def pyroma() -> None:
-    """
-    Pyroma linter
-    """
-    # technically, this can depend on setup.py or setup.cfg...
-    do_pyroma()
 
 
 @task()
@@ -338,7 +299,7 @@ def count_lines_of_code() -> None:
     do_count_lines_of_code()
 
 
-@task(formatting, compile_py)
+@task(formatting)
 @skip_if_this_file_does_not_change("liccheck", "Pipfile")
 @timed()
 def liccheck() -> None:
@@ -348,7 +309,7 @@ def liccheck() -> None:
     do_liccheck()
 
 
-@task(formatting, compile_py)
+@task(formatting)
 @skip_if_no_change("pyright")
 @timed()
 def pyright() -> None:
@@ -358,17 +319,7 @@ def pyright() -> None:
     do_pyright()
 
 
-@task(formatting, compile_py)
-@skip_if_no_change("flake8")
-@timed()
-def flake8() -> None:
-    """
-    Lint with flake8
-    """
-    do_flake8()
-
-
-@task(formatting, compile_py)
+@task(formatting)
 @skip_if_no_change("bandit")
 @timed()
 def bandit() -> None:
@@ -382,7 +333,7 @@ def bandit() -> None:
     do_bandit(IS_SHELL_SCRIPT_LIKE)
 
 
-@task(flake8)
+@task()
 @skip_if_no_change("mccabe")
 @timed()
 def mccabe() -> None:
@@ -390,16 +341,6 @@ def mccabe() -> None:
     Complexity checking/reports with mccabe
     """
     do_mccabe()
-
-
-@task(formatting, compile_py)
-@skip_if_no_change("dodgy")
-@timed()
-def dodgy_check() -> None:
-    """
-    Linting with dodgy
-    """
-    do_dodgy()
 
 
 @task()
@@ -430,7 +371,7 @@ def openapi_check():
     do_openapi_check()
 
 
-@task(compile_py, formatting, count_lines_of_code, openapi_check)
+@task(formatting, count_lines_of_code, openapi_check)
 @skip_if_no_change("lint", expect_files=f"{PROBLEMS_FOLDER}/lint.txt")
 @timed()
 def lint() -> None:
@@ -592,17 +533,6 @@ def vulture() -> None:
     do_vulture()
 
 
-@task(count_lines_of_code)
-@skip_if_no_change("check_manifest", f"{PROBLEMS_FOLDER}/manifest_errors.txt")
-@timed()
-def check_manifest() -> None:
-    """
-    Find files missing from MANIFEST.in
-    """
-    if PACKAGE_WITH == "setup.py":
-        do_check_manifest()
-
-
 @task()
 @timed()
 def jiggle_version() -> None:
@@ -619,21 +549,16 @@ def jiggle_version() -> None:
     detect_secrets,
     git_secrets,
     vulture,
-    compile_py,
     lint,
-    flake8,
-    dodgy_check,
     bandit,
     mccabe,
     pin_dependencies,
     jiggle_version,
-    check_manifest,
     # tests as slow as tests are.
     pytest,
     # nose
     # package related
     liccheck,
-    pyroma,
     pip_check,
     safety,
     precommit,  # I hope this doesn't change source anymore
@@ -644,7 +569,7 @@ def package() -> None:
     """
     package, but don't upload
     """
-    do_package()
+    subprocess.run(["poetry", "build"])
 
 
 @task()
@@ -659,13 +584,9 @@ def parallel_checks() -> None:
         do_detect_secrets,
         do_git_secrets,
         vulture,
-        do_compile_py,
         do_lint,
-        do_flake8,
-        do_dodgy,
         do_bandit,
         do_mccabe,
-        do_check_manifest,
         do_liccheck,
     ]
     if IS_GITLAB:
@@ -708,13 +629,9 @@ def parallel_checks() -> None:
     detect_secrets,
     git_secrets,
     vulture,
-    compile_py,
     lint,
-    flake8,
-    dodgy_check,
     bandit,
     mccabe,
-    check_manifest,
     liccheck,  #
 )  # docs ... later
 @timed()
@@ -738,7 +655,7 @@ def fast_package() -> None:
     """
     Run most tasks in parallel
     """
-    do_package()
+    subprocess.run(["poetry", "build"])
 
 
 @task()
@@ -746,7 +663,7 @@ def fast_package() -> None:
 def just_package() -> None:
     """Package, but do no checks or tests at all"""
     print("WARNING: This skips all quality checks.")
-    do_package()
+    subprocess.run(["poetry", "build"])
 
 
 @task()
@@ -766,47 +683,6 @@ def upload_package() -> None:
     Send to private package repo
     """
     do_upload_package()
-
-
-# Conflicting dependencies and blows up on simple scan.
-# def run_truffle_hog() -> None:
-#     """
-#     Run truffle hog command
-#     """
-#     # need to get the URL from 'git remote show origin'
-#     command = (
-#         "trufflehog --entropy False "
-#         "ssh://git@git.loc.gov:7999/COP/public-records/search_ui.git"
-#     )
-#     print(command)
-
-
-# FAST. FATAL ERRORS. DON'T CHANGE THINGS THAT CHECK IN
-@task(mypy, detect_secrets, git_secrets, check_package, compile_py, vulture)
-@skip_if_no_change("pre_commit_hook")
-@timed()
-def pre_commit_hook() -> None:
-    """
-    Everything that could be run as a pre_commit_hook
-
-    Mostly superceded by precheck utility
-    """
-    # Don't format or update version
-    # Don't do slow stuff- discourages frequent check in
-    # Run checks that are likely to have FATAL errors, not just sloppy coding.
-
-
-# Don't break the build, but don't change source tree either.
-@task(mypy, detect_secrets, git_secrets, pytest, check_package, compile_py, vulture)
-@skip_if_no_change("pre_push_hook")
-@timed()
-def pre_push_hook() -> None:
-    """
-    More stringent checks to run pre-push
-    """
-    # Don't format or update version
-    # Don't do slow stuff- discourages frequent check in
-    # Run checks that are likely to have FATAL errors, not just sloppy coding.
 
 
 @task()

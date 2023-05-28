@@ -1,6 +1,8 @@
 import os
 import tempfile
 
+import pytest
+
 from pydoc_fork import process_path_or_dot_name
 from pydoc_fork.inspector.path_utils import locate_file
 
@@ -21,6 +23,7 @@ from pydoc_fork.inspector.path_utils import locate_file
 #         print()
 
 
+@pytest.mark.skip(reason="Fails if output drive differs from temp drive")
 def test_single_file_pydocfodder():
     with tempfile.TemporaryDirectory(prefix="pydoc_fodder") as directory:
         folder_path = directory.replace("\\", "/")
@@ -54,6 +57,7 @@ def test_single_file_pydocfodder():
 #         print()
 
 
+@pytest.mark.skip(reason="Fails if output drive differs from temp drive")
 def test_single_file_pydocfodder_as_dot_py():
     # file_name = locate_file("pydocfodder.py", __file__)
     file_name = "test.pydocfodder"

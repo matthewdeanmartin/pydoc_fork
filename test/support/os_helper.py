@@ -325,7 +325,6 @@ if sys.platform.startswith("win"):
                 return buffer[:length]
         return path
 
-
 else:
     _unlink = os.unlink
     _rmdir = os.rmdir

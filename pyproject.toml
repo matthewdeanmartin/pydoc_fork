@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "pydoc_fork"
-version = "3.1.14"
+version = "3.2.0"
 description = "Fork of cpython's pydoc module to do just html document generation"
 authors = ["Matthew Martin <matthewdeanmartin@gmail.com>"]
 keywords = ["pydoc", "html documentation"]
 classifiers = [
-    "Development Status :: 4 - Beta",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
@@ -14,6 +14,9 @@ classifiers = [
     "Programming Language :: Python :: 3.7",
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
 ]
 include = [
     "pydoc_fork/**/*.py",
@@ -38,7 +41,7 @@ documentation ="https://github.com/matthewdeanmartin/pydoc_fork"
 pydoc_fork = 'pydoc_fork.__main__:main'
 
 [tool.poetry.dependencies]
-python = ">=3.6, <4.0"
+python = ">=3.6"
 docopt-ng = "*"
 jinja2 = "*"
 typing_extensions = "*"
@@ -53,8 +56,6 @@ pytest-cov = ">=2.10.1"
 pytest-timeout = "*"
 pytest-xdist = ">=2.1.0"
 pip-check = "==2.6"
-pynt = "==0.8.2"
-pynt-contrib = "==0.2.0"
 checksumdir = "==1.1.7"
 requests = "==2.22.0"
 dodgy = "==0.2.1"
@@ -64,9 +65,9 @@ psutil = "==5.6.7"
 pebble = "==4.5.0"
 python-dotenv = "==0.11.0"
 gitpython = "*"
-sshtunnel = "*"
 ifaddr = "*"
 vendorize = "*"
+html5lib = "*"
 
 [tool.black]
 line-length = 88

@@ -20,5 +20,5 @@ def do_safety() -> str:
         subprocess.run(["pip", "freeze"], stdout=out, stderr=out, check=True)
     check_command_exists("safety")
     # ignore 38414 until aws fixes awscli
-    execute("safety", "check", "--ignore", "38414", "--file", requirements_file_name)
+    execute("safety", "check", "--file", requirements_file_name)
     return "Package safety checked"

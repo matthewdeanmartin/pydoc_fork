@@ -975,14 +975,14 @@ def bigmemtest(size, memuse, dry_run=True):
             if (real_max_memuse or not dry_run) and real_max_memuse < maxsize * memuse:
                 raise unittest.SkipTest(
                     "not enough memory: %.1fG minimum needed"
-                    % (size * memuse / (1024 ** 3))
+                    % (size * memuse / (1024**3))
                 )
 
             if real_max_memuse and verbose:
                 print()
                 print(
                     " ... expected peak memory use: {peak:.1f}G".format(
-                        peak=size * memuse / (1024 ** 3)
+                        peak=size * memuse / (1024**3)
                     )
                 )
                 watchdog = _MemoryWatchdog()
@@ -1008,12 +1008,12 @@ def bigaddrspacetest(f):
 
     def wrapper(self):
         if max_memuse < MAX_Py_ssize_t:
-            if MAX_Py_ssize_t >= 2 ** 63 - 1 and max_memuse >= 2 ** 31:
+            if MAX_Py_ssize_t >= 2**63 - 1 and max_memuse >= 2**31:
                 raise unittest.SkipTest("not enough memory: try a 32-bit build instead")
             else:
                 raise unittest.SkipTest(
                     "not enough memory: %.1fG minimum needed"
-                    % (MAX_Py_ssize_t / (1024 ** 3))
+                    % (MAX_Py_ssize_t / (1024**3))
                 )
         else:
             return f(self)
@@ -2295,7 +2295,7 @@ def ignore_deprecations_from(module: str, *, like: str) -> object:
         "ignore",
         category=DeprecationWarning,
         module=module,
-        message=like + fr"(?#support{id(token)})",
+        message=like + rf"(?#support{id(token)})",
     )
     return token
 
