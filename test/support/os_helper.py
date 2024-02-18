@@ -9,7 +9,6 @@ import time
 import unittest
 import warnings
 
-
 # Filename used for testing
 if os.name == "java":
     # Jython disallows @ in module names
@@ -627,7 +626,7 @@ class EnvironmentVarGuard(collections.abc.MutableMapping):
         return self
 
     def __exit__(self, *ignore_exc):
-        for (k, v) in self._changed.items():
+        for k, v in self._changed.items():
             if v is None:
                 if k in self._environ:
                     del self._environ[k]

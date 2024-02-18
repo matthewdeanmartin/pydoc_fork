@@ -1,15 +1,14 @@
-Building
---------
-`pipenv install --dev --skip-lock
-nb package`
+## Building
+
+`pipenv install --dev --skip-lock nb package`
 Some dependencies are expected to be pipx installed globally on the machine, e.g. pylint
 
+## Testing
 
-Testing
--------
 Testing requires live modules.
 
 Scenarios
+
 - Pipx installed. Target in file system, installed packages or system.
 - Pipenv installed
   - Target in file system

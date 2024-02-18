@@ -151,6 +151,7 @@ disable=raw-checker-failed,
         deprecated-pragma,
         use-symbolic-message-instead,
 
+        # can't care
         fixme,
         too-many-lines,
         too-many-branches,
@@ -165,25 +166,20 @@ disable=raw-checker-failed,
         too-many-instance-attributes,
         too-many-return-statements,
         unnecessary-direct-lambda-call,
-        missing-function-docstring,
-        unused-variable,
-        invalid-name,
-        unnecessary-dunder-call,
-        protected-access,
-        line-too-long,
-        missing-module-docstring,
-        unused-argument,
         too-few-public-methods,
-        missing-class-docstring,
-        bare-except,
+        logging-not-lazy,
+        line-too-long,
         wrong-import-order,
-        unnecessary-lambda,
-        import-outside-toplevel,
-        empty-docstring,
-        line-too-long
+        too-many-nested-blocks,
+        too-many-public-methods,
+        # pylint is wrong
+        invalid-name,
 
-
-
+        # Docs are in the function/variable names
+        missing-class-docstring,
+        missing-module-docstring,
+        missing-function-docstring,
+        missing-function-docstring
 
 
 # Enable the message, report, category or checker with the given id(s). You can
@@ -399,8 +395,8 @@ min-public-methods=2
 [EXCEPTIONS]
 
 # Exceptions that will emit a warning when caught.
-overgeneral-exceptions=BaseException,
-                       Exception
+overgeneral-exceptions=builtins.BaseException,
+                       builtins.Exception
 
 
 [FORMAT]

@@ -1,4 +1,5 @@
 ## Motivation
+
 Pydoc appears to have been pulled in five directions without the input of a product manager.
 It is a mishmash of intentions:
 

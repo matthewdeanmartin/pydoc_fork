@@ -6,7 +6,7 @@ import html5lib
 from pydoc_fork.reporter.format_class import docclass
 from pydoc_fork.reporter.format_other import docother
 from pydoc_fork.reporter.format_routine import docroutine
-from pydoc_fork.reporter.formatter_html import section, bigsection, preformat, markup
+from pydoc_fork.reporter.formatter_html import bigsection, markup, preformat, section
 
 HTML5PARSER = html5lib.HTMLParser(strict=True)
 

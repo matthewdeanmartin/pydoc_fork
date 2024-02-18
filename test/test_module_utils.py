@@ -1,6 +1,6 @@
-import pydoc_fork.inspector.module_utils as module_utils
-
 from types import ModuleType
+
+import pydoc_fork.inspector.module_utils as module_utils
 
 
 def test_importfile():

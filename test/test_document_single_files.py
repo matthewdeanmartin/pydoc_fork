@@ -6,7 +6,6 @@ import pytest
 from pydoc_fork import process_path_or_dot_name
 from pydoc_fork.inspector.path_utils import locate_file
 
-
 # def test_single_file_pydoc_mod():
 #     with tempfile.TemporaryDirectory(prefix="test_pydoc_mod") as directory:
 #         folder_path = directory.replace("\\", "/")

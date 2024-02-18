@@ -1,5 +1,7 @@
 ### Pydoc's Adhoc Markup
+
 Supports
+
 - PEP links
 - RFC links
 - Arbitrary links
@@ -7,10 +9,11 @@ Supports
 - suppression on `_name`
 
 ### Pydoc_Fork's "markup language"
+
 Supports (soon?)
+
 - Assuming markup language for all
 - Guessing markup language
-
 
 Adding `__doc__` to dynamic things
 

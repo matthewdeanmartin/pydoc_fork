@@ -55,6 +55,7 @@ Richard Chamberlain, for the first implementation of textdoc.
 #     path will be displayed.
 
 import __future__
+
 import builtins
 import importlib._bootstrap
 import importlib._bootstrap_external
@@ -75,7 +76,6 @@ import warnings
 from collections import deque
 from reprlib import Repr
 from traceback import format_exception_only
-
 
 # --------------------------------------------------------- common routines
 
@@ -177,7 +177,7 @@ def _getdoc(object):
     """Get the documentation string for an object.
 
     All tabs are expanded to spaces.  To clean up docstrings that are
-    indented to line up with blocks of code, any whitespace than can be
+    indented to line up with blocks of code, any white space than can be
     uniformly removed from the second line onwards is removed."""
     doc = _getowndoc(object)
     if doc is None:
@@ -2652,8 +2652,8 @@ def _start_server(urlhandler, hostname, port):
         >>> print(serverthread.error)
         None
     """
-    import http.server
     import email.message
+    import http.server
     import select
     import threading
 

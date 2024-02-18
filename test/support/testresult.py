@@ -19,8 +19,8 @@ class RegressionTestResult(unittest.TextTestResult):
         )
         self.buffer = True
         if self.USE_XML:
-            from xml.etree import ElementTree as ET
             from datetime import datetime
+            from xml.etree import ElementTree as ET
 
             self.__ET = ET
             self.__suite = ET.Element("testsuite")

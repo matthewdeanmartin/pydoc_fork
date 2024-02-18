@@ -151,29 +151,35 @@ disable=raw-checker-failed,
         deprecated-pragma,
         use-symbolic-message-instead,
 
+        # can't care
         fixme,
         too-many-lines,
         too-many-branches,
-        import-error,
         too-many-statements,
-        useless-import-alias,
         too-many-locals,
+        too-many-arguments,
+        too-many-instance-attributes,
+        too-many-nested-blocks,
+        too-many-public-methods,
+        too-many-return-statements,
+        too-few-public-methods,
+
+        wrong-import-order,
+        import-error,
+        useless-import-alias,
         consider-using-from-import, # pylint is wrong
         duplicate-code,
-        too-many-arguments,
         logging-fstring-interpolation,
-        too-many-instance-attributes,
-        too-many-return-statements,
         unnecessary-direct-lambda-call,
-        too-few-public-methods,
         logging-not-lazy,
-        too-few-public-methods,
         line-too-long,
-        bare-except,
         invalid-name,
-        protected-access,
-        broad-except,
-        consider-using-f-string, # no because the goal is to move to jinja
+
+        # need to lint docs separately.
+        # missing-class-docstring,
+        # missing-module-docstring,
+        # missing-function-docstring
+
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -388,8 +394,8 @@ min-public-methods=2
 [EXCEPTIONS]
 
 # Exceptions that will emit a warning when caught.
-overgeneral-exceptions=BaseException,
-                       Exception
+overgeneral-exceptions=builtins.BaseException,
+                       builtins.Exception
 
 
 [FORMAT]

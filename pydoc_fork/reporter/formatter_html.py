@@ -116,7 +116,7 @@ def multicolumn(
 
 
 def disabled_text(text: str) -> str:
-    """Wrap in grey"""
+    """Wrap in gray"""
     return f'<span style="color:{inline_styles.DISABLED_TEXT}">{text}</span>'
 
 
@@ -171,7 +171,7 @@ def markup(
     """
     Replace all linkable things with links of appropriate syntax.
 
-    Handle either an adhoc markup language, or RST or Markdown.
+    Handle either an ad hoc markup language, or RST or Markdown.
     funcs, classes, methods are name/symbol to URL maps.
     """
     funcs = funcs or {}

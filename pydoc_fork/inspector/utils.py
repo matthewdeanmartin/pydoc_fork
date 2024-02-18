@@ -143,7 +143,7 @@ def _getdoc(the_object: TypeLike) -> str:
     Get the documentation string for an object.
 
     All tabs are expanded to spaces.  To clean up docstrings that are
-    indented to line up with blocks of code, any whitespace than can be
+    indented to line up with blocks of code, any white space than can be
     uniformly removed from the second line onwards is removed.
     """
     doc = _get_own_doc_string(the_object)

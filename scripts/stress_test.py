@@ -1,9 +1,10 @@
+from test.test_live_generation import cwd
+
 import importlib_metadata
 import pkg_resources
 
 from pydoc_fork import process_path_or_dot_name
 from pydoc_fork.module_utils import ErrorDuringImport
-from test.test_live_generation import cwd
 
 
 def run():

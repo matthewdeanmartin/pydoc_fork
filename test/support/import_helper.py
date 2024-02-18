@@ -1,11 +1,12 @@
 import contextlib
-import _imp
 import importlib
 import importlib.util
 import os
 import sys
 import unittest
 import warnings
+
+import _imp
 
 from .os_helper import unlink
 

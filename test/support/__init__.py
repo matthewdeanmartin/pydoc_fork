@@ -17,7 +17,6 @@ import warnings
 
 from .testresult import get_test_runner
 
-
 try:
     from _testcapi import unicode_legacy_string
 except ImportError:
@@ -301,7 +300,7 @@ def _is_gui_available():
         # process not running under the same user id as the current console
         # user.  To avoid that, raise an exception if the window manager
         # connection is not available.
-        from ctypes import cdll, c_int, pointer, Structure
+        from ctypes import Structure, c_int, cdll, pointer
         from ctypes.util import find_library
 
         app_services = cdll.LoadLibrary(find_library("ApplicationServices"))
@@ -626,7 +625,9 @@ def check_syntax_error(testcase, statement, errtext="", *, lineno=None, offset=N
 
 
 def open_urlresource(url, *args, **kw):
-    import urllib.request, urllib.parse
+    import urllib.parse
+    import urllib.request
+
     from .os_helper import unlink
 
     try:
@@ -1459,7 +1460,6 @@ def optim_args_from_interpreter_flags():
 
 
 class Matcher(object):
-
     _partial_matches = ("msg", "message")
 
     def matches(self, d, **kwargs):
@@ -1546,6 +1546,7 @@ class PythonSymlink:
 
         def _platform_specific(self):
             import glob
+
             import _winapi
 
             if os.path.lexists(self.real) and not os.path.exists(self.real):
@@ -1911,7 +1912,7 @@ def missing_compiler_executable(cmd_names=[]):
 
     """
     # TODO (PEP 632): alternate check without using distutils
-    from distutils import ccompiler, sysconfig, spawn, errors
+    from distutils import ccompiler, errors, spawn, sysconfig
 
     compiler = ccompiler.new_compiler()
     sysconfig.customize_compiler(compiler)
@@ -2092,6 +2093,7 @@ def maybe_get_event_loop_policy():
 # Helpers for testing hashing.
 NHASHBITS = sys.hash_info.width  # number of bits in hash() result
 assert NHASHBITS in (32, 64)
+
 
 # Return mean and sdev of number of collisions when tossing nballs balls
 # uniformly at random into nbins bins.  By definition, the number of

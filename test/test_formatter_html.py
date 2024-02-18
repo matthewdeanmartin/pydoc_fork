@@ -1,6 +1,6 @@
-import pydoc_fork.reporter.formatter_html as doc
-import pydoc_fork.reporter.format_page as page
 import pydoc_fork.inspector.module_utils as module_utils
+import pydoc_fork.reporter.format_page as page
+import pydoc_fork.reporter.formatter_html as doc
 from pydoc_fork.inspector.path_utils import locate_file
 
 
@@ -42,7 +42,6 @@ def test_HTMLDoc_document_class():
 
 
 def test_HTMLDoc_document_routine():
-
     name = "The Routine"
 
     def waka():
@@ -59,7 +58,6 @@ def test_HTMLDoc_document_routine():
 
 
 def test_HTMLDoc_document_other():
-
     name = "The Number"
     result = page.document(42, name)
     assert name in result

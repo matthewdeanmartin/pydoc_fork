@@ -1,7 +1,6 @@
-import sysconfig
 import datetime
-
 import sys
+import sysconfig
 
 from pydoc_fork import settings
 from pydoc_fork.reporter.format_module import getdocloc

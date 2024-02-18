@@ -4,9 +4,7 @@ import functools
 import sys
 import threading
 import time
-
 from test import support
-
 
 # =======================================================================
 # Threading support to prevent reporting refleaks when running regrtest.py -R

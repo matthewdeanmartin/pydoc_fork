@@ -28,13 +28,11 @@ import sys
 import docopt
 
 from pydoc_fork import commands, settings
+from pydoc_fork.__about__ import __version__
 from pydoc_fork.settings import load_config
 
 LOGGER = logging.getLogger(__name__)
 LOGGERS = []
-
-
-__version__ = "3.0.0"
 
 
 def main() -> int:
