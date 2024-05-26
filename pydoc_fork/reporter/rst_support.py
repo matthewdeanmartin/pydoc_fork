@@ -2,6 +2,7 @@
 Rst to HTML function
 Credits: https://stackoverflow.com/a/49047197/33264
 """
+
 from typing import Any, List
 
 from docutils import core

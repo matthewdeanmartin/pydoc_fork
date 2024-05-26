@@ -1,6 +1,7 @@
 """
 Roughly a UI component for modules
 """
+
 import inspect
 import os
 import pkgutil

@@ -340,7 +340,7 @@ def visiblename(name, all=None, obj=None):
 def classify_class_attrs(object):
     """Wrap inspect.classify_class_attrs, with fixup for data descriptors."""
     results = []
-    for (name, kind, cls, value) in inspect.classify_class_attrs(object):
+    for name, kind, cls, value in inspect.classify_class_attrs(object):
         if inspect.isdatadescriptor(value):
             kind = "data descriptor"
             if isinstance(value, property) and value.fset is None:

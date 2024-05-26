@@ -1,6 +1,7 @@
 """
 Module Manipulation
 """
+
 import builtins
 
 # noinspection PyProtectedMember

@@ -1,6 +1,7 @@
 """
 Roughly a UI component for variables and their values
 """
+
 from typing import List
 
 from pydoc_fork.inspector.custom_types import TypeLike

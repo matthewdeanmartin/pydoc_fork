@@ -3,6 +3,7 @@ Configuration options that could be used by anything.
 
 Also global variables
 """
+
 import logging
 import os
 import pathlib

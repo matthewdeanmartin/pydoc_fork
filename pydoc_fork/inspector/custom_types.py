@@ -1,6 +1,7 @@
 """
 Custom Types so mypy can check the code
 """
+
 from typing import List
 
 from typing_extensions import Protocol

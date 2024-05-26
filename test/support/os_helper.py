@@ -579,7 +579,6 @@ if hasattr(os, "umask"):
 
 
 class EnvironmentVarGuard(collections.abc.MutableMapping):
-
     """Class to help protect the environment variable properly.  Can be used as
     a context manager."""
 

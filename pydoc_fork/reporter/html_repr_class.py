@@ -1,4 +1,5 @@
 """Class for safely making an HTML representation of a Python object."""
+
 import re
 from reprlib import Repr
 from typing import Any, cast

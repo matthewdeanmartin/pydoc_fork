@@ -1,6 +1,7 @@
 """
 String manipulation
 """
+
 import logging
 import re
 

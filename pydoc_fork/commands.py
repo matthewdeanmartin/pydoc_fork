@@ -2,6 +2,7 @@
 
 All the CLI logic should be handled in __main__.
 """
+
 import glob
 import logging
 import os

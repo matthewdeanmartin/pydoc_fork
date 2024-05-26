@@ -1,6 +1,7 @@
 """
 Roughly a UI component for classes
 """
+
 import builtins
 import inspect
 import sys
