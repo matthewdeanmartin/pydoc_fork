@@ -1,6 +1,4 @@
-"""Test runner and result class for the regression test suite.
-
-"""
+"""Test runner and result class for the regression test suite."""
 
 import functools
 import io

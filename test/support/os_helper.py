@@ -39,7 +39,7 @@ if os.name == "nt":
     if sys.getwindowsversion().platform >= 2:
         # Different kinds of characters from various languages to minimize the
         # probability that the whole name is encodable to MBCS (issue #9819)
-        TESTFN_UNENCODABLE = TESTFN_ASCII + "-\u5171\u0141\u2661\u0363\uDC80"
+        TESTFN_UNENCODABLE = TESTFN_ASCII + "-\u5171\u0141\u2661\u0363\udc80"
         try:
             TESTFN_UNENCODABLE.encode(sys.getfilesystemencoding())
         except UnicodeEncodeError:
@@ -74,30 +74,30 @@ for character in (
     # For each character, the encoding list are just example of encodings able
     # to encode the character (the list is not exhaustive).
     # U+00E6 (Latin Small Letter Ae): cp1252, iso-8859-1
-    "\u00E6",
+    "\u00e6",
     # U+0130 (Latin Capital Letter I With Dot Above): cp1254, iso8859_3
     "\u0130",
     # U+0141 (Latin Capital Letter L With Stroke): cp1250, cp1257
     "\u0141",
     # U+03C6 (Greek Small Letter Phi): cp1253
-    "\u03C6",
+    "\u03c6",
     # U+041A (Cyrillic Capital Letter Ka): cp1251
-    "\u041A",
+    "\u041a",
     # U+05D0 (Hebrew Letter Alef): Encodable to cp424
-    "\u05D0",
+    "\u05d0",
     # U+060C (Arabic Comma): cp864, cp1006, iso8859_6, mac_arabic
-    "\u060C",
+    "\u060c",
     # U+062A (Arabic Letter Teh): cp720
-    "\u062A",
+    "\u062a",
     # U+0E01 (Thai Character Ko Kai): cp874
-    "\u0E01",
+    "\u0e01",
     # Then try more "special" characters. "special" because they may be
     # interpreted or displayed differently depending on the exact locale
     # encoding and the font.
     # U+00A0 (No-Break Space)
-    "\u00A0",
+    "\u00a0",
     # U+20AC (Euro Sign)
-    "\u20AC",
+    "\u20ac",
 ):
     try:
         # If Python is set up to use the legacy 'mbcs' in Windows,
