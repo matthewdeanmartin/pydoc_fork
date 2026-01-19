@@ -20,11 +20,8 @@ def resolve(thing: Union[str, Any], force_load: bool = False) -> Tuple[Any, Any]
     if isinstance(thing, str):
         the_object = locate(thing, force_load)
         if the_object is None:
-            raise ImportError(
-                """\
-No Python documentation found for %r."""
-                % thing
-            )
+            raise ImportError("""\
+No Python documentation found for %r.""" % thing)
         return the_object, thing
 
     name = getattr(thing, "__name__", None)
