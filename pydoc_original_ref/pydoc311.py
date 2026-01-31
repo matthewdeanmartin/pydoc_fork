@@ -37,6 +37,7 @@ This can be overridden by setting the PYTHONDOCS environment variable
 to a different URL or to a local directory containing the Library
 Reference Manual pages.
 """
+
 __all__ = ["help"]
 __author__ = "Ka-Ping Yee <ping@lfw.org>"
 __date__ = "26 February 2001"
@@ -497,7 +498,7 @@ def safeimport(path, forceload=0, cache={}):
         module = __import__(path)
     except:
         # Did the error occur before or after the module was found?
-        (exc, value, tb) = info = sys.exc_info()
+        exc, value, tb = info = sys.exc_info()
         if path in sys.modules:
             # An error occurred while executing the imported module.
             raise ErrorDuringImport(sys.modules[path].__file__, info)
@@ -702,21 +703,13 @@ class HTMLDoc(Doc):
             title,
         )
         if prelude:
-            result = (
-                result
-                + """
+            result = result + """
 <tr><td class="decor %s-decor" rowspan=2>%s</td>
 <td class="decor %s-decor" colspan=2>%s</td></tr>
-<tr><td>%s</td>"""
-                % (cls, marginalia, cls, prelude, gap)
-            )
+<tr><td>%s</td>""" % (cls, marginalia, cls, prelude, gap)
         else:
-            result = (
-                result
-                + """
-<tr><td class="decor %s-decor">%s</td><td>%s</td>"""
-                % (cls, marginalia, gap)
-            )
+            result = result + """
+<tr><td class="decor %s-decor">%s</td><td>%s</td>""" % (cls, marginalia, gap)
 
         return result + '\n<td class="singlecolumn">%s</td></tr></table>' % contents
 
@@ -1351,8 +1344,7 @@ class TextDoc(Doc):
         if docloc is not None:
             result = result + self.section(
                 "MODULE REFERENCE",
-                docloc
-                + """
+                docloc + """
 
 The following documentation is automatically generated from the Python
 source files.  It may be incomplete, incorrect or include features that
@@ -1748,7 +1740,7 @@ def getpager():
 
     import tempfile
 
-    (fd, filename) = tempfile.mkstemp()
+    fd, filename = tempfile.mkstemp()
     os.close(fd)
     try:
         if hasattr(os, "system") and os.system('more "%s"' % filename) == 0:
@@ -1931,13 +1923,10 @@ def resolve(thing, forceload=0):
     if isinstance(thing, str):
         object = locate(thing, forceload)
         if object is None:
-            raise ImportError(
-                """\
+            raise ImportError("""\
 No Python documentation found for %r.
 Use help() to get the interactive help utility.
-Use help(str) for help on the str class."""
-                % thing
-            )
+Use help(str) for help on the str class.""" % thing)
         return object, thing
     else:
         name = getattr(thing, "__name__", None)
@@ -2263,14 +2252,12 @@ class Helper:
         else:
             self.intro()
             self.interact()
-            self.output.write(
-                """
+            self.output.write("""
 You are now leaving help and returning to the Python interpreter.
 If you want to ask for help on a particular object directly from the
 interpreter, you can type "help(object)".  Executing "help('string')"
 has the same effect as typing a particular string at the help> prompt.
-"""
-            )
+""")
 
     def interact(self):
         self.output.write("\n")
@@ -2340,8 +2327,7 @@ has the same effect as typing a particular string at the help> prompt.
         self.output.write("\n")
 
     def intro(self):
-        self.output.write(
-            """
+        self.output.write("""
 Welcome to Python {0}'s help utility!
 
 If this is your first time using Python, you should definitely check out
@@ -2355,10 +2341,7 @@ To get a list of available modules, keywords, symbols, or topics, type
 "modules", "keywords", "symbols", or "topics".  Each module also comes
 with a one-line summary of what it does; to list the modules whose name
 or summary contain a given string such as "spam", type "modules spam".
-""".format(
-                "%d.%d" % sys.version_info[:2]
-            )
-        )
+""".format("%d.%d" % sys.version_info[:2]))
 
     def list(self, items, columns=4, width=80):
         items = list(sorted(items))
@@ -2374,43 +2357,35 @@ or summary contain a given string such as "spam", type "modules spam".
             self.output.write("\n")
 
     def listkeywords(self):
-        self.output.write(
-            """
+        self.output.write("""
 Here is a list of the Python keywords.  Enter any keyword to get more help.
 
-"""
-        )
+""")
         self.list(self.keywords.keys())
 
     def listsymbols(self):
-        self.output.write(
-            """
+        self.output.write("""
 Here is a list of the punctuation symbols which Python assigns special meaning
 to. Enter any symbol to get more help.
 
-"""
-        )
+""")
         self.list(self.symbols.keys())
 
     def listtopics(self):
-        self.output.write(
-            """
+        self.output.write("""
 Here is a list of available topics.  Enter any topic name to get more help.
 
-"""
-        )
+""")
         self.list(self.topics.keys())
 
     def showtopic(self, topic, more_xrefs=""):
         try:
             import pydoc_data.topics
         except ImportError:
-            self.output.write(
-                """
+            self.output.write("""
 Sorry, topic and keyword documentation is not available because the
 module "pydoc_data.topics" could not be found.
-"""
-            )
+""")
             return
         target = self.topics.get(topic, self.keywords.get(topic))
         if not target:
@@ -2473,23 +2448,17 @@ module "pydoc_data.topics" could not be found.
 
     def listmodules(self, key=""):
         if key:
-            self.output.write(
-                """
+            self.output.write("""
 Here is a list of modules whose name or summary contains '{}'.
 If there are any, enter a module name to get more help.
 
-""".format(
-                    key
-                )
-            )
+""".format(key))
             apropos(key)
         else:
-            self.output.write(
-                """
+            self.output.write("""
 Please wait a moment while I gather a list of all available modules...
 
-"""
-            )
+""")
             modules = {}
 
             def callback(path, modname, desc, modules=modules):
@@ -2503,12 +2472,10 @@ Please wait a moment while I gather a list of all available modules...
 
             ModuleScanner().run(callback, onerror=onerror)
             self.list(modules.keys())
-            self.output.write(
-                """
+            self.output.write("""
 Enter any module name to get more help.  Or, type "modules spam" to search
 for modules whose name or summary contain the string "spam".
-"""
-            )
+""")
 
 
 help = Helper()
@@ -3130,8 +3097,7 @@ def cli():
 
     except (getopt.error, BadUsage):
         cmd = os.path.splitext(os.path.basename(sys.argv[0]))[0]
-        print(
-            """pydoc - the Python documentation tool
+        print("""pydoc - the Python documentation tool
 
 {cmd} <name> ...
     Show text documentation on something.  <name> may be the name of a
@@ -3160,10 +3126,7 @@ def cli():
     Write out the HTML documentation for a module to a file in the current
     directory.  If <name> contains a '{sep}', it is treated as a filename; if
     it names a directory, documentation is written for all the contents.
-""".format(
-                cmd=cmd, sep=os.sep
-            )
-        )
+""".format(cmd=cmd, sep=os.sep))
 
 
 if __name__ == "__main__":

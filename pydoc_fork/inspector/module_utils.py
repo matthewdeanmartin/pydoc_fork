@@ -96,7 +96,7 @@ def safe_import(
     # pylint: disable=broad-except
     except BaseException as import_error:
         # Did the error occur before or after the module was found?
-        (exc, value, _) = info = sys.exc_info()
+        exc, value, _ = info = sys.exc_info()
         if path in sys.modules:
             # An error occurred while executing the imported module.
             LOGGER.warning(f"Skipping safe_import for {path}, got a {import_error}")
