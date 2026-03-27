@@ -111,6 +111,14 @@ def docclass(
                 push("\n")
         return attrs
 
+    def kind_is(expected_kind: str) -> Callable[[Any], bool]:
+        """Build an attribute-kind predicate compatible with _split_list."""
+
+        def predicate(item: Any) -> bool:
+            return item[1] == expected_kind
+
+        return predicate
+
     def spilldescriptors(
         msg: str,
         attrs_in: List[Any],  # Tuple[str, str, type, "object"]
@@ -205,22 +213,20 @@ def docclass(
                 attrs.remove(kind)
 
         # Pump out the attrs, segregated by kind.
-        is_method: Callable[[Any], Any] = lambda t: t[1] == "method"
-        attrs = spill(f"Methods {tag}", attrs, is_method)
-        is_class: Callable[[Any], Any] = lambda t: t[1] == "class method"
-        attrs = spill(f"Class methods {tag}", attrs, is_class)
-        is_static: Callable[[Any], Any] = lambda t: t[1] == "static method"
-        attrs = spill(f"Static methods {tag}", attrs, is_static)
-        is_read_only: Callable[[Any], Any] = lambda t: t[1] == "readonly property"
+        attrs = spill(f"Methods {tag}", attrs, kind_is("method"))
+        attrs = spill(f"Class methods {tag}", attrs, kind_is("class method"))
+        attrs = spill(f"Static methods {tag}", attrs, kind_is("static method"))
         attrs = spilldescriptors(
             f"Readonly properties {tag}",
             attrs,
-            is_read_only,
+            kind_is("readonly property"),
         )
-        is_data_descriptor: Callable[[Any], Any] = lambda t: t[1] == "data descriptor"
-        attrs = spilldescriptors(f"Data descriptors {tag}", attrs, is_data_descriptor)
-        is_data: Callable[[Any], Any] = lambda t: t[1] == "data"
-        attrs = spilldata(f"Data and other attributes {tag}", attrs, is_data)
+        attrs = spilldescriptors(
+            f"Data descriptors {tag}",
+            attrs,
+            kind_is("data descriptor"),
+        )
+        attrs = spilldata(f"Data and other attributes {tag}", attrs, kind_is("data"))
         assert not attrs  # nosec
         attrs = inherited
 

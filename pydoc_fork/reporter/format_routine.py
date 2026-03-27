@@ -34,7 +34,6 @@ def docroutine(
     name = name or real_name
     anchor = (class_object and class_object.__name__ or "") + "-" + name
     note = ""
-    skip_docs = 0
     if _is_bound_method(the_object):
         imported_class = the_object.__self__.__class__
         if class_object:
@@ -65,7 +64,6 @@ def docroutine(
             real_link = (
                 f'<a href="#{class_object.__name__ + "-" + real_name}">{real_name}</a>'
             )
-            skip_docs = 1
         else:
             real_link = real_name
         title = f'<a name="{anchor}"><strong>{name}</strong></a> = {real_link}'
