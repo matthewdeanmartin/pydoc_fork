@@ -102,9 +102,7 @@ def docroutine(
         )
     )
 
-    if skip_docs:
-        return f"<dl><dt>{decl}</dt></dl>\n"
-
+    from pydoc_fork.reporter.jinja_code import JINJA_ENV
+    template = JINJA_ENV.get_template("function.jinja2")
     doc = markup(getdoc(the_object), funcs, classes, methods)
-    doc = doc and f"<dd><tt>{doc}</tt></dd>"
-    return f"<dl><dt>{decl}</dt>{doc}</dl>\n"
+    return template.render(decl=decl, doc=doc)

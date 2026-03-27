@@ -22,6 +22,7 @@ from pydoc_fork.reporter import inline_styles
 from pydoc_fork.reporter.format_data import document_data
 from pydoc_fork.reporter.format_other import docother
 from pydoc_fork.reporter.formatter_html import markup, section
+from pydoc_fork.reporter.jinja_code import JINJA_ENV
 
 
 def classlink(the_object: Union[TypeLike, type], modname: str) -> str:
@@ -253,7 +254,9 @@ def docclass(
     doc = markup(doc, funcs, classes, module_dict)
     doc = doc and f"<tt>{doc}<br>&nbsp;</tt>"
 
-    return section(title, "#000000", "#ffc8d8", contents_as_string, 3, doc)
+    section_html = section(title, "#000000", "#ffc8d8", contents_as_string, 3, doc)
+    template = JINJA_ENV.get_template("class.jinja2")
+    return template.render(section_html=section_html)
 
 
 def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> str:

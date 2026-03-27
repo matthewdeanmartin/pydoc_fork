@@ -3,16 +3,12 @@
 
 FILES := $(wildcard **/*.py)
 
-# if you wrap everything in poetry run, it runs slower.
-ifeq ($(origin VIRTUAL_ENV),undefined)
-    VENV := poetry run
-else
-    VENV :=
-endif
+# if you wrap everything in uv run, it is fast and handles venv
+VENV := uv run
 
 poetry.lock: pyproject.toml
 	@echo "Installing dependencies"
-	@poetry install --with dev
+	@uv sync --all-extras
 
 clean-pyc:
 	@echo "Removing compiled files"
@@ -133,3 +129,14 @@ check_own_ver:
 #audit:
 #	# $(VENV) python -m pydoc_fork audit
 #	$(VENV) tool_audit single pydoc_fork --version=">=2.0.0"
+
+.PHONY: sample_docs
+sample_docs:
+	$(VENV) python -m pydoc_fork pydoc_fork --output doc_self
+
+.PHONY: sample_docs_dark
+sample_docs_dark:
+	$(VENV) python -m pydoc_fork pydoc_fork --output doc_self_dark --theme dark
+
+.PHONY: dogfood
+dogfood: sample_docs sample_docs_dark

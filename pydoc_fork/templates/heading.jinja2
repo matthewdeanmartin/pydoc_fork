@@ -1,25 +1,15 @@
-<table class="heading">
-    <tr style="background-color: {{ bgcol }};">
-        <td class="title" style="vertical-align: bottom">&nbsp;<br>
-            <span style="color: {{ fgcol }}; font-family: helvetica, arial,sans-serif;">
-            &nbsp;<br>{{ title }}
-            </span>
-        </td>
-        <td style="vertical-align: bottom; text-align: right;">
-            <span style="color: {{ fgcol }}; font-family: helvetica, arial,sans-serif;">
-                {% if extras %}{{ extras }}{% else %}'&nbsp;'{% endif %}
-            </span>
-        </td>
-    </tr>
-</table>
-{##}
-{#<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">#}
-{#    <tr bgcolor="{bgcol}">#}
-{#        <td valign=bottom>&nbsp;<br>#}
-{#            <font color="{fgcol}" face="helvetica, arial">&nbsp;<br>{{title}}</font>#}
-{#        </td>#}
-{#        <td align=right valign=bottom>#}
-{#            <font color="{fgcol}" face="helvetica, arial">{% if extras %}{{ extras }}{% else %}'&nbsp;'{% endif %}</font>#}
-{#        </td>#}
-{#    </tr>#}
-{#</table>#}
+<header class="theme-heading">
+    <div class="heading-content">
+        <h1 class="heading-text">{{ title }}</h1>
+        <div class="heading-extras">
+            {% if extras %}{{ extras }}{% else %}&nbsp;{% endif %}
+        </div>
+    </div>
+    {% if nav_links %}
+    <nav class="header-nav">
+        {% for link in nav_links %}
+        {{ link }}
+        {% endfor %}
+    </nav>
+    {% endif %}
+</header>

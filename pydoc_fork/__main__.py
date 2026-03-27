@@ -13,6 +13,7 @@ Options:
   --quiet                      No printing or logging.
   --verbose                    Crank up the logging.
   --config <config>            pyproject.toml or other toml config.
+  --theme <theme>              Theme selection (classic, light, dark).
   --document_internals         respect underscore or __all__ private
   --prefer_docs_python_org     link to python.org or generate own stdlib docs
   -o --output <folder>         where to write files
@@ -52,6 +53,8 @@ def main() -> int:
         settings.DOCUMENT_INTERNALS = arguments["--document_internals"]
     if arguments.get("--prefer_docs_python_org"):
         settings.PREFER_DOCS_PYTHON_ORG = arguments["--prefer_docs_python_org"]
+    if arguments.get("--theme"):
+        settings.THEME = arguments["--theme"]
 
     if arguments.get("--verbose"):
         # root logger, all modules

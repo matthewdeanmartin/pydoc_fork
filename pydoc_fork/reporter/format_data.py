@@ -14,14 +14,7 @@ def document_data(
     name: str = "",
 ) -> str:
     """Produce html documentation for a data descriptor."""
-
-    results: List[str] = []
-
-    if name:
-        results.append(f"<dl><dt><strong>{name}</strong></dt>\n")
+    from pydoc_fork.reporter.jinja_code import JINJA_ENV
+    template = JINJA_ENV.get_template("data.jinja2")
     doc = markup(getdoc(the_object))
-    if doc:
-        results.append(f"<dd><tt>{doc}</tt></dd>\n")
-    results.append("</dl>\n")
-
-    return "".join(results)
+    return template.render(name=name, doc=doc)

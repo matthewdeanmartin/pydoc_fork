@@ -70,11 +70,14 @@ def calculate_file_name(name: str, output_folder: str) -> str:
 def modules_in_current() -> List[str]:
     """Convert . shortcut into list of modules"""
     current = os.getcwd()
-    files = glob.glob(os.path.join(os.path.dirname(current), "*.py"))
-    py_files = [os.path.basename(f)[:-3] for f in files if os.path.isdir(f)]
-    folders = glob.glob(os.path.join(os.path.dirname(current), "*.py"))
-
-    py_folders = [os.path.basename(f) for f in folders if os.path.isdir(f)]
+    files = glob.glob(os.path.join(current, "*.py"))
+    py_files = [os.path.basename(f)[:-3] for f in files if os.path.isfile(f)]
+    # Filter out __init__.py if we only want modules? Usually __init__.py is the package itself.
+    
+    # Also look for packages (directories with __init__.py)
+    folders = [f for f in os.listdir(current) if os.path.isdir(os.path.join(current, f))]
+    py_folders = [f for f in folders if os.path.isfile(os.path.join(current, f, "__init__.py"))]
+    
     found = py_files + py_folders
     LOGGER.debug(f"Adding these modules from current folder to document {found}")
     return found
@@ -184,7 +187,20 @@ def process_path_or_dot_name(
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
-    copy2(locate_file("templates/style.css", __file__), output_folder)
+    
+    from pydoc_fork.reporter.themes import get_theme_css
+    
+    base_style_path = locate_file("templates/style.css", __file__)
+    with open(base_style_path, "r", encoding="utf-8") as f:
+        base_style = f.read()
+    
+    # Replace :root block with theme-specific variables
+    import re
+    theme_vars = get_theme_css(settings.THEME)
+    new_style = re.sub(r":root\s*{[^}]*}", theme_vars, base_style, flags=re.MULTILINE)
+    
+    with open(os.path.join(output_folder, "style.css"), "w", encoding="utf-8") as f:
+        f.write(new_style)
 
     _adjust_cli_sys_path()
 

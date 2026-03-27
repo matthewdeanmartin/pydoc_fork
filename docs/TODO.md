@@ -3,10 +3,10 @@
 Pydoc excels at:
 
 - giving you consistent documentation for everything
-  - your code
-  - standard lib code (except when it links to external)
-  - 3rd package code
-  - (will have) switch to document only own code
+    - your code
+    - standard lib code (except when it links to external)
+    - 3rd package code
+    - (will have) switch to document only own code
 
 Real world documentation comes wildly different formats, missing, all over the place.
 
@@ -14,10 +14,10 @@ Real world documentation comes wildly different formats, missing, all over the p
 
 - https://pypi.org/project/docstring-parser/
 - FEATURE:
-  - pydoc_fork --path .
-  - pydoc_fork --path foo.py
-  - pydoc_fork --dot_path foo.bar
-  - pydoc_fork --package bs4
+    - pydoc_fork --path .
+    - pydoc_fork --path foo.py
+    - pydoc_fork --dot_path foo.bar
+    - pydoc_fork --package bs4
 - bug: when folder is empty, still pulls in `site` and dependencies (how?!)
 - need clean folder option
 - bug, writes . folder as ..html
@@ -26,8 +26,8 @@ Real world documentation comes wildly different formats, missing, all over the p
 - just copy pdoc, pydoc or the likes extension switches
 - Detect MD or RST & format as such
 - Separate "document source code at this path" from "document this imported type/module" eg:
-  - pydoc_fork foo.bar
-  - pydoc_fork c:/src/foo/bar.py
+    - pydoc_fork foo.bar
+    - pydoc_fork c:/src/foo/bar.py
 - copy source to target folder...using pycco!
 - index page
 - Surface all settings in cmd switchs or yaml config or pyproject.toml config
@@ -38,7 +38,7 @@ Real world documentation comes wildly different formats, missing, all over the p
 
 - Option to walk the module tree (to some specified depth) DONE...?
 
-  - https://stackoverflow.com/questions/48000761/list-submodules-of-a-python-module
+    - https://stackoverflow.com/questions/48000761/list-submodules-of-a-python-module
 
 - suppress typing/annotation cruft- DONE!
 
@@ -46,7 +46,7 @@ Real world documentation comes wildly different formats, missing, all over the p
 
 - Just enough jinja to fix the HTML- DONE
 
-  - heading, page, section are templates
+    - heading, page, section are templates
 
 - rip out web server and browser. DONE
 

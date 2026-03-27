@@ -10,7 +10,10 @@ import pathlib
 import sys
 from typing import Any, Dict, Optional, Set, Tuple
 
-import tomli
+if sys.version_info >= (3, 11):
+    import tomllib
+else:
+    import tomli as tomllib
 
 from pydoc_fork.inspector.custom_types import TypeLike
 
@@ -23,6 +26,8 @@ DOCUMENT_INTERNALS = False
 ONLY_NAMED_AND_SUBS = False
 
 OUTPUT_FOLDER = ""
+THEME = "classic"
+CUSTOM_TEMPLATES: Optional[str] = None
 
 PYTHONDOCS = os.environ.get(
     "PYTHONDOCS", "https://docs.python.org/%d.%d/library" % sys.version_info[:2]
@@ -42,6 +47,8 @@ def load_config(path: Optional[str]):
     global DOCUMENT_INTERNALS
     global SKIP_MODULES
     global ONLY_NAMED_AND_SUBS
+    global THEME
+    global CUSTOM_TEMPLATES
 
     pairs = parse_toml(path)
     if pairs:
@@ -50,6 +57,8 @@ def load_config(path: Optional[str]):
     DOCUMENT_INTERNALS = pairs.get("DOCUMENT_INTERNALS", True)
     SKIP_MODULES = pairs.get("SKIP_MODULES", ["typing"])
     ONLY_NAMED_AND_SUBS = pairs.get("ONLY_NAMED_AND_SUBS", False)
+    THEME = pairs.get("THEME", "classic")
+    CUSTOM_TEMPLATES = pairs.get("CUSTOM_TEMPLATES", None)
 
 
 def parse_toml(path_string: Optional[str]) -> Dict[str, Any]:
@@ -61,8 +70,8 @@ def parse_toml(path_string: Optional[str]) -> Dict[str, Any]:
     toml_path = path / "pyproject.toml"
     if not toml_path.exists():
         return {}
-    with open(toml_path, encoding="utf8") as handle:
-        pyproject_toml = tomli.loads(handle.read())
+    with open(toml_path, "rb") as handle:
+        pyproject_toml = tomllib.load(handle)
     config = pyproject_toml.get("tool", {}).get("pydoc_fork", {})
     loose_matching = {
         k.replace("--", "").replace("-", "_"): v for k, v in config.items()

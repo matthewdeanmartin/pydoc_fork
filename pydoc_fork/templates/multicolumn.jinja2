@@ -1,0 +1,9 @@
+<div class="multicolumn-container">
+    {% for column in columns %}
+    <div class="multicolumn-col">
+        {% for item in column %}
+        {{ item }}<br>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</div>

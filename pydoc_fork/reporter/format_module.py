@@ -23,6 +23,7 @@ from pydoc_fork.reporter.formatter_html import (
     module_package_link,
     multicolumn,
 )
+from pydoc_fork.reporter.jinja_code import JINJA_ENV
 
 
 def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[str]:
@@ -139,12 +140,12 @@ def docmodule(
         document_location = f'<br><a href="{document_location}">Module Reference</a>'
     else:
         document_location = ""
-    result = heading(
-        head,
-        "#ffffff",
-        "#7799ee",
-        '<a href=".">index</a><br>' + file_link_text + document_location,
-    )
+    
+    nav_links = ['<a href=".">index</a>']
+    if file_link_text:
+        nav_links.append(file_link_text)
+    if document_location:
+        nav_links.append(document_location)
 
     # this will get `import foo` but ignore `from foo import bar`
     # And bar gets no doc string love either!
@@ -218,9 +219,16 @@ def docmodule(
         if visiblename(key, all_things, the_object):
             data.append((key, value))
 
-    doc = markup(getdoc(the_object), function_dict, class_dict)
-    doc = doc and f"<tt>{doc}</tt>"
-    result = result + f"<p>{doc}</p>\n"
+    result_data = {
+        "heading_html": heading(
+            head,
+            "",
+            "",
+            "",
+            nav_links=nav_links,
+        ),
+        "doc_html": markup(getdoc(the_object), function_dict, class_dict),
+    }
 
     if hasattr(the_object, "__path__"):
         module_packages = []
@@ -229,18 +237,18 @@ def docmodule(
                 module_packages.append((modname, name, is_package, 0))
         module_packages.sort()
         contents_string = multicolumn(module_packages, module_package_link)
-        result = result + bigsection(
+        result_data["package_contents"] = bigsection(
             "Package Contents", "#ffffff", "#aa55cc", contents_string
         )
     elif modules:
         contents_string = multicolumn(modules, lambda t: modulelink(t[1]))
-        result = result + bigsection("Modules", "#ffffff", "#aa55cc", contents_string)
+        result_data["modules"] = bigsection("Modules", "#ffffff", "#aa55cc", contents_string)
 
     if modules_by_import_from:
         contents_string = multicolumn(
             list(modules_by_import_from), lambda t: modulelink(list(t)[1])
         )
-        result = result + bigsection(
+        result_data["from_modules"] = bigsection(
             "`from` Modules", "#ffffff", "#aa55cc", contents_string
         )
 
@@ -250,28 +258,29 @@ def docmodule(
         contents_list = [format_tree(inspect.getclasstree(class_list, True), name)]
         for key, value in classes:
             contents_list.append(document(value, key, name, function_dict, class_dict))
-        result = result + bigsection(
+        result_data["classes"] = bigsection(
             "Classes", "#ffffff", "#ee77aa", " ".join(contents_list)
         )
     if funcs:
         contents_list = []
         for key, value in funcs:
             contents_list.append(document(value, key, name, function_dict, class_dict))
-        result = result + bigsection(
+        result_data["functions"] = bigsection(
             "Functions", "#ffffff", "#eeaa77", " ".join(contents_list)
         )
     if data:
         contents_list = []
         for key, value in data:
             contents_list.append(document(value, key))
-        result = result + bigsection(
+        result_data["data"] = bigsection(
             "Data", "#ffffff", "#55aa55", "<br>\n".join(contents_list)
         )
     if hasattr(the_object, "__author__"):
         contents = markup(str(the_object.__author__))
-        result = result + bigsection("Author", "#ffffff", "#7799ee", contents)
+        result_data["author"] = bigsection("Author", "#ffffff", "#7799ee", contents)
     if hasattr(the_object, "__credits__"):
         contents = markup(str(the_object.__credits__))
-        result = result + bigsection("Credits", "#ffffff", "#7799ee", contents)
+        result_data["credits"] = bigsection("Credits", "#ffffff", "#7799ee", contents)
 
-    return result
+    template = JINJA_ENV.get_template("module.jinja2")
+    return template.render(**result_data)

@@ -44,21 +44,24 @@ def escape(value: Any) -> str:
     return result
 
 
-def heading(title: str, fgcol: str, bgcol: str, extras: str = "") -> str:
+def heading(
+    title: str, fgcol: str = "", bgcol: str = "", extras: str = "", nav_links: Optional[Sequence[str]] = None
+) -> str:
     """Format a page heading."""
     template = JINJA_ENV.get_template("heading.jinja2")
-    return template.render(title=title, fgcol=fgcol, bgcol=bgcol, extras=extras)
+    return template.render(title=title, extras=extras, nav_links=nav_links)
 
 
 def section(
     title: str,
-    fgcol: str,
-    bgcol: str,
-    contents: str,
+    fgcol: str = "",
+    bgcol: str = "",
+    contents: str = "",
     width: int = 6,  # used by marginalia?
     prelude: str = "",
     marginalia: str = "",  # not used
     gap: str = "&nbsp;",  # not used
+    section_class: str = "theme-sub-section",
 ) -> str:
     """Format a section with a heading."""
     if marginalia is None:
@@ -66,20 +69,19 @@ def section(
     template = JINJA_ENV.get_template("section.jinja2")
     return template.render(
         title=title,
-        fgcol=fgcol,
-        bgcol=bgcol,
         marginalia=marginalia,
         prelude=prelude,
         contents=contents,
         gap=gap,
+        section_class=section_class,
     )
 
 
 def bigsection(
     title: str,
-    fgcol: str,
-    bgcol: str,
-    contents: str,
+    fgcol: str = "",
+    bgcol: str = "",
+    contents: str = "",
     width: int = 6,  # used by marginalia?
     prelude: str = "",
     marginalia: str = "",  # not used
@@ -88,7 +90,15 @@ def bigsection(
     """Format a section with a big heading."""
     title = f"<big><strong>{title}</strong></big>"
     # prefer explicit interfaces over secret hidden ones
-    return section(title, fgcol, bgcol, contents, width, prelude, marginalia, gap)
+    return section(
+        title,
+        contents=contents,
+        width=width,
+        prelude=prelude,
+        marginalia=marginalia,
+        gap=gap,
+        section_class="theme-section",
+    )
 
 
 def preformat(text: str) -> str:
@@ -105,20 +115,23 @@ def multicolumn(
     cols: int = 4,
 ) -> str:
     """Format a list of items into a multi-column list."""
-    result = ""
     rows = (len(the_list) + cols - 1) // cols
+    columns = []
     for col in range(cols):
-        result = result + '<td width="%d%%" valign=top>' % (100 // cols)
+        column = []
         for i in range(rows * col, rows * col + rows):
             if i < len(the_list):
-                result = result + the_format(the_list[i]) + "<br>\n"
-        result = result + "</td>"
-    return f'<table width="100%%" summary="list"><tr>{result}</tr></table>'
+                column.append(the_format(the_list[i]))
+        columns.append(column)
+    
+    template = JINJA_ENV.get_template("multicolumn.jinja2")
+    return template.render(columns=columns, column_width=100 // cols)
 
 
 def disabled_text(text: str) -> str:
     """Wrap in gray"""
-    return f'<span style="color:{inline_styles.DISABLED_TEXT}">{text}</span>'
+    template = JINJA_ENV.get_template("disabled_text.jinja2")
+    return template.render(text=text, color=inline_styles.DISABLED_TEXT)
 
 
 def namelink(name: str, *dicts: Dict[str, str]) -> str:
@@ -137,16 +150,20 @@ def module_package_link(module_package_info: Tuple[str, str, str, str]) -> str:
         settings.MENTIONED_MODULES.add((resolve(path + "." + name)[0], name))
     except (ImportTimeError, ImportError):
         print(f"Can't import {name}, won't doc")
+    
     if shadowed:
         return disabled_text(name)
+    
     if path:
         url = f"{path}.{name}.html"
     else:
         url = f"{name}.html"
+    
     if ispackage:
         text = f"<strong>{name}</strong>&nbsp;(package)"
     else:
         text = name
+    
     return f'<a href="{url}">{text}</a>'
 
 
