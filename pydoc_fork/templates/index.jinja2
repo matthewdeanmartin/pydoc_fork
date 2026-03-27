@@ -1,0 +1,14 @@
+{{ heading_html }}
+
+<div class="index-content">
+    <h2>Module Index</h2>
+    <p>Documentation for the following modules is available:</p>
+    
+    <div class="module-list">
+        {% for module in modules %}
+        <div class="module-item">
+            <a href="{{ module.url }}"><strong>{{ module.name }}</strong></a>
+        </div>
+        {% endfor %}
+    </div>
+</div>

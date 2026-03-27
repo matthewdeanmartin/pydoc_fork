@@ -233,7 +233,7 @@ def docmodule(
     if hasattr(the_object, "__path__"):
         module_packages = []
         for _, modname, is_package in pkgutil.iter_modules(the_object.__path__):
-            if modname not in settings.SKIP_MODULES:
+            if modname not in settings.SKIP_MODULES and modname != "__main__":
                 module_packages.append((modname, name, is_package, 0))
         module_packages.sort()
         contents_string = multicolumn(module_packages, module_package_link)

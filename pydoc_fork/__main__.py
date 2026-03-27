@@ -14,6 +14,8 @@ Options:
   --verbose                    Crank up the logging.
   --config <config>            pyproject.toml or other toml config.
   --theme <theme>              Theme selection (classic, light, dark).
+  --project_name <name>        Project name for headings.
+  --no_index                   Do not generate an index.html file.
   --document_internals         respect underscore or __all__ private
   --prefer_docs_python_org     link to python.org or generate own stdlib docs
   -o --output <folder>         where to write files
@@ -55,6 +57,10 @@ def main() -> int:
         settings.PREFER_DOCS_PYTHON_ORG = arguments["--prefer_docs_python_org"]
     if arguments.get("--theme"):
         settings.THEME = arguments["--theme"]
+    if arguments.get("--project_name"):
+        settings.PROJECT_NAME = arguments["--project_name"]
+    if arguments.get("--no_index"):
+        settings.GENERATE_INDEX = False
 
     if arguments.get("--verbose"):
         # root logger, all modules

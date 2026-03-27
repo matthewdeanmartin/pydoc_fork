@@ -24,6 +24,8 @@ SKIP_MODULES = ["typing"]
 PREFER_DOCS_PYTHON_ORG = False
 DOCUMENT_INTERNALS = False
 ONLY_NAMED_AND_SUBS = False
+GENERATE_INDEX = True
+PROJECT_NAME = "Python Project"
 
 OUTPUT_FOLDER = ""
 THEME = "classic"
@@ -49,6 +51,8 @@ def load_config(path: Optional[str]):
     global ONLY_NAMED_AND_SUBS
     global THEME
     global CUSTOM_TEMPLATES
+    global GENERATE_INDEX
+    global PROJECT_NAME
 
     pairs = parse_toml(path)
     if pairs:
@@ -59,6 +63,8 @@ def load_config(path: Optional[str]):
     ONLY_NAMED_AND_SUBS = pairs.get("ONLY_NAMED_AND_SUBS", False)
     THEME = pairs.get("THEME", "classic")
     CUSTOM_TEMPLATES = pairs.get("CUSTOM_TEMPLATES", None)
+    GENERATE_INDEX = pairs.get("GENERATE_INDEX", True)
+    PROJECT_NAME = pairs.get("PROJECT_NAME", "Python Project")
 
 
 def parse_toml(path_string: Optional[str]) -> Dict[str, Any]:

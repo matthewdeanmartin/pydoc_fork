@@ -92,7 +92,15 @@ def safe_import(
                     # Prevent garbage collection.
                     cache[key] = sys.modules[key]
                     del sys.modules[key]
-        module = __import__(path)
+        
+        # MR: mock sys.argv so that imported modules don't try to parse our args
+        # This is a common problem with __main__.py files.
+        old_argv = sys.argv
+        sys.argv = [path]
+        try:
+            module = __import__(path)
+        finally:
+            sys.argv = old_argv
     # pylint: disable=broad-except
     except BaseException as import_error:
         # Did the error occur before or after the module was found?

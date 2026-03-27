@@ -159,6 +159,8 @@ def document_directory(
     for _, modname, _ in pkgutil.walk_packages([source_directory], package_path):
         if not str(modname).startswith(for_only):
             continue
+        if str(modname).endswith(".__main__") or modname == "__main__":
+            continue
         LOGGER.debug(f"document_directory: current module: {modname})")
         full_path = document_one(modname, output_folder)
         if full_path:
@@ -204,9 +206,32 @@ def process_path_or_dot_name(
 
     _adjust_cli_sys_path()
 
-    return write_docs_per_module(
+    written = write_docs_per_module(
         files, output_folder, skip_if_written=not overwrite_existing
     )
+    
+    if settings.GENERATE_INDEX:
+        from pydoc_fork.reporter.format_page import docindex, page
+        
+        index_modules = []
+        unique_basenames = sorted(list(set(os.path.basename(path) for path in written)))
+        for basename in unique_basenames:
+            if basename == "style.css" or basename == "index.html":
+                continue
+            module_name = basename[:-5]  # remove .html
+            index_modules.append({
+                "name": module_name,
+                "url": basename
+            })
+            
+        index_content = docindex(index_modules)
+        index_html = page("Index", index_content)
+        with open(os.path.join(output_folder, "index.html"), "w", encoding="utf-8") as f:
+            f.write(index_html)
+        print("wrote index.html")
+        written.append(os.path.join(output_folder, "index.html"))
+
+    return written
 
 
 # def something():

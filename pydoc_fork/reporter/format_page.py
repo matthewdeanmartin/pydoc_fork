@@ -14,6 +14,7 @@ from pydoc_fork.reporter.format_other import docother
 from pydoc_fork.reporter.format_routine import docroutine
 from pydoc_fork.reporter.formatter_html import (
     bigsection,
+    heading,
     module_package_link,
     multicolumn,
 )
@@ -66,6 +67,22 @@ def document(the_object: TypeLike, name: str = "", *args: Any) -> str:  # Null s
     if inspect.isdatadescriptor(the_object):
         return document_data(the_object, name)
     return docother(the_object, name)
+
+
+def docindex(modules: list) -> str:
+    """Produce HTML documentation for an index of modules."""
+    result_data = {
+        "heading_html": heading(
+            "Module Index",
+            "",
+            "",
+            "",
+            nav_links=[],
+        ),
+        "modules": modules,
+    }
+    template = JINJA_ENV.get_template("index.jinja2")
+    return template.render(**result_data)
 
 
 # This is page
