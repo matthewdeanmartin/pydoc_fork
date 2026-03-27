@@ -8,7 +8,6 @@ import logging
 import os
 import os.path
 import pkgutil
-from shutil import copy2
 from typing import List, Optional, Union
 
 from pydoc_fork import settings
@@ -73,11 +72,15 @@ def modules_in_current() -> List[str]:
     files = glob.glob(os.path.join(current, "*.py"))
     py_files = [os.path.basename(f)[:-3] for f in files if os.path.isfile(f)]
     # Filter out __init__.py if we only want modules? Usually __init__.py is the package itself.
-    
+
     # Also look for packages (directories with __init__.py)
-    folders = [f for f in os.listdir(current) if os.path.isdir(os.path.join(current, f))]
-    py_folders = [f for f in folders if os.path.isfile(os.path.join(current, f, "__init__.py"))]
-    
+    folders = [
+        f for f in os.listdir(current) if os.path.isdir(os.path.join(current, f))
+    ]
+    py_folders = [
+        f for f in folders if os.path.isfile(os.path.join(current, f, "__init__.py"))
+    ]
+
     found = py_files + py_folders
     LOGGER.debug(f"Adding these modules from current folder to document {found}")
     return found
@@ -189,18 +192,19 @@ def process_path_or_dot_name(
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
-    
+
     from pydoc_fork.reporter.themes import get_theme_css
-    
+
     base_style_path = locate_file("templates/style.css", __file__)
     with open(base_style_path, "r", encoding="utf-8") as f:
         base_style = f.read()
-    
+
     # Replace :root block with theme-specific variables
     import re
+
     theme_vars = get_theme_css(settings.THEME)
     new_style = re.sub(r":root\s*{[^}]*}", theme_vars, base_style, flags=re.MULTILINE)
-    
+
     with open(os.path.join(output_folder, "style.css"), "w", encoding="utf-8") as f:
         f.write(new_style)
 
@@ -209,24 +213,23 @@ def process_path_or_dot_name(
     written = write_docs_per_module(
         files, output_folder, skip_if_written=not overwrite_existing
     )
-    
+
     if settings.GENERATE_INDEX:
         from pydoc_fork.reporter.format_page import docindex, page
-        
+
         index_modules = []
         unique_basenames = sorted(list(set(os.path.basename(path) for path in written)))
         for basename in unique_basenames:
             if basename == "style.css" or basename == "index.html":
                 continue
             module_name = basename[:-5]  # remove .html
-            index_modules.append({
-                "name": module_name,
-                "url": basename
-            })
-            
+            index_modules.append({"name": module_name, "url": basename})
+
         index_content = docindex(index_modules)
         index_html = page("Index", index_content)
-        with open(os.path.join(output_folder, "index.html"), "w", encoding="utf-8") as f:
+        with open(
+            os.path.join(output_folder, "index.html"), "w", encoding="utf-8"
+        ) as f:
             f.write(index_html)
         print("wrote index.html")
         written.append(os.path.join(output_folder, "index.html"))

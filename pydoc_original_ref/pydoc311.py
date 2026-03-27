@@ -899,7 +899,7 @@ class HTMLDoc(Doc):
                 module = sys.modules.get(modname)
                 if modname != name and module and hasattr(module, key):
                     if getattr(module, key) is base:
-                        if not key in cdict:
+                        if key not in cdict:
                             cdict[key] = cdict[base] = modname + ".html#" + key
         funcs, fdict = [], {}
         for key, value in inspect.getmembers(object, inspect.isroutine):

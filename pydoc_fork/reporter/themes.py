@@ -1,6 +1,7 @@
 """
 Themes definitions
 """
+
 from typing import Dict
 
 THEMES: Dict[str, Dict[str, str]] = {
@@ -48,8 +49,9 @@ THEMES: Dict[str, Dict[str, str]] = {
         "data-text": "#b5cea8",
         "disabled-text": "#808080",
         "repr-color": "#ce9178",
-    }
+    },
 }
+
 
 def get_theme_css(theme_name: str) -> str:
     """Generate CSS variables for a theme"""

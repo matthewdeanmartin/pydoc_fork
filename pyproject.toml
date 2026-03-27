@@ -32,7 +32,8 @@ Documentation = "https://github.com/matthewdeanmartin/pydoc_fork"
 pydoc_fork = "pydoc_fork.__main__:main"
 
 [project.optional-dependencies]
-dev = ["coverage", "pytest >=6.0.1", "pytest-cov >=2.10.1", "pytest-xdist >=2.1.0", "tox", "pylint >=3.0.2", "mypy", "types-docutils", "types-Markdown", "python-dotenv ==0.11.0", "html5lib", "proselint >=0.13.0", "interrogate >=1.5.0", "pydoctest >=0.1.22", "pdoc3 >=0.10.0", "mdformat >=0.7.17", "linkcheckmd >=1.4.0", "codespell >=2.2.6", "pyenchant >=3.2.2", "metametameta", "tomlkit"]
+dev = ["coverage", "pytest >=6.0.1", "pytest-cov >=2.10.1", "pytest-xdist >=2.1.0", "tox", "pylint >=3.0.2", "ruff", "mypy",
+ "types-docutils", "types-Markdown", "python-dotenv ==0.11.0", "html5lib", "proselint >=0.13.0", "interrogate >=1.5.0", "pydoctest >=0.1.22", "pdoc3 >=0.10.0", "mdformat >=0.7.17", "linkcheckmd >=1.4.0", "codespell >=2.2.6", "pyenchant >=3.2.2", "metametameta", "tomlkit"]
 
 [tool.poetry]
 name = "pydoc_fork"
@@ -104,6 +105,7 @@ tox = "*"
 
 # linting
 pylint = ">=3.0.2"
+ruff = "*"
 
 # types
 mypy = "*"

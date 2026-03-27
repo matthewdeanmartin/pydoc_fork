@@ -1,6 +1,5 @@
 import pydoc_fork.inspector.module_utils as module_utils
 import pydoc_fork.reporter.format_page as page
-import pydoc_fork.reporter.formatter_html as doc
 from pydoc_fork.inspector.path_utils import locate_file
 
 

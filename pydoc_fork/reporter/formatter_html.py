@@ -45,7 +45,11 @@ def escape(value: Any) -> str:
 
 
 def heading(
-    title: str, fgcol: str = "", bgcol: str = "", extras: str = "", nav_links: Optional[Sequence[str]] = None
+    title: str,
+    fgcol: str = "",
+    bgcol: str = "",
+    extras: str = "",
+    nav_links: Optional[Sequence[str]] = None,
 ) -> str:
     """Format a page heading."""
     template = JINJA_ENV.get_template("heading.jinja2")
@@ -123,7 +127,7 @@ def multicolumn(
             if i < len(the_list):
                 column.append(the_format(the_list[i]))
         columns.append(column)
-    
+
     template = JINJA_ENV.get_template("multicolumn.jinja2")
     return template.render(columns=columns, column_width=100 // cols)
 
@@ -150,20 +154,20 @@ def module_package_link(module_package_info: Tuple[str, str, str, str]) -> str:
         settings.MENTIONED_MODULES.add((resolve(path + "." + name)[0], name))
     except (ImportTimeError, ImportError):
         print(f"Can't import {name}, won't doc")
-    
+
     if shadowed:
         return disabled_text(name)
-    
+
     if path:
         url = f"{path}.{name}.html"
     else:
         url = f"{name}.html"
-    
+
     if ispackage:
         text = f"<strong>{name}</strong>&nbsp;(package)"
     else:
         text = name
-    
+
     return f'<a href="{url}">{text}</a>'
 
 

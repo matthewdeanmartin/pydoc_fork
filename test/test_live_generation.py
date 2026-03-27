@@ -4,7 +4,6 @@ from contextlib import contextmanager
 from pydoc_fork import process_path_or_dot_name
 
 # https://stackoverflow.com/a/37996581/33264
-from pydoc_fork.inspector.module_utils import ImportTimeError
 
 
 @contextmanager

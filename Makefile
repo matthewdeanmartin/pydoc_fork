@@ -81,6 +81,23 @@ bandit: .build_history/bandit
 # for when using -j (jobs, run in parallel)
 .NOTPARALLEL: .build_history/isort .build_history/black
 
+.PHONY: pytest-llm
+pytest-llm: clean poetry.lock
+	@echo "Running unit tests (quiet)"
+	@$(VENV) pytest --doctest-modules pydoc_fork -q
+	@$(VENV) pytest test -q -n auto --cov=pydoc_fork --cov-report=term-missing:skip-covered --cov-fail-under 60
+	@$(VENV) bash basic_help.sh > /dev/null
+
+.PHONY: pylint-llm
+pylint-llm: .build_history/isort .build_history/black
+	@echo "Linting (quiet)"
+	@$(VENV) ruff check --fix --quiet pydoc_fork || true
+	@$(VENV) pylint pydoc_fork --fail-under 9.0 --reports=n --score=n --disable=C,R,W
+
+.PHONY: check-llm
+check-llm: pytest-llm pylint-llm
+	@echo "All LLM checks passed"
+
 check: test pylint bandit pre-commit
 
 .PHONY: publish_test

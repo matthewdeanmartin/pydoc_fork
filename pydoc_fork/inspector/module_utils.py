@@ -92,7 +92,7 @@ def safe_import(
                     # Prevent garbage collection.
                     cache[key] = sys.modules[key]
                     del sys.modules[key]
-        
+
         # MR: mock sys.argv so that imported modules don't try to parse our args
         # This is a common problem with __main__.py files.
         old_argv = sys.argv

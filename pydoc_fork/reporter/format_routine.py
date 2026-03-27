@@ -103,6 +103,7 @@ def docroutine(
     )
 
     from pydoc_fork.reporter.jinja_code import JINJA_ENV
+
     template = JINJA_ENV.get_template("function.jinja2")
     doc = markup(getdoc(the_object), funcs, classes, methods)
     return template.render(decl=decl, doc=doc)

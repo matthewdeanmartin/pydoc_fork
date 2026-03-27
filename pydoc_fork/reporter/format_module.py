@@ -140,7 +140,7 @@ def docmodule(
         document_location = f'<br><a href="{document_location}">Module Reference</a>'
     else:
         document_location = ""
-    
+
     nav_links = ['<a href=".">index</a>']
     if file_link_text:
         nav_links.append(file_link_text)
@@ -242,7 +242,9 @@ def docmodule(
         )
     elif modules:
         contents_string = multicolumn(modules, lambda t: modulelink(t[1]))
-        result_data["modules"] = bigsection("Modules", "#ffffff", "#aa55cc", contents_string)
+        result_data["modules"] = bigsection(
+            "Modules", "#ffffff", "#aa55cc", contents_string
+        )
 
     if modules_by_import_from:
         contents_string = multicolumn(
