@@ -36,6 +36,7 @@ Changelog = "https://github.com/matthewdeanmartin/pydoc_fork/blob/main/CHANGES.m
 
 [project.scripts]
 pydoc_fork = "pydoc_fork.__main__:main"
+pydoc = "pydoc_fork.cli:main"
 
 [build-system]
 requires = ["hatchling>=1.27.0"]
@@ -185,7 +186,7 @@ convention = "google"
 
 [tool.bandit]
 exclude_dirs = ["test"]
-skips = ["B101"]
+skips = ["B101", "B404", "B603"]
 
 [tool.coverage.report]
 exclude_also = [

@@ -41,7 +41,7 @@ def escape(value: Any) -> str:
     _repr_instance = HTMLRepr()
     result = _repr_instance.escape(value)
     if "&amp;gt;" in result:
-        print("possible double escape")
+        LOGGER.warning("possible double escape")
     return result
 
 
@@ -146,7 +146,7 @@ def module_package_link(module_package_info: tuple[str, str, str, str]) -> str:
     try:
         settings.MENTIONED_MODULES.add((resolve(path + "." + name)[0], name))
     except (ImportTimeError, ImportError):
-        print(f"Can't import {name}, won't doc")
+        LOGGER.warning("Can't import %s, won't doc", name)
 
     if shadowed:
         return disabled_text(name)

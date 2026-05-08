@@ -36,7 +36,7 @@ def page(title: str, contents: str) -> str:
     return result
 
 
-def document(the_object: Any, name: str = "", *args: Any) -> str:  # Null safety
+def document(the_object: Any, name: str = "", *args: Any) -> str:  # pylint: disable=keyword-arg-before-vararg
     """Generate documentation for an object.
     This also part of the public API of class
 

@@ -1,6 +1,7 @@
 """Roughly a UI component for routines"""
 
 import inspect
+import logging
 from typing import Any
 
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -9,6 +10,8 @@ from pydoc_fork.reporter import inline_styles
 from pydoc_fork.reporter.format_class import classlink
 from pydoc_fork.reporter.formatter_html import disabled_text, escape, markup
 from pydoc_fork.reporter.jinja_code import JINJA_ENV
+
+LOGGER = logging.getLogger(__name__)
 
 
 def docroutine(
@@ -67,8 +70,8 @@ def docroutine(
         try:
             signature: inspect.Signature | None = inspect.signature(the_object)
         except RuntimeError as what_happened:
-            print(f"RuntimeError: {what_happened}")
-        except (ValueError, TypeError):
+            LOGGER.warning("RuntimeError: %s", what_happened)
+        except Exception:
             signature = None
         if signature:
             argument_specification = str(signature)

@@ -162,3 +162,4 @@ doc_self/
 .config/requirements-dev.txt
 
 .config/requirements.txt
+docs

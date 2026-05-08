@@ -36,20 +36,22 @@ def document_one(
     # should go in constructor, but what? no constructor
     settings.OUTPUT_FOLDER = output_folder
     page_out = render(describe(the_object), the_object, name)
-    # MR output_folder + os.sep
     full_path = calculate_file_name(name, output_folder)
+
+    if full_path is None:
+        return None
 
     with open(full_path, "w", encoding="utf-8") as file:
         file.write(page_out)
-    print("wrote", name + ".html")
+    LOGGER.info("wrote %s.html", name)
     return full_path
     # except (ImportError, ErrorDuringImport) as value:
     #     print(value)
     # return ""
 
 
-def calculate_file_name(name: str, output_folder: str) -> str:
-    """Returns name. If this was written, what would its name be"""
+def calculate_file_name(name: str, output_folder: str) -> str | None:
+    """Returns name. If this was written, what would its name be. Returns None for degenerate names."""
     name = (
         name.replace("<", "")
         .replace(">", "")
@@ -58,7 +60,11 @@ def calculate_file_name(name: str, output_folder: str) -> str:
         .replace(" ", "_")
         .replace("(", "")
         .replace(")", "")
+        .strip(".")
     )
+    if not name:
+        LOGGER.warning("Skipping degenerate module name, would produce invalid filename")
+        return None
     full_path = output_folder + os.sep + name + ".html"
 
     return full_path
@@ -89,6 +95,7 @@ def write_docs_per_module(
 
     if "." in modules:
         modules.extend(modules_in_current())
+        modules = [m for m in modules if m != "."]
     # This is going to handle filesystem paths, e.g. ./module/submodule.py
     # There will be ANOTHER method to handle MODULE paths, e.g. module.submodule"
     # Attempting to mix these two types is a bad idea.
@@ -129,6 +136,9 @@ def write_docs_live_module(
         thing, name = module  # destructure it
         # should only be live modules or dot notation modules, not paths.
         full_path = calculate_file_name(name, output_folder)
+        if full_path is None:
+            settings.MENTIONED_MODULES.discard(module)
+            continue
         if os.path.exists(full_path) and skip_if_written:
             settings.MENTIONED_MODULES.discard(module)
         else:
@@ -221,7 +231,7 @@ def process_path_or_dot_name(
         index_html = page("Index", index_content)
         with open(os.path.join(output_folder, "index.html"), "w", encoding="utf-8") as f:
             f.write(index_html)
-        print("wrote index.html")
+        LOGGER.info("wrote index.html")
         written.append(os.path.join(output_folder, "index.html"))
 
     return written

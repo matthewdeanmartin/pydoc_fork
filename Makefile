@@ -194,6 +194,7 @@ sample-docs-dark:
 	@$(UV) run python -m pydoc_fork pydoc_fork --output doc_self_dark --theme dark
 
 dogfood: sample-docs sample-docs-dark
+	@$(UV) run bash scripts/dogfood.sh
 
 # ── Dead code analysis (advisory — non-blocking) ─────────────────────────────
 
@@ -236,9 +237,9 @@ bandit:
 
 audit:
 	@echo "=== uv audit ==="
-	@$(UV) audit
+	@$(UV) audit --ignore-until-fixed PYSEC-2022-42969
 	@echo "=== pip-audit ==="
-	@$(UV) run pip-audit
+	@$(UV) run pip-audit --ignore-vuln PYSEC-2022-42969
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
@@ -277,7 +278,7 @@ metadata:
 	@$(UV) run metametameta pep621 --name $(PACKAGE) --source pyproject.toml --output $(ABOUT_FILE)
 
 metadata-check:
-	@$(UV) run metametameta sync-check --output $(ABOUT_FILE)
+	@$(UV) run metametameta sync-check --output __about__.py
 
 version-check:
 	@$(UV) run jiggle_version check

@@ -1,29 +1,23 @@
 """Metadata for pydoc_fork."""
 
 __all__ = [
-    "__author__",
-    "__author_email__",
+    "__credits__",
     "__description__",
-    "__documentation__",
-    "__homepage__",
     "__keywords__",
     "__license__",
     "__readme__",
-    "__repository__",
+    "__requires_python__",
     "__status__",
     "__title__",
     "__version__",
 ]
 
 __title__ = "pydoc_fork"
-__version__ = "3.3.0"
+__version__ = "3.4.0"
 __description__ = "Fork of cpython's pydoc module to do just html document generation"
-__author__ = "Matthew Martin"
-__author_email__ = "matthewdeanmartin@gmail.com"
-__keywords__ = ["pydoc", "html documentation"]
-__status__ = "5 - Production/Stable"
-__license__ = "MIT"
 __readme__ = "README.md"
-__repository__ = "https://github.com/matthewdeanmartin/pydoc_fork"
-__homepage__ = "https://github.com/matthewdeanmartin/pydoc_fork"
-__documentation__ = "https://github.com/matthewdeanmartin/pydoc_fork"
+__credits__ = [{"name": "Matthew Martin", "email": "matthewdeanmartin@gmail.com"}]
+__keywords__ = ["pydoc", "html documentation"]
+__license__ = "MIT"
+__requires_python__ = ">=3.10"
+__status__ = "5 - Production/Stable"

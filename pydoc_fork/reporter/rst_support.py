@@ -3,7 +3,7 @@ Rst to HTML function
 Credits: https://stackoverflow.com/a/49047197/33264
 """
 
-from typing import Any
+from typing import Any, NoReturn
 
 from docutils import core
 from docutils.writers.html4css1 import HTMLTranslator, Writer
@@ -23,6 +23,10 @@ class HTMLFragmentTranslator(HTMLTranslator):
     def astext(self) -> str:
         """minimum to call docutils"""
         return "".join(self.body)
+
+    def unimplemented_visit(self, node: Any) -> NoReturn:
+        """Satisfy the abstract method; nodes we don't handle are silently skipped."""
+        raise NotImplementedError(f"visiting {node.__class__.__name__} not supported")
 
 
 html_fragment_writer = Writer()

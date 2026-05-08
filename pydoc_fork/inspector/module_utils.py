@@ -47,9 +47,9 @@ def importfile(path: str) -> TypeLike:
     name, _ = os.path.splitext(filename)
     loader: importlib.abc.Loader
     if is_bytecode:
-        loader = importlib._bootstrap_external.SourcelessFileLoader(name, path)
+        loader = importlib._bootstrap_external.SourcelessFileLoader(name, path)  # pylint: disable=protected-access
     else:
-        loader = importlib._bootstrap_external.SourceFileLoader(name, path)
+        loader = importlib._bootstrap_external.SourceFileLoader(name, path)  # pylint: disable=protected-access
     # XXX We probably don't need to pass in the loader here.
     spec = importlib.util.spec_from_file_location(name, path, loader=loader)
     try:
