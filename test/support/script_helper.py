@@ -10,6 +10,7 @@ import subprocess
 import sys
 import zipfile
 from importlib.util import source_from_cache
+
 from test import support
 from test.support.import_helper import make_legacy_pyc
 
@@ -43,9 +44,7 @@ def interpreter_requires_environment():
 
         # Try running an interpreter with -E to see if it works or not.
         try:
-            subprocess.check_call(
-                [sys.executable, "-E", "-c", "import sys; sys.exit(0)"]
-            )
+            subprocess.check_call([sys.executable, "-E", "-c", "import sys; sys.exit(0)"])
         except subprocess.CalledProcessError:
             __cached_interp_requires_environment = True
         else:
@@ -54,9 +53,7 @@ def interpreter_requires_environment():
     return __cached_interp_requires_environment
 
 
-class _PythonRunResult(
-    collections.namedtuple("_PythonRunResult", ("rc", "out", "err"))
-):
+class _PythonRunResult(collections.namedtuple("_PythonRunResult", ("rc", "out", "err"))):
     """Helper for reporting Python subprocess run results"""
 
     def fail(self, cmd_line):
@@ -194,9 +191,7 @@ def spawn_python(*args, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, **kw):
     # - http://lists.gnu.org/archive/html/bug-readline/2007-08/msg00004.html
     env = kw.setdefault("env", dict(os.environ))
     env["TERM"] = "vt100"
-    return subprocess.Popen(
-        cmd_line, stdin=subprocess.PIPE, stdout=stdout, stderr=stderr, **kw
-    )
+    return subprocess.Popen(cmd_line, stdin=subprocess.PIPE, stdout=stdout, stderr=stderr, **kw)
 
 
 def kill_python(p):
@@ -248,9 +243,7 @@ def make_pkg(pkg_dir, init_source=""):
     make_script(pkg_dir, "__init__", init_source)
 
 
-def make_zip_pkg(
-    zip_dir, zip_basename, pkg_name, script_basename, source, depth=1, compiled=False
-):
+def make_zip_pkg(zip_dir, zip_basename, pkg_name, script_basename, source, depth=1, compiled=False):
     unlink = []
     init_name = make_script(zip_dir, "__init__", "")
     unlink.append(init_name)

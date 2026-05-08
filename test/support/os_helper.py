@@ -58,9 +58,7 @@ elif sys.platform != "darwin":
         b"\xff".decode(sys.getfilesystemencoding())
     except UnicodeDecodeError:
         # 0xff will be encoded using the surrogate character u+DCFF
-        TESTFN_UNENCODABLE = TESTFN_ASCII + b"-\xff".decode(
-            sys.getfilesystemencoding(), "surrogateescape"
-        )
+        TESTFN_UNENCODABLE = TESTFN_ASCII + b"-\xff".decode(sys.getfilesystemencoding(), "surrogateescape")
     else:
         # File system encoding (eg. ISO-8859-* encodings) can encode
         # the byte 0xff. Skip some unicode filename tests.
@@ -297,8 +295,7 @@ if sys.platform.startswith("win"):
                     mode = os.lstat(fullname).st_mode
                 except OSError as exc:
                     print(
-                        "support.rmtree(): os.lstat(%r) failed with %s"
-                        % (fullname, exc),
+                        "support.rmtree(): os.lstat(%r) failed with %s" % (fullname, exc),
                         file=sys.__stderr__,
                     )
                     mode = 0
@@ -402,8 +399,7 @@ def temp_dir(path=None, quiet=False):
             if not quiet:
                 raise
             warnings.warn(
-                f"tests may fail, unable to create "
-                f"temporary directory {path!r}: {exc}",
+                f"tests may fail, unable to create " f"temporary directory {path!r}: {exc}",
                 RuntimeWarning,
                 stacklevel=3,
             )
@@ -438,8 +434,7 @@ def change_cwd(path, quiet=False):
         if not quiet:
             raise
         warnings.warn(
-            f"tests may fail, unable to change the current working "
-            f"directory to {path!r}: {exc}",
+            f"tests may fail, unable to change the current working " f"directory to {path!r}: {exc}",
             RuntimeWarning,
             stacklevel=3,
         )
@@ -501,11 +496,7 @@ class FakePath:
         return f"<FakePath {self.path!r}>"
 
     def __fspath__(self):
-        if (
-            isinstance(self.path, BaseException)
-            or isinstance(self.path, type)
-            and issubclass(self.path, BaseException)
-        ):
+        if isinstance(self.path, BaseException) or isinstance(self.path, type) and issubclass(self.path, BaseException):
             raise self.path
         else:
             return self.path

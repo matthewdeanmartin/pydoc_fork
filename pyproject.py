@@ -61,12 +61,10 @@ def extract_dependencies(input_path: Path, output_path: Path) -> None:
     if "tool" in pyproject_data and "poetry" in pyproject_data["tool"]:
         poetry_section = pyproject_data["tool"]["poetry"]
         if "dependencies" in poetry_section:
-            dependencies_section["project"]["dependencies"] = convert_dependencies(
-                poetry_section["dependencies"]
-            )
+            dependencies_section["project"]["dependencies"] = convert_dependencies(poetry_section["dependencies"])
         if "dev-dependencies" in poetry_section:
-            dependencies_section["project"]["optional-dependencies"]["dev"] = (
-                convert_dependencies(poetry_section["dev-dependencies"])
+            dependencies_section["project"]["optional-dependencies"]["dev"] = convert_dependencies(
+                poetry_section["dev-dependencies"]
             )
 
     LOGGER.info("Writing extracted dependencies to %s", output_path)

@@ -204,9 +204,7 @@ def load_package_tests(pkg_dir, loader, standard_tests, pattern):
     if pattern is None:
         pattern = "test*"
     top_dir = STDLIB_DIR
-    package_tests = loader.discover(
-        start_dir=pkg_dir, top_level_dir=top_dir, pattern=pattern
-    )
+    package_tests = loader.discover(start_dir=pkg_dir, top_level_dir=top_dir, pattern=pattern)
     standard_tests.addTests(package_tests)
     return standard_tests
 
@@ -286,9 +284,7 @@ def _is_gui_available():
             raise ctypes.WinError()
         uof = USEROBJECTFLAGS()
         needed = ctypes.wintypes.DWORD()
-        res = dll.GetUserObjectInformationW(
-            h, UOI_FLAGS, ctypes.byref(uof), ctypes.sizeof(uof), ctypes.byref(needed)
-        )
+        res = dll.GetUserObjectInformationW(h, UOI_FLAGS, ctypes.byref(uof), ctypes.sizeof(uof), ctypes.byref(needed))
         if not res:
             raise ctypes.WinError()
         if not bool(uof.dwFlags & WSF_VISIBLE):
@@ -314,9 +310,7 @@ def _is_gui_available():
 
             psn = ProcessSerialNumber()
             psn_p = pointer(psn)
-            if (app_services.GetCurrentProcess(psn_p) < 0) or (
-                app_services.SetFrontProcess(psn_p) < 0
-            ):
+            if (app_services.GetCurrentProcess(psn_p) < 0) or (app_services.SetFrontProcess(psn_p) < 0):
                 reason = "cannot run without OS X gui process"
 
     # check on every platform whether tkinter can actually do anything
@@ -382,8 +376,7 @@ def _requires_unix_version(sysname, min_version):
 
     return unittest.skipIf(
         skip,
-        f"{sysname} version {min_version_txt} or higher required, not "
-        f"{version_txt}",
+        f"{sysname} version {min_version_txt} or higher required, not " f"{version_txt}",
     )
 
 
@@ -430,8 +423,7 @@ def requires_mac_ver(*min_version):
                     if version < min_version:
                         min_version_txt = ".".join(map(str, min_version))
                         raise unittest.SkipTest(
-                            "Mac OS X %s or higher required, not %s"
-                            % (min_version_txt, version_txt)
+                            "Mac OS X %s or higher required, not %s" % (min_version_txt, version_txt)
                         )
             return func(*args, **kw)
 
@@ -461,9 +453,7 @@ def system_must_validate_cert(f):
             f(*args, **kwargs)
         except OSError as e:
             if "CERTIFICATE_VERIFY_FAILED" in str(e):
-                raise unittest.SkipTest(
-                    "system does not contain " "necessary certificates"
-                )
+                raise unittest.SkipTest("system does not contain " "necessary certificates")
             raise
 
     return dec
@@ -534,9 +524,7 @@ def requires_debug_ranges(reason="requires co_positions / debug_ranges"):
     return unittest.skipIf(has_no_debug_ranges(), reason)
 
 
-requires_legacy_unicode_capi = unittest.skipUnless(
-    unicode_legacy_string, "requires legacy Unicode C API"
-)
+requires_legacy_unicode_capi = unittest.skipUnless(unicode_legacy_string, "requires legacy Unicode C API")
 
 is_jython = sys.platform.startswith("java")
 
@@ -939,9 +927,7 @@ class _MemoryWatchdog:
 
         with f:
             watchdog_script = findfile("memory_watchdog.py")
-            self.mem_watchdog = subprocess.Popen(
-                [sys.executable, watchdog_script], stdin=f, stderr=subprocess.DEVNULL
-            )
+            self.mem_watchdog = subprocess.Popen([sys.executable, watchdog_script], stdin=f, stderr=subprocess.DEVNULL)
         self.started = True
 
     def stop(self):
@@ -974,18 +960,11 @@ def bigmemtest(size, memuse, dry_run=True):
                 maxsize = size
 
             if (real_max_memuse or not dry_run) and real_max_memuse < maxsize * memuse:
-                raise unittest.SkipTest(
-                    "not enough memory: %.1fG minimum needed"
-                    % (size * memuse / (1024**3))
-                )
+                raise unittest.SkipTest("not enough memory: %.1fG minimum needed" % (size * memuse / (1024**3)))
 
             if real_max_memuse and verbose:
                 print()
-                print(
-                    " ... expected peak memory use: {peak:.1f}G".format(
-                        peak=size * memuse / (1024**3)
-                    )
-                )
+                print(" ... expected peak memory use: {peak:.1f}G".format(peak=size * memuse / (1024**3)))
                 watchdog = _MemoryWatchdog()
                 watchdog.start()
             else:
@@ -1012,10 +991,7 @@ def bigaddrspacetest(f):
             if MAX_Py_ssize_t >= 2**63 - 1 and max_memuse >= 2**31:
                 raise unittest.SkipTest("not enough memory: try a 32-bit build instead")
             else:
-                raise unittest.SkipTest(
-                    "not enough memory: %.1fG minimum needed"
-                    % (MAX_Py_ssize_t / (1024**3))
-                )
+                raise unittest.SkipTest("not enough memory: %.1fG minimum needed" % (MAX_Py_ssize_t / (1024**3)))
         else:
             return f(self)
 
@@ -1133,9 +1109,7 @@ def _filter_suite(suite, pred):
 
 def _run_suite(suite):
     """Run tests from a unittest.TestSuite-derived class."""
-    runner = get_test_runner(
-        sys.stdout, verbosity=verbose, capture_output=(junit_xml_list is not None)
-    )
+    runner = get_test_runner(sys.stdout, verbosity=verbose, capture_output=(junit_xml_list is not None))
 
     result = runner.run(suite)
 
@@ -1280,9 +1254,7 @@ def _check_docstrings():
 
 
 MISSING_C_DOCSTRINGS = (
-    check_impl_detail()
-    and sys.platform != "win32"
-    and not sysconfig.get_config_var("WITH_DOC_STRINGS")
+    check_impl_detail() and sys.platform != "win32" and not sysconfig.get_config_var("WITH_DOC_STRINGS")
 )
 
 HAVE_DOCSTRINGS = _check_docstrings.__doc__ is not None and not MISSING_C_DOCSTRINGS
@@ -1509,19 +1481,11 @@ def skip_if_buggy_ucrt_strfptime(test):
 
     global _buggy_ucrt
     if _buggy_ucrt is None:
-        if (
-            sys.platform == "win32"
-            and locale.getdefaultlocale()[1] == "cp65001"
-            and time.localtime().tm_zone == ""
-        ):
+        if sys.platform == "win32" and locale.getdefaultlocale()[1] == "cp65001" and time.localtime().tm_zone == "":
             _buggy_ucrt = True
         else:
             _buggy_ucrt = False
-    return (
-        unittest.skip("buggy MSVC UCRT strptime/strftime")(test)
-        if _buggy_ucrt
-        else test
-    )
+    return unittest.skip("buggy MSVC UCRT strptime/strftime")(test) if _buggy_ucrt else test
 
 
 class PythonSymlink:
@@ -1558,12 +1522,8 @@ class PythonSymlink:
             src_dir = os.path.dirname(dll)
             dest_dir = os.path.dirname(self.link)
             self._also_link.append((dll, os.path.join(dest_dir, os.path.basename(dll))))
-            for runtime in glob.glob(
-                os.path.join(glob.escape(src_dir), "vcruntime*.dll")
-            ):
-                self._also_link.append(
-                    (runtime, os.path.join(dest_dir, os.path.basename(runtime)))
-                )
+            for runtime in glob.glob(os.path.join(glob.escape(src_dir), "vcruntime*.dll")):
+                self._also_link.append((runtime, os.path.join(dest_dir, os.path.basename(runtime))))
 
             self._env = {k.upper(): os.getenv(k) for k in os.environ}
             self._env["PYTHONHOME"] = os.path.dirname(self.real)
@@ -1590,17 +1550,13 @@ class PythonSymlink:
         import subprocess
 
         cmd = [python, *args]
-        p = subprocess.Popen(
-            cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env
-        )
+        p = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=env)
         r = p.communicate()
         if p.returncode != returncode:
             if verbose:
                 print(repr(r[0]))
                 print(repr(r[1]), file=sys.stderr)
-            raise RuntimeError(
-                "unexpected return code: {0} (0x{0:08X})".format(p.returncode)
-            )
+            raise RuntimeError("unexpected return code: {0} (0x{0:08X})".format(p.returncode))
         return r
 
     def call_real(self, *args, returncode=0):
@@ -1627,9 +1583,7 @@ def detect_api_mismatch(ref_api, other_api, *, ignore=()):
     missing_items = set(dir(ref_api)) - set(dir(other_api))
     if ignore:
         missing_items -= set(ignore)
-    missing_items = set(
-        m for m in missing_items if not m.startswith("_") or m.endswith("__")
-    )
+    missing_items = set(m for m in missing_items if not m.startswith("_") or m.endswith("__"))
     return missing_items
 
 
@@ -1751,12 +1705,8 @@ class SuppressCrashReport:
                     msvcrt.CRT_ERROR,
                     msvcrt.CRT_ASSERT,
                 ]:
-                    old_mode = msvcrt.CrtSetReportMode(
-                        report_type, msvcrt.CRTDBG_MODE_FILE
-                    )
-                    old_file = msvcrt.CrtSetReportFile(
-                        report_type, msvcrt.CRTDBG_FILE_STDERR
-                    )
+                    old_mode = msvcrt.CrtSetReportMode(report_type, msvcrt.CRTDBG_MODE_FILE)
+                    old_file = msvcrt.CrtSetReportFile(report_type, msvcrt.CRTDBG_FILE_STDERR)
                     self.old_modes[report_type] = old_mode, old_file
 
         else:
@@ -1769,9 +1719,7 @@ class SuppressCrashReport:
             if self.resource is not None:
                 try:
                     self.old_value = self.resource.getrlimit(self.resource.RLIMIT_CORE)
-                    self.resource.setrlimit(
-                        self.resource.RLIMIT_CORE, (0, self.old_value[1])
-                    )
+                    self.resource.setrlimit(self.resource.RLIMIT_CORE, (0, self.old_value[1]))
                 except (ValueError, OSError):
                     pass
 
@@ -1790,9 +1738,7 @@ class SuppressCrashReport:
                     "com.apple.CrashReporter",
                     "DialogType",
                 ]
-                proc = subprocess.Popen(
-                    cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE
-                )
+                proc = subprocess.Popen(cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
                 with proc:
                     stdout = proc.communicate()[0]
                 if stdout.strip() == b"developer":
@@ -1874,9 +1820,7 @@ def run_in_subinterp(code):
     else:
         if tracemalloc.is_tracing():
             raise unittest.SkipTest(
-                "run_in_subinterp() cannot be used "
-                "if tracemalloc module is tracing "
-                "memory allocations"
+                "run_in_subinterp() cannot be used " "if tracemalloc module is tracing " "memory allocations"
             )
     import _testcapi
 
@@ -1946,9 +1890,7 @@ def setswitchinterval(interval):
         if _is_android_emulator is None:
             import subprocess
 
-            _is_android_emulator = (
-                subprocess.check_output(["getprop", "ro.kernel.qemu"]).strip() == b"1"
-            )
+            _is_android_emulator = subprocess.check_output(["getprop", "ro.kernel.qemu"]).strip() == b"1"
         if _is_android_emulator:
             interval = minimum_interval
     return sys.setswitchinterval(interval)
@@ -2212,9 +2154,7 @@ def wait_process(pid, *, exitcode, timeout=None):
                     # Ignore errors like ChildProcessError or PermissionError
                     pass
 
-                raise AssertionError(
-                    f"process {pid} is still running " f"after {dt:.1f} seconds"
-                )
+                raise AssertionError(f"process {pid} is still running " f"after {dt:.1f} seconds")
 
             sleep = min(sleep * 2, max_sleep)
             time.sleep(sleep)
@@ -2224,10 +2164,7 @@ def wait_process(pid, *, exitcode, timeout=None):
 
     exitcode2 = os.waitstatus_to_exitcode(status)
     if exitcode2 != exitcode:
-        raise AssertionError(
-            f"process {pid} exited with code {exitcode2}, "
-            f"but exit code {exitcode} is expected"
-        )
+        raise AssertionError(f"process {pid} exited with code {exitcode2}, " f"but exit code {exitcode} is expected")
 
     # sanity check: it should not fail in practice
     if pid2 != pid:

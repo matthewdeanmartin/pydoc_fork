@@ -31,9 +31,7 @@ def test_single_file_pydocfodder():
         )
         print(results)
         print(folder_path)
-        with open(
-            os.path.join(folder_path, "test.pydocfodder.html"), encoding="utf-8"
-        ) as result:
+        with open(os.path.join(folder_path, "test.pydocfodder.html"), encoding="utf-8") as result:
             html = result.read()
             assert "Python: module test.pydocfodder" in html
         print()
@@ -66,9 +64,7 @@ def test_single_file_pydocfodder_as_dot_py():
             output_folder=folder_path,
         )
         print(folder_path)
-        with open(
-            os.path.join(folder_path, "test.pydocfodder.html"), encoding="utf-8"
-        ) as result:
+        with open(os.path.join(folder_path, "test.pydocfodder.html"), encoding="utf-8") as result:
             html = result.read()
             assert "Python: module test.pydocfodder" in html
         print()

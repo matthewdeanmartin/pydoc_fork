@@ -54,9 +54,7 @@ def importfile(path: str) -> TypeLike:
         return cast(TypeLike, importlib._bootstrap._load(spec))
     # pylint: disable=broad-except
     except BaseException as import_error:
-        LOGGER.warning(
-            f"Skipping importfile for {name} at {path}, got a {import_error}"
-        )
+        LOGGER.warning(f"Skipping importfile for {name} at {path}, got a {import_error}")
         raise ImportTimeError(path, sys.exc_info()) from import_error
 
 
@@ -113,9 +111,7 @@ def safe_import(
             # A SyntaxError occurred before we could execute the module.
             # MR : this isn't null safe.
             LOGGER.warning(f"Skipping safe_import for {path}, got a {str(exc)}")
-            raise ImportTimeError(
-                cast(SyntaxError, value).filename, info
-            ) from import_error
+            raise ImportTimeError(cast(SyntaxError, value).filename, info) from import_error
         if issubclass(exc, ImportError) and cast(ImportError, value).name == path:
             LOGGER.warning(f"Skipping safe_import for {path}, got a {import_error}")
             LOGGER.warning(f"Cannot import this path: {path}")
@@ -128,9 +124,7 @@ def safe_import(
         try:
             module = getattr(module, part)
         except AttributeError:
-            LOGGER.warning(
-                f"While safe_import - {str(module)} does not have {part} from dot path {path}"
-            )
+            LOGGER.warning(f"While safe_import - {str(module)} does not have {part} from dot path {path}")
             return None
     return module
 

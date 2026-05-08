@@ -31,9 +31,7 @@ OUTPUT_FOLDER = ""
 THEME = "classic"
 CUSTOM_TEMPLATES: Optional[str] = None
 
-PYTHONDOCS = os.environ.get(
-    "PYTHONDOCS", "https://docs.python.org/%d.%d/library" % sys.version_info[:2]
-)
+PYTHONDOCS = os.environ.get("PYTHONDOCS", "https://docs.python.org/%d.%d/library" % sys.version_info[:2])
 """Module docs for core modules are assumed to be in
 
     https://docs.python.org/X.Y/library/
@@ -79,7 +77,5 @@ def parse_toml(path_string: Optional[str]) -> Dict[str, Any]:
     with open(toml_path, "rb") as handle:
         pyproject_toml = tomllib.load(handle)
     config = pyproject_toml.get("tool", {}).get("pydoc_fork", {})
-    loose_matching = {
-        k.replace("--", "").replace("-", "_"): v for k, v in config.items()
-    }
+    loose_matching = {k.replace("--", "").replace("-", "_"): v for k, v in config.items()}
     return loose_matching

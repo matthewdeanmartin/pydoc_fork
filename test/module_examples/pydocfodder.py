@@ -161,9 +161,7 @@ class A_new(object):
     def _delx(self):
         "A property deleter function."
 
-    A_property = property(
-        fdel=_delx, fget=_getx, fset=_setx, doc="A sample property defined in A."
-    )
+    A_property = property(fdel=_delx, fget=_getx, fset=_setx, doc="A sample property defined in A.")
 
     A_int_alias = int
 

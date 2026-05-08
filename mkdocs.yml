@@ -1,25 +1,29 @@
+---
 site_name: pydoc_fork
-docs_dir: docs_md
-site_dir: docs/docs_mkdocstrings
+site_url: https://pydoc-fork.readthedocs.io/
+site_author: Matthew Martin <matthewdeanmartin@gmail.com>
+site_description: Fork of cpython's pydoc module to do just html document generation
+repo_url: https://github.com/matthewdeanmartin/pydoc_fork
 theme:
-  name: "mkdocs"
-
-nav:
-    - Home: index.md
-
+  name: readthedocs
+  features: [navigation.footer]
+edit_uri: edit/main/docs/
 markdown_extensions:
-    - toc:
-          toc_depth: 3
-          permalink: True
-    - extra
-    - smarty
-#    - codehilite
-    - admonition
-    - pymdownx.details
-    - pymdownx.superfences
-    - pymdownx.emoji
-    - pymdownx.inlinehilite
-    - pymdownx.magiclink
+  - attr_list
+  - toc:
+      permalink: true
+  - admonition
+validation:
+  nav:
+    omitted_files: warn
+  omitted_files: warn
+  absolute_links: warn
+  unrecognized_links: warn
+  anchors: warn
 plugins:
-    - search
-    - mkdocstrings
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google

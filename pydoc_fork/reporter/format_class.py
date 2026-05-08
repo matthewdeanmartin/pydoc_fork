@@ -76,9 +76,7 @@ def docclass(
             push(f"<dd>{classlink(base, the_object.__module__)}</dd>\n")
         push("</dl>\n")
 
-    def spill(
-        msg: str, attrs_in: List[Any], predicate: Callable[[Any], Any]
-    ) -> List[Any]:
+    def spill(msg: str, attrs_in: List[Any], predicate: Callable[[Any], Any]) -> List[Any]:
         """Not sure"""
         ok, attrs = _split_list(attrs_in, predicate)
         if ok:
@@ -103,11 +101,7 @@ def docclass(
                     # pylint: disable=import-outside-toplevel
                     from pydoc_fork.reporter.format_page import document
 
-                    push(
-                        document(
-                            value, name, mod, funcs, classes, module_dict, the_object
-                        )
-                    )
+                    push(document(value, name, mod, funcs, classes, module_dict, the_object))
                 push("\n")
         return attrs
 
@@ -139,9 +133,7 @@ def docclass(
                 )
         return attrs
 
-    def spilldata(
-        msg: str, attrs_in: List[Any], predicate: Callable[[Any], bool]
-    ) -> List[Any]:
+    def spilldata(msg: str, attrs_in: List[Any], predicate: Callable[[Any], bool]) -> List[Any]:
         """Not sure"""
         ok, attrs = _split_list(attrs_in, predicate)
         if ok:
@@ -277,9 +269,7 @@ def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> 
         # pylint: disable=unidiomatic-typecheck
         if type(entry) is type(()):  # noqa - not sure of switching to isinstance
             class_object, bases = entry
-            result = (
-                result + f'<dt><span style="font-family:{inline_styles.SAN_SERIF}">'
-            )
+            result = result + f'<dt><span style="font-family:{inline_styles.SAN_SERIF}">'
             result = result + classlink(class_object, modname)
             if bases and bases != (parent,):
                 parents = []

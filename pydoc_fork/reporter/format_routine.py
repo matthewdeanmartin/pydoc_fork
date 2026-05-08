@@ -47,9 +47,7 @@ def docroutine(
                 link = classlink(imported_class, mod)
                 note = f" unbound {link} method"
 
-    if inspect.iscoroutinefunction(the_object) or inspect.isasyncgenfunction(
-        the_object
-    ):
+    if inspect.iscoroutinefunction(the_object) or inspect.isasyncgenfunction(the_object):
         async_qualifier = "async "
     else:
         async_qualifier = ""
@@ -57,13 +55,8 @@ def docroutine(
     if name == real_name:
         title = f'<a name="{anchor}"><strong>{real_name}</strong></a>'
     else:
-        if (
-            class_object
-            and inspect.getattr_static(class_object, real_name, []) is the_object
-        ):
-            real_link = (
-                f'<a href="#{class_object.__name__ + "-" + real_name}">{real_name}</a>'
-            )
+        if class_object and inspect.getattr_static(class_object, real_name, []) is the_object:
+            real_link = f'<a href="#{class_object.__name__ + "-" + real_name}">{real_name}</a>'
         else:
             real_link = real_name
         title = f'<a name="{anchor}"><strong>{name}</strong></a> = {real_link}'
@@ -82,9 +75,7 @@ def docroutine(
                 # XXX lambda's won't usually have func_annotations['return']
                 # since the syntax doesn't support but it is possible.
                 # So removing parentheses isn't truly safe.
-                argument_specification = argument_specification[
-                    1:-1
-                ]  # remove parentheses
+                argument_specification = argument_specification[1:-1]  # remove parentheses
     if not argument_specification:
         argument_specification = "(...)"
 
@@ -92,12 +83,7 @@ def docroutine(
         async_qualifier
         + title
         + escape(argument_specification)
-        + (
-            note
-            and disabled_text(
-                f'<span style="font-family:{inline_styles.SAN_SERIF}">{note}</span>'
-            )
-        )
+        + (note and disabled_text(f'<span style="font-family:{inline_styles.SAN_SERIF}">{note}</span>'))
     )
 
     from pydoc_fork.reporter.jinja_code import JINJA_ENV

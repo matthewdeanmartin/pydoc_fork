@@ -109,10 +109,7 @@ def _finddoc(obj):
     if inspect.ismethod(obj):
         name = obj.__func__.__name__
         self = obj.__self__
-        if (
-            inspect.isclass(self)
-            and getattr(getattr(self, name, None), "__func__") is obj.__func__
-        ):
+        if inspect.isclass(self) and getattr(getattr(self, name, None), "__func__") is obj.__func__:
             # classmethod
             cls = self
         else:
@@ -425,9 +422,7 @@ def synopsis(filename, cache={}):
             # Must be a binary module, which has to be imported.
             loader = loader_cls("__temp__", filename)
             # XXX We probably don't need to pass in the loader here.
-            spec = importlib.util.spec_from_file_location(
-                "__temp__", filename, loader=loader
-            )
+            spec = importlib.util.spec_from_file_location("__temp__", filename, loader=loader)
             try:
                 module = importlib._bootstrap._load(spec)
             except:
@@ -524,9 +519,7 @@ def safeimport(path, forceload=0, cache={}):
 
 class Doc:
 
-    PYTHONDOCS = os.environ.get(
-        "PYTHONDOCS", "https://docs.python.org/%d.%d/library" % sys.version_info[:2]
-    )
+    PYTHONDOCS = os.environ.get("PYTHONDOCS", "https://docs.python.org/%d.%d/library" % sys.version_info[:2])
 
     def document(self, object, name=None, *args):
         """Generate documentation for an object."""
@@ -585,17 +578,12 @@ class Doc:
                     "_thread",
                     "zipimport",
                 )
-                or (
-                    file.startswith(basedir)
-                    and not file.startswith(os.path.join(basedir, "site-packages"))
-                )
+                or (file.startswith(basedir) and not file.startswith(os.path.join(basedir, "site-packages")))
             )
             and object.__name__ not in ("xml.etree", "test.pydoc_mod")
         ):
             if docloc.startswith(("http://", "https://")):
-                docloc = "{}/{}.html".format(
-                    docloc.rstrip("/"), object.__name__.lower()
-                )
+                docloc = "{}/{}.html".format(docloc.rstrip("/"), object.__name__.lower())
             else:
                 docloc = os.path.join(docloc, object.__name__.lower() + ".html")
         else:
@@ -688,9 +676,7 @@ class HTMLDoc(Doc):
             extras or "&nbsp;",
         )
 
-    def section(
-        self, title, cls, contents, width=6, prelude="", marginalia=None, gap="&nbsp;"
-    ):
+    def section(self, title, cls, contents, width=6, prelude="", marginalia=None, gap="&nbsp;"):
         """Format a section with a heading."""
         if marginalia is None:
             marginalia = '<span class="code">' + "&nbsp;" * width + "</span>"
@@ -721,9 +707,7 @@ class HTMLDoc(Doc):
     def preformat(self, text):
         """Format literal preformatted text."""
         text = self.escape(text.expandtabs())
-        return replace(
-            text, "\n\n", "\n \n", "\n\n", "\n \n", " ", "&nbsp;", "\n", "<br>\n"
-        )
+        return replace(text, "\n\n", "\n \n", "\n\n", "\n \n", " ", "&nbsp;", "\n", "<br>\n")
 
     def multicolumn(self, list, format):
         """Format a list of items into a multi-column list."""
@@ -787,12 +771,7 @@ class HTMLDoc(Doc):
         escape = escape or self.escape
         results = []
         here = 0
-        pattern = re.compile(
-            r"\b((http|https|ftp)://\S+[\w/]|"
-            r"RFC[- ]?(\d+)|"
-            r"PEP[- ]?(\d+)|"
-            r"(self\.)?(\w+))"
-        )
+        pattern = re.compile(r"\b((http|https|ftp)://\S+[\w/]|" r"RFC[- ]?(\d+)|" r"PEP[- ]?(\d+)|" r"(self\.)?(\w+))")
         while True:
             match = pattern.search(text, here)
             if not match:
@@ -855,10 +834,7 @@ class HTMLDoc(Doc):
         parts = name.split(".")
         links = []
         for i in range(len(parts) - 1):
-            links.append(
-                '<a href="%s.html" class="white">%s</a>'
-                % (".".join(parts[: i + 1]), parts[i])
-            )
+            links.append('<a href="%s.html" class="white">%s</a>' % (".".join(parts[: i + 1]), parts[i]))
         linkedname = ".".join(links + parts[-1:])
         head = '<strong class="title">%s</strong>' % linkedname
         try:
@@ -904,11 +880,7 @@ class HTMLDoc(Doc):
         funcs, fdict = [], {}
         for key, value in inspect.getmembers(object, inspect.isroutine):
             # if __all__ exists, believe it.  Otherwise use old heuristic.
-            if (
-                all is not None
-                or inspect.isbuiltin(value)
-                or inspect.getmodule(value) is object
-            ):
+            if all is not None or inspect.isbuiltin(value) or inspect.getmodule(value) is object:
                 if visiblename(key, all, object):
                     funcs.append((key, value))
                     fdict[key] = "#-" + key
@@ -929,9 +901,7 @@ class HTMLDoc(Doc):
                 modpkgs.append((modname, name, ispkg, 0))
             modpkgs.sort()
             contents = self.multicolumn(modpkgs, self.modpkglink)
-            result = result + self.bigsection(
-                "Package Contents", "pkg-content", contents
-            )
+            result = result + self.bigsection("Package Contents", "pkg-content", contents)
         elif modules:
             contents = self.multicolumn(modules, lambda t: self.modulelink(t[1]))
             result = result + self.bigsection("Modules", "pkg-content", contents)
@@ -946,9 +916,7 @@ class HTMLDoc(Doc):
             contents = []
             for key, value in funcs:
                 contents.append(self.document(value, key, name, fdict, cdict))
-            result = result + self.bigsection(
-                "Functions", "functions", " ".join(contents)
-            )
+            result = result + self.bigsection("Functions", "functions", " ".join(contents))
         if data:
             contents = []
             for key, value in data:
@@ -1006,11 +974,7 @@ class HTMLDoc(Doc):
                         # (bug #1785)
                         push(self.docdata(value, name, mod))
                     else:
-                        push(
-                            self.document(
-                                value, name, mod, funcs, classes, mdict, object
-                            )
-                        )
+                        push(self.document(value, name, mod, funcs, classes, mdict, object))
                     push("\n")
             return attrs
 
@@ -1034,9 +998,7 @@ class HTMLDoc(Doc):
                     if not doc:
                         push("<dl><dt>%s</dl>\n" % base)
                     else:
-                        doc = self.markup(
-                            getdoc(value), self.preformat, funcs, classes, mdict
-                        )
+                        doc = self.markup(getdoc(value), self.preformat, funcs, classes, mdict)
                         doc = '<dd><span class="code">%s</span>' % doc
                         push("<dl><dt>%s%s</dl>\n" % (base, doc))
                     push("\n")
@@ -1084,23 +1046,15 @@ class HTMLDoc(Doc):
 
             # Pump out the attrs, segregated by kind.
             attrs = spill("Methods %s" % tag, attrs, lambda t: t[1] == "method")
-            attrs = spill(
-                "Class methods %s" % tag, attrs, lambda t: t[1] == "class method"
-            )
-            attrs = spill(
-                "Static methods %s" % tag, attrs, lambda t: t[1] == "static method"
-            )
+            attrs = spill("Class methods %s" % tag, attrs, lambda t: t[1] == "class method")
+            attrs = spill("Static methods %s" % tag, attrs, lambda t: t[1] == "static method")
             attrs = spilldescriptors(
                 "Readonly properties %s" % tag,
                 attrs,
                 lambda t: t[1] == "readonly property",
             )
-            attrs = spilldescriptors(
-                "Data descriptors %s" % tag, attrs, lambda t: t[1] == "data descriptor"
-            )
-            attrs = spilldata(
-                "Data and other attributes %s" % tag, attrs, lambda t: t[1] == "data"
-            )
+            attrs = spilldescriptors("Data descriptors %s" % tag, attrs, lambda t: t[1] == "data descriptor")
+            attrs = spilldata("Data and other attributes %s" % tag, attrs, lambda t: t[1] == "data")
             assert attrs == []
             attrs = inherited
 
@@ -1142,9 +1096,7 @@ class HTMLDoc(Doc):
         """Format an argument default value as text."""
         return self.grey("=" + self.repr(object))
 
-    def docroutine(
-        self, object, name=None, mod=None, funcs={}, classes={}, methods={}, cl=None
-    ):
+    def docroutine(self, object, name=None, mod=None, funcs={}, classes={}, methods={}, cl=None):
         """Produce HTML documentation for a function or method object."""
         realname = object.__name__
         name = name or realname
@@ -1158,9 +1110,7 @@ class HTMLDoc(Doc):
                     note = " from " + self.classlink(imclass, mod)
             else:
                 if object.__self__ is not None:
-                    note = " method of %s instance" % self.classlink(
-                        object.__self__.__class__, mod
-                    )
+                    note = " method of %s instance" % self.classlink(object.__self__.__class__, mod)
                 else:
                     note = " unbound %s method" % self.classlink(imclass, mod)
 
@@ -1366,11 +1316,7 @@ location listed above.
         funcs = []
         for key, value in inspect.getmembers(object, inspect.isroutine):
             # if __all__ exists, believe it.  Otherwise use old heuristic.
-            if (
-                all is not None
-                or inspect.isbuiltin(value)
-                or inspect.getmodule(value) is object
-            ):
+            if all is not None or inspect.isbuiltin(value) or inspect.getmodule(value) is object:
                 if visiblename(key, all, object):
                     funcs.append((key, value))
         data = []
@@ -1494,11 +1440,7 @@ location listed above.
             for subclassname in subclasses[:MAX_SUBCLASSES_TO_DISPLAY]:
                 push("    " + subclassname)
             if no_of_subclasses > MAX_SUBCLASSES_TO_DISPLAY:
-                push(
-                    "    ... and "
-                    + str(no_of_subclasses - MAX_SUBCLASSES_TO_DISPLAY)
-                    + " other subclasses"
-                )
+                push("    ... and " + str(no_of_subclasses - MAX_SUBCLASSES_TO_DISPLAY) + " other subclasses")
             push("")
 
         # Cute little class to pump out a horizontal rule between sections.
@@ -1577,12 +1519,8 @@ location listed above.
 
             # Pump out the attrs, segregated by kind.
             attrs = spill("Methods %s:\n" % tag, attrs, lambda t: t[1] == "method")
-            attrs = spill(
-                "Class methods %s:\n" % tag, attrs, lambda t: t[1] == "class method"
-            )
-            attrs = spill(
-                "Static methods %s:\n" % tag, attrs, lambda t: t[1] == "static method"
-            )
+            attrs = spill("Class methods %s:\n" % tag, attrs, lambda t: t[1] == "class method")
+            attrs = spill("Static methods %s:\n" % tag, attrs, lambda t: t[1] == "static method")
             attrs = spilldescriptors(
                 "Readonly properties %s:\n" % tag,
                 attrs,
@@ -1593,9 +1531,7 @@ location listed above.
                 attrs,
                 lambda t: t[1] == "data descriptor",
             )
-            attrs = spilldata(
-                "Data and other attributes %s:\n" % tag, attrs, lambda t: t[1] == "data"
-            )
+            attrs = spilldata("Data and other attributes %s:\n" % tag, attrs, lambda t: t[1] == "data")
 
             assert attrs == []
             attrs = inherited
@@ -1622,9 +1558,7 @@ location listed above.
                     note = " from " + classname(imclass, mod)
             else:
                 if object.__self__ is not None:
-                    note = " method of %s instance" % classname(
-                        object.__self__.__class__, mod
-                    )
+                    note = " method of %s instance" % classname(object.__self__.__class__, mod)
                 else:
                     note = " unbound %s method" % classname(imclass, mod)
 
@@ -1760,9 +1694,7 @@ def pipepager(text, cmd):
     """Page through text by feeding it to another program."""
     import subprocess
 
-    proc = subprocess.Popen(
-        cmd, shell=True, stdin=subprocess.PIPE, errors="backslashreplace"
-    )
+    proc = subprocess.Popen(cmd, shell=True, stdin=subprocess.PIPE, errors="backslashreplace")
     try:
         with proc.stdin as pipe:
             try:
@@ -1933,9 +1865,7 @@ Use help(str) for help on the str class.""" % thing)
         return thing, name if isinstance(name, str) else None
 
 
-def render_doc(
-    thing, title="Python Library Documentation: %s", forceload=0, renderer=None
-):
+def render_doc(thing, title="Python Library Documentation: %s", forceload=0, renderer=None):
     """Render text documentation, given an object or a path to an object."""
     if renderer is None:
         renderer = text
@@ -2114,8 +2044,7 @@ class Helper:
     topics = {
         "TYPES": (
             "types",
-            "STRINGS UNICODE NUMBERS SEQUENCES MAPPINGS "
-            "FUNCTIONS CLASSES MODULES FILES inspect",
+            "STRINGS UNICODE NUMBERS SEQUENCES MAPPINGS " "FUNCTIONS CLASSES MODULES FILES inspect",
         ),
         "STRINGS": (
             "strings",
@@ -2157,9 +2086,7 @@ class Helper:
         "OBJECTS": ("objects", "TYPES"),
         "SPECIALMETHODS": (
             "specialnames",
-            "BASICMETHODS ATTRIBUTEMETHODS "
-            "CALLABLEMETHODS SEQUENCEMETHODS MAPPINGMETHODS "
-            "NUMBERMETHODS CLASSES",
+            "BASICMETHODS ATTRIBUTEMETHODS " "CALLABLEMETHODS SEQUENCEMETHODS MAPPINGMETHODS " "NUMBERMETHODS CLASSES",
         ),
         "BASICMETHODS": ("customization", "hash repr str SPECIALMETHODS"),
         "ATTRIBUTEMETHODS": ("attribute-access", "ATTRIBUTES SPECIALMETHODS"),
@@ -2272,11 +2199,7 @@ has the same effect as typing a particular string at the help> prompt.
 
             # Make sure significant trailing quoting marks of literals don't
             # get deleted while cleaning input
-            if (
-                len(request) > 2
-                and request[0] == request[-1] in ("'", '"')
-                and request[0] not in request[1:-1]
-            ):
+            if len(request) > 2 and request[0] == request[-1] in ("'", '"') and request[0] not in request[1:-1]:
                 request = request[1:-1]
             if request.lower() in ("q", "quit"):
                 break
@@ -2796,8 +2719,7 @@ def _url_handler(url, content_type="text/html"):
             contents.append(html.index(dir, seen))
 
         contents.append(
-            '<p align=right class="heading-text grey"><strong>pydoc</strong> by Ka-Ping Yee'
-            "&lt;ping@lfw.org&gt;</p>"
+            '<p align=right class="heading-text grey"><strong>pydoc</strong> by Ka-Ping Yee' "&lt;ping@lfw.org&gt;</p>"
         )
         return "Index of Modules", "".join(contents)
 
@@ -2829,9 +2751,7 @@ def _url_handler(url, content_type="text/html"):
         )
         for name, desc in search_result:
             results.append(bltinlink(name) + desc)
-        contents = heading + html.bigsection(
-            "key = %s" % key, "index", "<br>".join(results)
-        )
+        contents = heading + html.bigsection("key = %s" % key, "index", "<br>".join(results))
         return "Search Results", contents
 
     def html_topics():
@@ -2899,9 +2819,7 @@ def _url_handler(url, content_type="text/html"):
         heading = html.heading(
             '<strong class="title">Error</strong>',
         )
-        contents = "<br>".join(
-            html.escape(line) for line in format_exception_only(type(exc), exc)
-        )
+        contents = "<br>".join(html.escape(line) for line in format_exception_only(type(exc), exc))
         contents = heading + html.bigsection(url, "error", contents)
         return "Error - %s" % url, contents
 

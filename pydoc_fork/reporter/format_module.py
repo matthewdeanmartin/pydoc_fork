@@ -47,27 +47,17 @@ def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[s
         "zipimport",
     )
     is_module = isinstance(the_object, type(os))
-    is_in_pythons_folder = file.startswith(basedir) and not file.startswith(
-        os.path.join(basedir, "site-packages")
-    )
+    is_in_pythons_folder = file.startswith(basedir) and not file.startswith(os.path.join(basedir, "site-packages"))
     # # This is nasty special case coding, how many more special cases are there?
     # is_exception =the_object.__name__ in ("xml.etree", "test.pydoc_mod")
     # # special case for etree
     # "https://docs.python.org/3/library/xml.etree.elementtree.html"
 
-    if (
-        is_module
-        and (is_known_stdlib or is_in_pythons_folder)
-        and settings.PREFER_DOCS_PYTHON_ORG
-    ):
+    if is_module and (is_known_stdlib or is_in_pythons_folder) and settings.PREFER_DOCS_PYTHON_ORG:
         if settings.PYTHONDOCS.startswith(("http://", "https://")):
-            doc_loc = (
-                f"{settings.PYTHONDOCS.rstrip('/')}/{the_object.__name__.lower()}.html"
-            )
+            doc_loc = f"{settings.PYTHONDOCS.rstrip('/')}/{the_object.__name__.lower()}.html"
         else:
-            doc_loc = os.path.join(
-                settings.PYTHONDOCS, the_object.__name__.lower() + ".html"
-            )
+            doc_loc = os.path.join(settings.PYTHONDOCS, the_object.__name__.lower() + ".html")
     else:
         doc_loc = None
     return doc_loc
@@ -211,10 +201,7 @@ def docmodule(
                 function_dict[value] = function_dict[key]
     data = []
     for key, value in inspect.getmembers(the_object, isdata):
-        if (
-            getattr(inspect.getmodule(type(value)), __name__, lambda: None)()
-            in settings.SKIP_MODULES
-        ):
+        if getattr(inspect.getmodule(type(value)), __name__, lambda: None)() in settings.SKIP_MODULES:
             continue
         if visiblename(key, all_things, the_object):
             data.append((key, value))
@@ -237,22 +224,14 @@ def docmodule(
                 module_packages.append((modname, name, is_package, 0))
         module_packages.sort()
         contents_string = multicolumn(module_packages, module_package_link)
-        result_data["package_contents"] = bigsection(
-            "Package Contents", "#ffffff", "#aa55cc", contents_string
-        )
+        result_data["package_contents"] = bigsection("Package Contents", "#ffffff", "#aa55cc", contents_string)
     elif modules:
         contents_string = multicolumn(modules, lambda t: modulelink(t[1]))
-        result_data["modules"] = bigsection(
-            "Modules", "#ffffff", "#aa55cc", contents_string
-        )
+        result_data["modules"] = bigsection("Modules", "#ffffff", "#aa55cc", contents_string)
 
     if modules_by_import_from:
-        contents_string = multicolumn(
-            list(modules_by_import_from), lambda t: modulelink(list(t)[1])
-        )
-        result_data["from_modules"] = bigsection(
-            "`from` Modules", "#ffffff", "#aa55cc", contents_string
-        )
+        contents_string = multicolumn(list(modules_by_import_from), lambda t: modulelink(list(t)[1]))
+        result_data["from_modules"] = bigsection("`from` Modules", "#ffffff", "#aa55cc", contents_string)
 
     if classes:
         class_list = [value for (key, value) in classes]
@@ -260,23 +239,17 @@ def docmodule(
         contents_list = [format_tree(inspect.getclasstree(class_list, True), name)]
         for key, value in classes:
             contents_list.append(document(value, key, name, function_dict, class_dict))
-        result_data["classes"] = bigsection(
-            "Classes", "#ffffff", "#ee77aa", " ".join(contents_list)
-        )
+        result_data["classes"] = bigsection("Classes", "#ffffff", "#ee77aa", " ".join(contents_list))
     if funcs:
         contents_list = []
         for key, value in funcs:
             contents_list.append(document(value, key, name, function_dict, class_dict))
-        result_data["functions"] = bigsection(
-            "Functions", "#ffffff", "#eeaa77", " ".join(contents_list)
-        )
+        result_data["functions"] = bigsection("Functions", "#ffffff", "#eeaa77", " ".join(contents_list))
     if data:
         contents_list = []
         for key, value in data:
             contents_list.append(document(value, key))
-        result_data["data"] = bigsection(
-            "Data", "#ffffff", "#55aa55", "<br>\n".join(contents_list)
-        )
+        result_data["data"] = bigsection("Data", "#ffffff", "#55aa55", "<br>\n".join(contents_list))
     if hasattr(the_object, "__author__"):
         contents = markup(str(the_object.__author__))
         result_data["author"] = bigsection("Author", "#ffffff", "#7799ee", contents)

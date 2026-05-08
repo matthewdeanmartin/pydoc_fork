@@ -29,9 +29,7 @@ def document_one(
     try:
         the_object, name = resolve(thing, force_load)
     except (ImportError, ImportTimeError):
-        LOGGER.warning(
-            f"document_one failed for {str(thing)} with folder {output_folder}"
-        )
+        LOGGER.warning(f"document_one failed for {str(thing)} with folder {output_folder}")
         return None
 
     # MR
@@ -74,12 +72,8 @@ def modules_in_current() -> List[str]:
     # Filter out __init__.py if we only want modules? Usually __init__.py is the package itself.
 
     # Also look for packages (directories with __init__.py)
-    folders = [
-        f for f in os.listdir(current) if os.path.isdir(os.path.join(current, f))
-    ]
-    py_folders = [
-        f for f in folders if os.path.isfile(os.path.join(current, f, "__init__.py"))
-    ]
+    folders = [f for f in os.listdir(current) if os.path.isdir(os.path.join(current, f))]
+    py_folders = [f for f in folders if os.path.isfile(os.path.join(current, f, "__init__.py"))]
 
     found = py_files + py_folders
     LOGGER.debug(f"Adding these modules from current folder to document {found}")
@@ -210,9 +204,7 @@ def process_path_or_dot_name(
 
     _adjust_cli_sys_path()
 
-    written = write_docs_per_module(
-        files, output_folder, skip_if_written=not overwrite_existing
-    )
+    written = write_docs_per_module(files, output_folder, skip_if_written=not overwrite_existing)
 
     if settings.GENERATE_INDEX:
         from pydoc_fork.reporter.format_page import docindex, page
@@ -227,9 +219,7 @@ def process_path_or_dot_name(
 
         index_content = docindex(index_modules)
         index_html = page("Index", index_content)
-        with open(
-            os.path.join(output_folder, "index.html"), "w", encoding="utf-8"
-        ) as f:
+        with open(os.path.join(output_folder, "index.html"), "w", encoding="utf-8") as f:
             f.write(index_html)
         print("wrote index.html")
         written.append(os.path.join(output_folder, "index.html"))

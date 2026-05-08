@@ -12,9 +12,7 @@ class RegressionTestResult(unittest.TextTestResult):
     USE_XML = False
 
     def __init__(self, stream, descriptions, verbosity):
-        super().__init__(
-            stream=stream, descriptions=descriptions, verbosity=2 if verbosity else 0
-        )
+        super().__init__(stream=stream, descriptions=descriptions, verbosity=2 if verbosity else 0)
         self.buffer = True
         if self.USE_XML:
             from datetime import datetime

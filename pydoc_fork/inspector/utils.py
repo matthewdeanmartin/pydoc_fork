@@ -70,10 +70,7 @@ def _find_doc_string(obj: TypeLike) -> Optional[str]:
     if inspect.ismethod(obj):
         name = obj.__func__.__name__
         self = obj.__self__
-        if (
-            inspect.isclass(self)
-            and getattr(getattr(self, name, None), "__func__") is obj.__func__  # noqa
-        ):
+        if inspect.isclass(self) and getattr(getattr(self, name, None), "__func__") is obj.__func__:  # noqa
             # class_method
             cls = self
         else:
@@ -211,9 +208,7 @@ def _is_bound_method(the_function: object) -> bool:
 #     return methods
 
 
-def _split_list(
-    the_sequence: Sequence[Any], predicate: Callable[[Any], Any]
-) -> Tuple[List[Any], List[Any]]:
+def _split_list(the_sequence: Sequence[Any], predicate: Callable[[Any], Any]) -> Tuple[List[Any], List[Any]]:
     """Split sequence s via predicate, and return pair ([true], [false]).
 
     The return value is a 2-tuple of lists,
@@ -232,9 +227,7 @@ def _split_list(
     return yes, no
 
 
-def visiblename(
-    name: str, all_things: Optional[List[str]] = None, obj: Optional[Any] = None
-) -> bool:
+def visiblename(name: str, all_things: Optional[List[str]] = None, obj: Optional[Any] = None) -> bool:
     """Decide whether to show documentation on a variable."""
     # Certain special names are redundant or internal.
     # XXX Remove __initializing__?
@@ -278,18 +271,14 @@ def classify_class_attrs(the_object: TypeLike) -> List[Tuple[str, str, type, obj
     """Wrap inspect.classify_class_attrs, with fixup for data descriptors."""
     results = []
     try:
-        for name, kind, cls, value in inspect.classify_class_attrs(
-            cast(type, the_object)
-        ):
+        for name, kind, cls, value in inspect.classify_class_attrs(cast(type, the_object)):
             if inspect.isdatadescriptor(value):
                 kind = "data descriptor"
                 if isinstance(value, property) and value.fset is None:
                     kind = "readonly property"
             results.append((name, kind, cls, value))
     except ValueError:
-        LOGGER.warning(
-            f"Skipping classify_class_attrs for {str(the_object)} got ValueError, maybe this is a Namespace"
-        )
+        LOGGER.warning(f"Skipping classify_class_attrs for {str(the_object)} got ValueError, maybe this is a Namespace")
         # py._xmlgen.Namespace
         # ValueError: Namespace class is abstract
     return results

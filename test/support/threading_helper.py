@@ -1,9 +1,11 @@
-import _thread
 import contextlib
 import functools
 import sys
 import threading
 import time
+
+import _thread
+
 from test import support
 
 # =======================================================================
@@ -131,10 +133,7 @@ def start_threads(threads, unlock=None):
                 started.append(t)
         except:
             if support.verbose:
-                print(
-                    "Can't start %d threads, only %d threads started"
-                    % (len(threads), len(started))
-                )
+                print("Can't start %d threads, only %d threads started" % (len(threads), len(started)))
             raise
         yield
     finally:
@@ -150,10 +149,7 @@ def start_threads(threads, unlock=None):
                 if not started:
                     break
                 if support.verbose:
-                    print(
-                        "Unable to join %d threads during a period of "
-                        "%d minutes" % (len(started), timeout)
-                    )
+                    print("Unable to join %d threads during a period of " "%d minutes" % (len(started), timeout))
         finally:
             started = [t for t in started if t.is_alive()]
             if started:

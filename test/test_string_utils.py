@@ -6,9 +6,7 @@ def test_replace():
     assert result == "abc abc"
     result = string_utils.replace("abc xyz pdq", "xyz", "abc", "pdq", "abc")
     assert result == "abc abc abc"
-    result = string_utils.replace(
-        "abc xyz pdq", "abc", "111", "xyz", "222", "pdq", "333"
-    )
+    result = string_utils.replace("abc xyz pdq", "abc", "111", "xyz", "222", "pdq", "333")
     assert result == "111 222 333"
 
 
@@ -29,10 +27,7 @@ def test_cram_degenerate():
 def test_stripid():
     # it is looking for the "> at hex" pattern
     assert string_utils.stripid("<function <lambda>") == "<function <lambda>"
-    assert (
-        string_utils.stripid("<function <lambda> at 0x00000288C38C9160>")
-        == "<function <lambda>>"
-    )
+    assert string_utils.stripid("<function <lambda> at 0x00000288C38C9160>") == "<function <lambda>>"
     assert string_utils.stripid(" at 0x00000288C38C9160>") == ">"
     assert string_utils.stripid("<a>>") == "<a>>"
     # this is not robust to a lot of scenarios

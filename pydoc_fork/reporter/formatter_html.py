@@ -108,9 +108,7 @@ def bigsection(
 def preformat(text: str) -> str:
     """Format literal preformatted text."""
     text = escape(text.expandtabs())
-    return replace(
-        text, "\n\n", "\n \n", "\n\n", "\n \n", " ", "&nbsp;", "\n", "<br>\n"
-    )
+    return replace(text, "\n\n", "\n \n", "\n\n", "\n \n", " ", "&nbsp;", "\n", "<br>\n")
 
 
 def multicolumn(
@@ -222,12 +220,7 @@ def markup(
 
     results = []
     here = 0
-    pattern = re.compile(
-        r"\b((http|https|ftp)://\S+[\w/]|"
-        r"RFC[- ]?(\d+)|"
-        r"PEP[- ]?(\d+)|"
-        r"(self\.)?(\w+))"
-    )
+    pattern = re.compile(r"\b((http|https|ftp)://\S+[\w/]|" r"RFC[- ]?(\d+)|" r"PEP[- ]?(\d+)|" r"(self\.)?(\w+))")
     while True:
         match = pattern.search(text, here)
         if not match:

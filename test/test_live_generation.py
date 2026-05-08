@@ -42,9 +42,7 @@ def test_cli():
         # process_path_or_dot_name([".\\"], output_folder=".", document_internals=True)
         try:
             files_in_directory = os.listdir(".")
-            filtered_files = [
-                file for file in files_in_directory if file.endswith(".html")
-            ]
+            filtered_files = [file for file in files_in_directory if file.endswith(".html")]
             for file in filtered_files:
                 path_to_file = os.path.join(".", file)
                 os.remove(path_to_file)
