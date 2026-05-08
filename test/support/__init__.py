@@ -213,8 +213,8 @@ def get_attribute(obj, name):
     """Get an attribute, raising SkipTest if AttributeError is raised."""
     try:
         attribute = getattr(obj, name)
-    except AttributeError:
-        raise unittest.SkipTest(f"object {obj!r} has no attribute {name!r}")
+    except AttributeError as exc:
+        raise unittest.SkipTest(f"object {obj!r} has no attribute {name!r}") from exc
     else:
         return attribute
 
@@ -422,9 +422,7 @@ def requires_mac_ver(*min_version):
                 else:
                     if version < min_version:
                         min_version_txt = ".".join(map(str, min_version))
-                        raise unittest.SkipTest(
-                            f"Mac OS X {min_version_txt} or higher required, not {version_txt}"
-                        )
+                        raise unittest.SkipTest(f"Mac OS X {min_version_txt} or higher required, not {version_txt}")
             return func(*args, **kw)
 
         wrapper.min_version = min_version
@@ -453,7 +451,7 @@ def system_must_validate_cert(f):
             f(*args, **kwargs)
         except OSError as e:
             if "CERTIFICATE_VERIFY_FAILED" in str(e):
-                raise unittest.SkipTest("system does not contain " "necessary certificates")
+                raise unittest.SkipTest("system does not contain necessary certificates") from e
             raise
 
     return dec
@@ -514,8 +512,8 @@ def requires_lzma(reason="requires lzma"):
 def has_no_debug_ranges():
     try:
         import _testinternalcapi
-    except ImportError:
-        raise unittest.SkipTest("_testinternalcapi required")
+    except ImportError as exc:
+        raise unittest.SkipTest("_testinternalcapi required") from exc
     config = _testinternalcapi.get_config()
     return bool(config["no_debug_ranges"])
 
@@ -630,7 +628,7 @@ def open_urlresource(url, *args, **kw):
     fn = os.path.join(TEST_DATA_DIR, filename)
 
     def check_valid_file(fn):
-        f = open(fn, *args, **kw)
+        f = open(fn, *args, **kw)  # noqa: SIM115
         if check is None:
             return f
         elif check(f):
@@ -786,17 +784,15 @@ _TPFLAGS_HEAPTYPE = 1 << 9
 def check_sizeof(test, o, size):
     try:
         import _testinternalcapi
-    except ImportError:
-        raise unittest.SkipTest("_testinternalcapi required")
+    except ImportError as exc:
+        raise unittest.SkipTest("_testinternalcapi required") from exc
     result = sys.getsizeof(o)
     # add GC header size
-    if (
-        ((type(o) == type)
-        and (o.__flags__ & _TPFLAGS_HEAPTYPE))
-        or ((type(o) != type) and (type(o).__flags__ & _TPFLAGS_HAVE_GC))
+    if ((type(o) is type) and (o.__flags__ & _TPFLAGS_HEAPTYPE)) or (
+        (type(o) is not type) and (type(o).__flags__ & _TPFLAGS_HAVE_GC)
     ):
         size += _testinternalcapi.SIZEOF_PYGC_HEAD
-    msg = "wrong size for %s: got %d, expected %d" % (type(o), result, size)
+    msg = f"wrong size for {type(o)}: got {result}, expected {size}"
     test.assertEqual(result, size, msg)
 
 
@@ -815,7 +811,7 @@ def run_with_locale(catstr, *locales):
     except AttributeError:
         # if the test author gives us an invalid category string
         raise
-    except:
+    except Exception:
         # cannot retrieve original locale, so do nothing
         locale = orig_locale = None
     else:
@@ -823,7 +819,7 @@ def run_with_locale(catstr, *locales):
             try:
                 locale.setlocale(category, loc)
                 break
-            except:
+            except Exception:
                 pass
 
     try:
@@ -843,8 +839,8 @@ def run_with_tz(tz):
         def inner(*args, **kwds):
             try:
                 tzset = time.tzset
-            except AttributeError:
-                raise unittest.SkipTest("tzset required")
+            except AttributeError as exc:
+                raise unittest.SkipTest("tzset required") from exc
             orig_tz = os.environ.get("TZ", None)
             os.environ["TZ"] = tz
             tzset()
@@ -914,7 +910,7 @@ class _MemoryWatchdog:
         import warnings
 
         try:
-            f = open(self.procfile)
+            f = open(self.procfile)  # noqa: SIM115
         except OSError as e:
             warnings.warn(f"/proc not available for stats: {e}", RuntimeWarning, stacklevel=2)
             sys.stderr.flush()
@@ -1271,9 +1267,9 @@ def run_doctest(module, verbosity=None, optionflags=0):
 
     f, t = doctest.testmod(module, verbose=verbosity, optionflags=optionflags)
     if f:
-        raise TestFailed("%d of %d doctests failed" % (f, t))
+        raise TestFailed(f"{f} of {t} doctests failed")
     if verbose:
-        print("doctest (%s) ... %d tests with zero failures" % (module.__name__, t))
+        print(f"doctest ({module.__name__}) ... {t} tests with zero failures")
     return f, t
 
 
@@ -1443,7 +1439,7 @@ class Matcher:
         """
         Try to match a single stored value (dv) with a supplied value (v).
         """
-        if type(v) != type(dv):
+        if type(v) is not type(dv):
             result = False
         elif type(dv) is not str or k not in self._partial_matches:
             result = v == dv
@@ -2179,7 +2175,7 @@ def skip_if_broken_multiprocessing_synchronize():
             # a file in /dev/shm/ directory.
             synchronize.Lock(ctx=None)
         except OSError as exc:
-            raise unittest.SkipTest(f"broken multiprocessing SemLock: {exc!r}")
+            raise unittest.SkipTest(f"broken multiprocessing SemLock: {exc!r}") from exc
 
 
 def check_disallow_instantiation(testcase, tp, *args, **kwds):

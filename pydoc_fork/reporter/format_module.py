@@ -2,11 +2,12 @@
 Roughly a UI component for modules
 """
 
+import contextlib
 import inspect
 import os
 import pkgutil
 import sys
-from typing import cast
+from typing import Any, cast
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -24,7 +25,6 @@ from pydoc_fork.reporter.formatter_html import (
     multicolumn,
 )
 from pydoc_fork.reporter.jinja_code import JINJA_ENV
-import contextlib
 
 
 def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> str | None:
@@ -143,20 +143,17 @@ def docmodule(
     modules = inspect.getmembers(the_object, inspect.ismodule)
 
     for to_remove in settings.SKIP_MODULES:
-        for module_info in modules:
+        for module_info in modules[:]:
             candidate_module, _ = module_info
             if candidate_module == to_remove:
                 with contextlib.suppress(ValueError):
                     modules.remove(module_info)
-    modules_by_import_from = set()
-    classes, class_dict = [], {}
+    modules_by_import_from: set[tuple[None, Any]] = set()
+    classes: list[tuple[str, type[Any]]] = []
+    class_dict: dict[Any, str] = {}
     for key, value in inspect.getmembers(the_object, inspect.isclass):
         _class_module = inspect.getmodule(value)
-        if (
-            _class_module
-            and _class_module is not the_object
-            and _class_module.__name__ not in settings.SKIP_MODULES
-        ):
+        if _class_module and _class_module is not the_object and _class_module.__name__ not in settings.SKIP_MODULES:
             modules_by_import_from.add((None, _class_module))
             settings.MENTIONED_MODULES.add((_class_module, _class_module.__name__))
         # if __all__ exists, believe it.  Otherwise use old heuristic.
@@ -180,32 +177,24 @@ def docmodule(
                 and key not in class_dict
             ):
                 class_dict[key] = class_dict[base] = modname + ".html#" + key
-    funcs, function_dict = [], {}
-    for key, value in inspect.getmembers(the_object, inspect.isroutine):
+    funcs: list[tuple[str, Any]] = []
+    function_dict: dict[Any, str] = {}
+    for key, routine in inspect.getmembers(the_object, inspect.isroutine):
         # if __all__ exists, believe it.  Otherwise use old heuristic.
-        _func_module = inspect.getmodule(value)
+        _func_module = inspect.getmodule(routine)
         # why does this sometimes return no module?
-        if (
-            _func_module
-            and _func_module is not the_object
-            and _func_module.__name__ not in settings.SKIP_MODULES
-        ):
+        if _func_module and _func_module is not the_object and _func_module.__name__ not in settings.SKIP_MODULES:
             modules_by_import_from.add((None, _func_module))
             settings.MENTIONED_MODULES.add((_func_module, _func_module.__name__))
-        if (
-            True
-            # TODO put doc internals switch here
-            # all_things is not None or # __all__ as scope limiter
-            # inspect.isbuiltin(value)  # thing w/o module
-            # or inspect.getmodule(value) is the_object # from foo import bar
-        ) and visiblename(key, all_things, the_object):
-            funcs.append((key, value))
+        if visiblename(key, all_things, the_object):
+            funcs.append((key, routine))
             function_dict[key] = "#-" + key
-            if inspect.isfunction(value):
-                function_dict[value] = function_dict[key]
-    data = []
+            if inspect.isfunction(routine):
+                function_dict[routine] = function_dict[key]
+    data: list[tuple[str, Any]] = []
     for key, value in inspect.getmembers(the_object, isdata):
-        if getattr(inspect.getmodule(type(value)), __name__, lambda: None)() in settings.SKIP_MODULES:
+        value_module = inspect.getmodule(type(value))
+        if value_module and value_module.__name__ in settings.SKIP_MODULES:
             continue
         if visiblename(key, all_things, the_object):
             data.append((key, value))
@@ -213,8 +202,6 @@ def docmodule(
     result_data = {
         "heading_html": heading(
             head,
-            "",
-            "",
             "",
             nav_links=nav_links,
         ),
@@ -228,14 +215,14 @@ def docmodule(
                 module_packages.append((modname, name, is_package, 0))
         module_packages.sort()
         contents_string = multicolumn(module_packages, module_package_link)
-        result_data["package_contents"] = bigsection("Package Contents", "#ffffff", "#aa55cc", contents_string)
+        result_data["package_contents"] = bigsection("Package Contents", contents_string)
     elif modules:
         contents_string = multicolumn(modules, lambda t: modulelink(t[1]))
-        result_data["modules"] = bigsection("Modules", "#ffffff", "#aa55cc", contents_string)
+        result_data["modules"] = bigsection("Modules", contents_string)
 
     if modules_by_import_from:
-        contents_string = multicolumn(list(modules_by_import_from), lambda t: modulelink(list(t)[1]))
-        result_data["from_modules"] = bigsection("`from` Modules", "#ffffff", "#aa55cc", contents_string)
+        contents_string = multicolumn(list(modules_by_import_from), lambda t: modulelink(t[1]))
+        result_data["from_modules"] = bigsection("`from` Modules", contents_string)
 
     if classes:
         class_list = [value for (key, value) in classes]
@@ -243,23 +230,23 @@ def docmodule(
         contents_list = [format_tree(inspect.getclasstree(class_list, True), name)]
         for key, value in classes:
             contents_list.append(document(value, key, name, function_dict, class_dict))
-        result_data["classes"] = bigsection("Classes", "#ffffff", "#ee77aa", " ".join(contents_list))
+        result_data["classes"] = bigsection("Classes", " ".join(contents_list))
     if funcs:
         contents_list = []
         for key, value in funcs:
             contents_list.append(document(value, key, name, function_dict, class_dict))
-        result_data["functions"] = bigsection("Functions", "#ffffff", "#eeaa77", " ".join(contents_list))
+        result_data["functions"] = bigsection("Functions", " ".join(contents_list))
     if data:
         contents_list = []
         for key, value in data:
             contents_list.append(document(value, key))
-        result_data["data"] = bigsection("Data", "#ffffff", "#55aa55", "<br>\n".join(contents_list))
+        result_data["data"] = bigsection("Data", "<br>\n".join(contents_list))
     if hasattr(the_object, "__author__"):
         contents = markup(str(the_object.__author__))
-        result_data["author"] = bigsection("Author", "#ffffff", "#7799ee", contents)
+        result_data["author"] = bigsection("Author", contents)
     if hasattr(the_object, "__credits__"):
         contents = markup(str(the_object.__credits__))
-        result_data["credits"] = bigsection("Credits", "#ffffff", "#7799ee", contents)
+        result_data["credits"] = bigsection("Credits", contents)
 
     template = JINJA_ENV.get_template("module.jinja2")
     return template.render(**result_data)

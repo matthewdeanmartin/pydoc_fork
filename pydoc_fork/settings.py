@@ -10,8 +10,6 @@ import pathlib
 import sys
 from typing import Any
 
-from pydoc_fork.inspector.custom_types import TypeLike
-
 if sys.version_info >= (3, 11):
     import tomllib
 else:
@@ -19,7 +17,7 @@ else:
 
 LOGGER = logging.getLogger(__name__)
 # pylint: disable=global-statement
-MENTIONED_MODULES: set[tuple[TypeLike, str]] = set()
+MENTIONED_MODULES: set[tuple[Any, str]] = set()
 SKIP_MODULES = ["typing"]
 PREFER_DOCS_PYTHON_ORG = False
 DOCUMENT_INTERNALS = False

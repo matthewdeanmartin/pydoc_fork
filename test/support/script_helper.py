@@ -68,18 +68,18 @@ class _PythonRunResult(collections.namedtuple("_PythonRunResult", ("rc", "out", 
         out = out.decode("ascii", "replace").rstrip()
         err = err.decode("ascii", "replace").rstrip()
         raise AssertionError(
-            "Process return code is %d\n"
-            "command line: %r\n"
+            f"Process return code is {self.rc}\n"
+            f"command line: {cmd_line!r}\n"
             "\n"
             "stdout:\n"
             "---\n"
-            "%s\n"
+            f"{out}\n"
             "---\n"
             "\n"
             "stderr:\n"
             "---\n"
-            "%s\n"
-            "---" % (self.rc, cmd_line, out, err)
+            f"{err}\n"
+            "---"
         )
 
 

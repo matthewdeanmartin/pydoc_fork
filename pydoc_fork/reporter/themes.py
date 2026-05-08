@@ -2,7 +2,6 @@
 Themes definitions
 """
 
-
 THEMES: dict[str, dict[str, str]] = {
     "classic": {
         "bg-color": "#f0f0f8",

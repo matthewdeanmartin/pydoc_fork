@@ -54,7 +54,9 @@ class HTMLRepr(Repr):
             self.escape(test_repr),
         )
 
-    repr_str = repr_string
+    def repr_str(self, x: str, level: int) -> str:
+        """Match reprlib's hook name for strings."""
+        return self.repr_string(x, level)
 
     def repr_instance(self, x: Any, level: int) -> str:
         """Repr, but squash it into a window"""
@@ -65,4 +67,6 @@ class HTMLRepr(Repr):
         except BaseException:
             return self.escape(f"<{x.__class__.__name__} instance>")
 
-    repr_unicode = repr_string
+    def repr_unicode(self, x: str, level: int) -> str:
+        """Compatibility alias for older reprlib integrations."""
+        return self.repr_string(x, level)

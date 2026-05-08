@@ -76,7 +76,7 @@ def import_module(name, deprecated=False, *, required_on=()):
         except ImportError as msg:
             if sys.platform.startswith(tuple(required_on)):
                 raise
-            raise unittest.SkipTest(str(msg))
+            raise unittest.SkipTest(str(msg)) from msg
 
 
 def _save_and_remove_modules(names):

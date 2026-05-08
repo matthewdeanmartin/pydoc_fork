@@ -1,7 +1,7 @@
+import contextlib
 import sys
 
 from pydoc_fork.inspector.module_utils import safe_import
-import contextlib
 
 
 def test_safe_import_mocks_argv(tmp_path):

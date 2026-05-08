@@ -5,9 +5,9 @@ Roughly components
 import logging
 import re
 import sysconfig
-from enum import Enum
-from typing import Any, Union, cast
 from collections.abc import Callable, Sequence
+from enum import Enum
+from typing import Any, cast
 
 import markdown
 
@@ -47,8 +47,6 @@ def escape(value: Any) -> str:
 
 def heading(
     title: str,
-    fgcol: str = "",
-    bgcol: str = "",
     extras: str = "",
     nav_links: Sequence[str] | None = None,
 ) -> str:
@@ -59,8 +57,6 @@ def heading(
 
 def section(
     title: str,
-    fgcol: str = "",
-    bgcol: str = "",
     contents: str = "",
     width: int = 6,  # used by marginalia?
     prelude: str = "",
@@ -84,8 +80,6 @@ def section(
 
 def bigsection(
     title: str,
-    fgcol: str = "",
-    bgcol: str = "",
     contents: str = "",
     width: int = 6,  # used by marginalia?
     prelude: str = "",
@@ -113,7 +107,7 @@ def preformat(text: str) -> str:
 
 
 def multicolumn(
-    the_list: Union[Sequence[tuple[Any, str, Any, int]], Sequence[tuple[str, Any]]],
+    the_list: Sequence[Any],
     the_format: Callable[[Any], str],
     cols: int = 4,
 ) -> str:
@@ -137,7 +131,7 @@ def disabled_text(text: str) -> str:
     return template.render(text=text, color=inline_styles.DISABLED_TEXT)
 
 
-def namelink(name: str, *dicts: dict[str, str]) -> str:
+def namelink(name: str, *dicts: dict[Any, str]) -> str:
     """Make a link for an identifier, given name-to-URL mappings."""
     for the_dict in dicts:
         if name in the_dict:
@@ -179,9 +173,9 @@ class MarkupSyntax(Enum):
 
 def markup(
     text: str,
-    funcs: dict[str, str] | None = None,
-    classes: dict[str, str] | None = None,
-    methods: dict[str, str] | None = None,
+    funcs: dict[Any, str] | None = None,
+    classes: dict[Any, str] | None = None,
+    methods: dict[Any, str] | None = None,
 ) -> str:
     """
     Replace all linkable things with links of appropriate syntax.
@@ -199,6 +193,8 @@ def markup(
         """Does nothing"""
         return _
 
+    _preformat: Callable[[str], str]
+    markup_to_html: Callable[[str], str]
     if syntax == MarkupSyntax.NOTHING:
         _preformat = preformat
         markup_to_html = nothing
@@ -215,7 +211,7 @@ def markup(
 
     results = []
     here = 0
-    pattern = re.compile(r"\b((http|https|ftp)://\S+[\w/]|" r"RFC[- ]?(\d+)|" r"PEP[- ]?(\d+)|" r"(self\.)?(\w+))")
+    pattern = re.compile(r"\b((http|https|ftp)://\S+[\w/]|RFC[- ]?(\d+)|PEP[- ]?(\d+)|(self\.)?(\w+))")
     while True:
         match = pattern.search(text, here)
         if not match:

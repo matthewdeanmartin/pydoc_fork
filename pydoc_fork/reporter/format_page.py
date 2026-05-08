@@ -4,7 +4,7 @@ Roughly page and top level containers
 
 import inspect
 import pkgutil
-from typing import Any
+from typing import Any, cast
 
 from pydoc_fork.inspector.custom_types import TypeLike
 from pydoc_fork.reporter.format_class import docclass
@@ -21,7 +21,7 @@ from pydoc_fork.reporter.formatter_html import (
 from pydoc_fork.reporter.jinja_code import JINJA_ENV
 
 
-def render(title: str, the_object: TypeLike, name: str) -> str:
+def render(title: str, the_object: Any, name: str) -> str:
     """Compose two functions"""
     return page(title, document(the_object, name))
 
@@ -36,7 +36,7 @@ def page(title: str, contents: str) -> str:
     return result
 
 
-def document(the_object: TypeLike, name: str = "", *args: Any) -> str:  # Null safety
+def document(the_object: Any, name: str = "", *args: Any) -> str:  # Null safety
     """Generate documentation for an object.
     This also part of the public API of class
 
@@ -57,7 +57,7 @@ def document(the_object: TypeLike, name: str = "", *args: Any) -> str:  # Null s
     # by lacking a __name__ attribute) and an instance.
     # try:
     if inspect.ismodule(the_object):
-        return docmodule(the_object)
+        return docmodule(cast(TypeLike, the_object))
     if inspect.isclass(the_object):
         return docclass(*args)
     if inspect.isroutine(the_object):
@@ -65,7 +65,7 @@ def document(the_object: TypeLike, name: str = "", *args: Any) -> str:  # Null s
     # except AttributeError:
     #     pass  # nosec
     if inspect.isdatadescriptor(the_object):
-        return document_data(the_object, name)
+        return document_data(cast(TypeLike, the_object), name)
     return docother(the_object, name)
 
 
@@ -74,9 +74,6 @@ def docindex(modules: list) -> str:
     result_data = {
         "heading_html": heading(
             "Module Index",
-            "",
-            "",
-            "",
             nav_links=[],
         ),
         "modules": modules,
@@ -100,4 +97,4 @@ def index(directory: str, shadowed: dict[str, Any] | None = None) -> str:
 
     module_packages.sort()
     contents = multicolumn(module_packages, module_package_link)
-    return bigsection(directory, "#ffffff", "#ee77aa", contents)
+    return bigsection(directory, contents)

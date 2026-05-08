@@ -1,5 +1,3 @@
 import platform
 
-print(
-    f"{platform.python_implementation()} {platform.python_version()}"
-)
+print(f"{platform.python_implementation()} {platform.python_version()}")

@@ -2,7 +2,6 @@
 Custom Types so mypy can check the code
 """
 
-
 from typing_extensions import Protocol
 
 

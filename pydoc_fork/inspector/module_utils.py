@@ -9,6 +9,7 @@ import importlib._bootstrap
 
 # noinspection PyProtectedMember
 import importlib._bootstrap_external
+import importlib.abc
 import importlib.machinery
 import importlib.util
 import logging
@@ -44,6 +45,7 @@ def importfile(path: str) -> TypeLike:
         is_bytecode = magic == file.read(len(magic))
     filename = os.path.basename(path)
     name, _ = os.path.splitext(filename)
+    loader: importlib.abc.Loader
     if is_bytecode:
         loader = importlib._bootstrap_external.SourcelessFileLoader(name, path)
     else:
@@ -51,7 +53,12 @@ def importfile(path: str) -> TypeLike:
     # XXX We probably don't need to pass in the loader here.
     spec = importlib.util.spec_from_file_location(name, path, loader=loader)
     try:
-        return cast(TypeLike, importlib._bootstrap._load(spec))
+        if spec is None or spec.loader is None:
+            raise ImportError(f"Unable to build an import spec for {path}")
+        module = importlib.util.module_from_spec(spec)
+        sys.modules[name] = module
+        spec.loader.exec_module(module)
+        return cast(TypeLike, module)
     # pylint: disable=broad-except
     except BaseException as import_error:
         LOGGER.warning("Skipping importfile for %s at %s, got a %s", name, path, import_error)
@@ -111,7 +118,7 @@ def safe_import(
             # MR : this isn't null safe.
             LOGGER.warning("Skipping safe_import for %s, got a %s", path, exc)
             raise ImportTimeError(cast(SyntaxError, value).filename, info) from import_error
-        if issubclass(exc, ImportError) and cast(ImportError, value).name == path:
+        if isinstance(exc, type) and issubclass(exc, ImportError) and cast(ImportError, value).name == path:
             LOGGER.warning("Skipping safe_import for %s, got a %s", path, import_error)
             LOGGER.warning("Cannot import this path: %s", path)
             # No such module in the path.

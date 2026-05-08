@@ -6,9 +6,8 @@ import inspect
 import logging
 import re
 import sys
-from modulefinder import Module
-from typing import Any, Union, cast
 from collections.abc import Callable, Sequence
+from typing import Any, Union, cast
 
 from pydoc_fork.inspector.custom_types import TypeLike
 from pydoc_fork.inspector.module_utils import locate
@@ -54,7 +53,7 @@ def describe(thing: TypeLike) -> str:
     return type(thing).__name__
 
 
-def _find_class(func: TypeLike) -> Module | None:
+def _find_class(func: TypeLike) -> type[Any] | None:
     """Find a Class"""
     cls = sys.modules.get(func.__module__)
     if cls is None:
@@ -63,7 +62,7 @@ def _find_class(func: TypeLike) -> Module | None:
         cls = getattr(cls, name)
     if not inspect.isclass(cls):
         return None
-    return cls  # type: ignore
+    return cls
 
 
 def _find_doc_string(obj: TypeLike) -> str | None:
@@ -84,11 +83,7 @@ def _find_doc_string(obj: TypeLike) -> str | None:
     elif inspect.isbuiltin(obj):
         name = obj.__name__
         self = obj.__self__
-        cls = (
-            self
-            if inspect.isclass(self) and self.__qualname__ + "." + name == obj.__qualname__
-            else self.__class__
-        )
+        cls = self if inspect.isclass(self) and self.__qualname__ + "." + name == obj.__qualname__ else self.__class__
         # if inspect.isclass(self) and self.__qualname__ + "." + name == obj.__qualname__:
         #     # class_method
         #     cls = self
@@ -97,6 +92,8 @@ def _find_doc_string(obj: TypeLike) -> str | None:
     # Should be tested before isdatadescriptor().
     elif isinstance(obj, property):
         func = obj.fget
+        if func is None:
+            return None
         name = func.__name__
         cls = _find_class(cast(TypeLike, func))
         if cls is None or getattr(cls, name) is not obj:
@@ -169,7 +166,7 @@ def getdoc(the_object: TypeLike) -> str:
     return (result and re.sub("^ *\n", "", result.rstrip())) or ""
 
 
-def classname(the_object: TypeLike, modname: str) -> str:
+def classname(the_object: Union[TypeLike, type], modname: str) -> str:
     """Get a class name and qualify it with a module name if necessary."""
     name = the_object.__name__
     if the_object.__module__ != modname:
@@ -275,16 +272,17 @@ def visiblename(name: str, all_things: list[str] | None = None, obj: Any | None 
 
 def classify_class_attrs(the_object: TypeLike) -> list[tuple[str, str, type, object]]:
     """Wrap inspect.classify_class_attrs, with fixup for data descriptors."""
-    results = []
+    results: list[tuple[str, str, type, object]] = []
     try:
         for name, kind, cls, value in inspect.classify_class_attrs(cast(type, the_object)):
+            kind_name: str = kind
             if inspect.isdatadescriptor(value):
-                kind = "data descriptor"
+                kind_name = "data descriptor"
                 if isinstance(value, property) and value.fset is None:
-                    kind = "readonly property"
-            results.append((name, kind, cls, value))
+                    kind_name = "readonly property"
+            results.append((name, kind_name, cls, value))
     except ValueError:
-        LOGGER.warning(f"Skipping classify_class_attrs for {the_object!s} got ValueError, maybe this is a Namespace")
+        LOGGER.warning("Skipping classify_class_attrs for %s got ValueError, maybe this is a Namespace", the_object)
         # py._xmlgen.Namespace
         # ValueError: Namespace class is abstract
     return results

@@ -133,7 +133,7 @@ def start_threads(threads, unlock=None):
                 started.append(t)
         except:
             if support.verbose:
-                print("Can't start %d threads, only %d threads started" % (len(threads), len(started)))
+                print(f"Can't start {len(threads)} threads, only {len(started)} threads started")
             raise
         yield
     finally:
@@ -149,12 +149,12 @@ def start_threads(threads, unlock=None):
                 if not started:
                     break
                 if support.verbose:
-                    print("Unable to join %d threads during a period of " "%d minutes" % (len(started), timeout))
+                    print(f"Unable to join {len(started)} threads during a period of {timeout} minutes")
         finally:
             started = [t for t in started if t.is_alive()]
             if started:
                 faulthandler.dump_traceback(sys.stdout)
-                raise AssertionError("Unable to join %d threads" % len(started))
+                raise AssertionError(f"Unable to join {len(started)} threads")
 
 
 class catch_threading_exception:

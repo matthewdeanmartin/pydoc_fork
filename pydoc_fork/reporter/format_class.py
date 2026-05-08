@@ -7,8 +7,8 @@ import contextlib
 import inspect
 import sys
 from collections import deque
-from typing import Any, Union, cast
 from collections.abc import Callable
+from typing import Any, Union, cast
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -30,7 +30,7 @@ from pydoc_fork.reporter.jinja_code import JINJA_ENV
 def classlink(the_object: Union[TypeLike, type], modname: str) -> str:
     """Make a link for a class."""
     name, module = the_object.__name__, sys.modules.get(the_object.__module__)
-    if hasattr(module, name) and getattr(module, name) is the_object:
+    if module is not None and hasattr(module, name) and getattr(module, name) is the_object:
         return f'<a href="{module.__name__}.html#{name}">{classname(cast(TypeLike, the_object), modname)}</a>'
     return classname(the_object, modname)
 
@@ -163,11 +163,11 @@ def docclass(
         if visiblename(name, obj=the_object)
     ]
 
-    module_dict = {}
+    module_dict: dict[Any, str] = {}
     for key, _, _, value in attrs:
         module_dict[key] = anchor = "#" + name + "-" + key
         with contextlib.suppress(Exception):
-            value = getattr(the_object, name)
+            value = getattr(the_object, key)
         with contextlib.suppress(TypeError):
             # The value may not be hashable (e.g., a data attr with
             # a dict or list value).
@@ -223,13 +223,13 @@ def docclass(
         title = f'<strong>{name}</strong> = <a name="{name}">class {real_name}</a>'
     if bases:
         parents = []
-        for base in bases:
-            parents.append(classlink(base, the_object.__module__))
+        for base_class in bases:
+            parents.append(classlink(base_class, the_object.__module__))
         title = title + f"({', '.join(parents)})"
 
     decl = ""
     try:
-        signature = inspect.signature(the_object)
+        signature = inspect.signature(cast(Any, the_object))
     except (ValueError, TypeError):
         signature = None
     if signature:
@@ -245,7 +245,7 @@ def docclass(
     doc = markup(doc, funcs, classes, module_dict)
     doc = doc and f"<tt>{doc}<br>&nbsp;</tt>"
 
-    section_html = section(title, "#000000", "#ffc8d8", contents_as_string, 3, doc)
+    section_html = section(title, contents_as_string, 3, doc)
     template = JINJA_ENV.get_template("class.jinja2")
     return template.render(section_html=section_html)
 
@@ -272,6 +272,6 @@ def format_tree(tree: list[Any], modname: str, parent: Any | None = None) -> str
             result = result + "\n</span></dt>"
 
         elif type(entry) is type([]):
-            tree = format_tree(entry, modname, class_object)
-            result = result + f"<dd>\n{tree}</dd>\n"
+            nested_tree = format_tree(entry, modname, class_object)
+            result = result + f"<dd>\n{nested_tree}</dd>\n"
     return f"<dl>\n{result}</dl>\n"

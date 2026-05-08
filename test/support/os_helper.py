@@ -10,11 +10,7 @@ import unittest
 import warnings
 
 # Filename used for testing
-if os.name == "java":
-    # Jython disallows @ in module names
-    TESTFN_ASCII = "$test"
-else:
-    TESTFN_ASCII = "@test"
+TESTFN_ASCII = "$test" if os.name == "java" else "@test"
 
 # Disambiguate TESTFN for parallel testing, while letting it remain a valid
 # module name.
@@ -151,7 +147,7 @@ def make_bad_fd():
     Create an invalid file descriptor by opening and closing a file and return
     its fd.
     """
-    file = open(TESTFN, "wb")
+    file = open(TESTFN, "wb")  # noqa: SIM115
     try:
         return file.fileno()
     finally:
@@ -485,7 +481,9 @@ class FakePath:
         return f"<FakePath {self.path!r}>"
 
     def __fspath__(self):
-        if isinstance(self.path, BaseException) or (isinstance(self.path, type) and issubclass(self.path, BaseException)):
+        if isinstance(self.path, BaseException) or (
+            isinstance(self.path, type) and issubclass(self.path, BaseException)
+        ):
             raise self.path
         else:
             return self.path
@@ -514,7 +512,8 @@ def fd_count():
         try:
             import msvcrt
 
-            msvcrt.CrtSetReportMode
+            if not hasattr(msvcrt, "CrtSetReportMode"):
+                raise AttributeError
         except (AttributeError, ImportError):
             # no msvcrt or a release build
             pass
@@ -609,4 +608,4 @@ class EnvironmentVarGuard(collections.abc.MutableMapping):
                     del self._environ[k]
             else:
                 self._environ[k] = v
-        os.environ = self._environ
+        os.environ = self._environ  # noqa: B003
