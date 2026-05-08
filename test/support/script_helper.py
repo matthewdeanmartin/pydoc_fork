@@ -87,10 +87,7 @@ class _PythonRunResult(collections.namedtuple("_PythonRunResult", ("rc", "out", 
 def run_python_until_end(*args, **env_vars):
     env_required = interpreter_requires_environment()
     cwd = env_vars.pop("__cwd", None)
-    if "__isolated" in env_vars:
-        isolated = env_vars.pop("__isolated")
-    else:
-        isolated = not env_vars and not env_required
+    isolated = env_vars.pop("__isolated") if "__isolated" in env_vars else not env_vars and not env_required
     cmd_line = [sys.executable, "-X", "faulthandler"]
     if isolated:
         # isolated mode: ignore Python environment variables, ignore user

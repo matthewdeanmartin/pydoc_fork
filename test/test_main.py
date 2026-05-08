@@ -11,5 +11,5 @@ def test_process_docopts():
         "--quiet": False,
         "--verbose": True,
     }
-    with patch("docopt.docopt", return_value=anything) as mock:
+    with patch("docopt.docopt", return_value=anything):
         main.main()

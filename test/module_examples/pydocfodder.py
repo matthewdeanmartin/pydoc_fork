@@ -115,7 +115,7 @@ class D_classic(B_classic, C_classic):
         "Method defined in D."
 
 
-class A_new(object):
+class A_new:
     "A new-style class."
 
     def A_method(self):
@@ -250,7 +250,7 @@ class D_new(B_new, C_new):
         "Method defined in D."
 
 
-class FunkyProperties(object):
+class FunkyProperties:
     """From SF bug 472347, by Roeland Rengelink.
 
     Property getters etc may not be vanilla functions or methods,

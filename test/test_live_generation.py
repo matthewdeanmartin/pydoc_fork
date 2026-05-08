@@ -46,5 +46,5 @@ def test_cli():
             for file in filtered_files:
                 path_to_file = os.path.join(".", file)
                 os.remove(path_to_file)
-        except:
+        except OSError:
             pass

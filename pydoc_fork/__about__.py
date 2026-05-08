@@ -1,18 +1,18 @@
 """Metadata for pydoc_fork."""
 
 __all__ = [
-    "__title__",
-    "__version__",
-    "__description__",
     "__author__",
     "__author_email__",
+    "__description__",
+    "__documentation__",
+    "__homepage__",
     "__keywords__",
-    "__status__",
     "__license__",
     "__readme__",
     "__repository__",
-    "__homepage__",
-    "__documentation__",
+    "__status__",
+    "__title__",
+    "__version__",
 ]
 
 __title__ = "pydoc_fork"

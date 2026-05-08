@@ -8,18 +8,18 @@ import logging
 import os
 import pathlib
 import sys
-from typing import Any, Dict, Optional, Set, Tuple
+from typing import Any
+
+from pydoc_fork.inspector.custom_types import TypeLike
 
 if sys.version_info >= (3, 11):
     import tomllib
 else:
     import tomli as tomllib
 
-from pydoc_fork.inspector.custom_types import TypeLike
-
 LOGGER = logging.getLogger(__name__)
 # pylint: disable=global-statement
-MENTIONED_MODULES: Set[Tuple[TypeLike, str]] = set()
+MENTIONED_MODULES: set[tuple[TypeLike, str]] = set()
 SKIP_MODULES = ["typing"]
 PREFER_DOCS_PYTHON_ORG = False
 DOCUMENT_INTERNALS = False
@@ -29,9 +29,11 @@ PROJECT_NAME = "Python Project"
 
 OUTPUT_FOLDER = ""
 THEME = "classic"
-CUSTOM_TEMPLATES: Optional[str] = None
+CUSTOM_TEMPLATES: str | None = None
 
-PYTHONDOCS = os.environ.get("PYTHONDOCS", "https://docs.python.org/%d.%d/library" % sys.version_info[:2])
+PYTHONDOCS = os.environ.get(
+    "PYTHONDOCS", f"https://docs.python.org/{sys.version_info[0]}.{sys.version_info[1]}/library"
+)
 """Module docs for core modules are assumed to be in
 
     https://docs.python.org/X.Y/library/
@@ -41,7 +43,7 @@ to a different URL or to a local directory containing the Library
 Reference Manual pages."""
 
 
-def load_config(path: Optional[str]):
+def load_config(path: str | None):
     """Copy config from toml to globals"""
     global PREFER_DOCS_PYTHON_ORG
     global DOCUMENT_INTERNALS
@@ -54,7 +56,7 @@ def load_config(path: Optional[str]):
 
     pairs = parse_toml(path)
     if pairs:
-        LOGGER.debug(f"Found config at {path}")
+        LOGGER.debug("Found config at %s", path)
     PREFER_DOCS_PYTHON_ORG = pairs.get("PREFER_DOCS_PYTHON_ORG", False)
     DOCUMENT_INTERNALS = pairs.get("DOCUMENT_INTERNALS", True)
     SKIP_MODULES = pairs.get("SKIP_MODULES", ["typing"])
@@ -65,12 +67,9 @@ def load_config(path: Optional[str]):
     PROJECT_NAME = pairs.get("PROJECT_NAME", "Python Project")
 
 
-def parse_toml(path_string: Optional[str]) -> Dict[str, Any]:
+def parse_toml(path_string: str | None) -> dict[str, Any]:
     """Parse toml"""
-    if not path_string:
-        path = pathlib.Path(os.getcwd())
-    else:
-        path = pathlib.Path(path_string)
+    path = pathlib.Path(os.getcwd()) if not path_string else pathlib.Path(path_string)
     toml_path = path / "pyproject.toml"
     if not toml_path.exists():
         return {}

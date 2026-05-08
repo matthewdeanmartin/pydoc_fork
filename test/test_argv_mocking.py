@@ -1,6 +1,7 @@
 import sys
 
 from pydoc_fork.inspector.module_utils import safe_import
+import contextlib
 
 
 def test_safe_import_mocks_argv(tmp_path):
@@ -41,10 +42,8 @@ def test_safe_import_restores_argv_on_error(tmp_path):
     sys.path.insert(0, str(tmp_path))
     try:
         original_argv = sys.argv
-        try:
+        with contextlib.suppress(Exception):
             safe_import("error_argv_module.__main__")
-        except Exception:
-            pass
 
         # Check that sys.argv was restored even after error
         assert sys.argv == original_argv

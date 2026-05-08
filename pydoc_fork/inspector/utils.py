@@ -7,7 +7,8 @@ import logging
 import re
 import sys
 from modulefinder import Module
-from typing import Any, Callable, List, Optional, Sequence, Tuple, Union, cast
+from typing import Any, Union, cast
+from collections.abc import Callable, Sequence
 
 from pydoc_fork.inspector.custom_types import TypeLike
 from pydoc_fork.inspector.module_utils import locate
@@ -15,13 +16,13 @@ from pydoc_fork.inspector.module_utils import locate
 LOGGER = logging.getLogger(__name__)
 
 
-def resolve(thing: Union[str, Any], force_load: bool = False) -> Tuple[Any, Any]:
+def resolve(thing: Union[str, Any], force_load: bool = False) -> tuple[Any, Any]:
     """Given an object or a path to an object, get the object and its name."""
     if isinstance(thing, str):
         the_object = locate(thing, force_load)
         if the_object is None:
-            raise ImportError("""\
-No Python documentation found for %r.""" % thing)
+            raise ImportError(f"""\
+No Python documentation found for {thing!r}.""")
         return the_object, thing
 
     name = getattr(thing, "__name__", None)
@@ -53,7 +54,7 @@ def describe(thing: TypeLike) -> str:
     return type(thing).__name__
 
 
-def _find_class(func: TypeLike) -> Optional[Module]:
+def _find_class(func: TypeLike) -> Module | None:
     """Find a Class"""
     cls = sys.modules.get(func.__module__)
     if cls is None:
@@ -65,7 +66,7 @@ def _find_class(func: TypeLike) -> Optional[Module]:
     return cls  # type: ignore
 
 
-def _find_doc_string(obj: TypeLike) -> Optional[str]:
+def _find_doc_string(obj: TypeLike) -> str | None:
     """Find doc string"""
     if inspect.ismethod(obj):
         name = obj.__func__.__name__
@@ -83,11 +84,16 @@ def _find_doc_string(obj: TypeLike) -> Optional[str]:
     elif inspect.isbuiltin(obj):
         name = obj.__name__
         self = obj.__self__
-        if inspect.isclass(self) and self.__qualname__ + "." + name == obj.__qualname__:
-            # class_method
-            cls = self
-        else:
-            cls = self.__class__
+        cls = (
+            self
+            if inspect.isclass(self) and self.__qualname__ + "." + name == obj.__qualname__
+            else self.__class__
+        )
+        # if inspect.isclass(self) and self.__qualname__ + "." + name == obj.__qualname__:
+        #     # class_method
+        #     cls = self
+        # else:
+        #     cls = self.__class__
     # Should be tested before isdatadescriptor().
     elif isinstance(obj, property):
         func = obj.fget
@@ -129,7 +135,7 @@ def _get_own_doc_string(obj: TypeLike) -> str:
                 return ""  # null safety
         return cast(str, doc)
     except AttributeError:
-        LOGGER.debug(f"No docstring for {str(obj)}")
+        LOGGER.debug("No docstring for %s", obj)
         return ""  # null safety
 
 
@@ -160,7 +166,7 @@ def _getdoc(the_object: TypeLike) -> str:
 def getdoc(the_object: TypeLike) -> str:
     """Get the doc string or comments for an object."""
     result = _getdoc(the_object) or inspect.getcomments(the_object)
-    return result and re.sub("^ *\n", "", result.rstrip()) or ""
+    return (result and re.sub("^ *\n", "", result.rstrip())) or ""
 
 
 def classname(the_object: TypeLike, modname: str) -> str:
@@ -208,7 +214,7 @@ def _is_bound_method(the_function: object) -> bool:
 #     return methods
 
 
-def _split_list(the_sequence: Sequence[Any], predicate: Callable[[Any], Any]) -> Tuple[List[Any], List[Any]]:
+def _split_list(the_sequence: Sequence[Any], predicate: Callable[[Any], Any]) -> tuple[list[Any], list[Any]]:
     """Split sequence s via predicate, and return pair ([true], [false]).
 
     The return value is a 2-tuple of lists,
@@ -227,7 +233,7 @@ def _split_list(the_sequence: Sequence[Any], predicate: Callable[[Any], Any]) ->
     return yes, no
 
 
-def visiblename(name: str, all_things: Optional[List[str]] = None, obj: Optional[Any] = None) -> bool:
+def visiblename(name: str, all_things: list[str] | None = None, obj: Any | None = None) -> bool:
     """Decide whether to show documentation on a variable."""
     # Certain special names are redundant or internal.
     # XXX Remove __initializing__?
@@ -267,7 +273,7 @@ def visiblename(name: str, all_things: Optional[List[str]] = None, obj: Optional
     return not name.startswith("_")
 
 
-def classify_class_attrs(the_object: TypeLike) -> List[Tuple[str, str, type, object]]:
+def classify_class_attrs(the_object: TypeLike) -> list[tuple[str, str, type, object]]:
     """Wrap inspect.classify_class_attrs, with fixup for data descriptors."""
     results = []
     try:
@@ -278,13 +284,13 @@ def classify_class_attrs(the_object: TypeLike) -> List[Tuple[str, str, type, obj
                     kind = "readonly property"
             results.append((name, kind, cls, value))
     except ValueError:
-        LOGGER.warning(f"Skipping classify_class_attrs for {str(the_object)} got ValueError, maybe this is a Namespace")
+        LOGGER.warning(f"Skipping classify_class_attrs for {the_object!s} got ValueError, maybe this is a Namespace")
         # py._xmlgen.Namespace
         # ValueError: Namespace class is abstract
     return results
 
 
-def sort_attributes(attrs: List[Any], the_object: Union[TypeLike, type]) -> None:
+def sort_attributes(attrs: list[Any], the_object: Union[TypeLike, type]) -> None:
     """Sort the attrs list in-place by _fields and then alphabetically by name"""
     # This allows data descriptors to be ordered according
     # to a _fields attribute if present.
@@ -294,7 +300,7 @@ def sort_attributes(attrs: List[Any], the_object: Union[TypeLike, type]) -> None
     except TypeError:
         field_order = {}
 
-    def key_function(attr: List[Any]) -> Tuple[Any, Any]:
+    def key_function(attr: list[Any]) -> tuple[Any, Any]:
         """Sorting function"""
         return field_order.get(attr[0], 0), attr[0]
 

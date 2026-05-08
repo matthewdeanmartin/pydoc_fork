@@ -27,10 +27,8 @@ def _ignore_deprecated_imports(ignore=True):
 
 
 def unload(name):
-    try:
+    with contextlib.suppress(KeyError):
         del sys.modules[name]
-    except KeyError:
-        pass
 
 
 def forget(modname):
@@ -166,7 +164,7 @@ def import_fresh_module(
             sys.modules.update(orig_modules)
 
 
-class CleanImport(object):
+class CleanImport:
     """Context manager to force import to return a new module reference.
 
     This is useful for testing module-level behaviours, such as
@@ -204,7 +202,7 @@ class CleanImport(object):
         self._frozen_modules.__exit__(*ignore_exc)
 
 
-class DirsOnSysPath(object):
+class DirsOnSysPath:
     """Context manager to temporarily add directories to sys.path.
 
     This makes a copy of sys.path, appends any directories given

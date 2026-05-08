@@ -18,11 +18,11 @@ Richard Chamberlain, for the first implementation of textdoc.
 #     path will be displayed.
 from pydoc_fork.commands import *  # noqa
 
-# from pydoc_fork.formatter_html import *  # noqa
-# from pydoc_fork.module_utils import *  # noqa
-# from pydoc_fork.path_utils import *  # noqa
-# from pydoc_fork.string_utils import *  # noqa
-# from pydoc_fork.utils import *  # noqa
+# from pydoc_fork.formatter_html import *
+# from pydoc_fork.module_utils import *
+# from pydoc_fork.path_utils import *
+# from pydoc_fork.string_utils import *
+# from pydoc_fork.utils import *
 
 # forgot why I needed this
-# __spec__ = "123"  # noqa
+# __spec__ = "123"

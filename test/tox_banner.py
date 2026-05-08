@@ -1,8 +1,5 @@
 import platform
 
 print(
-    "{} {}".format(
-        platform.python_implementation(),
-        platform.python_version(),
-    )
+    f"{platform.python_implementation()} {platform.python_version()}"
 )

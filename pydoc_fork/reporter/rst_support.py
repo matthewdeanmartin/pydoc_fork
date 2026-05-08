@@ -3,7 +3,7 @@ Rst to HTML function
 Credits: https://stackoverflow.com/a/49047197/33264
 """
 
-from typing import Any, List
+from typing import Any
 
 from docutils import core
 from docutils.writers.html4css1 import HTMLTranslator, Writer
@@ -16,9 +16,9 @@ class HTMLFragmentTranslator(HTMLTranslator):
         """setup"""
         HTMLTranslator.__init__(self, document)
         self.head_prefix = ["", "", "", "", ""]
-        self.body_prefix: List[Any] = []
-        self.body_suffix: List[Any] = []
-        self.stylesheet: List[Any] = []
+        self.body_prefix: list[Any] = []
+        self.body_suffix: list[Any] = []
+        self.stylesheet: list[Any] = []
 
     def astext(self) -> str:
         """minimum to call docutils"""

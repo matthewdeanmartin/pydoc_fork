@@ -39,7 +39,7 @@ class RegressionTestResult(unittest.TextTestResult):
     def startTest(self, test):
         super().startTest(test)
         if self.USE_XML:
-            self.__e = e = self.__ET.SubElement(self.__suite, "testcase")
+            self.__e = self.__ET.SubElement(self.__suite, "testcase")
         self.__start_time = time.perf_counter()
 
     def _add_result(self, test, capture=False, **args):

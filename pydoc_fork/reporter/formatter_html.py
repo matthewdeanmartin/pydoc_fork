@@ -6,7 +6,8 @@ import logging
 import re
 import sysconfig
 from enum import Enum
-from typing import Any, Callable, Dict, Optional, Sequence, Tuple, Union, cast
+from typing import Any, Union, cast
+from collections.abc import Callable, Sequence
 
 import markdown
 
@@ -26,13 +27,13 @@ STDLIB_BASEDIR = cast(str, sysconfig.get_path("stdlib"))
 
 
 # monkey patching was messing with mypy-- is this now a redeclare?
-def html_repr(value: Any) -> str:  # noqa - unhiding could break code?
+def html_repr(value: Any) -> str:
     """Turn method into function"""
     _repr_instance = HTMLRepr()
     try:
         return _repr_instance.repr(value)
     except Exception as exception:
-        return f"No representation, got {str(exception)}"
+        return f"No representation, got {exception!s}"
 
 
 def escape(value: Any) -> str:
@@ -49,7 +50,7 @@ def heading(
     fgcol: str = "",
     bgcol: str = "",
     extras: str = "",
-    nav_links: Optional[Sequence[str]] = None,
+    nav_links: Sequence[str] | None = None,
 ) -> str:
     """Format a page heading."""
     template = JINJA_ENV.get_template("heading.jinja2")
@@ -112,7 +113,7 @@ def preformat(text: str) -> str:
 
 
 def multicolumn(
-    the_list: Union[Sequence[Tuple[Any, str, Any, int]], Sequence[Tuple[str, Any]]],
+    the_list: Union[Sequence[tuple[Any, str, Any, int]], Sequence[tuple[str, Any]]],
     the_format: Callable[[Any], str],
     cols: int = 4,
 ) -> str:
@@ -136,7 +137,7 @@ def disabled_text(text: str) -> str:
     return template.render(text=text, color=inline_styles.DISABLED_TEXT)
 
 
-def namelink(name: str, *dicts: Dict[str, str]) -> str:
+def namelink(name: str, *dicts: dict[str, str]) -> str:
     """Make a link for an identifier, given name-to-URL mappings."""
     for the_dict in dicts:
         if name in the_dict:
@@ -145,7 +146,7 @@ def namelink(name: str, *dicts: Dict[str, str]) -> str:
     return name
 
 
-def module_package_link(module_package_info: Tuple[str, str, str, str]) -> str:
+def module_package_link(module_package_info: tuple[str, str, str, str]) -> str:
     """Make a link for a module or package to display in an index."""
     name, path, ispackage, shadowed = module_package_info
     try:
@@ -156,15 +157,9 @@ def module_package_link(module_package_info: Tuple[str, str, str, str]) -> str:
     if shadowed:
         return disabled_text(name)
 
-    if path:
-        url = f"{path}.{name}.html"
-    else:
-        url = f"{name}.html"
+    url = f"{path}.{name}.html" if path else f"{name}.html"
 
-    if ispackage:
-        text = f"<strong>{name}</strong>&nbsp;(package)"
-    else:
-        text = name
+    text = f"<strong>{name}</strong>&nbsp;(package)" if ispackage else name
 
     return f'<a href="{url}">{text}</a>'
 
@@ -184,9 +179,9 @@ class MarkupSyntax(Enum):
 
 def markup(
     text: str,
-    funcs: Optional[Dict[str, str]] = None,
-    classes: Optional[Dict[str, str]] = None,
-    methods: Optional[Dict[str, str]] = None,
+    funcs: dict[str, str] | None = None,
+    classes: dict[str, str] | None = None,
+    methods: dict[str, str] | None = None,
 ) -> str:
     """
     Replace all linkable things with links of appropriate syntax.
@@ -234,10 +229,10 @@ def markup(
             url = _preformat(the_all).replace('"', "&quot;")
             results.append(f'<a href="{url}">{url}</a>')
         elif rfc:
-            url = "https://www.rfc-editor.org/rfc/rfc%d.txt" % int(rfc)
+            url = f"https://www.rfc-editor.org/rfc/rfc{int(rfc)}.txt"
             results.append(f'<a href="{url}">{_preformat(the_all)}</a>')
         elif pep:
-            url = "https://www.python.org/dev/peps/pep-%04d/" % int(pep)
+            url = f"https://www.python.org/dev/peps/pep-{int(pep):04d}/"
             results.append(f'<a href="{url}">{_preformat(the_all)}</a>')
         elif self_dot:
             # Create a link for methods like 'self.method(...)'

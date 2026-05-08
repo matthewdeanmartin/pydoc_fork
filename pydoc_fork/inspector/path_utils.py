@@ -5,12 +5,11 @@ Path Manipulation
 import logging
 import os
 import sys
-from typing import List, Optional
 
 LOGGER = logging.getLogger(__name__)
 
 
-def _get_revised_path(current_python_path: List[str], script_path: str) -> Optional[List[str]]:
+def _get_revised_path(current_python_path: list[str], script_path: str) -> list[str] | None:
     """Ensures current directory is on returned path, and argv0 directory is not
 
     Exception: argv0 dir is left alone if it's also pydoc's directory.

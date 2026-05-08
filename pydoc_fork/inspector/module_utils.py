@@ -14,7 +14,7 @@ import importlib.util
 import logging
 import os
 import sys
-from typing import Any, Dict, Optional, Tuple, cast
+from typing import Any, cast
 
 from pydoc_fork.inspector.custom_types import TypeLike
 
@@ -24,7 +24,7 @@ LOGGER = logging.getLogger(__name__)
 class ImportTimeError(Exception):
     """Errors that occurred while trying to import something to document it."""
 
-    def __init__(self, filename: Optional[str], exc_info: Tuple[Any, Any, Any]) -> None:
+    def __init__(self, filename: str | None, exc_info: tuple[Any, Any, Any]) -> None:
         """Set up"""
         self.filename = filename
         # pylint: disable=invalid-name
@@ -54,7 +54,7 @@ def importfile(path: str) -> TypeLike:
         return cast(TypeLike, importlib._bootstrap._load(spec))
     # pylint: disable=broad-except
     except BaseException as import_error:
-        LOGGER.warning(f"Skipping importfile for {name} at {path}, got a {import_error}")
+        LOGGER.warning("Skipping importfile for %s at %s, got a %s", name, path, import_error)
         raise ImportTimeError(path, sys.exc_info()) from import_error
 
 
@@ -62,7 +62,7 @@ def importfile(path: str) -> TypeLike:
 def safe_import(
     path: str,
     force_load: bool = False,
-    cache: Dict[str, Any] = {},  # noqa - this is mutable on purpose!
+    cache: dict[str, Any] = {},  # noqa - this is mutable on purpose!
 ) -> Any:
     """
     Import a module; handle errors; return None if the module isn't found.
@@ -78,18 +78,17 @@ def safe_import(
         # disk, we always have to reload the module.  Checking the file's
         # mtime isn't good enough (e.g. the module could contain a class
         # that inherits from another module that has changed).
-        if force_load and path in sys.modules:
-            if path not in sys.builtin_module_names:
-                # Remove the module from sys.modules and re-import to try
-                # and avoid problems with partially loaded modules.
-                # Also remove any submodules because they won't appear
-                # in the newly loaded module's namespace if they're already
-                # in sys.modules.
-                subs = [m for m in sys.modules if m.startswith(path + ".")]
-                for key in [path] + subs:
-                    # Prevent garbage collection.
-                    cache[key] = sys.modules[key]
-                    del sys.modules[key]
+        if force_load and path in sys.modules and path not in sys.builtin_module_names:
+            # Remove the module from sys.modules and re-import to try
+            # and avoid problems with partially loaded modules.
+            # Also remove any submodules because they won't appear
+            # in the newly loaded module's namespace if they're already
+            # in sys.modules.
+            subs = [m for m in sys.modules if m.startswith(path + ".")]
+            for key in [path, *subs]:
+                # Prevent garbage collection.
+                cache[key] = sys.modules[key]
+                del sys.modules[key]
 
         # MR: mock sys.argv so that imported modules don't try to parse our args
         # This is a common problem with __main__.py files.
@@ -105,26 +104,26 @@ def safe_import(
         exc, value, _ = info = sys.exc_info()
         if path in sys.modules:
             # An error occurred while executing the imported module.
-            LOGGER.warning(f"Skipping safe_import for {path}, got a {import_error}")
+            LOGGER.warning("Skipping safe_import for %s, got a %s", path, import_error)
             raise ImportTimeError(sys.modules[path].__file__, info) from import_error
         if exc is SyntaxError:
             # A SyntaxError occurred before we could execute the module.
             # MR : this isn't null safe.
-            LOGGER.warning(f"Skipping safe_import for {path}, got a {str(exc)}")
+            LOGGER.warning("Skipping safe_import for %s, got a %s", path, exc)
             raise ImportTimeError(cast(SyntaxError, value).filename, info) from import_error
         if issubclass(exc, ImportError) and cast(ImportError, value).name == path:
-            LOGGER.warning(f"Skipping safe_import for {path}, got a {import_error}")
-            LOGGER.warning(f"Cannot import this path: {path}")
+            LOGGER.warning("Skipping safe_import for %s, got a %s", path, import_error)
+            LOGGER.warning("Cannot import this path: %s", path)
             # No such module in the path.
             return None
-        LOGGER.warning(f"Skipping safe_import for {path}, got a {import_error}")
+        LOGGER.warning("Skipping safe_import for %s, got a %s", path, import_error)
         # Some other error occurred during the importing process.
         raise ImportTimeError(path, sys.exc_info()) from import_error
     for part in path.split(".")[1:]:
         try:
             module = getattr(module, part)
         except AttributeError:
-            LOGGER.warning(f"While safe_import - {str(module)} does not have {part} from dot path {path}")
+            LOGGER.warning("While safe_import - %s does not have %s from dot path %s", module, part, path)
             return None
     return module
 
@@ -144,7 +143,7 @@ def locate(path: str, force_load: bool = False) -> Any:
         # Not sure about this
         path = path.replace("-", "_")
 
-    LOGGER.debug(f"locate(): locating {path}")
+    LOGGER.debug("locate(): locating %s", path)
     parts = [part for part in path.split(".") if part]
 
     module, index = None, 0
@@ -154,17 +153,18 @@ def locate(path: str, force_load: bool = False) -> Any:
             module, index = next_module, index + 1
         else:
             break
-    if module:
-        the_object = module
-        # this errors?!
-        # LOGGER.debug(f"putative module {str(the_object)}")
-    else:
-        the_object = builtins
+    the_object = module or builtins
+    # if module:
+    #     the_object = module
+    #     # this errors?!
+    #     # LOGGER.debug(f"putative module {str(the_object)}")
+    # else:
+    #     the_object = builtins
 
     for part in parts[index:]:
         try:
             the_object = getattr(the_object, part)
         except AttributeError:
-            LOGGER.debug(f"locate(): Don't think this is a module {the_object}")
+            LOGGER.debug("locate(): Don't think this is a module %s", the_object)
             return None
     return the_object

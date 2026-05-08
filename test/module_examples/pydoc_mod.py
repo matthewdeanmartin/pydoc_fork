@@ -14,12 +14,12 @@ class A:
         pass
 
 
-class B(object):
+class B:
     NO_MEANING: str = "eggs"
     pass
 
 
-class C(object):
+class C:
     def say_no(self):
         return "no"
 

@@ -26,7 +26,7 @@ class HTMLRepr(Repr):
         #     print("possible double escape")
         return result
 
-    def repr(self, x: Any) -> str:  # noqa - unhiding could break code?
+    def repr(self, x: Any) -> str:
         """Delegates to Repr.repr"""
         return Repr.repr(self, x)
 

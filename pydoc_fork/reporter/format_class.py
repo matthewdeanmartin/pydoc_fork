@@ -3,10 +3,12 @@ Roughly a UI component for classes
 """
 
 import builtins
+import contextlib
 import inspect
 import sys
 from collections import deque
-from typing import Any, Callable, Dict, List, Optional, Union, cast
+from typing import Any, Union, cast
+from collections.abc import Callable
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -38,8 +40,8 @@ def docclass(
     the_object: TypeLike,
     name: str = "",
     mod: str = "",
-    funcs: Optional[Dict[str, str]] = None,
-    classes: Optional[Dict[str, str]] = None,
+    funcs: dict[str, str] | None = None,
+    classes: dict[str, str] | None = None,
 ) -> str:
     """Produce HTML documentation for a class object."""
     funcs = funcs or {}
@@ -49,7 +51,7 @@ def docclass(
     name = name or real_name
     bases = the_object.__bases__
 
-    contents: List[str] = []
+    contents: list[str] = []
     push = contents.append
 
     class HorizontalRule:
@@ -76,7 +78,7 @@ def docclass(
             push(f"<dd>{classlink(base, the_object.__module__)}</dd>\n")
         push("</dl>\n")
 
-    def spill(msg: str, attrs_in: List[Any], predicate: Callable[[Any], Any]) -> List[Any]:
+    def spill(msg: str, attrs_in: list[Any], predicate: Callable[[Any], Any]) -> list[Any]:
         """Not sure"""
         ok, attrs = _split_list(attrs_in, predicate)
         if ok:
@@ -115,9 +117,9 @@ def docclass(
 
     def spilldescriptors(
         msg: str,
-        attrs_in: List[Any],  # Tuple[str, str, type, "object"]
+        attrs_in: list[Any],  # Tuple[str, str, type, "object"]
         predicate: Callable[[Any], bool],
-    ) -> List[Any]:
+    ) -> list[Any]:
         """Not sure"""
         ok, attrs = _split_list(attrs_in, predicate)
         if ok:
@@ -133,7 +135,7 @@ def docclass(
                 )
         return attrs
 
-    def spilldata(msg: str, attrs_in: List[Any], predicate: Callable[[Any], bool]) -> List[Any]:
+    def spilldata(msg: str, attrs_in: list[Any], predicate: Callable[[Any], bool]) -> list[Any]:
         """Not sure"""
         ok, attrs = _split_list(attrs_in, predicate)
         if ok:
@@ -164,24 +166,15 @@ def docclass(
     module_dict = {}
     for key, _, _, value in attrs:
         module_dict[key] = anchor = "#" + name + "-" + key
-        try:
+        with contextlib.suppress(Exception):
             value = getattr(the_object, name)
-        except Exception:  # nosec
-            # Some descriptors may meet a failure in their __get__.
-            # (bug #1785)
-            pass  # nosec
-        try:
+        with contextlib.suppress(TypeError):
             # The value may not be hashable (e.g., a data attr with
             # a dict or list value).
             module_dict[value] = anchor
-        except TypeError:
-            pass  # nosec
 
     while attrs:
-        if mro:
-            this_class = mro.popleft()
-        else:
-            this_class = attrs[0][2]
+        this_class = mro.popleft() if mro else attrs[0][2]
 
         # flake8 doesn't like the closure in the lambda
         is_this_class: Callable[[Any], Any] = lambda t: t[2] is this_class  # noqa
@@ -257,7 +250,7 @@ def docclass(
     return template.render(section_html=section_html)
 
 
-def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> str:
+def format_tree(tree: list[Any], modname: str, parent: Any | None = None) -> str:
     """
     Creates a representation of class inheritance.
     """
@@ -267,7 +260,7 @@ def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> 
     for entry in tree:
         class_object = entry
         # pylint: disable=unidiomatic-typecheck
-        if type(entry) is type(()):  # noqa - not sure of switching to isinstance
+        if type(entry) is type(()):
             class_object, bases = entry
             result = result + f'<dt><span style="font-family:{inline_styles.SAN_SERIF}">'
             result = result + classlink(class_object, modname)
@@ -278,7 +271,7 @@ def format_tree(tree: List[Any], modname: str, parent: Optional[Any] = None) -> 
                 result = result + "(" + ", ".join(parents) + ")"
             result = result + "\n</span></dt>"
 
-        elif type(entry) is type([]):  # noqa - not sure of switching to isinstance
+        elif type(entry) is type([]):
             tree = format_tree(entry, modname, class_object)
             result = result + f"<dd>\n{tree}</dd>\n"
     return f"<dl>\n{result}</dl>\n"

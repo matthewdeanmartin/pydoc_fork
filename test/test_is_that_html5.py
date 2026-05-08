@@ -17,7 +17,7 @@ def test_docother():
     for thing in VARIOUS_TYPES:
         result = docother(thing, "various")
         print(result)
-        html = HTML5PARSER.parseFragment(result)
+        HTML5PARSER.parseFragment(result)
         assert "&amp;gt;" not in result
 
 
@@ -26,7 +26,7 @@ def test_docroutine():
     for thing in various_methods:
         result = docroutine(thing, "methods")
         print(result)
-        html = HTML5PARSER.parseFragment(result)
+        HTML5PARSER.parseFragment(result)
         assert "&amp;gt;" not in result
 
 
@@ -35,7 +35,7 @@ def test_docclass():
     for thing in various_classes:
         result = docclass(thing, "methods")
         print(result)
-        html = HTML5PARSER.parseFragment(result)
+        HTML5PARSER.parseFragment(result)
         assert "&amp;gt;" not in result
 
 
@@ -55,7 +55,7 @@ def test_bigsection():
         print(f"-------{i}--------")
         result = bigsection("the title", "#000000", "#ffc8d8", "the contents", i, "the prelude")
         print(result)
-        html = HTML5PARSER.parseFragment(result)
+        HTML5PARSER.parseFragment(result)
         assert "&amp;gt;" not in result
 
 
@@ -65,7 +65,7 @@ def test_preformat():
         print("-------")
         result = preformat(thing)
         print(result)
-        html = HTML5PARSER.parseFragment(result)
+        HTML5PARSER.parseFragment(result)
         assert "&amp;gt;" not in result
 
 
@@ -81,5 +81,5 @@ def test_markup():
         print("\n--------")
         result = markup(text=text, funcs={}, classes={}, methods={"method": "blah blah blah"})
         print(result)
-        html = HTML5PARSER.parseFragment(result)
+        HTML5PARSER.parseFragment(result)
         assert "&amp;gt;" not in result

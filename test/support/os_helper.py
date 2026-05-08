@@ -18,7 +18,7 @@ else:
 
 # Disambiguate TESTFN for parallel testing, while letting it remain a valid
 # module name.
-TESTFN_ASCII = "{}_{}_tmp".format(TESTFN_ASCII, os.getpid())
+TESTFN_ASCII = f"{TESTFN_ASCII}_{os.getpid()}_tmp"
 
 # TESTFN_UNICODE is a non-ascii filename
 TESTFN_UNICODE = TESTFN_ASCII + "-\xe0\xf2\u0258\u0141\u011f"
@@ -46,9 +46,8 @@ if os.name == "nt":
             pass
         else:
             print(
-                "WARNING: The filename %r CAN be encoded by the filesystem "
-                "encoding (%s). Unicode filename tests may not be effective"
-                % (TESTFN_UNENCODABLE, sys.getfilesystemencoding())
+                f"WARNING: The filename {TESTFN_UNENCODABLE!r} CAN be encoded by the filesystem "
+                f"encoding ({sys.getfilesystemencoding()}). Unicode filename tests may not be effective"
             )
             TESTFN_UNENCODABLE = None
 # Mac OS X denies unencodable filenames (invalid utf-8)
@@ -143,10 +142,7 @@ for name in (
         TESTFN_UNDECODABLE = os.fsencode(TESTFN_ASCII) + name
         break
 
-if FS_NONASCII:
-    TESTFN_NONASCII = TESTFN_ASCII + FS_NONASCII
-else:
-    TESTFN_NONASCII = None
+TESTFN_NONASCII = TESTFN_ASCII + FS_NONASCII if FS_NONASCII else None
 TESTFN = TESTFN_NONASCII or TESTFN_ASCII
 
 
@@ -235,10 +231,8 @@ def skip_unless_xattr(test):
 
 
 def unlink(filename):
-    try:
+    with contextlib.suppress(FileNotFoundError, NotADirectoryError):
         _unlink(filename)
-    except (FileNotFoundError, NotADirectoryError):
-        pass
 
 
 if sys.platform.startswith("win"):
@@ -295,7 +289,7 @@ if sys.platform.startswith("win"):
                     mode = os.lstat(fullname).st_mode
                 except OSError as exc:
                     print(
-                        "support.rmtree(): os.lstat(%r) failed with %s" % (fullname, exc),
+                        f"support.rmtree(): os.lstat({fullname!r}) failed with {exc}",
                         file=sys.__stderr__,
                     )
                     mode = 0
@@ -357,17 +351,13 @@ else:
 
 
 def rmdir(dirname):
-    try:
+    with contextlib.suppress(FileNotFoundError):
         _rmdir(dirname)
-    except FileNotFoundError:
-        pass
 
 
 def rmtree(path):
-    try:
+    with contextlib.suppress(FileNotFoundError):
         _rmtree(path)
-    except FileNotFoundError:
-        pass
 
 
 @contextlib.contextmanager
@@ -459,9 +449,8 @@ def temp_cwd(name="tempcwd", quiet=False):
     only a warning is raised and the original CWD is used.
 
     """
-    with temp_dir(path=name, quiet=quiet) as temp_path:
-        with change_cwd(temp_path, quiet=quiet) as cwd_dir:
-            yield cwd_dir
+    with temp_dir(path=name, quiet=quiet) as temp_path, change_cwd(temp_path, quiet=quiet) as cwd_dir:
+        yield cwd_dir
 
 
 def create_empty_file(filename):
@@ -496,7 +485,7 @@ class FakePath:
         return f"<FakePath {self.path!r}>"
 
     def __fspath__(self):
-        if isinstance(self.path, BaseException) or isinstance(self.path, type) and issubclass(self.path, BaseException):
+        if isinstance(self.path, BaseException) or (isinstance(self.path, type) and issubclass(self.path, BaseException)):
             raise self.path
         else:
             return self.path
@@ -515,10 +504,8 @@ def fd_count():
 
     MAXFD = 256
     if hasattr(os, "sysconf"):
-        try:
+        with contextlib.suppress(OSError):
             MAXFD = os.sysconf("SC_OPEN_MAX")
-        except OSError:
-            pass
 
     old_modes = None
     if sys.platform == "win32":

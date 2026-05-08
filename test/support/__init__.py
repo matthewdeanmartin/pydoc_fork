@@ -23,79 +23,79 @@ except ImportError:
     unicode_legacy_string = None
 
 __all__ = [
+    "ALWAYS_EQ",
+    "INTERNET_TIMEOUT",
+    "LARGEST",
+    "LONG_TIMEOUT",
+    "LOOPBACK_TIMEOUT",
+    "NEVER_EQ",
+    "PGO",
     # globals
     "PIPE_MAX_SIZE",
-    "verbose",
-    "max_memuse",
-    "use_resources",
-    "failfast",
+    "SHORT_TIMEOUT",
+    "SMALLEST",
+    "BasicTestRunner",
     # exceptions
     "Error",
-    "TestFailed",
-    "TestDidNotRun",
+    "Matcher",
     "ResourceDenied",
-    # io
-    "record_original_stdout",
-    "get_original_stdout",
-    "captured_stdout",
-    "captured_stdin",
-    "captured_stderr",
-    # unittest
-    "is_resource_enabled",
-    "requires",
-    "requires_freebsd_version",
-    "requires_linux_version",
-    "requires_mac_ver",
-    "check_syntax_error",
-    "BasicTestRunner",
-    "run_unittest",
-    "run_doctest",
-    "requires_gzip",
-    "requires_bz2",
-    "requires_lzma",
-    "bigmemtest",
-    "bigaddrspacetest",
-    "cpython_only",
-    "get_attribute",
-    "requires_IEEE_754",
-    "requires_zlib",
+    "SuppressCrashReport",
+    "TestDidNotRun",
+    "TestFailed",
     "anticipate_failure",
-    "load_package_tests",
-    "detect_api_mismatch",
+    "bigaddrspacetest",
+    "bigmemtest",
+    "captured_stderr",
+    "captured_stdin",
+    "captured_stdout",
     "check__all__",
-    "skip_if_buggy_ucrt_strfptime",
     "check_disallow_instantiation",
+    "check_impl_detail",
+    "check_syntax_error",
+    "cpython_only",
+    "detect_api_mismatch",
+    "failfast",
+    "findfile",
+    "get_attribute",
+    "get_original_stdout",
+    "infinite_recursion",
+    "is_android",
     # sys
     "is_jython",
-    "is_android",
-    "check_impl_detail",
-    "unix_shell",
-    "setswitchinterval",
+    # unittest
+    "is_resource_enabled",
+    "load_package_tests",
+    "max_memuse",
+    "missing_compiler_executable",
     # network
     "open_urlresource",
     # processes
     "reap_children",
+    # io
+    "record_original_stdout",
+    "requires",
+    "requires_IEEE_754",
+    "requires_bz2",
+    "requires_freebsd_version",
+    "requires_gzip",
+    "requires_linux_version",
+    "requires_lzma",
+    "requires_mac_ver",
+    "requires_zlib",
+    "run_doctest",
+    "run_unittest",
     # miscellaneous
     "run_with_locale",
-    "swap_item",
-    "findfile",
-    "infinite_recursion",
-    "swap_attr",
-    "Matcher",
-    "set_memlimit",
-    "SuppressCrashReport",
-    "sortdict",
     "run_with_tz",
-    "PGO",
-    "missing_compiler_executable",
-    "ALWAYS_EQ",
-    "NEVER_EQ",
-    "LARGEST",
-    "SMALLEST",
-    "LOOPBACK_TIMEOUT",
-    "INTERNET_TIMEOUT",
-    "SHORT_TIMEOUT",
-    "LONG_TIMEOUT",
+    "set_memlimit",
+    "setswitchinterval",
+    "skip_if_buggy_ucrt_strfptime",
+    "sortdict",
+    "swap_attr",
+    "swap_item",
+    "unix_shell",
+    "use_resources",
+    "verbose",
 ]
 
 
@@ -214,7 +214,7 @@ def get_attribute(obj, name):
     try:
         attribute = getattr(obj, name)
     except AttributeError:
-        raise unittest.SkipTest("object %r has no attribute %r" % (obj, name))
+        raise unittest.SkipTest(f"object {obj!r} has no attribute {name!r}")
     else:
         return attribute
 
@@ -247,8 +247,8 @@ def _force_run(path, func, *args):
         return func(*args)
     except OSError as err:
         if verbose >= 2:
-            print("%s: %s" % (err.__class__.__name__, err))
-            print("re-run %s%r" % (func.__name__, args))
+            print(f"{err.__class__.__name__}: {err}")
+            print(f"re-run {func.__name__}{args!r}")
         os.chmod(path, stat.S_IRWXU)
         return func(*args)
 
@@ -326,7 +326,7 @@ def _is_gui_available():
             err_string = str(e)
             if len(err_string) > 50:
                 err_string = err_string[:50] + " [...]"
-            reason = "Tk unavailable due to {}: {}".format(type(e).__name__, err_string)
+            reason = f"Tk unavailable due to {type(e).__name__}: {err_string}"
 
     _is_gui_available.reason = reason
     _is_gui_available.result = not reason
@@ -347,7 +347,7 @@ def requires(resource, msg=None):
     """Raise ResourceDenied if the specified resource is not available."""
     if not is_resource_enabled(resource):
         if msg is None:
-            msg = "Use of the %r resource not enabled" % resource
+            msg = f"Use of the {resource!r} resource not enabled"
         raise ResourceDenied(msg)
     if resource == "gui" and not _is_gui_available():
         raise ResourceDenied(_is_gui_available.reason)
@@ -423,7 +423,7 @@ def requires_mac_ver(*min_version):
                     if version < min_version:
                         min_version_txt = ".".join(map(str, min_version))
                         raise unittest.SkipTest(
-                            "Mac OS X %s or higher required, not %s" % (min_version_txt, version_txt)
+                            f"Mac OS X {min_version_txt} or higher required, not {version_txt}"
                         )
             return func(*args, **kw)
 
@@ -584,7 +584,7 @@ def findfile(filename, subdir=None):
         return filename
     if subdir is not None:
         filename = os.path.join(subdir, filename)
-    path = [TEST_HOME_DIR] + sys.path
+    path = [TEST_HOME_DIR, *sys.path]
     for dn in path:
         fn = os.path.join(dn, filename)
         if os.path.exists(fn):
@@ -595,9 +595,9 @@ def findfile(filename, subdir=None):
 def sortdict(dict):
     "Like repr(dict), but in sorted order."
     items = sorted(dict.items())
-    reprpairs = ["%r: %r" % pair for pair in items]
+    reprpairs = ["{!r}: {!r}".format(*pair) for pair in items]
     withcommas = ", ".join(reprpairs)
-    return "{%s}" % withcommas
+    return f"{{{withcommas}}}"
 
 
 def check_syntax_error(testcase, statement, errtext="", *, lineno=None, offset=None):
@@ -648,7 +648,7 @@ def open_urlresource(url, *args, **kw):
     requires("urlfetch")
 
     if verbose:
-        print("\tfetching %s ..." % url, file=get_original_stdout())
+        print(f"\tfetching {url} ...", file=get_original_stdout())
     opener = urllib.request.build_opener()
     if gzip:
         opener.addheaders.append(("Accept-Encoding", "gzip"))
@@ -667,7 +667,7 @@ def open_urlresource(url, *args, **kw):
     f = check_valid_file(fn)
     if f is not None:
         return f
-    raise TestFailed("invalid resource %r" % fn)
+    raise TestFailed(f"invalid resource {fn!r}")
 
 
 @contextlib.contextmanager
@@ -791,8 +791,8 @@ def check_sizeof(test, o, size):
     result = sys.getsizeof(o)
     # add GC header size
     if (
-        (type(o) == type)
-        and (o.__flags__ & _TPFLAGS_HEAPTYPE)
+        ((type(o) == type)
+        and (o.__flags__ & _TPFLAGS_HEAPTYPE))
         or ((type(o) != type) and (type(o).__flags__ & _TPFLAGS_HAVE_GC))
     ):
         size += _testinternalcapi.SIZEOF_PYGC_HEAD
@@ -845,10 +845,7 @@ def run_with_tz(tz):
                 tzset = time.tzset
             except AttributeError:
                 raise unittest.SkipTest("tzset required")
-            if "TZ" in os.environ:
-                orig_tz = os.environ["TZ"]
-            else:
-                orig_tz = None
+            orig_tz = os.environ.get("TZ", None)
             os.environ["TZ"] = tz
             tzset()
 
@@ -894,13 +891,13 @@ def set_memlimit(limit):
     }
     m = re.match(r"(\d+(\.\d+)?) (K|M|G|T)b?$", limit, re.IGNORECASE | re.VERBOSE)
     if m is None:
-        raise ValueError("Invalid memory limit %r" % (limit,))
+        raise ValueError(f"Invalid memory limit {limit!r}")
     memlimit = int(float(m.group(1)) * sizes[m.group(3).lower()])
     real_max_memuse = memlimit
     if memlimit > MAX_Py_ssize_t:
         memlimit = MAX_Py_ssize_t
     if memlimit < _2G - 1:
-        raise ValueError("Memory limit %r too low to be useful" % (limit,))
+        raise ValueError(f"Memory limit {limit!r} too low to be useful")
     max_memuse = memlimit
 
 
@@ -910,16 +907,16 @@ class _MemoryWatchdog:
     """
 
     def __init__(self):
-        self.procfile = "/proc/{pid}/statm".format(pid=os.getpid())
+        self.procfile = f"/proc/{os.getpid()}/statm"
         self.started = False
 
     def start(self):
         import warnings
 
         try:
-            f = open(self.procfile, "r")
+            f = open(self.procfile)
         except OSError as e:
-            warnings.warn("/proc not available for stats: {}".format(e), RuntimeWarning)
+            warnings.warn(f"/proc not available for stats: {e}", RuntimeWarning, stacklevel=2)
             sys.stderr.flush()
             return
 
@@ -954,17 +951,14 @@ def bigmemtest(size, memuse, dry_run=True):
         def wrapper(self):
             size = wrapper.size
             memuse = wrapper.memuse
-            if not real_max_memuse:
-                maxsize = 5147
-            else:
-                maxsize = size
+            maxsize = 5147 if not real_max_memuse else size
 
             if (real_max_memuse or not dry_run) and real_max_memuse < maxsize * memuse:
                 raise unittest.SkipTest("not enough memory: %.1fG minimum needed" % (size * memuse / (1024**3)))
 
             if real_max_memuse and verbose:
                 print()
-                print(" ... expected peak memory use: {peak:.1f}G".format(peak=size * memuse / (1024**3)))
+                print(f" ... expected peak memory use: {size * memuse / (1024**3):.1f}G")
                 watchdog = _MemoryWatchdog()
                 watchdog.start()
             else:
@@ -1019,7 +1013,7 @@ def requires_resource(resource):
     if is_resource_enabled(resource):
         return _id
     else:
-        return unittest.skip("resource {0!r} is not enabled".format(resource))
+        return unittest.skip(f"resource {resource!r} is not enabled")
 
 
 def cpython_only(test):
@@ -1034,10 +1028,7 @@ def impl_detail(msg=None, **guards):
         return _id
     if msg is None:
         guardnames, default = _parse_guards(guards)
-        if default:
-            msg = "implementation detail not available on {0}"
-        else:
-            msg = "implementation detail specific to {0}"
+        msg = "implementation detail not available on {0}" if default else "implementation detail specific to {0}"
         guardnames = sorted(guardnames.keys())
         msg = msg.format(" or ".join(guardnames))
     return unittest.skip(msg)
@@ -1047,7 +1038,7 @@ def _parse_guards(guards):
     # Returns a tuple ({platform_name: run_me}, default_value)
     if not guards:
         return ({"cpython": True}, False)
-    is_true = list(guards.values())[0]
+    is_true = next(iter(guards.values()))
     assert list(guards.values()) == [is_true] * len(guards)  # all True or all False
     return (guards, not is_true)
 
@@ -1276,10 +1267,7 @@ def run_doctest(module, verbosity=None, optionflags=0):
 
     import doctest
 
-    if verbosity is None:
-        verbosity = verbose
-    else:
-        verbosity = None
+    verbosity = verbose if verbosity is None else None
 
     f, t = doctest.testmod(module, verbose=verbosity, optionflags=optionflags)
     if f:
@@ -1340,7 +1328,7 @@ def reap_children():
     while True:
         try:
             # Read the exit status of any child process which already completed
-            pid, status = os.waitpid(-1, os.WNOHANG)
+            pid, _status = os.waitpid(-1, os.WNOHANG)
         except OSError:
             break
 
@@ -1431,7 +1419,7 @@ def optim_args_from_interpreter_flags():
     return subprocess._optim_args_from_interpreter_flags()
 
 
-class Matcher(object):
+class Matcher:
     _partial_matches = ("msg", "message")
 
     def matches(self, d, **kwargs):
@@ -1542,9 +1530,9 @@ class PythonSymlink:
         for link in self._linked:
             try:
                 os.remove(link)
-            except IOError as ex:
+            except OSError as ex:
                 if verbose:
-                    print("failed to clean up {}: {}".format(link, ex))
+                    print(f"failed to clean up {link}: {ex}")
 
     def _call(self, python, args, env, returncode):
         import subprocess
@@ -1556,7 +1544,7 @@ class PythonSymlink:
             if verbose:
                 print(repr(r[0]))
                 print(repr(r[1]), file=sys.stderr)
-            raise RuntimeError("unexpected return code: {0} (0x{0:08X})".format(p.returncode))
+            raise RuntimeError(f"unexpected return code: {p.returncode} (0x{p.returncode:08X})")
         return r
 
     def call_real(self, *args, returncode=0):
@@ -1766,10 +1754,8 @@ class SuppressCrashReport:
                     msvcrt.CrtSetReportFile(report_type, old_file)
         else:
             if self.resource is not None:
-                try:
+                with contextlib.suppress(ValueError, OSError):
                     self.resource.setrlimit(self.resource.RLIMIT_CORE, self.old_value)
-                except (ValueError, OSError):
-                    pass
 
 
 def patch(test_instance, object_to_patch, attr_name, new_value):
@@ -1832,10 +1818,8 @@ def check_free_after_iterating(test, iter, cls, args=()):
         def __del__(self):
             nonlocal done
             done = True
-            try:
+            with contextlib.suppress(StopIteration):
                 next(it)
-            except StopIteration:
-                pass
 
     done = False
     it = iter(A(*args))
@@ -1846,7 +1830,7 @@ def check_free_after_iterating(test, iter, cls, args=()):
     test.assertTrue(done)
 
 
-def missing_compiler_executable(cmd_names=[]):
+def missing_compiler_executable(cmd_names=None):
     """Check if the compiler components used to build the interpreter exist.
 
     Check for the existence of the compiler executables whose names are listed
@@ -1858,6 +1842,8 @@ def missing_compiler_executable(cmd_names=[]):
     # TODO (PEP 632): alternate check without using distutils
     from distutils import ccompiler, errors, spawn, sysconfig
 
+    if cmd_names is None:
+        cmd_names = []
     compiler = ccompiler.new_compiler()
     sysconfig.customize_compiler(compiler)
     if compiler.compiler_type == "msvc":
@@ -1871,7 +1857,7 @@ def missing_compiler_executable(cmd_names=[]):
             continue
         cmd = getattr(compiler, name)
         if cmd_names:
-            assert cmd is not None, "the '%s' executable is not configured" % name
+            assert cmd is not None, f"the '{name}' executable is not configured"
         elif not cmd:
             continue
         if spawn.find_executable(cmd[0]) is None:
@@ -2204,10 +2190,7 @@ def check_disallow_instantiation(testcase, tp, *args, **kwds):
     """
     mod = tp.__module__
     name = tp.__name__
-    if mod != "builtins":
-        qualname = f"{mod}.{name}"
-    else:
-        qualname = f"{name}"
+    qualname = f"{mod}.{name}" if mod != "builtins" else f"{name}"
     msg = f"cannot create '{re.escape(qualname)}' instances"
     testcase.assertRaisesRegex(TypeError, msg, tp, *args, **kwds)
 
@@ -2247,10 +2230,7 @@ def clear_ignored_deprecations(*tokens: object) -> None:
     endswith = tuple(rf"(?#support{id(token)})" for token in tokens)
     for action, message, category, module, lineno in warnings.filters:
         if action == "ignore" and category is DeprecationWarning:
-            if isinstance(message, re.Pattern):
-                msg = message.pattern
-            else:
-                msg = message or ""
+            msg = message.pattern if isinstance(message, re.Pattern) else message or ""
             if msg.endswith(endswith):
                 continue
         new_filters.append((action, message, category, module, lineno))

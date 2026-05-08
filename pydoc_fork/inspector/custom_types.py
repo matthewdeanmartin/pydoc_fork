@@ -2,7 +2,6 @@
 Custom Types so mypy can check the code
 """
 
-from typing import List
 
 from typing_extensions import Protocol
 
@@ -18,8 +17,8 @@ class TypeLike(Protocol):
     __objclass__: "TypeLike"
     __func__: "TypeLike"
     __self__: "TypeLike"
-    __bases__: List["TypeLike"]
-    __all__: List[str]
+    __bases__: list["TypeLike"]
+    __all__: list[str]
     __qualname__: str
     __file__: str
     __mro__: str

@@ -6,7 +6,7 @@ import inspect
 import os
 import pkgutil
 import sys
-from typing import Optional, cast
+from typing import cast
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -24,9 +24,10 @@ from pydoc_fork.reporter.formatter_html import (
     multicolumn,
 )
 from pydoc_fork.reporter.jinja_code import JINJA_ENV
+import contextlib
 
 
-def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> Optional[str]:
+def getdocloc(the_object: TypeLike, basedir: str = STDLIB_BASEDIR) -> str | None:
     """Return the location of module docs or None"""
     try:
         file = inspect.getabsfile(cast(type, the_object))
@@ -145,28 +146,28 @@ def docmodule(
         for module_info in modules:
             candidate_module, _ = module_info
             if candidate_module == to_remove:
-                try:
+                with contextlib.suppress(ValueError):
                     modules.remove(module_info)
-                except ValueError:
-                    pass
     modules_by_import_from = set()
     classes, class_dict = [], {}
     for key, value in inspect.getmembers(the_object, inspect.isclass):
         _class_module = inspect.getmodule(value)
-        if _class_module and _class_module is not the_object:
-            if _class_module.__name__ not in settings.SKIP_MODULES:
-                modules_by_import_from.add((None, _class_module))
-                settings.MENTIONED_MODULES.add((_class_module, _class_module.__name__))
+        if (
+            _class_module
+            and _class_module is not the_object
+            and _class_module.__name__ not in settings.SKIP_MODULES
+        ):
+            modules_by_import_from.add((None, _class_module))
+            settings.MENTIONED_MODULES.add((_class_module, _class_module.__name__))
         # if __all__ exists, believe it.  Otherwise use old heuristic.
         if (
             # TODO put doc internals switch here
             # all_things is not None or
-            (inspect.getmodule(value) or the_object)
-            is the_object
+            (inspect.getmodule(value) or the_object) is the_object
+            and visiblename(key, all_things, the_object)
         ):
-            if visiblename(key, all_things, the_object):
-                classes.append((key, value))
-                class_dict[key] = class_dict[value] = "#" + key
+            classes.append((key, value))
+            class_dict[key] = class_dict[value] = "#" + key
     for key, value in classes:
         for base in value.__bases__:
             key, modname = base.__name__, base.__module__
@@ -184,10 +185,13 @@ def docmodule(
         # if __all__ exists, believe it.  Otherwise use old heuristic.
         _func_module = inspect.getmodule(value)
         # why does this sometimes return no module?
-        if _func_module and _func_module is not the_object:
-            if _func_module.__name__ not in settings.SKIP_MODULES:
-                modules_by_import_from.add((None, _func_module))
-                settings.MENTIONED_MODULES.add((_func_module, _func_module.__name__))
+        if (
+            _func_module
+            and _func_module is not the_object
+            and _func_module.__name__ not in settings.SKIP_MODULES
+        ):
+            modules_by_import_from.add((None, _func_module))
+            settings.MENTIONED_MODULES.add((_func_module, _func_module.__name__))
         if (
             True
             # TODO put doc internals switch here

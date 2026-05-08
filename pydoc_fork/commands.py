@@ -8,7 +8,7 @@ import logging
 import os
 import os.path
 import pkgutil
-from typing import List, Optional, Union
+from typing import Union
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -24,12 +24,12 @@ def document_one(
     thing: Union[TypeLike, str],
     output_folder: str,
     force_load: bool = False,
-) -> Optional[str]:
+) -> str | None:
     """Write HTML documentation to a file in the current directory."""
     try:
         the_object, name = resolve(thing, force_load)
     except (ImportError, ImportTimeError):
-        LOGGER.warning(f"document_one failed for {str(thing)} with folder {output_folder}")
+        LOGGER.warning("document_one failed for %s with folder %s", thing, output_folder)
         return None
 
     # MR
@@ -64,7 +64,7 @@ def calculate_file_name(name: str, output_folder: str) -> str:
     return full_path
 
 
-def modules_in_current() -> List[str]:
+def modules_in_current() -> list[str]:
     """Convert . shortcut into list of modules"""
     current = os.getcwd()
     files = glob.glob(os.path.join(current, "*.py"))
@@ -76,15 +76,15 @@ def modules_in_current() -> List[str]:
     py_folders = [f for f in folders if os.path.isfile(os.path.join(current, f, "__init__.py"))]
 
     found = py_files + py_folders
-    LOGGER.debug(f"Adding these modules from current folder to document {found}")
+    LOGGER.debug("Adding these modules from current folder to document %s", found)
     return found
 
 
 def write_docs_per_module(
-    modules: List[str],
+    modules: list[str],
     output_folder: str,
     skip_if_written: bool = False,
-) -> List[str]:
+) -> list[str]:
     """Write out HTML documentation for all modules in a directory tree."""
 
     if "." in modules:
@@ -92,7 +92,7 @@ def write_docs_per_module(
     # This is going to handle filesystem paths, e.g. ./module/submodule.py
     # There will be ANOTHER method to handle MODULE paths, e.g. module.submodule"
     # Attempting to mix these two types is a bad idea.
-    written: List[str] = []
+    written: list[str] = []
     for module in modules:
         # file
         if module.lower().endswith(".py"):
@@ -117,13 +117,13 @@ def write_docs_live_module(
     output_folder: str,
     total_third_party: int = 0,
     skip_if_written: bool = False,
-) -> List[str]:
+) -> list[str]:
     """Write out HTML documentation for all modules in a directory tree."""
 
     # This is going to handle filesystem paths, e.g. ./module/submodule.py
     # There will be ANOTHER method to handle MODULE paths, e.g. module.submodule"
     # Attempting to mix these two types is a bad idea.
-    written: List[str] = []
+    written: list[str] = []
     while settings.MENTIONED_MODULES and total_third_party <= 100:
         module = settings.MENTIONED_MODULES.pop()
         thing, name = module  # destructure it
@@ -146,19 +146,19 @@ def document_directory(
     source_directory: str,
     output_folder: str,
     for_only: str = "",
-) -> List[str]:
+) -> list[str]:
     """Write out HTML documentation for all modules in a directory tree."""
     package_path = ""
     # walk packages is why pydoc drags along with it tests folders
-    LOGGER.debug(f"document_directory: Walking packages for {source_directory}")
+    LOGGER.debug("document_directory: Walking packages for %s", source_directory)
 
-    full_paths: List[str] = []
+    full_paths: list[str] = []
     for _, modname, _ in pkgutil.walk_packages([source_directory], package_path):
         if not str(modname).startswith(for_only):
             continue
         if str(modname).endswith(".__main__") or modname == "__main__":
             continue
-        LOGGER.debug(f"document_directory: current module: {modname})")
+        LOGGER.debug("document_directory: current module: %s)", modname)
         full_path = document_one(modname, output_folder)
         if full_path:
             full_paths.append(full_path)
@@ -166,10 +166,10 @@ def document_directory(
 
 
 def process_path_or_dot_name(
-    files: List[str],
+    files: list[str],
     output_folder: str,
     overwrite_existing: bool = False,
-) -> List[str]:
+) -> list[str]:
     """
     Generate html documentation for all modules found at paths or
     dot notation module names.
@@ -182,7 +182,7 @@ def process_path_or_dot_name(
     Returns:
         List of successfully documented modules
     """
-    LOGGER.debug(f"process_path_or_dot_name for {files} and writing to {output_folder}")
+    LOGGER.debug("process_path_or_dot_name for %s and writing to %s", files, output_folder)
 
     if not os.path.exists(output_folder):
         os.makedirs(output_folder)
@@ -190,7 +190,7 @@ def process_path_or_dot_name(
     from pydoc_fork.reporter.themes import get_theme_css
 
     base_style_path = locate_file("templates/style.css", __file__)
-    with open(base_style_path, "r", encoding="utf-8") as f:
+    with open(base_style_path, encoding="utf-8") as f:
         base_style = f.read()
 
     # Replace :root block with theme-specific variables
@@ -212,7 +212,7 @@ def process_path_or_dot_name(
         index_modules = []
         unique_basenames = sorted(list(set(os.path.basename(path) for path in written)))
         for basename in unique_basenames:
-            if basename == "style.css" or basename == "index.html":
+            if basename in ("style.css", "index.html"):
                 continue
             module_name = basename[:-5]  # remove .html
             index_modules.append({"name": module_name, "url": basename})

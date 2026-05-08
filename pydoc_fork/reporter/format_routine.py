@@ -1,7 +1,7 @@
 """Roughly a UI component for routines"""
 
 import inspect
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 from pydoc_fork.inspector.custom_types import TypeLike
 from pydoc_fork.inspector.utils import _is_bound_method, getdoc
@@ -14,10 +14,10 @@ def docroutine(
     the_object: TypeLike,
     name: str = "",
     mod: str = "",
-    funcs: Optional[Dict[str, Any]] = None,  # noqa - clean up later
-    classes: Optional[Dict[str, Any]] = None,  # noqa - clean up later
-    methods: Optional[Dict[str, Any]] = None,  # noqa - clean up later
-    class_object: Optional[TypeLike] = None,
+    funcs: Optional[dict[str, Any]] = None,  # noqa - clean up later
+    classes: Optional[dict[str, Any]] = None,  # noqa - clean up later
+    methods: Optional[dict[str, Any]] = None,  # noqa - clean up later
+    class_object: TypeLike | None = None,
 ) -> str:
     """Produce HTML documentation for a function or method object."""
     if not funcs:
@@ -32,7 +32,7 @@ def docroutine(
     except AttributeError:
         real_name = None
     name = name or real_name
-    anchor = (class_object and class_object.__name__ or "") + "-" + name
+    anchor = ((class_object and class_object.__name__) or "") + "-" + name
     note = ""
     if _is_bound_method(the_object):
         imported_class = the_object.__self__.__class__
@@ -63,7 +63,7 @@ def docroutine(
     argument_specification = None
     if inspect.isroutine(the_object):
         try:
-            signature: Optional[inspect.Signature] = inspect.signature(the_object)
+            signature: inspect.Signature | None = inspect.signature(the_object)
         except RuntimeError as what_happened:
             print(f"RuntimeError: {what_happened}")
         except (ValueError, TypeError):

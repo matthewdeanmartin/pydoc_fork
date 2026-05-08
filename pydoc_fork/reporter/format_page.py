@@ -4,7 +4,7 @@ Roughly page and top level containers
 
 import inspect
 import pkgutil
-from typing import Any, Dict, Optional
+from typing import Any
 
 from pydoc_fork.inspector.custom_types import TypeLike
 from pydoc_fork.reporter.format_class import docclass
@@ -49,7 +49,7 @@ def document(the_object: TypeLike, name: str = "", *args: Any) -> str:  # Null s
     name, fdict, cdict (name twice?)
     mod, funcs, classes, mdict, the_object
     """
-    args = (the_object, name) + args
+    args = (the_object, name, *args)
 
     # 'try' clause is to attempt to handle the possibility that inspect
     # identifies something in a way that pydoc itself has issues handling;
@@ -86,7 +86,7 @@ def docindex(modules: list) -> str:
 
 
 # This is page
-def index(directory: str, shadowed: Optional[Dict[str, Any]] = None) -> str:
+def index(directory: str, shadowed: dict[str, Any] | None = None) -> str:
     """Generate an HTML index for a directory of modules."""
     module_packages = []
     if shadowed is None:
