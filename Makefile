@@ -6,7 +6,7 @@ PACKAGE := pydoc_fork
 PYTHON_TARGETS := pydoc_fork test
 PYLINT_MAIN_TARGETS := pydoc_fork
 PYLINT_TEST_TARGETS := test
-MARKDOWN_TARGETS := README.md CHANGES.md AGENTS.md
+MARKDOWN_TARGETS := README.md CHANGELOG.md AGENTS.md
 YAML_TARGETS := .github mkdocs.yml
 GHA_WORKFLOWS := .github/workflows
 ABOUT_FILE := pydoc_fork/__about__.py
@@ -153,7 +153,7 @@ pylint-spelling:
 
 spell: pylint-spelling
 	@$(UV) run codespell --ignore-words=private_dictionary.txt \
-		$(PACKAGE) test README.md CHANGES.md AGENTS.md
+		$(PACKAGE) test README.md CHANGELOG.md AGENTS.md
 
 # ── Documentation checks ─────────────────────────────────────────────────────
 
