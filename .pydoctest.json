@@ -1,0 +1,5 @@
+{
+    "include_paths": ["pydoc_fork/**/*.py"],
+    "fail_on_missing_docstring": false,
+    "parser": "google"
+}
