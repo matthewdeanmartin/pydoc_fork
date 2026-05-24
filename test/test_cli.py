@@ -1,8 +1,14 @@
+import importlib.util
 import sys
+
+import pytest
 
 import pydoc_fork.cli as cli
 
+tkinter_available = importlib.util.find_spec("tkinter") is not None
 
+
+@pytest.mark.skipif(not tkinter_available, reason="tkinter is not installed")
 def test_main_dispatches_to_gui(monkeypatch):
     called = []
 

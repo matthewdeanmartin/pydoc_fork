@@ -7,3 +7,4 @@ spelling-private-dict-file=private_dictionary.txt
 
 [MESSAGES CONTROL]
 disable=all
+enable=wrong-spelling-in-comment,wrong-spelling-in-docstring

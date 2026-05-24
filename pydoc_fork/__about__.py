@@ -20,4 +20,4 @@ __credits__ = [{"name": "Matthew Martin", "email": "matthewdeanmartin@gmail.com"
 __keywords__ = ["pydoc", "html documentation"]
 __license__ = "MIT"
 __requires_python__ = ">=3.10"
-__status__ = "5 - Production/Stable"
+__status__ = "4 - Beta"

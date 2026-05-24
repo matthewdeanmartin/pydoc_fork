@@ -2741,6 +2741,20 @@ dev = [
     { name = "vulture" },
     { name = "yamlfix" },
 ]
+test = [
+    { name = "html5lib" },
+    { name = "hypothesis" },
+    { name = "mypy" },
+    { name = "pytest" },
+    { name = "pytest-cov" },
+    { name = "pytest-mock" },
+    { name = "pytest-randomly" },
+    { name = "pytest-sugar" },
+    { name = "pytest-timeout" },
+    { name = "pytest-xdist" },
+    { name = "types-docutils" },
+    { name = "types-markdown" },
+]
 
 [package.metadata]
 requires-dist = [
@@ -2803,6 +2817,20 @@ dev = [
     { name = "types-markdown" },
     { name = "vulture", specifier = ">=2.11" },
     { name = "yamlfix", specifier = ">=1.19.0" },
+]
+test = [
+    { name = "html5lib" },
+    { name = "hypothesis", specifier = ">=6.100.0" },
+    { name = "mypy", specifier = ">=1.18.0" },
+    { name = "pytest", specifier = ">=8.4.0" },
+    { name = "pytest-cov", specifier = ">=6.0.0" },
+    { name = "pytest-mock", specifier = ">=3.14.0" },
+    { name = "pytest-randomly", specifier = ">=3.15.0" },
+    { name = "pytest-sugar", specifier = ">=0.9.7" },
+    { name = "pytest-timeout", specifier = ">=2.4.0" },
+    { name = "pytest-xdist", specifier = ">=3.5.0" },
+    { name = "types-docutils" },
+    { name = "types-markdown" },
 ]
 
 [[package]]

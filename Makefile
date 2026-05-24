@@ -153,6 +153,7 @@ pylint-spelling:
 
 spell: pylint-spelling
 	@$(UV) run codespell --ignore-words=private_dictionary.txt \
+		--skip="test/support" \
 		$(PACKAGE) test README.md CHANGELOG.md AGENTS.md
 
 # ── Documentation checks ─────────────────────────────────────────────────────
@@ -276,6 +277,8 @@ typecheck-mypy:
 
 metadata:
 	@$(UV) run metametameta pep621 --name $(PACKAGE) --source pyproject.toml --output $(ABOUT_FILE)
+	@$(UV) run ruff check --fix --quiet $(ABOUT_FILE)
+	@$(UV) run black --quiet $(ABOUT_FILE)
 
 metadata-check:
 	@$(UV) run metametameta sync-check --output __about__.py
@@ -291,6 +294,16 @@ dev-status:
 gha-validate:
 	@echo "Validating GitHub Actions workflows"
 	@$(UV) run python -c "import pathlib, yaml; [yaml.safe_load(p.read_text(encoding='utf-8')) for p in pathlib.Path('$(GHA_WORKFLOWS)').glob('*.yml')]; print('YAML parse OK')"
+	@$(UV) run python -c "\
+from pathlib import Path; import yaml; \
+data=yaml.safe_load(Path('$(GHA_WORKFLOWS)/publish_to_pypi.yml').read_text(encoding='utf-8')); \
+build_steps=data['jobs']['build']['steps']; \
+publish_steps=data['jobs']['pypi-publish']['steps']; \
+up=next(s for s in build_steps if s.get('uses','').startswith('actions/upload-artifact@')); \
+down=next(s for s in publish_steps if s.get('uses','').startswith('actions/download-artifact@')); \
+assert up['with']['name']==down['with']['name']=='packages'; \
+assert up['with']['path']==down['with']['path']=='dist/'; \
+print('Artifact handoff OK:', up['uses'], '->', down['uses'])"
 	@uvx zizmor --no-progress --no-exit-codes .
 
 gha-pin:

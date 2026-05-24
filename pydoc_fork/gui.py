@@ -8,11 +8,20 @@ Right panel: help/instructions
 import subprocess
 import sys
 import threading
-import tkinter as tk
 import webbrowser
 from functools import partial
 from pathlib import Path
-from tkinter import filedialog, messagebox, scrolledtext, ttk
+from typing import TYPE_CHECKING
+
+try:
+    import tkinter as tk
+    from tkinter import filedialog, messagebox, scrolledtext, ttk
+
+    TKINTER_AVAILABLE = True
+except ImportError:  # pragma: no cover - depends on the Python build
+    tk = None  # type: ignore[assignment]
+    filedialog = messagebox = scrolledtext = ttk = None  # type: ignore[assignment]
+    TKINTER_AVAILABLE = False
 
 # ---------------------------------------------------------------------------
 # Help text per command
@@ -107,7 +116,15 @@ COMMANDS = [
 # ---------------------------------------------------------------------------
 
 
-class PydocForkGui(tk.Tk):
+if TYPE_CHECKING:
+    import tkinter
+
+    _TkBase = tkinter.Tk
+else:
+    _TkBase = tk.Tk if TKINTER_AVAILABLE else object
+
+
+class PydocForkGui(_TkBase):
     """Main application window."""
 
     def __init__(self):
@@ -576,6 +593,13 @@ class PydocForkGui(tk.Tk):
 
 def main():
     """Launch the pydoc_fork GUI."""
+    if not TKINTER_AVAILABLE:
+        raise SystemExit(
+            "The pydoc_fork GUI requires tkinter, which is not available in this "
+            "Python installation. Install the Tk bindings for your platform "
+            "(e.g. the python3-tk package on Debian/Ubuntu) or use the command-line "
+            "interface instead: pydoc_fork <package> --output <folder>"
+        )
     app = PydocForkGui()
     app.mainloop()
 

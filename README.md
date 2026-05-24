@@ -68,11 +68,11 @@ SKIP_MODULES = ["typing"]
 Three themes ship in the box. They are CSS variables on a `:root` block, so if
 you want to tweak one, fork `pydoc_fork/reporter/themes.py` — it's a single dict.
 
-| Theme     | Vibe                                                |
+| Theme | Vibe |
 |-----------|-----------------------------------------------------|
-| `classic` | The original pydoc look: lavender, pink, purple.   |
-| `light`   | A calmer modern light theme.                        |
-| `dark`    | A modern dark theme for people who code at night.   |
+| `classic` | The original pydoc look: lavender, pink, purple. |
+| `light` | A calmer modern light theme. |
+| `dark` | A modern dark theme for people who code at night. |
 
 ```bash
 pydoc_fork my_module --output docs --theme light

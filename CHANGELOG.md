@@ -15,6 +15,7 @@ Entries from before 3.4.0 are reconstructed from git history and may be incomple
 The "themes and a GUI" release.
 
 ### Added
+
 - Three built-in themes: `classic` (the original pydoc lavender-and-pink),
   `light`, and `dark`. Selected with `--theme` or `THEME` in
   `[tool.pydoc_fork]`. CSS variables live in
@@ -34,6 +35,7 @@ The "themes and a GUI" release.
 - `keepachangelog-manager` as a dev dependency so this file can be validated.
 
 ### Changed
+
 - Migrated build system from poetry to **hatchling + uv**.
 - Project layout reorganized: prose docs moved to `rtd_docs/`, generated
   HTML lives in `docs/`. Test modules moved under `test/module_examples/`.
@@ -49,6 +51,7 @@ The "themes and a GUI" release.
   Pycco, Doxygen, Read the Docs).
 
 ### Fixed
+
 - Index page generation bug.
 - `CUSTOM_TEMPLATES` (from `[tool.pydoc_fork]` in `pyproject.toml`) is now
   actually honored. Previously it was parsed and stored but never wired
@@ -68,12 +71,14 @@ The "themes and a GUI" release.
 ## [3.2.0] - 2023-05-28
 
 ### Changed
+
 - Switched PyPI publishing to use a trusted publisher (OIDC) via GitHub
   Actions.
 
 ## [3.1.14] - 2021-12-09
 
 ### Fixed
+
 - Miscellaneous fixes leading up to the last tagged release on the original
   cadence. (Reconstructed from commit history; specifics not recorded at
   the time.)
@@ -81,12 +86,13 @@ The "themes and a GUI" release.
 ## [3.1.4] - 2021-11-26
 
 ### Added
+
 - First entry recoverable from commit history. Earlier 3.x and pre-3.x
   releases predate this changelog; consult `git log` if you really need
   to know.
 
-[Unreleased]: https://github.com/matthewdeanmartin/pydoc_fork/compare/v3.4.0...HEAD
-[3.4.0]: https://github.com/matthewdeanmartin/pydoc_fork/compare/v3.2.0...v3.4.0
-[3.2.0]: https://github.com/matthewdeanmartin/pydoc_fork/compare/v3.1.14...v3.2.0
 [3.1.14]: https://github.com/matthewdeanmartin/pydoc_fork/compare/v3.1.4...v3.1.14
 [3.1.4]: https://github.com/matthewdeanmartin/pydoc_fork/releases/tag/v3.1.4
+[3.2.0]: https://github.com/matthewdeanmartin/pydoc_fork/compare/v3.1.14...v3.2.0
+[3.4.0]: https://github.com/matthewdeanmartin/pydoc_fork/compare/v3.2.0...v3.4.0
+[unreleased]: https://github.com/matthewdeanmartin/pydoc_fork/compare/v3.4.0...HEAD

@@ -8,7 +8,7 @@ keywords = ["pydoc", "html documentation"]
 license = "MIT"
 requires-python = ">=3.10"
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
+    "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
@@ -17,6 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
     "docopt-ng>=0.9.0,<1",
@@ -58,18 +59,12 @@ include = [
 include = ["/README.md", "LICENSE", "/pydoc_fork", "/test"]
 
 [dependency-groups]
-dev = [
-    "bandit>=1.9.4",
-    "black>=26.0.0",
-    "isort>=6.0.0",
-    "jiggle-version>=2.1.0",
-    "codespell>=2.4.1",
-    "mdformat>=1.0.0",
-    "metametameta>=0.1.5",
-    "mypy>=1.18.0",
-    "types-docutils",
-    "types-Markdown",
-    "pylint[spelling]>=4.0.0",
+# Minimal group for running the test suite + mypy across every supported Python
+# version (including pre-release builds). Deliberately excludes the heavy lint/
+# docs/security toolchain — notably import-linter, whose `grimp`/`pydantic-core`
+# deps require a Rust toolchain to build on Python versions without prebuilt
+# wheels (e.g. 3.15 beta). pydoc_fork itself has no pydantic dependency.
+test = [
     "pytest>=8.4.0",
     "pytest-cov>=6.0.0",
     "pytest-xdist>=3.5.0",
@@ -78,6 +73,21 @@ dev = [
     "pytest-mock>=3.14.0",
     "pytest-timeout>=2.4.0",
     "hypothesis>=6.100.0",
+    "html5lib",
+    "mypy>=1.18.0",
+    "types-docutils",
+    "types-Markdown",
+]
+dev = [
+    { include-group = "test" },
+    "bandit>=1.9.4",
+    "black>=26.0.0",
+    "isort>=6.0.0",
+    "jiggle-version>=2.1.0",
+    "codespell>=2.4.1",
+    "mdformat>=1.0.0",
+    "metametameta>=0.1.5",
+    "pylint[spelling]>=4.0.0",
     "ruff>=0.12.0",
     "troml-dev-status>=0.6.0",
     "pre-commit>=4.0.0",
@@ -96,7 +106,6 @@ dev = [
     "mkdocstrings[python]>=0.26.0",
     "git2md>=0.1.0",
     "pyclean>=3.0.0",
-    "html5lib",
     "python-dotenv>=0.11.0",
     "tomlkit",
     # dead code analysis (advisory)

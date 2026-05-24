@@ -1,0 +1,31 @@
+# Normalize line endings to LF for all text files so formatters (mdformat,
+# black, ruff) and Linux CI agree with what Windows checks out. Prevents the
+# CRLF/LF tug-of-war when core.autocrlf=true.
+* text=auto eol=lf
+
+# Explicit text types
+*.py    text eol=lf
+*.pyi   text eol=lf
+*.md    text eol=lf
+*.txt   text eol=lf
+*.toml  text eol=lf
+*.cfg   text eol=lf
+*.ini   text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+*.json  text eol=lf
+*.jinja text eol=lf
+*.html  text eol=lf
+*.css   text eol=lf
+*.sh    text eol=lf
+*.c5p   text eol=lf
+
+# Binary types — never normalize
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary
+*.woff  binary
+*.woff2 binary
