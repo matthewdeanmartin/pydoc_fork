@@ -64,6 +64,11 @@ def load_config(path: str | None):
     GENERATE_INDEX = pairs.get("GENERATE_INDEX", True)
     PROJECT_NAME = pairs.get("PROJECT_NAME", "Python Project")
 
+    if CUSTOM_TEMPLATES:
+        from pydoc_fork.reporter.jinja_code import refresh_loader
+
+        refresh_loader()
+
 
 def parse_toml(path_string: str | None) -> dict[str, Any]:
     """Parse toml"""

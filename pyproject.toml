@@ -31,7 +31,7 @@ dependencies = [
 Homepage = "https://github.com/matthewdeanmartin/pydoc_fork"
 Documentation = "https://pydoc-fork.readthedocs.io/en/latest/"
 Repository = "https://github.com/matthewdeanmartin/pydoc_fork"
-Changelog = "https://github.com/matthewdeanmartin/pydoc_fork/blob/main/CHANGES.md"
+Changelog = "https://github.com/matthewdeanmartin/pydoc_fork/blob/main/CHANGELOG.md"
 "Bug Tracker" = "https://github.com/matthewdeanmartin/pydoc_fork/issues"
 
 [project.scripts]
@@ -110,6 +110,7 @@ dev = [
     "crosshair-tool>=0.0.80",
     "deptry>=0.20.0",
     "import-linter>=2.0",
+    "keepachangelog-manager>=4.0.0",
 ]
 
 [tool.uv]
@@ -211,7 +212,7 @@ exclude_also = [
 root_packages = ["pydoc_fork"]
 
 [tool.pydoc_fork]
-PREFER_INTERNET_DOCUMENTATION = false
+PREFER_DOCS_PYTHON_ORG = false
 DOCUMENT_INTERNALS = false
 SKIP_MODULES = ["typing"]
 ONLY_NAMED_AND_SUBS = false
