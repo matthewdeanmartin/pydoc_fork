@@ -58,8 +58,9 @@ def _find_class(func: TypeLike) -> type[Any] | None:
     cls = sys.modules.get(func.__module__)
     if cls is None:
         return None
-    for name in func.__qualname__.split(".")[:-1]:
-        cls = getattr(cls, name)
+    if func.__qualname__:
+        for name in func.__qualname__.split(".")[:-1]:
+            cls = getattr(cls, name)
     if not inspect.isclass(cls):
         return None
     return cls
