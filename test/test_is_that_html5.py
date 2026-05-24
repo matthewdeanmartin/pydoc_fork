@@ -40,10 +40,9 @@ def test_docclass():
 
 
 def test_section():
-    # section(title, "#000000", "#ffc8d8", contents_as_string, 3, doc)
     for i in range(0, 6):
         print(f"-------{i}--------")
-        result = section("the title", "#000000", "#ffc8d8", "the contents", i, "the prelude")
+        result = section("the title", "the contents", i, "the prelude")
         print(result)
         html = HTML5PARSER.parseFragment(result)
         assert "&amp;gt;" not in html
@@ -53,7 +52,7 @@ def test_bigsection():
     # this just calls section & wrps results in a tag
     for i in range(0, 6):
         print(f"-------{i}--------")
-        result = bigsection("the title", "#000000", "#ffc8d8", "the contents", i, "the prelude")
+        result = bigsection("the title", "the contents", i, "the prelude")
         print(result)
         HTML5PARSER.parseFragment(result)
         assert "&amp;gt;" not in result

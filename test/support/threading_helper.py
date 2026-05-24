@@ -21,14 +21,14 @@ from test import support
 
 
 def threading_setup():
-    return _thread._count(), threading._dangling.copy()
+    return _thread._count(), threading._dangling.copy()  # type: ignore
 
 
 def threading_cleanup(*original_values):
     _MAX_COUNT = 100
 
     for count in range(_MAX_COUNT):
-        values = _thread._count(), threading._dangling
+        values = _thread._count(), threading._dangling  # type: ignore
         if values == original_values:
             break
 

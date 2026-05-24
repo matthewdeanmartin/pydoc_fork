@@ -147,12 +147,10 @@ def make_bad_fd():
     Create an invalid file descriptor by opening and closing a file and return
     its fd.
     """
-    file = open(TESTFN, "wb")  # noqa: SIM115
-    try:
-        return file.fileno()
-    finally:
-        file.close()
-        unlink(TESTFN)
+    with open(TESTFN, "wb") as file:
+        fd = file.fileno()
+    unlink(TESTFN)
+    return fd
 
 
 _can_symlink = None
@@ -389,8 +387,7 @@ def temp_dir(path=None, quiet=False):
                 RuntimeWarning,
                 stacklevel=3,
             )
-    if dir_created:
-        pid = os.getpid()
+    pid = os.getpid() if dir_created else None
     try:
         yield path
     finally:

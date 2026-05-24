@@ -2,6 +2,8 @@
 Custom Types so mypy can check the code
 """
 
+from typing import Any, Union
+
 from typing_extensions import Protocol
 
 
@@ -11,19 +13,20 @@ class TypeLike(Protocol):
 
     __name__: str
     __module__: str
-    __path__: str
+    __doc__: str | None
+    __path__: Union[str, list[str]] | None
     # noinspection SpellCheckingInspection
-    __objclass__: "TypeLike"
-    __func__: "TypeLike"
-    __self__: "TypeLike"
-    __bases__: list["TypeLike"]
-    __all__: list[str]
-    __qualname__: str
-    __file__: str
-    __mro__: str
+    __objclass__: Any | None
+    __func__: Any | None
+    __self__: Any | None
+    __bases__: list[Any] | None
+    __all__: list[str] | None
+    __qualname__: str | None
+    __file__: str | None
+    __mro__: Any | None
 
     # pure metadata, people can write about anything here
-    __version__: str
-    __date__: str
-    __author__: str
-    __credits__: str
+    __version__: str | None
+    __date__: str | None
+    __author__: str | None
+    __credits__: str | None

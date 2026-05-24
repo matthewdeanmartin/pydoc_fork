@@ -212,11 +212,9 @@ def load_package_tests(pkg_dir, loader, standard_tests, pattern):
 def get_attribute(obj, name):
     """Get an attribute, raising SkipTest if AttributeError is raised."""
     try:
-        attribute = getattr(obj, name)
+        return getattr(obj, name)
     except AttributeError as exc:
         raise unittest.SkipTest(f"object {obj!r} has no attribute {name!r}") from exc
-    else:
-        return attribute
 
 
 verbose = 1  # Flag set to 0 by regrtest.py
@@ -590,10 +588,10 @@ def findfile(filename, subdir=None):
     return filename
 
 
-def sortdict(dict):
-    "Like repr(dict), but in sorted order."
-    items = sorted(dict.items())
-    reprpairs = ["{!r}: {!r}".format(*pair) for pair in items]
+def sortdict(the_dict):
+    "Like repr(the_dict), but in sorted order."
+    items = sorted(the_dict.items())
+    reprpairs = [f"{k!r}: {v!r}" for k, v in items]
     withcommas = ", ".join(reprpairs)
     return f"{{{withcommas}}}"
 
@@ -1809,7 +1807,7 @@ def run_in_subinterp(code):
     return _testcapi.run_in_subinterp(code)
 
 
-def check_free_after_iterating(test, iter, cls, args=()):
+def check_free_after_iterating(test, iterator_factory, cls, args=()):
     class A(cls):
         def __del__(self):
             nonlocal done
@@ -1818,7 +1816,7 @@ def check_free_after_iterating(test, iter, cls, args=()):
                 next(it)
 
     done = False
-    it = iter(A(*args))
+    it = iterator_factory(A(*args))
     # Issue 26494: Shouldn't crash
     test.assertRaises(StopIteration, next, it)
     # The sequence should be deallocated just after the end of iterating

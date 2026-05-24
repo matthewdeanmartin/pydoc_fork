@@ -10,6 +10,8 @@ import unittest
 
 class RegressionTestResult(unittest.TextTestResult):
     USE_XML = False
+    _stdout_buffer: io.StringIO | None
+    _stderr_buffer: io.StringIO | None
 
     def __init__(self, stream, descriptions, verbosity):
         super().__init__(stream=stream, descriptions=descriptions, verbosity=2 if verbosity else 0)

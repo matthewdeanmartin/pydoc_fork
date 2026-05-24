@@ -133,7 +133,7 @@ def run_python_until_end(*args, **env_vars):
             out, err = proc.communicate()
         finally:
             proc.kill()
-            subprocess._cleanup()
+            subprocess._cleanup()  # type: ignore
     rc = proc.returncode
     return _PythonRunResult(rc, out, err), cmd_line
 

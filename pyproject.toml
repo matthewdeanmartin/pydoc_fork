@@ -114,6 +114,10 @@ dev = [
 
 [tool.uv]
 default-groups = ["dev"]
+constraint-dependencies = [
+    "idna>=3.15",
+    "pymdown-extensions>=10.21.3",
+]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -176,6 +180,8 @@ select = [
 ignore = [
     "E501",   # line too long (black handles this)
     "UP007",  # use X | Y for union (3.9 compat)
+    "W291",   # trailing whitespace (black owns blank-line formatting)
+    "W293",   # whitespace on blank line (black owns blank-line formatting)
 ]
 
 [tool.ruff.lint.per-file-ignores]

@@ -9,14 +9,14 @@ __xyz__ = "X, Y and Z"
 class A:
     """Hello and goodbye"""
 
-    def __init__():
+    def __init__():  # pylint: disable=no-method-argument
         """Wow, I have no function!"""
-        pass
+        pass  # pylint: disable=unnecessary-pass
 
 
 class B:
     NO_MEANING: str = "eggs"
-    pass
+    pass  # pylint: disable=unnecessary-pass
 
 
 class C:

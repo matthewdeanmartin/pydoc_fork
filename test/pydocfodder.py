@@ -142,15 +142,13 @@ class A_new:
     def ABCD_method(self):
         "Method defined in A, B, C and D."
 
+    @classmethod
     def A_classmethod(cls, x):
         "A class method defined in A."
 
-    A_classmethod = classmethod(A_classmethod)
-
+    @staticmethod
     def A_staticmethod():
         "A static method defined in A."
-
-    A_staticmethod = staticmethod(A_staticmethod)
 
     def _getx(self):
         "A property getter function."
