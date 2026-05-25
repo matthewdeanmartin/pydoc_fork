@@ -127,8 +127,9 @@ constraint-dependencies = [
     "idna>=3.15",
     "pymdown-extensions>=10.21.3",
 ]
-universal = true
 
+[tool.uv.pip]
+universal = true
 [tool.pytest.ini_options]
 minversion = "6.0"
 testpaths = ["test"]
