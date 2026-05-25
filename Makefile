@@ -365,3 +365,16 @@ pylint-llm:
 
 check-llm: pytest-llm pylint-llm
 	@echo "All LLM checks passed"
+
+# ── Dogfooding targets (independent, not wired into check) ───────────────────
+
+.PHONY: prerelease-check
+prerelease-check: version-check dev-status
+	@echo "Pre-release checks passed."
+
+.PHONY: dont-be-lazy
+dont-be-lazy:
+	@$(UV) dont_be_lazy --root . --no-color summary
+	@$(UV) dont_be_lazy --root . --no-color scan pydoc_fork --no-config-suppressions || true
+
+# ── Dogfooding targets (independent, not wired into check) ───────────────────
