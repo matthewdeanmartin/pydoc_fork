@@ -177,6 +177,7 @@ check_untyped_defs = true
 [tool.ruff]
 line-length = 120
 target-version = "py310"
+exclude = ["pydoc_original_ref"]
 
 [tool.ruff.lint]
 select = [

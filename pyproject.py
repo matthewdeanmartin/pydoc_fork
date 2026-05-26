@@ -33,10 +33,7 @@ def convert_dependencies(poetry_deps: dict) -> list[str]:
                 dep += f"; {markers}"
             pep621_deps.append(dep)
         else:
-            if version_spec == "*":
-                version_spec = ""
-            else:
-                version_spec = f" {version_spec}"
+            version_spec = "" if version_spec == "*" else f" {version_spec}"
             pep621_deps.append(f"{package}{version_spec}")
     return pep621_deps
 

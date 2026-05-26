@@ -109,7 +109,7 @@ def _finddoc(obj):
     if inspect.ismethod(obj):
         name = obj.__func__.__name__
         self = obj.__self__
-        if inspect.isclass(self) and getattr(getattr(self, name, None), "__func__") is obj.__func__:
+        if inspect.isclass(self) and getattr(self, name, None).__func__ is obj.__func__:
             # classmethod
             cls = self
         else:
@@ -191,7 +191,7 @@ def _getdoc(object):
 def getdoc(object):
     """Get the doc string or comments for an object."""
     result = _getdoc(object) or inspect.getcomments(object)
-    return result and re.sub("^ *\n", "", result.rstrip()) or ""
+    return (result and re.sub("^ *\n", "", result.rstrip())) or ""
 
 
 def splitdoc(doc):
@@ -269,7 +269,7 @@ def allmethods(cl):
         methods[key] = 1
     for base in cl.__bases__:
         methods.update(allmethods(base))  # all your base are belong to us
-    for key in methods.keys():
+    for key in methods:
         methods[key] = getattr(cl, key)
     return methods
 
@@ -1100,7 +1100,7 @@ class HTMLDoc(Doc):
         """Produce HTML documentation for a function or method object."""
         realname = object.__name__
         name = name or realname
-        anchor = (cl and cl.__name__ or "") + "-" + name
+        anchor = ((cl and cl.__name__) or "") + "-" + name
         note = ""
         skipdocs = 0
         if _is_bound_method(object):
@@ -1184,7 +1184,7 @@ class HTMLDoc(Doc):
 
     def docother(self, object, name=None, mod=None, *ignored):
         """Produce HTML documentation for a data object."""
-        lhs = name and "<strong>%s</strong> = " % name or ""
+        lhs = (name and "<strong>%s</strong> = " % name) or ""
         return lhs + self.repr(object)
 
     def index(self, dir, shadowed=None):
@@ -1618,11 +1618,11 @@ location listed above.
         """Produce text documentation for a data object."""
         repr = self.repr(object)
         if maxlen:
-            line = (name and name + " = " or "") + repr
+            line = ((name and name + " = ") or "") + repr
             chop = maxlen - len(line)
             if chop < 0:
                 repr = repr[:chop] + "..."
-        line = (name and self.bold(name) + " = " or "") + repr
+        line = ((name and self.bold(name) + " = ") or "") + repr
         if not doc:
             doc = getdoc(object)
         if doc:
@@ -2218,7 +2218,7 @@ has the same effect as typing a particular string at the help> prompt.
             return self.input.readline()
 
     def help(self, request):
-        if type(request) is type(""):
+        if type(request) is str:
             request = request.strip()
             if request == "keywords":
                 self.listkeywords()
@@ -2235,9 +2235,7 @@ has the same effect as typing a particular string at the help> prompt.
             elif request in ["True", "False", "None"]:
                 # special case these keywords since they are objects too
                 doc(eval(request), "Help on %s:")
-            elif request in self.keywords:
-                self.showtopic(request)
-            elif request in self.topics:
+            elif request in self.keywords or request in self.topics:
                 self.showtopic(request)
             elif request:
                 doc(request, "Help on %s:", output=self._output)
@@ -2314,7 +2312,7 @@ module "pydoc_data.topics" could not be found.
         if not target:
             self.output.write("no documentation found for %s\n" % repr(topic))
             return
-        if type(target) is type(""):
+        if type(target) is str:
             return self.showtopic(target, more_xrefs)
 
         label, xrefs = target
@@ -2371,11 +2369,11 @@ module "pydoc_data.topics" could not be found.
 
     def listmodules(self, key=""):
         if key:
-            self.output.write("""
-Here is a list of modules whose name or summary contains '{}'.
+            self.output.write(f"""
+Here is a list of modules whose name or summary contains '{key}'.
 If there are any, enter a module name to get more help.
 
-""".format(key))
+""")
             apropos(key)
         else:
             self.output.write("""
@@ -3015,13 +3013,13 @@ def cli():
 
     except (getopt.error, BadUsage):
         cmd = os.path.splitext(os.path.basename(sys.argv[0]))[0]
-        print("""pydoc - the Python documentation tool
+        print(f"""pydoc - the Python documentation tool
 
 {cmd} <name> ...
     Show text documentation on something.  <name> may be the name of a
     Python keyword, topic, function, module, or package, or a dotted
     reference to a class or function within a module or module in a
-    package.  If <name> contains a '{sep}', it is used as the path to a
+    package.  If <name> contains a '{os.sep}', it is used as the path to a
     Python source file to document. If name is 'keywords', 'topics',
     or 'modules', a listing of these things is displayed.
 
@@ -3042,9 +3040,9 @@ def cli():
 
 {cmd} -w <name> ...
     Write out the HTML documentation for a module to a file in the current
-    directory.  If <name> contains a '{sep}', it is treated as a filename; if
+    directory.  If <name> contains a '{os.sep}', it is treated as a filename; if
     it names a directory, documentation is written for all the contents.
-""".format(cmd=cmd, sep=os.sep))
+""")
 
 
 if __name__ == "__main__":
