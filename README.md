@@ -195,3 +195,11 @@ Forked from [pydoc in python 3.10](https://github.com/python/cpython/blob/3.10/L
 That code is governed by the cpython [license](https://github.com/python/cpython/blob/main/LICENSE)
 
 I picked a MIT license, but I'm no lawyer, the cpython license probably governs in any conflict.
+
+## Project Links
+
+- [GitHub](https://github.com/matthewdeanmartin/pydoc_fork)
+- [PyPI](https://pypi.org/project/pydoc-fork/)
+- [Documentation](https://pydoc-fork.readthedocs.io/en/latest/)
+- [Bug Tracker](https://github.com/matthewdeanmartin/pydoc_fork/issues)
+- [Change Log](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/CHANGELOG.md)
