@@ -1,0 +1,198 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head><title>Python: module pydoc_fork.reporter.jinja_code</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="theme-heading">
+    <div class="heading-content">
+        <div class="project-name">pydoc_fork</div>
+        <h1 class="heading-text"><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.<a href="pydoc_fork.reporter.html"><span style="color:">reporter</span></a>.jinja_code</strong></big></big></h1>
+        <div class="heading-extras">
+            &nbsp;
+        </div>
+    </div>
+
+    <nav class="header-nav">
+
+        <a href=".">index</a>
+
+        <a href="file:../pydoc_fork/reporter/jinja_code.py">../pydoc_fork/reporter/jinja_code.py</a>
+
+    </nav>
+
+</header>
+<p><tt>Jinja&nbsp;setup</tt></p>
+
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>Modules</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <div class="multicolumn-container">
+
+    <div class="multicolumn-col">
+
+        <a href="pydoc_fork.settings.html">pydoc_fork.settings</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+    </div>
+
+    <div class="multicolumn-col">
+
+    </div>
+
+    <div class="multicolumn-col">
+
+    </div>
+
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>`from` Modules</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <div class="multicolumn-container">
+
+    <div class="multicolumn-col">
+
+        <a href="jinja2.loaders.html">jinja2.loaders</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+        <a href="jinja2.utils.html">jinja2.utils</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+        <a href="jinja2.environment.html">jinja2.environment</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+    </div>
+
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>Functions</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <dl>
+    <dt><a name="-refresh_loader"><strong>refresh_loader</strong></a>() -&gt; None</dt>
+
+    <dd><tt>Rebuild&nbsp;the&nbsp;Jinja&nbsp;loader&nbsp;after&nbsp;settings&nbsp;change&nbsp;(e.g.&nbsp;CUSTOM_TEMPLATES&nbsp;set&nbsp;via&nbsp;config).</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-select_autoescape"><strong>select_autoescape</strong></a>(enabled_extensions: Collection[str] = ('html', 'htm', 'xml'), disabled_extensions: Collection[str] = (), default_for_string: bool = True, default: bool = False) -&gt; Callable[[str | None], bool]</dt>
+
+    <dd><tt>Intelligently&nbsp;sets&nbsp;the&nbsp;initial&nbsp;value&nbsp;of&nbsp;autoescaping&nbsp;based&nbsp;on&nbsp;the<br>
+filename&nbsp;of&nbsp;the&nbsp;template.&nbsp;&nbsp;This&nbsp;is&nbsp;the&nbsp;recommended&nbsp;way&nbsp;to&nbsp;configure<br>
+autoescaping&nbsp;if&nbsp;you&nbsp;do&nbsp;not&nbsp;want&nbsp;to&nbsp;write&nbsp;a&nbsp;custom&nbsp;function&nbsp;yourself.<br>
+&nbsp;<br>
+If&nbsp;you&nbsp;want&nbsp;to&nbsp;enable&nbsp;it&nbsp;for&nbsp;all&nbsp;templates&nbsp;created&nbsp;from&nbsp;strings&nbsp;or<br>
+for&nbsp;all&nbsp;templates&nbsp;with&nbsp;`.html`&nbsp;and&nbsp;`.xml`&nbsp;extensions::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;jinja2&nbsp;import&nbsp;Environment,&nbsp;select_autoescape<br>
+&nbsp;&nbsp;&nbsp;&nbsp;env&nbsp;=&nbsp;Environment(autoescape=<a href="#-select_autoescape">select_autoescape</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;enabled_extensions=('html',&nbsp;'xml'),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default_for_string=True,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;))<br>
+&nbsp;<br>
+Example&nbsp;configuration&nbsp;to&nbsp;turn&nbsp;it&nbsp;on&nbsp;at&nbsp;all&nbsp;times&nbsp;except&nbsp;if&nbsp;the&nbsp;template<br>
+ends&nbsp;with&nbsp;`.txt`::<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;jinja2&nbsp;import&nbsp;Environment,&nbsp;select_autoescape<br>
+&nbsp;&nbsp;&nbsp;&nbsp;env&nbsp;=&nbsp;Environment(autoescape=<a href="#-select_autoescape">select_autoescape</a>(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;disabled_extensions=('txt',),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default_for_string=True,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default=True,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;))<br>
+&nbsp;<br>
+The&nbsp;`enabled_extensions`&nbsp;is&nbsp;an&nbsp;iterable&nbsp;of&nbsp;all&nbsp;the&nbsp;extensions&nbsp;that<br>
+autoescaping&nbsp;should&nbsp;be&nbsp;enabled&nbsp;for.&nbsp;&nbsp;Likewise&nbsp;`disabled_extensions`&nbsp;is<br>
+a&nbsp;list&nbsp;of&nbsp;all&nbsp;templates&nbsp;it&nbsp;should&nbsp;be&nbsp;disabled&nbsp;for.&nbsp;&nbsp;If&nbsp;a&nbsp;template&nbsp;is<br>
+loaded&nbsp;from&nbsp;a&nbsp;string&nbsp;then&nbsp;the&nbsp;default&nbsp;from&nbsp;`default_for_string`&nbsp;is&nbsp;used.<br>
+If&nbsp;nothing&nbsp;matches&nbsp;then&nbsp;the&nbsp;initial&nbsp;value&nbsp;of&nbsp;autoescaping&nbsp;is&nbsp;set&nbsp;to&nbsp;the<br>
+value&nbsp;of&nbsp;`default`.<br>
+&nbsp;<br>
+For&nbsp;security&nbsp;reasons&nbsp;this&nbsp;function&nbsp;operates&nbsp;case&nbsp;insensitive.<br>
+&nbsp;<br>
+..&nbsp;versionadded::&nbsp;2.9</tt></dd>
+
+</dl>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>Data</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <strong>JINJA_ENV</strong> = &lt;jinja2.environment.Environment object&gt;
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+</body>
+</html>

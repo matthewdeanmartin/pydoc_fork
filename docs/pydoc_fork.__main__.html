@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head><title>Python: module pydoc_fork.__main__</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="theme-heading">
+    <div class="heading-content">
+        <div class="project-name">Python Project</div>
+        <h1 class="heading-text"><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.__main__</strong></big></big> (version 3.3.0)</h1>
+        <div class="heading-extras">
+            &nbsp;
+        </div>
+    </div>
+
+    <nav class="header-nav">
+
+        <a href=".">index</a>
+
+        <a href="file:../pydoc_fork/__main__.py">../pydoc_fork/__main__.py</a>
+
+    </nav>
+
+</header>
+<p><tt>pydoc_fork<br>
+A&nbsp;fork&nbsp;of&nbsp;pydoc&nbsp;that&nbsp;is&nbsp;optimized&nbsp;for&nbsp;generating&nbsp;html&nbsp;documentation&nbsp;in&nbsp;a&nbsp;CI&nbsp;context<br>
+&nbsp;<br>
+Usage:<br>
+&nbsp;&nbsp;pydoc_fork&nbsp;&lt;package&gt;...&nbsp;[options]<br>
+&nbsp;&nbsp;pydoc_fork&nbsp;(-h&nbsp;|&nbsp;--help)<br>
+&nbsp;&nbsp;pydoc_fork&nbsp;--version<br>
+&nbsp;<br>
+Options:<br>
+&nbsp;&nbsp;-h&nbsp;--help&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show&nbsp;this&nbsp;screen.<br>
+&nbsp;&nbsp;-v&nbsp;--version&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Show&nbsp;version.<br>
+&nbsp;&nbsp;--quiet&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;printing&nbsp;or&nbsp;logging.<br>
+&nbsp;&nbsp;--verbose&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Crank&nbsp;up&nbsp;the&nbsp;logging.<br>
+&nbsp;&nbsp;--config&nbsp;&lt;config&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pyproject.toml&nbsp;or&nbsp;other&nbsp;toml&nbsp;config.<br>
+&nbsp;&nbsp;--theme&nbsp;&lt;theme&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Theme&nbsp;selection&nbsp;(classic,&nbsp;light,&nbsp;dark).<br>
+&nbsp;&nbsp;--project_name&nbsp;&lt;name&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Project&nbsp;name&nbsp;for&nbsp;headings.<br>
+&nbsp;&nbsp;--no_index&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Do&nbsp;not&nbsp;generate&nbsp;an&nbsp;index.html&nbsp;file.<br>
+&nbsp;&nbsp;--document_internals&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;respect&nbsp;underscore&nbsp;or&nbsp;__all__&nbsp;private<br>
+&nbsp;&nbsp;--prefer_docs_python_org&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;link&nbsp;to&nbsp;python.org&nbsp;or&nbsp;generate&nbsp;own&nbsp;stdlib&nbsp;docs<br>
+&nbsp;&nbsp;-o&nbsp;--output&nbsp;&lt;folder&gt;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;where&nbsp;to&nbsp;write&nbsp;files</tt></p>
+
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>Modules</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <div class="multicolumn-container">
+
+    <div class="multicolumn-col">
+
+        <a href="pydoc_fork.commands.html">pydoc_fork.commands</a><br>
+
+        <a href="docopt.html">docopt</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+        <a href="logging.html">logging</a><br>
+
+        <a href="pydoc_fork.settings.html">pydoc_fork.settings</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+        <a href="sys.html">sys</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+    </div>
+
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>`from` Modules</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <div class="multicolumn-container">
+
+    <div class="multicolumn-col">
+
+        <a href="pydoc_fork.settings.html">pydoc_fork.settings</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+    </div>
+
+    <div class="multicolumn-col">
+
+    </div>
+
+    <div class="multicolumn-col">
+
+    </div>
+
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>Functions</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <dl>
+    <dt><a name="-load_config"><strong>load_config</strong></a>(path: str | None)</dt>
+
+    <dd><tt>Copy&nbsp;config&nbsp;from&nbsp;toml&nbsp;to&nbsp;globals</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-main"><strong>main</strong></a>() -&gt; int</dt>
+
+    <dd><tt>Get&nbsp;the&nbsp;args&nbsp;object&nbsp;from&nbsp;command&nbsp;parameters</tt></dd>
+
+</dl>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>Data</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <strong>LOGGER</strong> = &lt;Logger pydoc_fork.__main__ (WARNING)&gt;<br>
+<strong>LOGGERS</strong> = []<br>
+<strong>__version__</strong> = '3.3.0'
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+</body>
+</html>

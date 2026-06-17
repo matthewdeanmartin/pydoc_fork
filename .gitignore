@@ -148,7 +148,7 @@ reports/
 .config/.build_state/
 
 *.html
-!docs/**/*.html
+!docs/**
 
 doc_out/
 
@@ -162,4 +162,3 @@ doc_self/
 .config/requirements-dev.txt
 
 .config/requirements.txt
-docs

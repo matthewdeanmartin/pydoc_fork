@@ -1,0 +1,148 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head><title>Python: module pydoc_fork.inspector.custom_types</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="theme-heading">
+    <div class="heading-content">
+        <div class="project-name">pydoc_fork</div>
+        <h1 class="heading-text"><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.<a href="pydoc_fork.inspector.html"><span style="color:">inspector</span></a>.custom_types</strong></big></big></h1>
+        <div class="heading-extras">
+            &nbsp;
+        </div>
+    </div>
+
+    <nav class="header-nav">
+
+        <a href=".">index</a>
+
+        <a href="file:../pydoc_fork/inspector/custom_types.py">../pydoc_fork/inspector/custom_types.py</a>
+
+    </nav>
+
+</header>
+<p><tt>Custom&nbsp;Types&nbsp;so&nbsp;mypy&nbsp;can&nbsp;check&nbsp;the&nbsp;code</tt></p>
+
+
+
+
+
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>Classes</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <dl>
+<dt><span style="font-family:helvetica, arial, sans-serif"><a href="typing.html#Protocol">typing.Protocol</a>(<a href="typing.html#Generic">typing.Generic</a>)
+</span></dt><dd>
+<dl>
+<dt><span style="font-family:helvetica, arial, sans-serif"><a href="pydoc_fork.inspector.custom_types.html#TypeLike">TypeLike</a>(<a href="typing.html#Protocol">typing.Protocol</a>)
+</span></dt></dl>
+</dd>
+</dl>
+ <section class="section">
+    <div class="section-header theme-sub-section">
+        <h2><a name="TypeLike">class <strong>TypeLike</strong></a>(<a href="typing.html#Protocol">typing.Protocol</a>)</h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-prelude">
+            <div class="marginalia"><tt></tt></div>
+            <div class="prelude-content"><tt><a href="#TypeLike">TypeLike</a>(*args,&nbsp;**kwargs)<br>
+&nbsp;<br>
+This&nbsp;is&nbsp;a&nbsp;union&nbsp;of&nbsp;all&nbsp;sort&nbsp;of&nbsp;types<br>&nbsp;</tt></div>
+        </div>
+
+        <div class="section-content">
+
+            <div class="main-content">
+                <dl><dt>Method resolution order:</dt>
+<dd><a href="pydoc_fork.inspector.custom_types.html#TypeLike">TypeLike</a></dd>
+<dd><a href="typing.html#Protocol">typing.Protocol</a></dd>
+<dd><a href="typing.html#Generic">typing.Generic</a></dd>
+<dd><a href="builtins.html#object">builtins.object</a></dd>
+</dl>
+<hr>
+Methods defined here:<br>
+<dl>
+    <dt><a name="TypeLike-__annotate_func__"><strong>__annotate_func__</strong></a> = __annotate__(format, /)</dt>
+
+    <dd><tt>#&nbsp;noinspection&nbsp;SpellCheckingInspection</tt></dd>
+
+</dl>
+<dl>
+    <dt><a name="TypeLike-__init__"><strong>__init__</strong></a> = _no_init_or_replace_init(self, *args, **kwargs)</dt>
+
+</dl>
+<hr>
+Class methods defined here:<br>
+<dl>
+    <dt><a name="TypeLike-__subclasshook__"><strong>__subclasshook__</strong></a> = _proto_hook(other)<span class="disabled"><span style="font-family:helvetica, arial, sans-serif"> from <a href="typing.html#_ProtocolMeta">typing._ProtocolMeta</a></span></span></dt>
+
+</dl>
+<hr>
+Data and other attributes defined here:<br>
+<dl><dt><strong>__abstractmethods__</strong> = frozenset()</dl>
+
+<dl><dt><strong>__annotations_cache__</strong> = {'__all__': list[str] | None, '__author__': str | None, '__bases__': list[typing.Any] | None, '__credits__': str | None, ...}</dl>
+
+<dl><dt><strong>__firstlineno__</strong> = 11</dl>
+
+<dl><dt><strong>__parameters__</strong> = ()</dl>
+
+<dl><dt><strong>__protocol_attrs__</strong> = {'__all__', '__author__', '__bases__', '__credits__', '__date__', '__file__', ...}</dl>
+
+<dl><dt><strong>__static_attributes__</strong> = ()</dl>
+
+<hr>
+Class methods inherited from <a href="typing.html#Protocol">typing.Protocol</a>:<br>
+<dl>
+    <dt><a name="TypeLike-__init_subclass__"><strong>__init_subclass__</strong></a>(*args, **kwargs)<span class="disabled"><span style="font-family:helvetica, arial, sans-serif"> from <a href="typing.html#_ProtocolMeta">typing._ProtocolMeta</a></span></span></dt>
+
+</dl>
+<hr>
+Class methods inherited from <a href="typing.html#Generic">typing.Generic</a>:<br>
+<dl>
+    <dt><a name="TypeLike-__class_getitem__"><strong>__class_getitem__</strong></a>(...)<span class="disabled"><span style="font-family:helvetica, arial, sans-serif"> from <a href="typing.html#_ProtocolMeta">typing._ProtocolMeta</a></span></span></dt>
+
+    <dd><tt>Parameterizes&nbsp;a&nbsp;generic&nbsp;class.<br>
+&nbsp;<br>
+At&nbsp;least,&nbsp;parameterizing&nbsp;a&nbsp;generic&nbsp;class&nbsp;is&nbsp;the&nbsp;*main*&nbsp;thing&nbsp;this<br>
+method&nbsp;does.&nbsp;For&nbsp;example,&nbsp;for&nbsp;some&nbsp;generic&nbsp;class&nbsp;`Foo`,&nbsp;this&nbsp;is&nbsp;called<br>
+when&nbsp;we&nbsp;do&nbsp;`Foo[int]`&nbsp;-&nbsp;there,&nbsp;with&nbsp;`cls=Foo`&nbsp;and&nbsp;`params=int`.<br>
+&nbsp;<br>
+However,&nbsp;note&nbsp;that&nbsp;this&nbsp;method&nbsp;is&nbsp;also&nbsp;called&nbsp;when&nbsp;defining&nbsp;generic<br>
+classes&nbsp;in&nbsp;the&nbsp;first&nbsp;place&nbsp;with&nbsp;`class&nbsp;Foo[T]:&nbsp;...`.</tt></dd>
+
+</dl>
+
+            </div>
+        </div>
+    </div>
+</section>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+
+
+</body>
+</html>

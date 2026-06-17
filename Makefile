@@ -20,7 +20,7 @@ ABOUT_FILE := pydoc_fork/__about__.py
 	spell \
 	docs-check docs-check-docstrings docs-check-links docs-check-pydoctest griffe \
 	build-docs \
-	make-docs make-docs-pdoc make-docs-mkdocs \
+	make-docs make-docs-pages make-docs-pdoc make-docs-mkdocs \
 	sample-docs sample-docs-dark dogfood \
 	dead-code vulture deadcode \
 	explore refurb crosshair deptry import-linter \
@@ -66,7 +66,8 @@ help:
 	@echo "  build-docs              Build mkdocs documentation"
 	@echo ""
 	@echo "  make-docs               Generate all doc formats (pdoc + mkdocs)"
-	@echo "  make-docs-pdoc          Generate pdoc HTML docs"
+	@echo "  make-docs-pages         Generate docs/ for GitHub Pages (pydoc_fork, light theme)"
+	@echo "  make-docs-pdoc          Generate pdoc HTML docs (doc_pdoc/)"
 	@echo "  make-docs-mkdocs        Build mkdocs docs"
 	@echo "  sample-docs             Self-document pydoc_fork (light theme)"
 	@echo "  sample-docs-dark        Self-document pydoc_fork (dark theme)"
@@ -177,8 +178,12 @@ griffe:
 # ── Documentation generation ─────────────────────────────────────────────────
 # pydoc_fork can generate docs multiple ways; preserve all of them.
 
+# GitHub Pages (docs/) is dogfooded: pydoc_fork documents itself, light theme.
+make-docs-pages:
+	@$(UV) run python -m pydoc_fork $(PACKAGE) --output docs --theme light --project_name "$(PACKAGE)"
+
 make-docs-pdoc:
-	@$(UV) run pdoc $(PACKAGE) --html -o docs --force
+	@$(UV) run pdoc $(PACKAGE) --html -o doc_pdoc --force
 
 make-docs-mkdocs: build-docs
 

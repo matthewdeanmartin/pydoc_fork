@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<head><title>Python: module pydoc_fork.reporter.format_module</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="theme-heading">
+    <div class="heading-content">
+        <div class="project-name">pydoc_fork</div>
+        <h1 class="heading-text"><big><big><strong><a href="pydoc_fork.html"><span style="color:">pydoc_fork</span></a>.<a href="pydoc_fork.reporter.html"><span style="color:">reporter</span></a>.format_module</strong></big></big></h1>
+        <div class="heading-extras">
+            &nbsp;
+        </div>
+    </div>
+
+    <nav class="header-nav">
+
+        <a href=".">index</a>
+
+        <a href="file:../pydoc_fork/reporter/format_module.py">../pydoc_fork/reporter/format_module.py</a>
+
+    </nav>
+
+</header>
+<p><tt>Roughly&nbsp;a&nbsp;UI&nbsp;component&nbsp;for&nbsp;modules</tt></p>
+
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>Modules</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <div class="multicolumn-container">
+
+    <div class="multicolumn-col">
+
+        <a href="contextlib.html">contextlib</a><br>
+
+        <a href="pydoc_fork.reporter.inline_styles.html">pydoc_fork.reporter.inline_styles</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+        <a href="inspect.html">inspect</a><br>
+
+        <a href="os.html">os</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+        <a href="pkgutil.html">pkgutil</a><br>
+
+        <a href="pydoc_fork.settings.html">pydoc_fork.settings</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+        <a href="sys.html">sys</a><br>
+
+    </div>
+
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>`from` Modules</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <div class="multicolumn-container">
+
+    <div class="multicolumn-col">
+
+        <a href="pydoc_fork.inspector.utils.html">pydoc_fork.inspector.utils</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+        <a href="pydoc_fork.reporter.formatter_html.html">pydoc_fork.reporter.formatter_html</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+        <a href="pydoc_fork.reporter.format_class.html">pydoc_fork.reporter.format_class</a><br>
+
+    </div>
+
+    <div class="multicolumn-col">
+
+        <a href="pydoc_fork.inspector.custom_types.html">pydoc_fork.inspector.custom_types</a><br>
+
+    </div>
+
+</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>Functions</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <dl>
+    <dt><a name="-bigsection"><strong>bigsection</strong></a>(title: str, contents: str = '', width: int = 6, prelude: str = '', marginalia: str = '', gap: str = '&amp;nbsp;') -&gt; str</dt>
+
+    <dd><tt>Format&nbsp;a&nbsp;section&nbsp;with&nbsp;a&nbsp;big&nbsp;heading.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-cast"><strong>cast</strong></a>(typ, val)</dt>
+
+    <dd><tt>Cast&nbsp;a&nbsp;value&nbsp;to&nbsp;a&nbsp;type.<br>
+&nbsp;<br>
+This&nbsp;returns&nbsp;the&nbsp;value&nbsp;unchanged.&nbsp;&nbsp;To&nbsp;the&nbsp;type&nbsp;checker&nbsp;this<br>
+signals&nbsp;that&nbsp;the&nbsp;return&nbsp;value&nbsp;has&nbsp;the&nbsp;designated&nbsp;type,&nbsp;but&nbsp;at<br>
+runtime&nbsp;we&nbsp;intentionally&nbsp;don't&nbsp;check&nbsp;anything&nbsp;(we&nbsp;want&nbsp;this<br>
+to&nbsp;be&nbsp;as&nbsp;fast&nbsp;as&nbsp;possible).</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-docmodule"><strong>docmodule</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike) -&gt; str</dt>
+
+    <dd><tt>Produce&nbsp;HTML&nbsp;documentation&nbsp;for&nbsp;a&nbsp;module&nbsp;object.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-escape"><strong>escape</strong></a>(value: Any) -&gt; str</dt>
+
+    <dd><tt>HTML&nbsp;safe&nbsp;repr&nbsp;and&nbsp;escape</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-file_link"><strong>file_link</strong></a>(url: str, path: str) -&gt; str</dt>
+
+    <dd><tt>Make&nbsp;a&nbsp;link&nbsp;to&nbsp;source&nbsp;file.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-format_tree"><strong>format_tree</strong></a>(tree: list[typing.Any], modname: str, parent: Any | None = None) -&gt; str</dt>
+
+    <dd><tt>Creates&nbsp;a&nbsp;representation&nbsp;of&nbsp;class&nbsp;inheritance.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-getdoc"><strong>getdoc</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike) -&gt; str</dt>
+
+    <dd><tt>Get&nbsp;the&nbsp;doc&nbsp;string&nbsp;or&nbsp;comments&nbsp;for&nbsp;an&nbsp;object.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-getdocloc"><strong>getdocloc</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike, basedir: str = 'C:\\Users\\matth\\AppData\\Local\\Programs\\Python\\Python314\\Lib') -&gt; str | None</dt>
+
+    <dd><tt>Return&nbsp;the&nbsp;location&nbsp;of&nbsp;module&nbsp;docs&nbsp;or&nbsp;None</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-heading"><strong>heading</strong></a>(title: str, extras: str = '', nav_links: collections.abc.Sequence[str] | None = None) -&gt; str</dt>
+
+    <dd><tt>Format&nbsp;a&nbsp;page&nbsp;heading.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-isdata"><strong>isdata</strong></a>(the_object: Any) -&gt; bool</dt>
+
+    <dd><tt>Check&nbsp;if&nbsp;an&nbsp;object&nbsp;is&nbsp;of&nbsp;a&nbsp;type&nbsp;that&nbsp;probably&nbsp;means&nbsp;it's&nbsp;data.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-markup"><strong>markup</strong></a>(text: str, funcs: dict[Any, str] | None = None, classes: dict[Any, str] | None = None, methods: dict[Any, str] | None = None) -&gt; str</dt>
+
+    <dd><tt>Replace&nbsp;all&nbsp;linkable&nbsp;things&nbsp;with&nbsp;links&nbsp;of&nbsp;appropriate&nbsp;syntax.<br>
+&nbsp;<br>
+Handle&nbsp;either&nbsp;an&nbsp;ad&nbsp;hoc&nbsp;markup&nbsp;language,&nbsp;or&nbsp;RST&nbsp;or&nbsp;Markdown.<br>
+funcs,&nbsp;classes,&nbsp;methods&nbsp;are&nbsp;name/symbol&nbsp;to&nbsp;URL&nbsp;maps.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-module_package_link"><strong>module_package_link</strong></a>(module_package_info: tuple[str, str, str, str]) -&gt; str</dt>
+
+    <dd><tt>Make&nbsp;a&nbsp;link&nbsp;for&nbsp;a&nbsp;module&nbsp;or&nbsp;package&nbsp;to&nbsp;display&nbsp;in&nbsp;an&nbsp;index.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-modulelink"><strong>modulelink</strong></a>(the_object: pydoc_fork.inspector.custom_types.TypeLike) -&gt; str</dt>
+
+    <dd><tt>Make&nbsp;a&nbsp;link&nbsp;for&nbsp;a&nbsp;module.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-multicolumn"><strong>multicolumn</strong></a>(the_list: collections.abc.Sequence[typing.Any], the_format: collections.abc.Callable[[typing.Any], str], cols: int = 4) -&gt; str</dt>
+
+    <dd><tt>Format&nbsp;a&nbsp;list&nbsp;of&nbsp;items&nbsp;into&nbsp;a&nbsp;multi-column&nbsp;list.</tt></dd>
+
+</dl> <dl>
+    <dt><a name="-visiblename"><strong>visiblename</strong></a>(name: str, all_things: list[str] | None = None, obj: Any | None = None) -&gt; bool</dt>
+
+    <dd><tt>Decide&nbsp;whether&nbsp;to&nbsp;show&nbsp;documentation&nbsp;on&nbsp;a&nbsp;variable.</tt></dd>
+
+</dl>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<section class="section">
+    <div class="section-header theme-section">
+        <h2><big><strong>Data</strong></big></h2>
+    </div>
+    <div class="section-body">
+
+        <div class="section-content">
+
+            <div class="marginalia"><tt></tt></div>
+
+            <div class="main-content">
+                <strong>JINJA_ENV</strong> = &lt;jinja2.environment.Environment object&gt;<br>
+<strong>STDLIB_BASEDIR</strong> = r'C:\Users\matth\AppData\Local\Programs\Python\Python314\Lib'
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+</body>
+</html>
