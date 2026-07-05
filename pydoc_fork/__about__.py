@@ -2,6 +2,7 @@
 
 __all__ = [
     "__credits__",
+    "__dependencies__",
     "__description__",
     "__keywords__",
     "__license__",
@@ -21,3 +22,11 @@ __keywords__ = ["pydoc", "html documentation"]
 __license__ = "MIT"
 __requires_python__ = ">=3.10"
 __status__ = "4 - Beta"
+__dependencies__ = [
+    "docopt-ng>=0.9.0,<1",
+    "jinja2>=3.1.4,<4",
+    "markdown>=3.5.2,<4",
+    "docutils==0.20.1",
+    "tomli>=2.0.1,<3",
+    "typing_extensions",
+]

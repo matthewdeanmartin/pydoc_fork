@@ -259,8 +259,7 @@ def format_tree(tree: list[Any], modname: str, parent: Any | None = None) -> str
     result = ""
     for entry in tree:
         class_object = entry
-        # pylint: disable=unidiomatic-typecheck
-        if type(entry) is type(()):
+        if isinstance(entry, tuple):
             class_object, bases = entry
             result = result + f'<dt><span style="font-family:{inline_styles.SAN_SERIF}">'
             result = result + classlink(class_object, modname)
@@ -271,7 +270,7 @@ def format_tree(tree: list[Any], modname: str, parent: Any | None = None) -> str
                 result = result + "(" + ", ".join(parents) + ")"
             result = result + "\n</span></dt>"
 
-        elif type(entry) is type([]):
+        elif isinstance(entry, list):
             nested_tree = format_tree(entry, modname, class_object)
             result = result + f"<dd>\n{nested_tree}</dd>\n"
     return f"<dl>\n{result}</dl>\n"

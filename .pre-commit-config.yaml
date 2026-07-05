@@ -21,23 +21,6 @@ repos:
       - id: trailing-whitespace
       - id: end-of-file-fixer
 
-  - repo: https://github.com/PyCQA/autoflake
-    rev: v2.3.3
-    hooks:
-      - id: autoflake
-        args:
-          - --in-place
-          - --recursive
-          - --expand-star-imports
-          - --remove-duplicate-keys
-          - --remove-unused-variables
-
-  - repo: https://github.com/PyCQA/isort
-    rev: 6.0.1
-    hooks:
-      - id: isort
-        args: ["--profile", "black", "--line-length", "120"]
-
   - repo: https://github.com/psf/black
     rev: 26.3.1
     hooks:
@@ -49,10 +32,3 @@ repos:
     hooks:
       - id: ruff
         args: ["--config", "pyproject.toml", "--fix"]
-
-  - repo: https://github.com/pre-commit/pygrep-hooks
-    rev: v1.10.0
-    hooks:
-      - id: python-use-type-annotations
-      - id: python-no-log-warn
-      - id: text-unicode-replacement-char

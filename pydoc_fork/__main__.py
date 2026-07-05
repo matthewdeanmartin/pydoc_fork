@@ -35,7 +35,7 @@ from pydoc_fork.__about__ import __version__
 from pydoc_fork.settings import load_config
 
 LOGGER = logging.getLogger(__name__)
-LOGGERS = []
+LOGGERS: list[logging.Logger] = []
 
 
 def main() -> int:

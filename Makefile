@@ -241,11 +241,18 @@ security: bandit audit
 bandit:
 	@$(UV) run bandit -q -c pyproject.toml -r $(PACKAGE)
 
+# GHSA-p4gq-832x-fm9v / PYSEC-2026-597 (CVE-2026-54293): percent-encoded path
+# traversal in nltk.data.load()/find(), affects nltk<=3.9.4 with no fixed
+# release published to PyPI yet (fix exists only as an unreleased 3.10.0-rc1).
+# nltk is a transitive dev-only dependency pulled in by textstat (a dev/docs
+# tool), which this repo does not call anywhere in its own source or tests, so
+# there is no reachable code path that feeds untrusted input into nltk's
+# resource loader. Safe to ignore until nltk publishes a fixed release.
 audit:
 	@echo "=== uv audit ==="
-	@$(UV) audit --ignore-until-fixed PYSEC-2022-42969
+	@$(UV) audit --ignore-until-fixed PYSEC-2022-42969 --ignore-until-fixed GHSA-p4gq-832x-fm9v --ignore-until-fixed PYSEC-2026-597
 	@echo "=== pip-audit ==="
-	@$(UV) run pip-audit --ignore-vuln PYSEC-2022-42969
+	@$(UV) run pip-audit --ignore-vuln PYSEC-2022-42969 --ignore-vuln GHSA-p4gq-832x-fm9v --ignore-vuln PYSEC-2026-597
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
