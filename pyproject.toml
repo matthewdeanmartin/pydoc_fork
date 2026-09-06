@@ -16,7 +16,9 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
 ]
 dependencies = [
     "docopt-ng>=0.9.0,<1",
@@ -51,11 +53,11 @@ include = [
     "pydoc_fork/**/*.html",
     "pydoc_fork/**/*.jinja",
     "/README.md",
-    "LICENSE",
+    "/LICENSE",
 ]
 
 [tool.hatch.build.targets.sdist]
-include = ["/README.md", "LICENSE", "/pydoc_fork", "/test"]
+include = ["/README.md", "/LICENSE", "/pydoc_fork", "/test"]
 
 [dependency-groups]
 # Minimal group for running the test suite + mypy across every supported Python
@@ -118,7 +120,8 @@ dev = [
     "crosshair-tool>=0.0.80",
     "deptry>=0.20.0",
     "import-linter>=2.0",
-    "keepachangelog-manager-fork[all]>=6.6.0,<7",
+    "keepachangelog-manager-fork[all]>=6.6.0,<7; python_version < '3.15'",  # [all] pulls google-re2, no cp315 wheel/sdist build on Windows
+    "keepachangelog-manager-fork>=6.6.0,<7; python_version >= '3.15'",  # pure-Python base still provides changelogmanager on 3.15
 ]
 
 [tool.uv]
