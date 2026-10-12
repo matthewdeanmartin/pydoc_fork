@@ -205,3 +205,10 @@ I picked a MIT license, but I'm no lawyer, the cpython license probably governs 
 - [Documentation](https://pydoc-fork.readthedocs.io/en/latest/)
 - [Bug Tracker](https://github.com/matthewdeanmartin/pydoc_fork/issues)
 - [Change Log](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/CHANGELOG.md)
+
+
+## Python 3.15 RC3 verification (2026-10-04)
+
+Refreshed dependencies with `uv lock --upgrade`; lock check passes. 44 tests pass / 2 skip with stable and prerelease-allowed dependencies on Python 3.15.0rc3 and on 3.14.7, using published wheels only. The experimental environments selected no dependency prereleases. Full development setup remains wheel-blocked by PyYAML through troml-dev-status; broad quality gates requiring it were not run.
+
+No dependency source builds or GitHub jobs. Changes local; human operators decide releases and upstream reporting.
