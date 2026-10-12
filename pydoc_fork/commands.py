@@ -8,7 +8,6 @@ import logging
 import os
 import os.path
 import pkgutil
-from typing import Union
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -21,7 +20,7 @@ LOGGER = logging.getLogger(__name__)
 
 
 def document_one(
-    thing: Union[TypeLike, str],
+    thing: TypeLike | str,
     output_folder: str,
     force_load: bool = False,
 ) -> str | None:

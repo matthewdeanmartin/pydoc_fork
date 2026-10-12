@@ -8,7 +8,7 @@ import inspect
 import sys
 from collections import deque
 from collections.abc import Callable
-from typing import Any, Union, cast
+from typing import Any, cast
 
 from pydoc_fork import settings
 from pydoc_fork.inspector.custom_types import TypeLike
@@ -27,7 +27,7 @@ from pydoc_fork.reporter.formatter_html import markup, section
 from pydoc_fork.reporter.jinja_code import JINJA_ENV
 
 
-def classlink(the_object: Union[TypeLike, type], modname: str) -> str:
+def classlink(the_object: TypeLike | type, modname: str) -> str:
     """Make a link for a class."""
     name, module = the_object.__name__, sys.modules.get(the_object.__module__)
     if module is not None and hasattr(module, name) and getattr(module, name) is the_object:

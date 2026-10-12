@@ -374,7 +374,7 @@ def _requires_unix_version(sysname, min_version):
 
     return unittest.skipIf(
         skip,
-        f"{sysname} version {min_version_txt} or higher required, not " f"{version_txt}",
+        f"{sysname} version {min_version_txt} or higher required, not {version_txt}",
     )
 
 
@@ -1491,9 +1491,8 @@ class PythonSymlink:
     if sys.platform == "win32":
 
         def _platform_specific(self):
-            import glob
-
             import _winapi
+            import glob
 
             if os.path.lexists(self.real) and not os.path.exists(self.real):
                 # App symlink appears to not exist, but we want the
@@ -1725,7 +1724,7 @@ class SuppressCrashReport:
                     stdout = proc.communicate()[0]
                 if stdout.strip() == b"developer":
                     print(
-                        "this test triggers the Crash Reporter, " "that is intentional",
+                        "this test triggers the Crash Reporter, that is intentional",
                         end="",
                         flush=True,
                     )
@@ -1800,7 +1799,7 @@ def run_in_subinterp(code):
     else:
         if tracemalloc.is_tracing():
             raise unittest.SkipTest(
-                "run_in_subinterp() cannot be used " "if tracemalloc module is tracing " "memory allocations"
+                "run_in_subinterp() cannot be used if tracemalloc module is tracing memory allocations"
             )
     import _testcapi
 
@@ -2134,7 +2133,7 @@ def wait_process(pid, *, exitcode, timeout=None):
                     # Ignore errors like ChildProcessError or PermissionError
                     pass
 
-                raise AssertionError(f"process {pid} is still running " f"after {dt:.1f} seconds")
+                raise AssertionError(f"process {pid} is still running after {dt:.1f} seconds")
 
             sleep = min(sleep * 2, max_sleep)
             time.sleep(sleep)
@@ -2144,7 +2143,7 @@ def wait_process(pid, *, exitcode, timeout=None):
 
     exitcode2 = os.waitstatus_to_exitcode(status)
     if exitcode2 != exitcode:
-        raise AssertionError(f"process {pid} exited with code {exitcode2}, " f"but exit code {exitcode} is expected")
+        raise AssertionError(f"process {pid} exited with code {exitcode2}, but exit code {exitcode} is expected")
 
     # sanity check: it should not fail in practice
     if pid2 != pid:

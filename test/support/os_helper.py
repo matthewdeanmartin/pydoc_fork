@@ -383,7 +383,7 @@ def temp_dir(path=None, quiet=False):
             if not quiet:
                 raise
             warnings.warn(
-                f"tests may fail, unable to create " f"temporary directory {path!r}: {exc}",
+                f"tests may fail, unable to create temporary directory {path!r}: {exc}",
                 RuntimeWarning,
                 stacklevel=3,
             )
@@ -417,7 +417,7 @@ def change_cwd(path, quiet=False):
         if not quiet:
             raise
         warnings.warn(
-            f"tests may fail, unable to change the current working " f"directory to {path!r}: {exc}",
+            f"tests may fail, unable to change the current working directory to {path!r}: {exc}",
             RuntimeWarning,
             stacklevel=3,
         )

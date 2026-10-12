@@ -10,10 +10,7 @@ import pathlib
 import sys
 from typing import Any
 
-if sys.version_info >= (3, 11):
-    import tomllib
-else:
-    import tomli as tomllib
+import tomllib
 
 LOGGER = logging.getLogger(__name__)
 # pylint: disable=global-statement

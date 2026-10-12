@@ -7,7 +7,7 @@ import logging
 import re
 import sys
 from collections.abc import Callable, Sequence
-from typing import Any, Union, cast
+from typing import Any, cast
 
 from pydoc_fork.inspector.custom_types import TypeLike
 from pydoc_fork.inspector.module_utils import locate
@@ -15,7 +15,7 @@ from pydoc_fork.inspector.module_utils import locate
 LOGGER = logging.getLogger(__name__)
 
 
-def resolve(thing: Union[str, Any], force_load: bool = False) -> tuple[Any, Any]:
+def resolve(thing: str | Any, force_load: bool = False) -> tuple[Any, Any]:
     """Given an object or a path to an object, get the object and its name."""
     if isinstance(thing, str):
         the_object = locate(thing, force_load)
@@ -167,7 +167,7 @@ def getdoc(the_object: TypeLike) -> str:
     return (result and re.sub("^ *\n", "", result.rstrip())) or ""
 
 
-def classname(the_object: Union[TypeLike, type], modname: str) -> str:
+def classname(the_object: TypeLike | type, modname: str) -> str:
     """Get a class name and qualify it with a module name if necessary."""
     name = the_object.__name__
     if the_object.__module__ != modname:
@@ -289,7 +289,7 @@ def classify_class_attrs(the_object: TypeLike) -> list[tuple[str, str, type, obj
     return results
 
 
-def sort_attributes(attrs: list[Any], the_object: Union[TypeLike, type]) -> None:
+def sort_attributes(attrs: list[Any], the_object: TypeLike | type) -> None:
     """Sort the attrs list in-place by _fields and then alphabetically by name"""
     # This allows data descriptors to be ordered according
     # to a _fields attribute if present.

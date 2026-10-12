@@ -6,14 +6,13 @@ readme = "README.md"
 authors = [{ name = "Matthew Martin", email = "matthewdeanmartin@gmail.com" }]
 keywords = ["pydoc", "html documentation"]
 license = "MIT"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
@@ -146,7 +145,7 @@ junit_family = "xunit1"
 
 [tool.black]
 line-length = 120
-target-version = ["py310"]
+target-version = ["py311"]
 include = '\.pyi?$'
 exclude = '''
 (
@@ -173,13 +172,13 @@ skip_gitignore = true
 known_first_party = ["pydoc_fork"]
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.11"
 ignore_missing_imports = true
 check_untyped_defs = true
 
 [tool.ruff]
 line-length = 120
-target-version = "py310"
+target-version = "py311"
 exclude = ["pydoc_original_ref"]
 
 [tool.ruff.lint]
@@ -192,7 +191,7 @@ select = [
     "RUF", # ruff-specific
     "W",   # pycodestyle warnings
 ]
-ignore = [
+ignore = ["RUF100",
     "E501",   # line too long (black handles this)
     "UP007",  # use X | Y for union (3.9 compat)
     "W291",   # trailing whitespace (black owns blank-line formatting)

@@ -2,7 +2,7 @@
 Custom Types so mypy can check the code
 """
 
-from typing import Any, Union
+from typing import Any
 
 from typing_extensions import Protocol
 
@@ -14,7 +14,7 @@ class TypeLike(Protocol):
     __name__: str
     __module__: str
     __doc__: str | None
-    __path__: Union[str, list[str]] | None
+    __path__: str | list[str] | None
     # noinspection SpellCheckingInspection
     __objclass__: Any | None
     __func__: Any | None
