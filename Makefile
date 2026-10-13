@@ -420,3 +420,6 @@ dont-be-lazy:
 	@$(UV) dont_be_lazy --root . --no-color scan pydoc_fork --no-config-suppressions || true
 
 # ── Dogfooding targets (independent, not wired into check) ───────────────────
+
+# `test` is also a directory in this repo; without .PHONY make can call the target up to date and skip it.
+.PHONY: test
