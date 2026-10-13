@@ -242,6 +242,7 @@ security: bandit audit
 bandit:
 	@$(UV) run bandit -q -c pyproject.toml -r $(PACKAGE)
 
+# PYSEC-2026-3740 (CVE-2026-81726): nltk model-artifact path bypass, no fix yet; same dev-only path.
 # GHSA-p4gq-832x-fm9v / PYSEC-2026-597 (CVE-2026-54293): percent-encoded path
 # traversal in nltk.data.load()/find(), affects nltk<=3.9.4 with no fixed
 # release published to PyPI yet (fix exists only as an unreleased 3.10.0-rc1).
@@ -251,9 +252,9 @@ bandit:
 # resource loader. Safe to ignore until nltk publishes a fixed release.
 audit:
 	@echo "=== uv audit ==="
-	@$(UV) audit --ignore-until-fixed PYSEC-2022-42969 --ignore-until-fixed GHSA-p4gq-832x-fm9v --ignore-until-fixed PYSEC-2026-597
+	@$(UV) audit --ignore-until-fixed PYSEC-2022-42969 --ignore-until-fixed GHSA-p4gq-832x-fm9v --ignore-until-fixed PYSEC-2026-597 --ignore-until-fixed PYSEC-2026-3740
 	@echo "=== pip-audit ==="
-	@$(UV) run pip-audit --ignore-vuln PYSEC-2022-42969 --ignore-vuln GHSA-p4gq-832x-fm9v --ignore-vuln PYSEC-2026-597
+	@$(UV) run pip-audit --ignore-vuln PYSEC-2022-42969 --ignore-vuln GHSA-p4gq-832x-fm9v --ignore-vuln PYSEC-2026-597 --ignore-vuln PYSEC-2026-3740
 
 # ── Tests ─────────────────────────────────────────────────────────────────────
 
