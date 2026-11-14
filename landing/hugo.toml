@@ -8,7 +8,4 @@ disableKinds = ["taxonomy", "term", "RSS"]
   version = "3.4.0"
   github = "https://github.com/matthewdeanmartin/pydoc_fork"
   docs = "https://pydoc-fork.readthedocs.io/en/latest/"
-  guide_source = "https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/index.md"
-  guide_install = "https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/installation.md"
-  guide_usage = "https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/usage.md"
   pypi = "https://pypi.org/project/pydoc-fork/"

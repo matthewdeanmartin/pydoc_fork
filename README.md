@@ -134,7 +134,9 @@ the top of the Pages settings panel and in the workflow summary.
 
 ## Docs
 
-- [Guide source](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/index.md)
+- [Documentation](https://pydoc-fork.readthedocs.io/en/latest/)
+- [Installation](https://pydoc-fork.readthedocs.io/en/latest/installation/)
+- [Usage](https://pydoc-fork.readthedocs.io/en/latest/usage/)
 - [Generated API demo](https://matthewdeanmartin.github.io/pydoc_fork/demo/)
 - [Motivation](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/motivation.md)
 - [Prior Art](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/prior_art.md)
@@ -204,6 +206,6 @@ I picked a MIT license, but I'm no lawyer, the cpython license probably governs 
 
 - [GitHub](https://github.com/matthewdeanmartin/pydoc_fork)
 - [PyPI](https://pypi.org/project/pydoc-fork/)
-- [Documentation source](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/index.md)
+- [Documentation](https://pydoc-fork.readthedocs.io/en/latest/)
 - [Bug Tracker](https://github.com/matthewdeanmartin/pydoc_fork/issues)
 - [Change Log](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/CHANGELOG.md)
