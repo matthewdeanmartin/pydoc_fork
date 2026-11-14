@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>format_page.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id='container'>
+  <div id="background"></div>
+  <div class='section'>
+    <div class='docs'><h1>format_page.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Roughly page and top level containers</p>
+<p>[[Page</p>
+<p>[[Document</p>
+<p>]]
+]]</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">inspect</span>
+<span class="kn">import</span> <span class="nn">pkgutil</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+
+<span class="kn">from</span> <span class="nn">jinja2</span> <span class="kn">import</span> <span class="n">Environment</span><span class="p">,</span> <span class="n">PackageLoader</span><span class="p">,</span> <span class="n">select_autoescape</span>
+
+<span class="kn">from</span> <span class="nn">pydoc_fork.custom_types</span> <span class="kn">import</span> <span class="n">TypeLike</span>
+<span class="kn">from</span> <span class="nn">pydoc_fork.format_class</span> <span class="kn">import</span> <span class="n">docclass</span>
+<span class="kn">from</span> <span class="nn">pydoc_fork.format_data</span> <span class="kn">import</span> <span class="n">docdata</span>
+<span class="kn">from</span> <span class="nn">pydoc_fork.format_module</span> <span class="kn">import</span> <span class="n">docmodule</span>
+<span class="kn">from</span> <span class="nn">pydoc_fork.format_other</span> <span class="kn">import</span> <span class="n">docother</span>
+<span class="kn">from</span> <span class="nn">pydoc_fork.format_routine</span> <span class="kn">import</span> <span class="n">docroutine</span>
+<span class="kn">from</span> <span class="nn">pydoc_fork.formatter_html</span> <span class="kn">import</span> <span class="n">bigsection</span><span class="p">,</span> <span class="n">modpkglink</span><span class="p">,</span> <span class="n">multicolumn</span>
+<span class="kn">from</span> <span class="nn">pydoc_fork.jinja_code</span> <span class="kn">import</span> <span class="n">JINJA_ENV</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Compose two functions</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">render</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">the_object</span><span class="p">:</span> <span class="n">TypeLike</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">return</span> <span class="n">page</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">document</span><span class="p">(</span><span class="n">the_object</span><span class="p">,</span> <span class="n">name</span><span class="p">))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>Format an HTML page.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">page</span><span class="p">(</span><span class="n">title</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">contents</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>This is part of the public API</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">template</span> <span class="o">=</span> <span class="n">JINJA_ENV</span><span class="o">.</span><span class="n">get_template</span><span class="p">(</span><span class="s2">&quot;page.jinja2&quot;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">template</span><span class="o">.</span><span class="n">render</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="n">title</span><span class="p">,</span> <span class="n">contents</span><span class="o">=</span><span class="n">contents</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">result</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <pre><code>return f"""\
+</code></pre>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<p><html><head><title>Python: {title}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+{contents}</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="c1"># &lt;/body&gt;&lt;/html&gt;&quot;&quot;&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <pre><code>args = (the_object, name) + args
+
+# 'try' clause is to attempt to handle the possibility that inspect
+# identifies something in a way that pydoc itself has issues handling;
+# think 'super' and how it is a descriptor (which raises the exception
+# by lacking a __name__ attribute) and an instance.
+# try:
+if inspect.ismodule(the_object):
+</code></pre>
+<p>return docmodule(the_object)
+    if inspect.isclass(the_object):
+   return docclass(<em>args)
+    if inspect.isroutine(the_object):
+   return docroutine(</em>args)
+    # except AttributeError:
+    #     pass  # nosec
+    if inspect.isdatadescriptor(the_object):
+   return docdata(the_object, name)
+    return docother(the_object, name)</p>
+<h1>This is page</h1>
+<p>def index(directory: str, shadowed: Optional[Dict[str, Any]] = None) -&gt; str:
+Generate an HTML index for a directory of modules.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="k">def</span> <span class="nf">document</span><span class="p">(</span><span class="n">the_object</span><span class="p">:</span> <span class="n">TypeLike</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>  <span class="c1"># Null safety</span>
+    <span class="s2">&quot;&quot;&quot;Generate documentation for an object.</span>
+<span class="s2">    This also part of the public API of class</span>
+
+<span class="s2">    Types of : Module, class, routine, data descriptor, &quot;other&quot; are supported</span>
+
+<span class="s2">    Modules ignore 1st name.</span>
+
+<span class="s2">    Public API doesn&#39;t call with *args</span>
+<span class="s2">    Args are:</span>
+<span class="s2">    name, fdict, cdict (name twice?)</span>
+<span class="s2">    mod, funcs, classes, mdict, the_object</span>
+<span class="s2">#DIVIDER</span>
+<span class="s2">    modpkgs = []</span>
+<span class="s2">    if shadowed is None:</span>
+<span class="s2">        shadowed = </span><span class="si">{}</span><span class="s2"></span>
+<span class="s2">    for _, name, ispkg in pkgutil.iter_modules([directory]):</span>
+<span class="s2">        if any((0xD800 &lt;= ord(ch) &lt;= 0xDFFF) for ch in name):</span>
+<span class="s2">#DIVIDER</span>
+<span class="s2">            continue</span>
+<span class="s2">        modpkgs.append((name, &quot;&quot;, ispkg, name in shadowed))</span>
+<span class="s2">        shadowed[name] = 1</span>
+
+<span class="s2">    modpkgs.sort()</span>
+<span class="s2">    contents = multicolumn(modpkgs, modpkglink)</span>
+<span class="s2">    return bigsection(directory, &quot;#ffffff&quot;, &quot;#ee77aa&quot;, contents)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+  <div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>ignore a module if its name contains a surrogate character</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

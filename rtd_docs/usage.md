@@ -1,22 +1,53 @@
-### Pydoc's Adhoc Markup
+# Usage
 
-Supports
+Run `pydoc_fork` with an importable module or package name and an output directory:
 
-- PEP links
-- RFC links
-- Arbitrary links
-- `__doc__` on most types
-- suppression on `_name`
+```bash
+pydoc_fork my_module --output docs
+```
 
-### Pydoc_Fork's "markup language"
+The output contains an `index.html`, module pages, and a stylesheet. Publish the directory on a static host, or open it locally to inspect the result. The [self-documentation demo](https://matthewdeanmartin.github.io/pydoc_fork/demo/) shows real output from this project.
 
-Supports (soon?)
+## Common options
 
-- Assuming markup language for all
-- Guessing markup language
+```bash
+# Document internal modules too
+pydoc_fork my_module --output docs --document_internals
 
-Adding `__doc__` to dynamic things
+# Select a theme and add a project label
+pydoc_fork my_module --output docs --theme dark --project_name "My Cool Lib"
 
-- Slots - https://stackoverflow.com/questions/39171672/adding-docstring-to-slots-descriptor
-- Conditional Implementation - https://stackoverflow.com/questions/57274925/documenting-a-module-interface-with-multiple-implementations
-- Inheritence https://pypi.org/project/docstring-inheritance/
+# Link standard-library references to docs.python.org
+pydoc_fork my_module --output docs --prefer_docs_python_org
+
+# Leave the index page to another site generator
+pydoc_fork my_module --output docs --no_index
+```
+
+Available themes are `classic`, `light`, and `dark`. Run `pydoc_fork --help` for the complete option list.
+
+## Project configuration
+
+Put reusable settings in `pyproject.toml`:
+
+```toml
+[tool.pydoc_fork]
+PROJECT_NAME = "My Cool Lib"
+THEME = "dark"
+DOCUMENT_INTERNALS = true
+PREFER_DOCS_PYTHON_ORG = true
+```
+
+Then point the CLI at the project directory:
+
+```bash
+pydoc_fork my_module --output docs --config .
+```
+
+## Templates
+
+The generator renders pages with Jinja templates in `pydoc_fork/templates/`. To change the layout, copy the template directory, edit the copy, and set `CUSTOM_TEMPLATES` in your project configuration to the new directory.
+
+## Publishing
+
+See [Workflows](workflows.md) for examples of generating documentation during a build.

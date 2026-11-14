@@ -3,11 +3,12 @@ site_name: pydoc_fork
 site_url: https://pydoc-fork.readthedocs.io/
 site_author: Matthew Martin <matthewdeanmartin@gmail.com>
 site_description: Fork of cpython's pydoc module to do just html document generation
+docs_dir: rtd_docs
 repo_url: https://github.com/matthewdeanmartin/pydoc_fork
 theme:
   name: readthedocs
   features: [navigation.footer]
-edit_uri: edit/main/docs/
+edit_uri: edit/main/rtd_docs/
 markdown_extensions:
   - attr_list
   - toc:
@@ -27,3 +28,14 @@ plugins:
         python:
           options:
             docstring_style: google
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Usage: usage.md
+  - Workflows: workflows.md
+  - Motivation: motivation.md
+  - Prior art: prior_art.md
+  - Contributing: contributing.md
+  - Changelog: CHANGES.md
+  - Feature notes: feature_clusters.md
+  - Roadmap: TODO.md

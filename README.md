@@ -8,7 +8,7 @@ it's small, and the output looks like the pydoc you remember from 2003 (now with
 
 ## Installation
 
-Requires Python 3.10+
+Requires Python 3.11+
 
 ```bash
 pip install pydoc_fork
@@ -134,6 +134,8 @@ the top of the Pages settings panel and in the workflow summary.
 
 ## Docs
 
+- [Guide source](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/index.md)
+- [Generated API demo](https://matthewdeanmartin.github.io/pydoc_fork/demo/)
 - [Motivation](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/motivation.md)
 - [Prior Art](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/prior_art.md)
 - [TODO](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/TODO.md)
@@ -148,7 +150,7 @@ codebase as its peers:
 - [PyDoctor](https://matthewdeanmartin.github.io/pydoc_fork/docs_pydoctor/index.html)
 - [pdoc3](https://matthewdeanmartin.github.io/pydoc_fork/docs_pdoc3/pydoc_fork/index.html)
 - [mkdocstrings](https://matthewdeanmartin.github.io/pydoc_fork/docs_mkdocstrings/index.html)
-- [sphinx](https://matthewdeanmartin.github.io/pydoc_fork/docs_sphinx/py-modindex.html)
+- [Portray](https://matthewdeanmartin.github.io/pydoc_fork/docs_portray/index.html)
 
 ## Prior art and alternatives
 
@@ -202,13 +204,6 @@ I picked a MIT license, but I'm no lawyer, the cpython license probably governs 
 
 - [GitHub](https://github.com/matthewdeanmartin/pydoc_fork)
 - [PyPI](https://pypi.org/project/pydoc-fork/)
-- [Documentation](https://pydoc-fork.readthedocs.io/en/latest/)
+- [Documentation source](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/rtd_docs/index.md)
 - [Bug Tracker](https://github.com/matthewdeanmartin/pydoc_fork/issues)
 - [Change Log](https://github.com/matthewdeanmartin/pydoc_fork/blob/main/CHANGELOG.md)
-
-
-## Python 3.15 RC3 verification (2026-10-04)
-
-Refreshed dependencies with `uv lock --upgrade`; lock check passes. 44 tests pass / 2 skip with stable and prerelease-allowed dependencies on Python 3.15.0rc3 and on 3.14.7, using published wheels only. The experimental environments selected no dependency prereleases. Full development setup remains wheel-blocked by PyYAML through troml-dev-status; broad quality gates requiring it were not run.
-
-No dependency source builds or GitHub jobs. Changes local; human operators decide releases and upstream reporting.

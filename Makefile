@@ -18,7 +18,7 @@ ABOUT_FILE := pydoc_fork/__about__.py
 	format-check format-check-python format-check-yaml format-check-markdown \
 	lint lint-check ruff-fix ruff-check pylint pylint-tests pylint-spelling \
 	spell \
-	docs-check docs-check-docstrings docs-check-links docs-check-pydoctest griffe \
+	docs-check docs-check-docstrings docs-check-pydoctest griffe \
 	build-docs \
 	make-docs make-docs-pages make-docs-pdoc make-docs-mkdocs \
 	sample-docs sample-docs-dark dogfood \
@@ -59,10 +59,9 @@ help:
 	@echo "  version-check           Verify version consistency (jiggle_version)"
 	@echo "  dev-status              Verify Development Status classifier"
 	@echo ""
-	@echo "  docs-check              All doc checks (docstrings + links + pydoctest)"
+	@echo "  docs-check              Docstring coverage + pydoctest checks"
 	@echo "  docs-check-docstrings   interrogate docstring coverage"
 	@echo "  docs-check-pydoctest    pydoctest docstring example tests"
-	@echo "  docs-check-links        linkcheckMarkdown"
 	@echo "  griffe                  griffe API surface check (advisory)"
 	@echo "  build-docs              Build mkdocs documentation"
 	@echo ""
@@ -160,7 +159,7 @@ spell: pylint-spelling
 
 # ── Documentation checks ─────────────────────────────────────────────────────
 
-docs-check: docs-check-docstrings docs-check-pydoctest docs-check-links
+docs-check: docs-check-docstrings docs-check-pydoctest
 
 docs-check-docstrings:
 	@$(UV) run interrogate $(PACKAGE) --verbose --fail-under 70
@@ -168,9 +167,6 @@ docs-check-docstrings:
 docs-check-pydoctest:
 	@$(UV) run pydoctest --config .pydoctest.json \
 		| grep -v "__init__" | grep -v "__main__" | grep -v "Unable to parse" || true
-
-docs-check-links:
-	@$(UV) run linkcheckMarkdown README.md || true
 
 griffe:
 	@echo "=== griffe API surface check (advisory) ==="

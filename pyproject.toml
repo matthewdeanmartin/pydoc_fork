@@ -29,7 +29,7 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/matthewdeanmartin/pydoc_fork"
+Homepage = "https://matthewdeanmartin.github.io/pydoc_fork/"
 Documentation = "https://pydoc-fork.readthedocs.io/en/latest/"
 Repository = "https://github.com/matthewdeanmartin/pydoc_fork"
 Changelog = "https://github.com/matthewdeanmartin/pydoc_fork/blob/main/CHANGELOG.md"
@@ -98,7 +98,6 @@ dev = [
     "pyyaml>=6.0",
     "yamlfix>=1.19.0",
     "interrogate>=1.5.0",
-    "linkcheckmd>=1.4.0",
     "pyenchant>=3.2.2",
     "pydoctest==0.2.1",
     "pdoc3>=0.10.0",
